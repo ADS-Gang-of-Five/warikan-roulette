@@ -11,7 +11,7 @@ struct View1: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Text("割り勘グループを右下のボタンから追加してください。")
+                Text("割り勘グループを右下のボタンから追加してください")
                     .font(.title2)
                     .padding(.horizontal, 30)
                 

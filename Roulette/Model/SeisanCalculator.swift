@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// 清算の一手順。
 struct Seisan {
     let fromMember: Member
     let toMember: Member

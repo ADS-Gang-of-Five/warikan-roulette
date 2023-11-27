@@ -15,16 +15,16 @@ struct WarikanGroupUsecase {
         self.repository = repository
     }
     
-    func getAll() -> [WarikanGroup] {
-        return repository.getItems()
+    func findAll() -> [WarikanGroup] {
+        return repository.findAll()
     }
     
     func add(name: String, memberNames: [String]) {
         let members = memberNames.map { Member(name: $0) }
-        repository.addItem(WarikanGroup(name: name, members: members))
+        repository.save(WarikanGroup(name: name, members: members))
     }
     
     func remove(at indices: [Int]) {
-        repository.removeItem(at: indices)
+        repository.remove(at: indices)
     }
 }

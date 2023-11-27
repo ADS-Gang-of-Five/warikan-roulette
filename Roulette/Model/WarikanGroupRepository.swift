@@ -11,24 +11,35 @@ import Foundation
 struct WarikanGroupRepository {
     private var userDefaultsKey: String
     
-    init(userDefaultsKey: String) {
+    static func create(userDefaultsKey: String) -> Self {
+        let repository = WarikanGroupRepository(userDefaultsKey: userDefaultsKey)
+        if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
+            repository.commit(items: [])
+        }
+        return repository
+    }
+    
+    private init(userDefaultsKey: String) {
         self.userDefaultsKey = userDefaultsKey
     }
     
     private func write(block: (inout [WarikanGroup]) -> ()) {
         var items = findAll()
         block(&items)
-        guard let encodedData = try? JSONEncoder().encode(items) else { return }
+        commit(items: items)
+    }
+    
+    private func commit(items: [WarikanGroup]) {
+        let encodedData = try! JSONEncoder().encode(items)
         UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
     }
     
     func findAll() -> [WarikanGroup] {
-        guard let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-              let items = try? JSONDecoder().decode([WarikanGroup].self, from: data) // FIXME: try?
-        else {
+        guard let data = UserDefaults.standard.data(forKey: userDefaultsKey) else {
+            assertionFailure("リポジトリのデータソース userDefaultsKey=\(userDefaultsKey) が喪失しています。")
             return []
         }
-        return items
+        return try! JSONDecoder().decode([WarikanGroup].self, from: data)
     }
     
     func save(_ item: WarikanGroup) {

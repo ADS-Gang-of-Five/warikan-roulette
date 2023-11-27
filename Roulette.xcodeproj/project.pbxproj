@@ -35,6 +35,7 @@
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
 		A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */; };
+		A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
 		A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepository.swift; sourceTree = "<group>"; };
+		A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */,
+				A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */,
 				4C2518082B12104900965D43 /* Member.swift */,
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				4C25180D2B12108D00965D43 /* TransactionRecord.swift */,
@@ -255,6 +258,7 @@
 				696877042B0B7DF300318B3E /* Extention.swift in Sources */,
 				4C64F4432B0387510053995E /* View8.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
+				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

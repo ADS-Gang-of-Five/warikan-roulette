@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WarikanGroupRepository {
+struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var userDefaultsKey: String
     
     static func create(userDefaultsKey: String) -> Self {

@@ -39,7 +39,12 @@ struct WarikanGroupRepository {
             assertionFailure("リポジトリのデータソース userDefaultsKey=\(userDefaultsKey) が喪失しています。")
             return []
         }
-        return try! JSONDecoder().decode([WarikanGroup].self, from: data)
+        do {
+            return try JSONDecoder().decode([WarikanGroup].self, from: data)
+        } catch {
+            print("デコードに失敗：\(error)")
+            return []
+        }
     }
     
     func save(_ item: WarikanGroup) {

@@ -8,8 +8,8 @@
 import Foundation
 
 class UserDefaultsRepository<T: Identifiable & Codable> {
-    private let userDefaultsKey: String
-    @Published private(set) var items: [T]
+    private var userDefaultsKey: String
+    private var items: [T]
     
     init(userDefaultsKey: String) {
         self.userDefaultsKey = userDefaultsKey
@@ -32,8 +32,10 @@ class UserDefaultsRepository<T: Identifiable & Codable> {
         update()
     }
     
-    func removeItem(at indexSet: IndexSet) {
-        items.remove(atOffsets: indexSet)
+    func removeItem(at indices: [Int]) {
+        indices.sorted().reversed().forEach { index in
+            items.remove(at: index)
+        }
         update()
     }
     

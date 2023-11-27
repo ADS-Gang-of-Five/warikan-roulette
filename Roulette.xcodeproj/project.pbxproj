@@ -34,6 +34,7 @@
 		696877042B0B7DF300318B3E /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877032B0B7DF300318B3E /* Extention.swift */; };
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
+		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		696877032B0B7DF300318B3E /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				4C25180D2B12108D00965D43 /* TransactionRecord.swift */,
 				A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */,
+				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				4C834CCD2AFB05B600AEC209 /* Roulette.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
 				4C64F43F2B0382F60053995E /* View6_2.swift in Sources */,
+				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				4C2518072B120FFD00965D43 /* UserDefaultsRepository.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,

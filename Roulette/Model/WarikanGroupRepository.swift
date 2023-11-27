@@ -11,16 +11,11 @@ import Foundation
 struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var userDefaultsKey: String
     
-    static func create(userDefaultsKey: String) -> Self {
-        let repository = WarikanGroupRepository(userDefaultsKey: userDefaultsKey)
-        if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
-            repository.commit(items: [])
-        }
-        return repository
-    }
-    
-    private init(userDefaultsKey: String) {
+    init(userDefaultsKey: String) {
         self.userDefaultsKey = userDefaultsKey
+        if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
+            commit(items: [])
+        }
     }
     
     private func write(block: (inout [WarikanGroup]) -> ()) {

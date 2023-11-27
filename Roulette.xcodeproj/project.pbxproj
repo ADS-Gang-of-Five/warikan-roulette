@@ -36,6 +36,7 @@
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
 		A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */; };
 		A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */; };
+		A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
 		A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepository.swift; sourceTree = "<group>"; };
 		A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWarikanGroupRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */,
+				A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */,
 				A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */,
 				4C2518082B12104900965D43 /* Member.swift */,
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
 				696877002B0B6D6C00318B3E /* NavigationViewModel.swift in Sources */,
 				4C25180E2B12108D00965D43 /* TransactionRecord.swift in Sources */,
 				4C64F4412B0386AD0053995E /* View7.swift in Sources */,

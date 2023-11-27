@@ -9,9 +9,9 @@
 import Foundation
 
 struct WarikanGroupUsecase {
-    private var repository: UserDefaultsRepository<WarikanGroup>
+    private var repository: WarikanGroupRepository
     
-    init(repository: UserDefaultsRepository<WarikanGroup>) {
+    init(repository: WarikanGroupRepository) {
         self.repository = repository
     }
     

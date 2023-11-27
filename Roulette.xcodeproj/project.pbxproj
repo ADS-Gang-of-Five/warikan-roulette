@@ -15,7 +15,6 @@
 		4C228AD52AFA861D00FE4F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD42AFA861D00FE4F35 /* Assets.xcassets */; };
 		4C228AD82AFA861D00FE4F35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD72AFA861D00FE4F35 /* Preview Assets.xcassets */; };
 		4C228AE02AFA86A100FE4F35 /* SimpleRoulette in Frameworks */ = {isa = PBXBuildFile; productRef = 4C228ADF2AFA86A100FE4F35 /* SimpleRoulette */; };
-		4C2518072B120FFD00965D43 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2518062B120FFD00965D43 /* UserDefaultsRepository.swift */; };
 		4C2518092B12104900965D43 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2518082B12104900965D43 /* Member.swift */; };
 		4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180B2B12108000965D43 /* WarikanGroup.swift */; };
 		4C25180E2B12108D00965D43 /* TransactionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180D2B12108D00965D43 /* TransactionRecord.swift */; };
@@ -35,6 +34,7 @@
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
+		A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +46,6 @@
 		4C228AD22AFA861B00FE4F35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C228AD42AFA861D00FE4F35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C228AD72AFA861D00FE4F35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4C2518062B120FFD00965D43 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		4C2518082B12104900965D43 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		4C25180B2B12108000965D43 /* WarikanGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroup.swift; sourceTree = "<group>"; };
 		4C25180D2B12108D00965D43 /* TransactionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRecord.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
+		A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +136,7 @@
 		4C2518052B120FD200965D43 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4C2518062B120FFD00965D43 /* UserDefaultsRepository.swift */,
+				A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */,
 				4C2518082B12104900965D43 /* Member.swift */,
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				4C25180D2B12108D00965D43 /* TransactionRecord.swift */,
@@ -235,9 +235,9 @@
 				4C64F4412B0386AD0053995E /* View7.swift in Sources */,
 				4C834CCD2AFB05B600AEC209 /* Roulette.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
+				A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */,
 				4C64F43F2B0382F60053995E /* View6_2.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
-				4C2518072B120FFD00965D43 /* UserDefaultsRepository.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,
 				4C64F4352B036F920053995E /* View4.swift in Sources */,

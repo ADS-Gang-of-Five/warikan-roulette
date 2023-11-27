@@ -1,36 +1,37 @@
 //
-//  UserDefaultsRepository.swift
+//  WarikanGroupRepository.swift
 //  Roulette
-//
-//  Created by Masaki Doi on 2023/11/25.
+//  
+//  Created by Seigetsu on 2023/11/27
+//  
 //
 
 import Foundation
 
-struct UserDefaultsRepository<T: Identifiable & Codable> {
+struct WarikanGroupRepository {
     private var userDefaultsKey: String
     
     init(userDefaultsKey: String) {
         self.userDefaultsKey = userDefaultsKey
     }
     
-    private func write(block: (inout [T]) -> ()) {
+    private func write(block: (inout [WarikanGroup]) -> ()) {
         var items = findAll()
         block(&items)
         guard let encodedData = try? JSONEncoder().encode(items) else { return }
         UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
     }
     
-    func findAll() -> [T] {
+    func findAll() -> [WarikanGroup] {
         guard let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-              let items = try? JSONDecoder().decode([T].self, from: data) // FIXME: try?
+              let items = try? JSONDecoder().decode([WarikanGroup].self, from: data) // FIXME: try?
         else {
             return []
         }
         return items
     }
     
-    func save(_ item: T) {
+    func save(_ item: WarikanGroup) {
         write { items in
             items.append(item)
         }

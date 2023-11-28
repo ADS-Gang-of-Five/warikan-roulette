@@ -29,7 +29,11 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
     }
     
     func save(_ item: WarikanGroup) {
-        items.append(item)
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items[index] = item
+        } else {
+            items.append(item)
+        }
     }
     
     func remove(id: UUID) {

@@ -54,4 +54,37 @@ struct WarikanGroupUsecase {
             }
         }
     }
+    
+    /// 新規メンバーを追加する。
+    ///
+    /// 作成したメンバーは配列`WarikanGroup.members`の末尾に追加される。
+    func createMember(warikanGroupID: UUID, name: String) async throws {
+        let newMember = Member(name: name)
+        do {
+            try await warikanGroupRepository.transaction {
+                let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+                try await warikanGroupRepository.save(
+                    WarikanGroup(name: warikanGroup.name, members: warikanGroup.members + [newMember])
+                )
+            }
+        } catch {
+            print("ERROR: 割り勘グループ (id:\(warikanGroupID)) のメンバー (name:\(name)) 追加に失敗: \(error)")
+            throw error
+        }
+    }
+    
+    /// メンバーを削除する。
+    func removeMember(warikanGroupID: UUID, memberID: UUID) async throws {
+        do {
+            try await warikanGroupRepository.transaction {
+                let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+                try await warikanGroupRepository.save(
+                    WarikanGroup(name: warikanGroup.name, members: warikanGroup.members.filter { $0.id != memberID })
+                )
+            }
+        } catch {
+            print("ERROR: 割り勘グループ (id:\(warikanGroupID)) のメンバー (id:\(memberID)) 削除に失敗: \(error)")
+            throw error
+        }
+    }
 }

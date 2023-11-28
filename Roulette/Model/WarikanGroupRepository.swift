@@ -49,6 +49,11 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
+    func find(id: UUID) -> WarikanGroup? {
+        let items = findAll()
+        return items.first { $0.id == id }
+    }
+    
     func find(indices: [Int]) -> [WarikanGroup] {
         let entirety = findAll()
         return indices.map { entirety[$0] }

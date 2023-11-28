@@ -20,8 +20,12 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         return items
     }
     
+    func find(id: UUID) -> WarikanGroup? {
+        return items.first { $0.id == id }
+    }
+    
     func find(indices: [Int]) -> [WarikanGroup] {
-        indices.map { items[$0] }
+        return indices.map { items[$0] }
     }
     
     func save(_ item: WarikanGroup) {

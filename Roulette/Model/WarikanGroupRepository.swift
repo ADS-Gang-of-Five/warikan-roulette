@@ -53,11 +53,9 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(at indices: [Int]) {
+    func remove(id: UUID) {
         write { items in
-            indices.sorted().reversed().forEach { index in
-                items.remove(at: index)
-            }
+            items = items.filter { $0.id != id }
         }
     }
 }

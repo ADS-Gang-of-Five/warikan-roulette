@@ -20,9 +20,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         items.append(item)
     }
     
-    func remove(at indices: [Int]) {
-        indices.sorted().reversed().forEach { index in
-            items.remove(at: index)
-        }
+    func remove(id: UUID) {
+        items = items.filter { $0.id != id }
     }
 }

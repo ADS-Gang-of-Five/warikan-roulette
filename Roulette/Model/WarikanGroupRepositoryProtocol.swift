@@ -19,5 +19,5 @@ protocol WarikanGroupRepositoryProtocol {
     func save(_ item: WarikanGroup)
     
     /// 指定したインデックスの割り勘グループを削除する。
-    func remove(at indices: [Int])
+    func remove(id: UUID)
 }

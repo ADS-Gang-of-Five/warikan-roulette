@@ -44,9 +44,8 @@ struct WarikanGroupUsecase {
         let entirety = warikanGroupRepository.findAll()
         let warikanGroups = indices.map { entirety[$0] }
         
-        warikanGroupRepository.remove(at: indices)
-        
         warikanGroups.forEach { warikanGroup in
+            warikanGroupRepository.remove(id: warikanGroup.id)
             warikanGroup.members.forEach { memberID in
                 memberRepository.remove(id: memberID)
             }

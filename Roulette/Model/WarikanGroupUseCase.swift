@@ -32,24 +32,25 @@ struct WarikanGroupUsecase {
     
     /// 指定したインデックスの割り勘グループを削除する。
     func remove(at indices: [Int]) async throws {
-        try await warikanGroupRepository.transaction {
-            // 削除対象の割り勘グループを取得
-            let warikanGroups: [WarikanGroup]
-            do {
-                warikanGroups = try await warikanGroupRepository.find(indices: indices)
-            } catch {
-                print("ERROR: 削除対象の割り勘グループ (indices=\(indices)) の取得に失敗: \(error)")
-                throw error
-            }
+        // 削除対象の割り勘グループを取得
+        let warikanGroups: [WarikanGroup]
+        do {
+            warikanGroups = try await warikanGroupRepository.find(indices: indices)
+        } catch {
+            // TODO: 具体的にどのインデックスで失敗したのか分かりにくい。
+            print("ERROR: 削除対象の割り勘グループ (indices=\(indices)) の取得に失敗: \(error)")
+            throw error
+        }
             
-            // 割り勘グループを削除
-            for warikanGroup in warikanGroups {
-                do {
+        // 割り勘グループを削除
+        for warikanGroup in warikanGroups {
+            do {
+                try await warikanGroupRepository.transaction {
                     try await warikanGroupRepository.remove(id: warikanGroup.id)
-                } catch {
-                    print("ERROR: 割り勘グループ (id:\(warikanGroup.id)) の削除に失敗: \(error)")
-                    throw error
                 }
+            } catch {
+                print("ERROR: 割り勘グループ (id:\(warikanGroup.id)) の削除に失敗: \(error)")
+                throw error
             }
         }
     }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// テスト用のリポジトリ。`WarikanGroup`配列のCRUD操作を行う。
 class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var items = [WarikanGroup]()
     

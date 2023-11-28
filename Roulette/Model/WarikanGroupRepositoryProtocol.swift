@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// `WarikanGroup`配列のCRUD操作のために、データベースとやり取りを行うメソッド。
 protocol WarikanGroupRepositoryProtocol {
     /// 割り勘グループを全件取得する。
     func findAll() -> [WarikanGroup]

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// UserDefaultsを用いて`WarikanGroup`配列のCRUD操作を行うリポジトリ。
 struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var userDefaultsKey: String
     

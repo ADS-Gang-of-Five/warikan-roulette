@@ -64,7 +64,8 @@ struct WarikanGroupUsecase {
             try await warikanGroupRepository.transaction {
                 let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
                 try await warikanGroupRepository.save(
-                    WarikanGroup(name: warikanGroup.name, members: warikanGroup.members + [newMember])
+                    // TODO: IDを使って生成しているので要修正
+                    WarikanGroup(id: warikanGroupID, name: warikanGroup.name, members: warikanGroup.members + [newMember])
                 )
             }
         } catch {
@@ -79,7 +80,8 @@ struct WarikanGroupUsecase {
             try await warikanGroupRepository.transaction {
                 let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
                 try await warikanGroupRepository.save(
-                    WarikanGroup(name: warikanGroup.name, members: warikanGroup.members.filter { $0.id != memberID })
+                    // TODO: IDを使って生成しているので要修正
+                    WarikanGroup(id: warikanGroupID, name: warikanGroup.name, members: warikanGroup.members.filter { $0.id != memberID })
                 )
             }
         } catch {

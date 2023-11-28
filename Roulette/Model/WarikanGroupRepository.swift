@@ -10,6 +10,7 @@ import Foundation
 
 /// UserDefaultsを用いて`WarikanGroup`配列のCRUD操作を行うリポジトリ。
 struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
+    
     private var userDefaultsKey: String
     
     init(userDefaultsKey: String) {
@@ -17,6 +18,10 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
             commit(items: [])
         }
+    }
+    
+    func transaction(block: () async throws -> ()) async throws {
+        try await block()
     }
     
     private func write(block: (inout [WarikanGroup]) -> ()) {
@@ -41,6 +46,11 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
             print("デコードに失敗：\(error)")
             return []
         }
+    }
+    
+    func find(indices: [Int]) -> [WarikanGroup] {
+        let entirety = findAll()
+        return indices.map { entirety[$0] }
     }
     
     func save(_ item: WarikanGroup) {

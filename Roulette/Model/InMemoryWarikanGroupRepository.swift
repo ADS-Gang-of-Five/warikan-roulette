@@ -12,8 +12,16 @@ import Foundation
 class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var items = [WarikanGroup]()
     
+    func transaction(block: () async throws -> ()) async throws {
+        try await block()
+    }
+    
     func findAll() -> [WarikanGroup] {
         return items
+    }
+    
+    func find(indices: [Int]) -> [WarikanGroup] {
+        indices.map { items[$0] }
     }
     
     func save(_ item: WarikanGroup) {

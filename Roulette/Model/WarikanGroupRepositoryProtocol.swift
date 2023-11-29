@@ -10,6 +10,7 @@ import Foundation
 
 /// `WarikanGroup`配列のCRUD操作のために、データベースとやり取りを行うメソッド。
 protocol WarikanGroupRepositoryProtocol {
+    /// データベースのトランザクションを実行する。
     func transaction(block: () async throws -> ()) async throws
     
     /// 割り勘グループを全件取得する。

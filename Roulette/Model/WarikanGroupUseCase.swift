@@ -60,4 +60,23 @@ struct WarikanGroupUsecase {
             try await warikanGroupRepository.save(warikanGroup)
         }
     }
+    
+    /// 立て替えを追加する。
+    func appendTatekae(warikanGroupID: UUID, tatekaeName: String, payer: Member, recipants: [Member], money: Int) async throws {
+        let newTatekae = Tatekae(name: tatekaeName, payer: payer, recipients: recipants, money: money)
+        try await warikanGroupRepository.transaction {
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.tatekaeList.append(newTatekae)
+            try await warikanGroupRepository.save(warikanGroup)
+        }
+    }
+    
+    /// 立て替えを一件削除する。
+    func removeTatekae(warikanGroupID: UUID, tatekaeID: UUID) async throws {
+        try await warikanGroupRepository.transaction {
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.tatekaeList.removeAll { $0.id == tatekaeID }
+            try await warikanGroupRepository.save(warikanGroup)
+        }
+    }
 }

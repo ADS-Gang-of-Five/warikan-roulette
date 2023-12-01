@@ -10,8 +10,11 @@ import Foundation
 
 /// 清算の一手順。
 struct Seisan {
-    let fromMember: Member
-    let toMember: Member
+    /// 債務者。清算で支払いをする人。
+    let debtor: Member
+    /// 債権者。清算で受け取る側の人。
+    let creditor: Member
+    /// 支払い金額。
     let money: Int
 }
 
@@ -105,8 +108,8 @@ struct SeisanCalculator {
     ///
     /// - parameter transactionRecords: 立て替えリスト。
     /// - parameter unluckyMember: 選ばれたアンラッキーメンバー。
-    func seisan(transactionRecords: [TransactionRecord], unluckyMember: Member) -> [Seisan] {
-        let debts = debts(transactionRecords: transactionRecords)
+    func seisan(tatekaes: [Tatekae], unluckyMember: Member) -> [Seisan] {
+        let debts = debts(tatekaes: tatekaes)
         let zansais = zansais(debts: debts, unluckyMember: unluckyMember)
         let seisanPrises = debts - zansais
         return seisan(seisanPrises: seisanPrises)
@@ -127,7 +130,7 @@ struct SeisanCalculator {
             guard lendingMoney > 0 && borrowingMoney > 0 else { break }
             
             let repaymentAmount = min(lendingMoney, borrowingMoney)
-            result.append(Seisan(fromMember: lender, toMember: borrower, money: repaymentAmount))
+            result.append(Seisan(debtor: lender, creditor: borrower, money: repaymentAmount))
             seisanState.payMoney(repaymentAmount, from: .someone(id: lender.id), to: .someone(id: borrower.id))
             
             if seisanState.getDebt(of: lender)! == 0 { right -= 1 }
@@ -137,12 +140,12 @@ struct SeisanCalculator {
     }
     
     /// 各メンバーの借金額を計算する。
-    private func debts(transactionRecords: [TransactionRecord]) -> DebtState {
+    private func debts(tatekaes: [Tatekae]) -> DebtState {
         var debts: DebtState = DebtState()
-        transactionRecords.forEach { record in
-            debts.impose(money: -record.money, on: record.fromMember)
-            let splitAmount = record.money / record.toMembers.count
-            record.toMembers.forEach { debts.impose(money: splitAmount, on: $0) }
+        tatekaes.forEach { tatekae in
+            debts.impose(money: -tatekae.money, on: tatekae.payer)
+            let splitAmount = tatekae.money / tatekae.recipients.count
+            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }
         }
         return debts
     }

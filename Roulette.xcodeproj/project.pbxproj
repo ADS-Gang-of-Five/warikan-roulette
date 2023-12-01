@@ -37,6 +37,7 @@
 		A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */; };
 		A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */; };
 		A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */; };
+		A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33D2B19679400E10FFB /* Seisan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepository.swift; sourceTree = "<group>"; };
 		A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWarikanGroupRepository.swift; sourceTree = "<group>"; };
+		A67FE33D2B19679400E10FFB /* Seisan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seisan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				4C2518082B12104900965D43 /* Member.swift */,
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				4C25180D2B12108D00965D43 /* Tatekae.swift */,
+				A67FE33D2B19679400E10FFB /* Seisan.swift */,
 				A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 			);
@@ -250,6 +253,7 @@
 				4C64F4352B036F920053995E /* View4.swift in Sources */,
 				4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */,
 				4C64F4452B038C610053995E /* View9.swift in Sources */,
+				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,

@@ -8,20 +8,10 @@
 
 import Foundation
 
-/// 清算の一手順。
-struct Seisan {
-    /// 債務者。清算で支払いをする人。
-    let debtor: Member
-    /// 債権者。清算で受け取る側の人。
-    let creditor: Member
-    /// 支払い金額。
-    let money: Int
-}
-
 /// 清算の計算を行う。
 struct SeisanCalculator {
     /// メンバーの負債の状況を表現する。清算の計算のために使用する。
-    private struct DebtState {
+    fileprivate struct DebtState {
         enum DebtMapKey: Hashable {
             case someone(id: UUID)
             /// 計算過程に使用する仮想のメンバー。
@@ -104,15 +94,41 @@ struct SeisanCalculator {
         }
     }
     
-    /// 清算手順を計算し、手順のシーケンスを返す。
-    ///
-    /// - parameter transactionRecords: 立て替えリスト。
-    /// - parameter unluckyMember: 選ばれたアンラッキーメンバー。
-    func seisan(tatekaes: [Tatekae], unluckyMember: Member) -> [Seisan] {
+    /// アンラッキーメンバーが確定しない段階での、清算手順の途中計算結果を保持する。
+    struct SeisanContext {
+        fileprivate let debts: DebtState
+        fileprivate let zansais: DebtState
+    }
+    
+    /// `seisan(transactionRecords:)`の応答。
+    enum SeisanResponse {
+        case needsUnluckyMember(SeisanContext)
+        case success([Seisan])
+    }
+    
+    /// 立て替えリストから清算手順の計算を行う。
+    func seisan(tatekaes: [Tatekae]) -> SeisanResponse {
         let debts = debts(tatekaes: tatekaes)
-        let zansais = zansais(debts: debts, unluckyMember: unluckyMember)
-        let seisanPrises = debts - zansais
-        return seisan(seisanPrises: seisanPrises)
+        
+        var zansais = debts
+        debts.debtMap.forEach { (key, debt) in
+            zansais.payMoney(debt - debt %% 10, from: key, to: .imaginary)
+        }
+        
+        if zansais.debtMap[.imaginary] != 0 {
+            let context = SeisanContext(debts: debts, zansais: zansais)
+            return SeisanResponse.needsUnluckyMember(context)
+        } else {
+            return SeisanResponse.success(seisan(seisanPrises: debts - zansais))
+        }
+    }
+    
+    /// アンラッキーメンバーを指定して清算の計算を再開する。
+    func seisan(context: SeisanContext, unluckyMember: Member) -> [Seisan] {
+        let debts = context.debts
+        var zansais = context.zansais
+        zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember.id))
+        return seisan(seisanPrises: debts - zansais)
     }
     
     /// 清算必要額から清算手順を計算する。
@@ -148,15 +164,5 @@ struct SeisanCalculator {
             tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }
         }
         return debts
-    }
-    
-    /// 各メンバーの清算後の残債を計算する。
-    private func zansais(debts: DebtState, unluckyMember: Member) -> DebtState {
-        var zansais = debts
-        debts.debtMap.forEach { (key, debt) in
-            zansais.payMoney(debt - debt %% 10, from: key, to: .imaginary)
-        }
-        zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember.id))
-        return zansais
     }
 }

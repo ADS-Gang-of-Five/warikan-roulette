@@ -11,4 +11,5 @@ struct WarikanGroup: Identifiable, Codable {
     var id = UUID()
     var name: String
     var members: [Member]
+    var tatekaeList: [Tatekae]
 }

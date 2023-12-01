@@ -75,10 +75,10 @@ struct SeisanCalculator {
         static func -(left: DebtState, right: DebtState) -> DebtState {
             let leftDebtMap = left.debtMap
             let rightDebtMap = right.debtMap
-            var newDebtMap: [DebtMapKey: Int] = Dictionary(uniqueKeysWithValues:
-                                                            leftDebtMap.map { (key, leftDebt) in
-                (key, leftDebt - (rightDebtMap[key] ?? 0))
-            }
+            let newDebtMap: [DebtMapKey: Int] = Dictionary(
+                uniqueKeysWithValues: leftDebtMap.map { (key, leftDebt) in
+                    (key, leftDebt - (rightDebtMap[key] ?? 0))
+                }
             )
             return DebtState(debtMap: newDebtMap, memberMap: left.memberMap)
         }

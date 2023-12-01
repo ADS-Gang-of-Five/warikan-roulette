@@ -9,5 +9,5 @@ import Foundation
 
 struct Member: Identifiable, Codable {
     var id = UUID()
-    let name: String
+    var name: String
 }

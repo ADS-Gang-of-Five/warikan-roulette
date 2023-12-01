@@ -9,6 +9,6 @@ import Foundation
 
 struct WarikanGroup: Identifiable, Codable {
     var id = UUID()
-    let name: String
-    let members: [Member]
+    var name: String
+    var members: [Member]
 }

@@ -9,7 +9,8 @@ import Foundation
 
 struct Tatekae: Identifiable, Codable {
     var id = UUID()
-    let payer: Member
-    let recipients: [Member]
-    let money: Int
+    var name: String
+    var payer: Member
+    var recipients: [Member]
+    var money: Int
 }

@@ -26,7 +26,7 @@ struct WarikanGroupUsecase {
     func create(name: String, memberNames: [String]) async throws {
         let members = memberNames.map { Member(name: $0) }
         try await warikanGroupRepository.transaction {
-            try await warikanGroupRepository.save(WarikanGroup(name: name, members: members))
+            try await warikanGroupRepository.save(WarikanGroup(name: name, members: members, tatekaeList: []))
         }
     }
     
@@ -46,22 +46,37 @@ struct WarikanGroupUsecase {
     func createMember(warikanGroupID: UUID, name: String) async throws {
         let newMember = Member(name: name)
         try await warikanGroupRepository.transaction {
-            let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
-            try await warikanGroupRepository.save(
-                // TODO: IDを使って生成しているので要修正
-                WarikanGroup(id: warikanGroupID, name: warikanGroup.name, members: warikanGroup.members + [newMember])
-            )
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.members.append(newMember)
+            try await warikanGroupRepository.save(warikanGroup)
         }
     }
     
     /// メンバーを削除する。
     func removeMember(warikanGroupID: UUID, memberID: UUID) async throws {
         try await warikanGroupRepository.transaction {
-            let warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
-            try await warikanGroupRepository.save(
-                // TODO: IDを使って生成しているので要修正
-                WarikanGroup(id: warikanGroupID, name: warikanGroup.name, members: warikanGroup.members.filter { $0.id != memberID })
-            )
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.members.removeAll { $0.id == memberID }
+            try await warikanGroupRepository.save(warikanGroup)
+        }
+    }
+    
+    /// 立て替えを追加する。
+    func appendTatekae(warikanGroupID: UUID, tatekaeName: String, payer: Member, recipants: [Member], money: Int) async throws {
+        let newTatekae = Tatekae(name: tatekaeName, payer: payer, recipients: recipants, money: money)
+        try await warikanGroupRepository.transaction {
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.tatekaeList.append(newTatekae)
+            try await warikanGroupRepository.save(warikanGroup)
+        }
+    }
+    
+    /// 立て替えを一件削除する。
+    func removeTatekae(warikanGroupID: UUID, tatekaeID: UUID) async throws {
+        try await warikanGroupRepository.transaction {
+            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            warikanGroup.tatekaeList.removeAll { $0.id == tatekaeID }
+            try await warikanGroupRepository.save(warikanGroup)
         }
     }
 }

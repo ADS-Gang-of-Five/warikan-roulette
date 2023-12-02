@@ -56,7 +56,7 @@ struct WarikanGroupUsecase {
     func removeMember(warikanGroupID: UUID, memberID: UUID) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
-            warikanGroup.members.removeAll { $0.id != memberID }
+            warikanGroup.members.removeAll { $0.id == memberID }
             try await warikanGroupRepository.save(warikanGroup)
         }
     }

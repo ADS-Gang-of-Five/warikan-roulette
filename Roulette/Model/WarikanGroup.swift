@@ -9,7 +9,7 @@ import Foundation
 
 struct WarikanGroup: Identifiable, Codable {
     var id = UUID()
-    var name: String
+    private(set) var name: String
     var members: [Member]
     var tatekaeList: [Tatekae]
 }

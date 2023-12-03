@@ -10,7 +10,7 @@ import Foundation
 
 /// 永続化されるデータに対して割り当てられる識別子。
 ///
-/// - Note: リポジトリ以外が生成してはならない。
+/// - Important: リポジトリ以外が生成してはならない。
 struct EntityID<T>: Hashable, Codable {
     let value: String
 }

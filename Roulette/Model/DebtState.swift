@@ -9,7 +9,7 @@
 import Foundation
 
 /// メンバーの負債の状況を表現する。清算の計算のために使用する。
-/// - Note: `SeisanCalculator`以外からの使用は禁止とする。
+/// - Important: `SeisanCalculator`以外からの使用は禁止とする。
 struct DebtState {
     enum DebtMapKey: Hashable {
         case someone(id: EntityID<Member>)

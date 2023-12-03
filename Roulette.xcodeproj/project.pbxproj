@@ -46,6 +46,7 @@
 		A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */; };
 		A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */; };
 		A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3582B1C9A8B00E10FFB /* ValidationError.swift */; };
+		A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35A2B1CA2F300E10FFB /* DebtState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryMemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTatekaeRepository.swift; sourceTree = "<group>"; };
 		A67FE3582B1C9A8B00E10FFB /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		A67FE35A2B1CA2F300E10FFB /* DebtState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				4C25180D2B12108D00965D43 /* Tatekae.swift */,
 				A67FE33D2B19679400E10FFB /* Seisan.swift */,
 				A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */,
+				A67FE35A2B1CA2F300E10FFB /* DebtState.swift */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
 				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
@@ -281,6 +284,7 @@
 				4C64F4352B036F920053995E /* View4.swift in Sources */,
 				4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */,
 				4C64F4452B038C610053995E /* View9.swift in Sources */,
+				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,

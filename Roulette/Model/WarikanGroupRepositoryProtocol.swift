@@ -14,13 +14,13 @@ protocol WarikanGroupRepositoryProtocol {
     func transaction(block: () async throws -> ()) async throws
     
     /// 採番処理を行い、新しいIDを生成する。
-    func nextID() async throws -> ID<WarikanGroup>
+    func nextID() async throws -> EntityID<WarikanGroup>
     
     /// 割り勘グループを全件取得する。
     func findAll() async throws -> [WarikanGroup]
     
     /// 指定したIDの割り勘グループを全件取得する。
-    func find(id: ID<WarikanGroup>) async throws -> WarikanGroup?
+    func find(id: EntityID<WarikanGroup>) async throws -> WarikanGroup?
     
     /// 指定したインデックスの割り勘グループを全件取得する。
     func find(indices: [Int]) async throws -> [WarikanGroup]
@@ -31,5 +31,5 @@ protocol WarikanGroupRepositoryProtocol {
     func save(_ item: WarikanGroup) async throws
     
     /// 指定したインデックスの割り勘グループを削除する。
-    func remove(id: ID<WarikanGroup>) async throws
+    func remove(id: EntityID<WarikanGroup>) async throws
 }

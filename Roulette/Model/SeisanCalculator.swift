@@ -13,7 +13,7 @@ struct SeisanCalculator {
     /// メンバーの負債の状況を表現する。清算の計算のために使用する。
     fileprivate struct DebtState {
         enum DebtMapKey: Hashable {
-            case someone(id: ID<Member>)
+            case someone(id: EntityID<Member>)
             /// 計算過程に使用する仮想のメンバー。
             case imaginary
         }
@@ -30,7 +30,7 @@ struct SeisanCalculator {
         }
         
         /// メンバーに対して借金を課す。
-        mutating func impose(money: Int, on member: ID<Member>) {
+        mutating func impose(money: Int, on member: EntityID<Member>) {
             let key = DebtMapKey.someone(id: member)
             if let nowDebt = debtMap[key] {
                 debtMap[key] = nowDebt + money
@@ -68,12 +68,12 @@ struct SeisanCalculator {
         }
         
         /// メンバーの借金額を返す。
-        func getDebt(of member: ID<Member>) -> Int? {
+        func getDebt(of member: EntityID<Member>) -> Int? {
             debtMap[.someone(id: member)]
         }
         
         /// 借金額の多い順にメンバーを並べた配列を返す。
-        func debtRanking() -> [ID<Member>] {
+        func debtRanking() -> [EntityID<Member>] {
             debtMap.sorted(by: { $0.value < $1.value }).compactMap { (key, debt) in
                 switch key {
                 case .someone(let id):
@@ -115,7 +115,7 @@ struct SeisanCalculator {
     }
     
     /// アンラッキーメンバーを指定して清算の計算を再開する。
-    func seisan(context: SeisanContext, unluckyMember: ID<Member>) -> [Seisan] {
+    func seisan(context: SeisanContext, unluckyMember: EntityID<Member>) -> [Seisan] {
         let debts = context.debts
         var zansais = context.zansais
         zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember))

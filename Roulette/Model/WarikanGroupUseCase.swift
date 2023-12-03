@@ -44,7 +44,7 @@ struct WarikanGroupUsecase {
     /// 新規メンバーを追加する。
     ///
     /// 作成したメンバーは配列`WarikanGroup.members`の末尾に追加される。
-    func createMember(warikanGroupID: ID<WarikanGroup>, name: String) async throws {
+    func createMember(warikanGroupID: EntityID<WarikanGroup>, name: String) async throws {
         let newMember = Member(name: name)
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
@@ -54,7 +54,7 @@ struct WarikanGroupUsecase {
     }
     
     /// メンバーを削除する。
-    func removeMember(warikanGroupID: ID<WarikanGroup>, memberID: ID<Member>) async throws {
+    func removeMember(warikanGroupID: EntityID<WarikanGroup>, memberID: EntityID<Member>) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
             warikanGroup.members.removeAll { $0.id == memberID }
@@ -63,7 +63,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを追加する。
-    func appendTatekae(warikanGroupID: ID<WarikanGroup>, tatekaeName: String, payer: Member, recipants: [Member], money: Int) async throws {
+    func appendTatekae(warikanGroupID: EntityID<WarikanGroup>, tatekaeName: String, payer: Member, recipants: [Member], money: Int) async throws {
         let newTatekae = Tatekae(name: tatekaeName, payer: payer, recipients: recipants, money: money)
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
@@ -73,7 +73,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを一件削除する。
-    func removeTatekae(warikanGroupID: ID<WarikanGroup>, tatekaeID: ID<Tatekae>) async throws {
+    func removeTatekae(warikanGroupID: EntityID<WarikanGroup>, tatekaeID: EntityID<Tatekae>) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
             warikanGroup.tatekaeList.removeAll { $0.id == tatekaeID }

@@ -38,7 +38,7 @@
 		A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */; };
 		A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */; };
 		A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33D2B19679400E10FFB /* Seisan.swift */; };
-		A67FE3402B1C345D00E10FFB /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33F2B1C345D00E10FFB /* ID.swift */; };
+		A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33F2B1C345D00E10FFB /* EntityID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +73,7 @@
 		A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryWarikanGroupRepository.swift; sourceTree = "<group>"; };
 		A67FE33D2B19679400E10FFB /* Seisan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seisan.swift; sourceTree = "<group>"; };
-		A67FE33F2B1C345D00E10FFB /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
+		A67FE33F2B1C345D00E10FFB /* EntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +153,7 @@
 				A67FE33D2B19679400E10FFB /* Seisan.swift */,
 				A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
-				A67FE33F2B1C345D00E10FFB /* ID.swift */,
+				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 				4C64F4352B036F920053995E /* View4.swift in Sources */,
 				4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */,
 				4C64F4452B038C610053995E /* View9.swift in Sources */,
-				A67FE3402B1C345D00E10FFB /* ID.swift in Sources */,
+				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,

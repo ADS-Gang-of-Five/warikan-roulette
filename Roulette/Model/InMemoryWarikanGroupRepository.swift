@@ -16,7 +16,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         try await block()
     }
     
-    func nextID() async throws -> ID<WarikanGroup> {
+    func nextID() async throws -> EntityID<WarikanGroup> {
         return .init(value: UUID().uuidString)
     }
     
@@ -24,7 +24,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         return items
     }
     
-    func find(id: ID<WarikanGroup>) -> WarikanGroup? {
+    func find(id: EntityID<WarikanGroup>) -> WarikanGroup? {
         return items.first { $0.id == id }
     }
     
@@ -40,7 +40,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(id: ID<WarikanGroup>) {
+    func remove(id: EntityID<WarikanGroup>) {
         items = items.filter { $0.id != id }
     }
 }

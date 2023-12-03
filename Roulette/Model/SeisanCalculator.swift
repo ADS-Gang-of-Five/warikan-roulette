@@ -20,32 +20,23 @@ struct SeisanCalculator {
         
         /// メンバーの借金額を格納する辞書。
         private(set) var debtMap: [DebtMapKey: Int]
-        /// `DebtMapKey`に現れるUUIDとMemberオブジェクトとの対応付けを行う辞書。
-        private var memberMap: [ID<Member>: Member]
         
         init() {
             self.debtMap = [.imaginary: 0]
-            self.memberMap = [:]
         }
         
-        private init(debtMap: [DebtMapKey: Int], memberMap: [ID<Member>: Member]) {
+        private init(debtMap: [DebtMapKey: Int]) {
             self.debtMap = debtMap
-            self.memberMap = memberMap
         }
         
         /// メンバーに対して借金を課す。
-        ///
-        /// 登録したメンバーのIDは`memberMap`に登録される。
-        mutating func impose(money: Int, on member: Member) {
-            let key = DebtMapKey.someone(id: member.id)
+        mutating func impose(money: Int, on member: ID<Member>) {
+            let key = DebtMapKey.someone(id: member)
             if let nowDebt = debtMap[key] {
                 debtMap[key] = nowDebt + money
             } else {
                 debtMap[key] = money
             }
-            
-            // IDとメンバーの対応付けを登録
-            memberMap[member.id] = member
         }
         
         /// 送金する。送金元の借金額を減らし、送金先の借金額を増やす。
@@ -73,22 +64,22 @@ struct SeisanCalculator {
                     (key, leftDebt - (rightDebtMap[key] ?? 0))
                 }
             )
-            return DebtState(debtMap: newDebtMap, memberMap: left.memberMap)
+            return DebtState(debtMap: newDebtMap)
         }
         
         /// メンバーの借金額を返す。
-        func getDebt(of member: Member) -> Int? {
-            debtMap[.someone(id: member.id)]
+        func getDebt(of member: ID<Member>) -> Int? {
+            debtMap[.someone(id: member)]
         }
         
         /// 借金額の多い順にメンバーを並べた配列を返す。
-        func debtRanking() -> [Member] {
-            debtMap.sorted(by: { $0.value < $1.value }).flatMap { (key, debt) in
+        func debtRanking() -> [ID<Member>] {
+            debtMap.sorted(by: { $0.value < $1.value }).compactMap { (key, debt) in
                 switch key {
                 case .someone(let id):
-                    return memberMap[id].map { [$0] } ?? []
+                    return id
                 case .imaginary:
-                    return []
+                    return nil
                 }
             }
         }
@@ -124,17 +115,17 @@ struct SeisanCalculator {
     }
     
     /// アンラッキーメンバーを指定して清算の計算を再開する。
-    func seisan(context: SeisanContext, unluckyMember: Member) -> [Seisan] {
+    func seisan(context: SeisanContext, unluckyMember: ID<Member>) -> [Seisan] {
         let debts = context.debts
         var zansais = context.zansais
-        zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember.id))
+        zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember))
         return seisan(seisanPrises: debts - zansais)
     }
     
     /// 清算必要額から清算手順を計算する。
     private func seisan(seisanPrises: DebtState) -> [Seisan] {
         var seisanState = seisanPrises  // 清算状況
-        let sortedSeisanPriceMap: [Member] = seisanPrises.debtRanking()
+        let sortedSeisanPriceMap = seisanPrises.debtRanking()
         var result = [Seisan]()
         var left = 0
         var right = sortedSeisanPriceMap.count - 1
@@ -147,7 +138,7 @@ struct SeisanCalculator {
             
             let repaymentAmount = min(lendingMoney, borrowingMoney)
             result.append(Seisan(debtor: lender, creditor: borrower, money: repaymentAmount))
-            seisanState.payMoney(repaymentAmount, from: .someone(id: lender.id), to: .someone(id: borrower.id))
+            seisanState.payMoney(repaymentAmount, from: .someone(id: lender), to: .someone(id: borrower))
             
             if seisanState.getDebt(of: lender)! == 0 { right -= 1 }
             if seisanState.getDebt(of: borrower)! == 0 { left += 1 }
@@ -159,9 +150,9 @@ struct SeisanCalculator {
     private func debts(tatekaes: [Tatekae]) -> DebtState {
         var debts: DebtState = DebtState()
         tatekaes.forEach { tatekae in
-            debts.impose(money: -tatekae.money, on: tatekae.payer)
+            debts.impose(money: -tatekae.money, on: tatekae.payer.id)
             let splitAmount = tatekae.money / tatekae.recipients.count
-            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }
+            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0.id) }
         }
         return debts
     }

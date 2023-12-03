@@ -8,7 +8,6 @@
 import Foundation
 
 struct Member: Identifiable, Codable {
-    // TODO: IDの発行はリポジトリで行う
-    var id: EntityID<Self> = .init(value: UUID().uuidString)
+    var id: EntityID<Self>
     private(set) var name: String
 }

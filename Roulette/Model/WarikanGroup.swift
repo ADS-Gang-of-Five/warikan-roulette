@@ -10,6 +10,6 @@ import Foundation
 struct WarikanGroup: Identifiable, Codable {
     var id: EntityID<Self>
     private(set) var name: String
-    var members: [Member]
+    var members: [EntityID<Member>]
     var tatekaeList: [Tatekae]
 }

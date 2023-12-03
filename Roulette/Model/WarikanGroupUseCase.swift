@@ -16,7 +16,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
-    func findAll() async throws -> [WarikanGroup] {
+    func getAll() async throws -> [WarikanGroup] {
         return try await warikanGroupRepository.findAll()
     }
     

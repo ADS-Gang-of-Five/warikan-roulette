@@ -98,8 +98,8 @@ struct SeisanCalculator {
     }
     
     /// 立て替えリストから清算手順の計算を行う。
-    func seisan(tatekaes: [Tatekae]) -> SeisanResponse {
-        let debts = debts(tatekaes: tatekaes)
+    func seisan(tatekaeList: [Tatekae]) -> SeisanResponse {
+        let debts = debts(tatekaeList: tatekaeList)
         
         var zansais = debts
         debts.debtMap.forEach { (key, debt) in
@@ -147,9 +147,9 @@ struct SeisanCalculator {
     }
     
     /// 各メンバーの借金額を計算する。
-    private func debts(tatekaes: [Tatekae]) -> DebtState {
+    private func debts(tatekaeList: [Tatekae]) -> DebtState {
         var debts: DebtState = DebtState()
-        tatekaes.forEach { tatekae in
+        tatekaeList.forEach { tatekae in
             debts.impose(money: -tatekae.money, on: tatekae.payer)
             let splitAmount = tatekae.money / tatekae.recipients.count
             tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }

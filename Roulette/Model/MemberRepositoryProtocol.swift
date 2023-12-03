@@ -27,9 +27,9 @@ protocol MemberRepositoryProtocol {
     /// 既に存在するIDの場合は更新、存在しないIDの場合は新規作成する。
     func save(_ item: Member) async throws
 
-    /// 指定したIDの割り勘グループを削除する。
+    /// 指定したIDのメンバーを削除する。
     func remove(id: EntityID<Member>) async throws
     
-    /// 指定した複数のIDの割り勘グループを削除する。
+    /// 指定した複数のIDのメンバーを削除する。
     func remove(ids: [EntityID<Member>]) async throws
 }

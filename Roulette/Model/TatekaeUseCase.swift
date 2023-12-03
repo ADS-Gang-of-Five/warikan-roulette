@@ -19,4 +19,9 @@ struct TatekaeUsecase {
     func get(id: EntityID<Tatekae>) async throws -> Tatekae? {
         return try await tatekaeRepository.find(id: id)
     }
+    
+    /// 指定した複数のIDのメンバーを返す。
+    func get(ids: [EntityID<Tatekae>]) async throws -> [Tatekae] {
+        return try await tatekaeRepository.find(ids: ids)
+    }
 }

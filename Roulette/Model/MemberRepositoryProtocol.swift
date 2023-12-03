@@ -18,9 +18,14 @@ protocol MemberRepositoryProtocol {
     
     /// 採番処理を行い、新しいIDを複数生成する。
     func nextIDs(count: Int) async throws -> [EntityID<Member>]
-
+    
     /// 指定したIDのメンバーを取得する。
     func find(id: EntityID<Member>) async throws -> Member?
+    
+    /// 指定した複数のIDのメンバーを取得する。
+    ///
+    /// 存在しないIDが含まれる場合はエラーを投げる。
+    func find(ids: [EntityID<Member>]) async throws -> [Member]
 
     /// メンバーを保存する。
     ///

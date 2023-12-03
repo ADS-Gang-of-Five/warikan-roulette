@@ -19,4 +19,9 @@ struct MemberUsecase {
     func get(id: EntityID<Member>) async throws -> Member? {
         return try await memberRepository.find(id: id)
     }
+    
+    /// 指定した複数のIDのメンバーを返す。
+    func get(ids: [EntityID<Member>]) async throws -> [Member] {
+        return try await memberRepository.find(ids: ids)
+    }
 }

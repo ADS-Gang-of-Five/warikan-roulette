@@ -18,9 +18,14 @@ protocol TatekaeRepositoryProtocol {
     
     /// 採番処理を行い、新しいIDを複数生成する。
     func nextIDs(count: Int) async throws -> [EntityID<Tatekae>]
-
+    
     /// 指定したIDの立て替えを取得する。
     func find(id: EntityID<Tatekae>) async throws -> Tatekae?
+    
+    /// 指定したIDの立て替えを取得する。
+    ///
+    /// 存在しないIDが含まれる場合はエラーを投げる。
+    func find(ids: [EntityID<Tatekae>]) async throws -> [Tatekae]
 
     /// 立て替えを保存する。
     ///

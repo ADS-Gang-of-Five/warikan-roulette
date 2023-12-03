@@ -150,9 +150,9 @@ struct SeisanCalculator {
     private func debts(tatekaes: [Tatekae]) -> DebtState {
         var debts: DebtState = DebtState()
         tatekaes.forEach { tatekae in
-            debts.impose(money: -tatekae.money, on: tatekae.payer.id)
+            debts.impose(money: -tatekae.money, on: tatekae.payer)
             let splitAmount = tatekae.money / tatekae.recipients.count
-            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0.id) }
+            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }
         }
         return debts
     }

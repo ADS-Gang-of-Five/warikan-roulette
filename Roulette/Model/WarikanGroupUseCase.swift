@@ -88,7 +88,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを追加する。
-    func appendTatekae(warikanGroupID: EntityID<WarikanGroup>, tatekaeName: String, payer: Member, recipants: [Member], money: Int) async throws {
+    func appendTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekaeName: String, payer: EntityID<Member>, recipants: [EntityID<Member>], money: Int) async throws {
         let newTatekae = Tatekae(name: tatekaeName, payer: payer, recipients: recipants, money: money)
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
@@ -98,7 +98,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを一件削除する。
-    func removeTatekae(warikanGroupID: EntityID<WarikanGroup>, tatekaeID: EntityID<Tatekae>) async throws {
+    func removeTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekae tatekaeID: EntityID<Tatekae>) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
             warikanGroup.tatekaeList.removeAll { $0.id == tatekaeID }
@@ -106,3 +106,4 @@ struct WarikanGroupUsecase {
         }
     }
 }
+

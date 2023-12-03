@@ -16,11 +16,15 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         try await block()
     }
     
+    func nextID() async throws -> EntityID<WarikanGroup> {
+        return .init(value: UUID().uuidString)
+    }
+    
     func findAll() -> [WarikanGroup] {
         return items
     }
     
-    func find(id: UUID) -> WarikanGroup? {
+    func find(id: EntityID<WarikanGroup>) -> WarikanGroup? {
         return items.first { $0.id == id }
     }
     
@@ -36,7 +40,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(id: UUID) {
+    func remove(id: EntityID<WarikanGroup>) {
         items = items.filter { $0.id != id }
     }
 }

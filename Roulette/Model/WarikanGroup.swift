@@ -8,8 +8,8 @@
 import Foundation
 
 struct WarikanGroup: Identifiable, Codable {
-    var id = UUID()
+    var id: EntityID<Self>
     private(set) var name: String
-    var members: [Member]
-    var tatekaeList: [Tatekae]
+    var members: [EntityID<Member>]
+    var tatekaeList: [EntityID<Tatekae>]
 }

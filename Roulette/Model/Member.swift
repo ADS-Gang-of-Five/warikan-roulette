@@ -8,6 +8,6 @@
 import Foundation
 
 struct Member: Identifiable, Codable {
-    var id = UUID()
+    var id: EntityID<Self>
     private(set) var name: String
 }

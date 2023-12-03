@@ -25,6 +25,10 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         try await block()
     }
     
+    func nextID() async throws -> EntityID<WarikanGroup> {
+        return .init(value: UUID().uuidString)
+    }
+    
     private func write(block: (inout [WarikanGroup]) -> ()) {
         var items = findAll()
         block(&items)
@@ -49,7 +53,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func find(id: UUID) -> WarikanGroup? {
+    func find(id: EntityID<WarikanGroup>) -> WarikanGroup? {
         let items = findAll()
         return items.first { $0.id == id }
     }
@@ -69,7 +73,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(id: UUID) {
+    func remove(id: EntityID<WarikanGroup>) {
         write { items in
             items = items.filter { $0.id != id }
         }

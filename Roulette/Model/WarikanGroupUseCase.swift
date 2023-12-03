@@ -43,7 +43,7 @@ struct WarikanGroupUsecase {
     }
     
     /// 指定したIDの割り勘グループを削除する。
-    func remove(_ ids: [EntityID<WarikanGroup>]) async throws {
+    func remove(ids: [EntityID<WarikanGroup>]) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroups = [WarikanGroup]()
             for id in ids {

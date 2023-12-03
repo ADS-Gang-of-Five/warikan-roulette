@@ -40,17 +40,20 @@ struct WarikanGroupUsecase {
         }
     }
     
-    /// 指定したインデックスの割り勘グループを削除する。
+    /// 指定したIDの割り勘グループを削除する。
     func remove(_ ids: [EntityID<WarikanGroup>]) async throws {
-        var warikanGroups = [WarikanGroup]()
-        for id in ids {
-            let warikanGroup = try await warikanGroupRepository.find(id: id)!
-            warikanGroups.append(warikanGroup)
-        }
-        
-        for warikanGroup in warikanGroups {
-            try await warikanGroupRepository.transaction {
+        try await warikanGroupRepository.transaction {
+            var warikanGroups = [WarikanGroup]()
+            for id in ids {
+                let warikanGroup = try await warikanGroupRepository.find(id: id)!
+                warikanGroups.append(warikanGroup)
+            }
+            
+            for warikanGroup in warikanGroups {
                 try await warikanGroupRepository.remove(id: warikanGroup.id)
+                try await memberRepository.transaction {
+                    try await memberRepository.remove(ids: warikanGroup.members)
+                }
             }
         }
     }

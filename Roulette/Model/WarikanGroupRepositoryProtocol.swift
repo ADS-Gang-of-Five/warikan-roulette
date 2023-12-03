@@ -17,7 +17,7 @@ protocol WarikanGroupRepositoryProtocol {
     func findAll() async throws -> [WarikanGroup]
     
     /// 指定したIDの割り勘グループを全件取得する。
-    func find(id: UUID) async throws -> WarikanGroup?
+    func find(id: ID<WarikanGroup>) async throws -> WarikanGroup?
     
     /// 指定したインデックスの割り勘グループを全件取得する。
     func find(indices: [Int]) async throws -> [WarikanGroup]
@@ -28,5 +28,5 @@ protocol WarikanGroupRepositoryProtocol {
     func save(_ item: WarikanGroup) async throws
     
     /// 指定したインデックスの割り勘グループを削除する。
-    func remove(id: UUID) async throws
+    func remove(id: ID<WarikanGroup>) async throws
 }

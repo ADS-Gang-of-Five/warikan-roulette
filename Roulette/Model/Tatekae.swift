@@ -8,7 +8,8 @@
 import Foundation
 
 struct Tatekae: Identifiable, Codable {
-    var id = UUID()
+    // TODO: IDの発行はリポジトリで行う
+    var id: ID<Self> = .init(value: UUID().uuidString)
     var name: String
     var payer: Member
     var recipients: [Member]

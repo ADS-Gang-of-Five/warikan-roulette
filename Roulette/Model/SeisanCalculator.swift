@@ -13,7 +13,7 @@ struct SeisanCalculator {
     /// メンバーの負債の状況を表現する。清算の計算のために使用する。
     fileprivate struct DebtState {
         enum DebtMapKey: Hashable {
-            case someone(id: UUID)
+            case someone(id: ID<Member>)
             /// 計算過程に使用する仮想のメンバー。
             case imaginary
         }
@@ -21,14 +21,14 @@ struct SeisanCalculator {
         /// メンバーの借金額を格納する辞書。
         private(set) var debtMap: [DebtMapKey: Int]
         /// `DebtMapKey`に現れるUUIDとMemberオブジェクトとの対応付けを行う辞書。
-        private var memberMap: [UUID: Member]
+        private var memberMap: [ID<Member>: Member]
         
         init() {
             self.debtMap = [.imaginary: 0]
             self.memberMap = [:]
         }
         
-        private init(debtMap: [DebtMapKey: Int], memberMap: [UUID: Member]) {
+        private init(debtMap: [DebtMapKey: Int], memberMap: [ID<Member>: Member]) {
             self.debtMap = debtMap
             self.memberMap = memberMap
         }

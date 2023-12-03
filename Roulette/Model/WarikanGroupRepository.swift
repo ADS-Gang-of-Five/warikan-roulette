@@ -49,7 +49,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func find(id: UUID) -> WarikanGroup? {
+    func find(id: ID<WarikanGroup>) -> WarikanGroup? {
         let items = findAll()
         return items.first { $0.id == id }
     }
@@ -69,7 +69,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(id: UUID) {
+    func remove(id: ID<WarikanGroup>) {
         write { items in
             items = items.filter { $0.id != id }
         }

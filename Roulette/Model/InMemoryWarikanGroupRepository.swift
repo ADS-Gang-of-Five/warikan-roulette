@@ -20,7 +20,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         return items
     }
     
-    func find(id: UUID) -> WarikanGroup? {
+    func find(id: ID<WarikanGroup>) -> WarikanGroup? {
         return items.first { $0.id == id }
     }
     
@@ -36,7 +36,7 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         }
     }
     
-    func remove(id: UUID) {
+    func remove(id: ID<WarikanGroup>) {
         items = items.filter { $0.id != id }
     }
 }

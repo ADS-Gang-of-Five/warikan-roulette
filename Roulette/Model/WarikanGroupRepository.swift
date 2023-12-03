@@ -25,6 +25,10 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         try await block()
     }
     
+    func nextID() async throws -> ID<WarikanGroup> {
+        return .init(value: UUID().uuidString)
+    }
+    
     private func write(block: (inout [WarikanGroup]) -> ()) {
         var items = findAll()
         block(&items)

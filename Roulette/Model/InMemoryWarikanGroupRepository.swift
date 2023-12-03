@@ -16,6 +16,10 @@ class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
         try await block()
     }
     
+    func nextID() async throws -> ID<WarikanGroup> {
+        return .init(value: UUID().uuidString)
+    }
+    
     func findAll() -> [WarikanGroup] {
         return items
     }

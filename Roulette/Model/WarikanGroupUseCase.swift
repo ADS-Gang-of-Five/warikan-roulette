@@ -26,7 +26,8 @@ struct WarikanGroupUsecase {
     func create(name: String, memberNames: [String]) async throws {
         let members = memberNames.map { Member(name: $0) }
         try await warikanGroupRepository.transaction {
-            try await warikanGroupRepository.save(WarikanGroup(name: name, members: members, tatekaeList: []))
+            let id = try await warikanGroupRepository.nextID()
+            try await warikanGroupRepository.save(WarikanGroup(id: id, name: name, members: members, tatekaeList: []))
         }
     }
     

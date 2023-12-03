@@ -13,6 +13,9 @@ protocol WarikanGroupRepositoryProtocol {
     /// データベースのトランザクションを実行する。
     func transaction(block: () async throws -> ()) async throws
     
+    /// 採番処理を行い、新しいIDを生成する。
+    func nextID() async throws -> ID<WarikanGroup>
+    
     /// 割り勘グループを全件取得する。
     func findAll() async throws -> [WarikanGroup]
     

@@ -8,8 +8,7 @@
 import Foundation
 
 struct WarikanGroup: Identifiable, Codable {
-    // TODO: IDの発行はリポジトリで行う
-    var id: ID<Self> = .init(value: UUID().uuidString)
+    var id: ID<Self>
     private(set) var name: String
     var members: [Member]
     var tatekaeList: [Tatekae]

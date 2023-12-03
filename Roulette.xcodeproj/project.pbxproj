@@ -41,6 +41,8 @@
 		A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33F2B1C345D00E10FFB /* EntityID.swift */; };
 		A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */; };
 		A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3472B1C656500E10FFB /* MemberUseCase.swift */; };
+		A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */; };
+		A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		A67FE33F2B1C345D00E10FFB /* EntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityID.swift; sourceTree = "<group>"; };
 		A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A67FE3472B1C656500E10FFB /* MemberUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUseCase.swift; sourceTree = "<group>"; };
+		A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 				A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */,
 				A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */,
 				A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */,
+				A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */,
 				4C2518082B12104900965D43 /* Member.swift */,
 				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				4C25180D2B12108D00965D43 /* Tatekae.swift */,
@@ -159,6 +164,7 @@
 				A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
+				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
 				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
 			);
 			path = Model;
@@ -259,12 +265,14 @@
 				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,
+				A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,
 				4C64F4352B036F920053995E /* View4.swift in Sources */,
 				4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */,
 				4C64F4452B038C610053995E /* View9.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
+				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,

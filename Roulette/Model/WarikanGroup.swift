@@ -11,5 +11,5 @@ struct WarikanGroup: Identifiable, Codable {
     var id: EntityID<Self>
     private(set) var name: String
     var members: [EntityID<Member>]
-    var tatekaeList: [Tatekae]
+    var tatekaeList: [EntityID<Tatekae>]
 }

@@ -12,10 +12,12 @@ import Foundation
 struct WarikanGroupUsecase {
     private var warikanGroupRepository: WarikanGroupRepositoryProtocol
     private var memberRepository: MemberRepositoryProtocol
+    private var tatekaeRepository: TatekaeRepositoryProtocol
     
-    init(warikanGroupRepository: WarikanGroupRepositoryProtocol, memberRepository: MemberRepositoryProtocol) {
+    init(warikanGroupRepository: WarikanGroupRepositoryProtocol, memberRepository: MemberRepositoryProtocol, tatekaeRepository: TatekaeRepositoryProtocol) {
         self.warikanGroupRepository = warikanGroupRepository
         self.memberRepository = memberRepository
+        self.tatekaeRepository = tatekaeRepository
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
@@ -89,11 +91,15 @@ struct WarikanGroupUsecase {
     
     /// 立て替えを追加する。
     func appendTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekaeName: String, payer: EntityID<Member>, recipants: [EntityID<Member>], money: Int) async throws {
-        let newTatekae = Tatekae(name: tatekaeName, payer: payer, recipients: recipants, money: money)
-        try await warikanGroupRepository.transaction {
-            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
-            warikanGroup.tatekaeList.append(newTatekae)
-            try await warikanGroupRepository.save(warikanGroup)
+        try await tatekaeRepository.transaction {
+            let tatekaeID = try await tatekaeRepository.nextID()
+            try await tatekaeRepository.save(Tatekae(id: tatekaeID, name: tatekaeName, payer: payer, recipients: recipants, money: money))
+            
+            try await warikanGroupRepository.transaction {
+                var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+                warikanGroup.tatekaeList.append(tatekaeID)
+                try await warikanGroupRepository.save(warikanGroup)
+            }
         }
     }
     
@@ -101,8 +107,12 @@ struct WarikanGroupUsecase {
     func removeTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekae tatekaeID: EntityID<Tatekae>) async throws {
         try await warikanGroupRepository.transaction {
             var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
-            warikanGroup.tatekaeList.removeAll { $0.id == tatekaeID }
+            warikanGroup.tatekaeList.removeAll { $0 == tatekaeID }
             try await warikanGroupRepository.save(warikanGroup)
+            
+            try await tatekaeRepository.transaction {
+                try await tatekaeRepository.remove(id: tatekaeID)
+            }
         }
     }
 }

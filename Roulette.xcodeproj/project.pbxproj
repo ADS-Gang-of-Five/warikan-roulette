@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C0D517D2AFDCA33003B720E /* RouletteViewWithCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */; };
 		4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */; };
-		4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0ECF142B039B5B00B6797C /* ViewRouter.swift */; };
+		4C0ECF152B039B5B00B6797C /* ViewRouter_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
 		4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD22AFA861B00FE4F35 /* ContentView.swift */; };
 		4C228AD52AFA861D00FE4F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD42AFA861D00FE4F35 /* Assets.xcassets */; };
@@ -18,6 +18,11 @@
 		4C2518092B12104900965D43 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2518082B12104900965D43 /* Member.swift */; };
 		4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180B2B12108000965D43 /* WarikanGroup.swift */; };
 		4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180D2B12108D00965D43 /* Tatekae.swift */; };
+		4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2C72B1DE4A600423444 /* GroupListView.swift */; };
+		4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */; };
+		4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */; };
+		4C3EB2CE2B1DEA9F00423444 /* AddGroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CD2B1DEA9F00423444 /* AddGroupListView.swift */; };
+		4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */; };
 		4C64F42F2B0364E70053995E /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F42E2B0364E70053995E /* View1.swift */; };
 		4C64F4312B0367D50053995E /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4302B0367D50053995E /* View2.swift */; };
 		4C64F4332B036E070053995E /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4322B036E070053995E /* View3.swift */; };
@@ -52,7 +57,7 @@
 /* Begin PBXFileReference section */
 		4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithCharts.swift; sourceTree = "<group>"; };
 		4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithSimpleRoulette.swift; sourceTree = "<group>"; };
-		4C0ECF142B039B5B00B6797C /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter_old.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteApp.swift; sourceTree = "<group>"; };
 		4C228AD22AFA861B00FE4F35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +66,11 @@
 		4C2518082B12104900965D43 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		4C25180B2B12108000965D43 /* WarikanGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroup.swift; sourceTree = "<group>"; };
 		4C25180D2B12108D00965D43 /* Tatekae.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tatekae.swift; sourceTree = "<group>"; };
+		4C3EB2C72B1DE4A600423444 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
+		4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
+		4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		4C3EB2CD2B1DEA9F00423444 /* AddGroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupListView.swift; sourceTree = "<group>"; };
+		4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeListView.swift; sourceTree = "<group>"; };
 		4C64F42E2B0364E70053995E /* View1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
 		4C64F4302B0367D50053995E /* View2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
 		4C64F4322B036E070053995E /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
@@ -123,10 +133,11 @@
 		4C228ACF2AFA861B00FE4F35 /* Roulette */ = {
 			isa = PBXGroup;
 			children = (
+				4C3EB2C62B1DE46B00423444 /* Views */,
 				A67FE31B2B13387C00E10FFB /* Util */,
 				4C2518052B120FD200965D43 /* Model */,
 				4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */,
-				4C228AD22AFA861B00FE4F35 /* ContentView.swift */,
+				4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */,
 				4C64F42E2B0364E70053995E /* View1.swift */,
 				4C64F4302B0367D50053995E /* View2.swift */,
 				4C64F4322B036E070053995E /* View3.swift */,
@@ -139,7 +150,7 @@
 				4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */,
 				4C64F4422B0387510053995E /* View8.swift */,
 				4C64F4442B038C610053995E /* View9.swift */,
-				4C0ECF142B039B5B00B6797C /* ViewRouter.swift */,
+				4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */,
 				4C834CCC2AFB05B600AEC209 /* Roulette.swift */,
 				696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */,
 				696877032B0B7DF300318B3E /* Extention.swift */,
@@ -180,6 +191,18 @@
 				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4C3EB2C62B1DE46B00423444 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C228AD22AFA861B00FE4F35 /* ContentView.swift */,
+				4C3EB2C72B1DE4A600423444 /* GroupListView.swift */,
+				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
+				4C3EB2CD2B1DEA9F00423444 /* AddGroupListView.swift */,
+				4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A67FE31B2B13387C00E10FFB /* Util */ = {
@@ -276,21 +299,25 @@
 				A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */,
 				4C64F43F2B0382F60053995E /* View6_2.swift in Sources */,
 				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
+				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,
 				A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
+				4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */,
 				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,
 				4C64F4352B036F920053995E /* View4.swift in Sources */,
-				4C0ECF152B039B5B00B6797C /* ViewRouter.swift in Sources */,
+				4C0ECF152B039B5B00B6797C /* ViewRouter_old.swift in Sources */,
 				4C64F4452B038C610053995E /* View9.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
+				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
 				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,
+				4C3EB2CE2B1DEA9F00423444 /* AddGroupListView.swift in Sources */,
 				4C64F4332B036E070053995E /* View3.swift in Sources */,
 				4C64F4312B0367D50053995E /* View2.swift in Sources */,
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,
@@ -302,6 +329,7 @@
 				4C64F4432B0387510053995E /* View8.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
 				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
+				4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */,
 				A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

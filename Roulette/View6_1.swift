@@ -59,7 +59,7 @@ private struct MyButton: View {
             VStack {
                 Spacer()
                 Button(action: {
-                    ViewRouter.shared.changeView(to: .view7)
+                    ViewRouter_old.shared.changeView(to: .view7)
                 }, label: {
                     Text("合計精算")
                         .font(.title)

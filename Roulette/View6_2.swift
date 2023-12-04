@@ -59,7 +59,7 @@ private struct MyButton: View {
             VStack {
                 Spacer()
                 Button(action: {
-                    ViewRouter.shared.changeView(to: .view6_1)
+                    ViewRouter_old.shared.changeView(to: .view6_1)
                 }, label: {
                     Text("戻る")
                         .font(.title)

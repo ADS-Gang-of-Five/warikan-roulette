@@ -12,9 +12,7 @@ import SimpleRoulette
 struct RouletteApp: App {
     var body: some Scene {
         WindowGroup {
-            View1()
-//            ContentView()
-//                .preferredColorScheme(.light)
+            ContentView()
         }
     }
 }

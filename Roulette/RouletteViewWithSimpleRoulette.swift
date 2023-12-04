@@ -52,7 +52,7 @@ struct RouletteViewWithSimpleRoulette: View {
                 .padding(.leading)
                 
                 Button {
-                    ViewRouter.shared.changeView(to: .RouletteViewWithCharts)
+                    ViewRouter_old.shared.changeView(to: .RouletteViewWithCharts)
                 } label: {
                     Text("Next")
                 }

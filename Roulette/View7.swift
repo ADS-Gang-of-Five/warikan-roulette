@@ -67,7 +67,7 @@ private struct MyButton: View {
         VStack {
             Spacer()
             Button(action: {
-                ViewRouter.shared.changeView(to: .RouletteViewWithSimpleRoulette)
+                ViewRouter_old.shared.changeView(to: .RouletteViewWithSimpleRoulette)
             }, label: {
                 Text("端数ルーレットする")
                     .font(.title)

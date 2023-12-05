@@ -10,6 +10,8 @@
 		4C0D517D2AFDCA33003B720E /* RouletteViewWithCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */; };
 		4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */; };
 		4C0ECF152B039B5B00B6797C /* ViewRouter_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */; };
+		4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */; };
+		4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
 		4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD22AFA861B00FE4F35 /* ContentView.swift */; };
 		4C228AD52AFA861D00FE4F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD42AFA861D00FE4F35 /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 		4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithCharts.swift; sourceTree = "<group>"; };
 		4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithSimpleRoulette.swift; sourceTree = "<group>"; };
 		4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter_old.swift; sourceTree = "<group>"; };
+		4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeView.swift; sourceTree = "<group>"; };
+		4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailView.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteApp.swift; sourceTree = "<group>"; };
 		4C228AD22AFA861B00FE4F35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
 				4C3EB2CD2B1DEA9F00423444 /* AddGroupListView.swift */,
 				4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */,
+				4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */,
+				4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				4C64F43F2B0382F60053995E /* View6_2.swift in Sources */,
 				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
 				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
+				4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,
 				A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */,
@@ -312,6 +319,7 @@
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
+				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
 				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,

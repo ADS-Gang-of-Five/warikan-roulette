@@ -91,6 +91,7 @@ struct GroupListView: View {
                     switch path {
                     case .tatekaeListView:
                         TatekaeListView()
+//                            .environmentObject(viewRouter)
                     }
                 }
                 
@@ -98,9 +99,11 @@ struct GroupListView: View {
                     .onTapGesture {
                         isShowAddGroupListView = true
                     }
+                    .padding(.bottom, 1)
             }
             .navigationTitle("割り勘グループ")
         }
+        .environmentObject(viewRouter)
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupListView(isShowAddGroupListView: $isShowAddGroupListView)
         }

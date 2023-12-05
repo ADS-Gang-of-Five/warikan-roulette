@@ -74,6 +74,7 @@ import SwiftUI
 
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
+    @State var isShowAddTatekaeView = false
     
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
@@ -124,8 +125,16 @@ struct TatekaeListView: View {
                 }
                 
                 MyButton(diameter: 65)
+                    .onTapGesture {
+                        isShowAddTatekaeView = true
+                    }
+                    .padding(.bottom, 1)
             }
+            .navigationTitle("Gang of Five")
         }
+        .sheet(isPresented: $isShowAddTatekaeView, content: {
+            AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
+        })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("精算") {

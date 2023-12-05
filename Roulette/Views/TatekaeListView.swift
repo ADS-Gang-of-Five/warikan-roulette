@@ -75,6 +75,7 @@ import SwiftUI
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @State var isShowAddTatekaeView = false
+    @State var isShowTatekaeDetailView = false
     
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
@@ -92,7 +93,7 @@ struct TatekaeListView: View {
                     }
                     .padding(.vertical, 3)
                     .onTapGesture {
-//                        viewRouter.path.append()
+                        isShowTatekaeDetailView = true
                     }
                     HStack {
                         Text("昼食")
@@ -106,7 +107,7 @@ struct TatekaeListView: View {
                     }
                     .padding(.vertical, 3)
                     .onTapGesture {
-//                        viewRouter.path.append()
+                        isShowTatekaeDetailView = true
                     }
                     HStack {
                         Text("夕食")
@@ -120,7 +121,7 @@ struct TatekaeListView: View {
                     }
                     .padding(.vertical, 3)
                     .onTapGesture {
-//                        viewRouter.path.append()
+                        isShowTatekaeDetailView = true
                     }
                 }
                 
@@ -134,6 +135,9 @@ struct TatekaeListView: View {
         }
         .sheet(isPresented: $isShowAddTatekaeView, content: {
             AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
+        })
+        .sheet(isPresented: $isShowTatekaeDetailView, content: {
+            TatekaeDetailView(isShowTatekaeDetailView: $isShowTatekaeDetailView)
         })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

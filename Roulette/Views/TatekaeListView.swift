@@ -78,7 +78,7 @@ struct TatekaeListView: View {
     @State var isShowTatekaeDetailView = false
     
     var body: some View {
-        NavigationStack(path: $viewRouter.path) {
+//        NavigationStack(path: $viewRouter.path)
             ZStack {
                 List {
                     HStack {
@@ -131,8 +131,7 @@ struct TatekaeListView: View {
                     }
                     .padding(.bottom, 1)
             }
-            .navigationTitle("Gang of Five")
-        }
+        
         .sheet(isPresented: $isShowAddTatekaeView, content: {
             AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
         })
@@ -141,12 +140,17 @@ struct TatekaeListView: View {
         })
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("精算") {
-                    
-                }
-                .bold()
+                NavigationLink("清算", value: Path.confirmView)
             }
         }
+//        .navigationDestination(for: Path.self) { path in
+//            switch path {
+//            case .confirmView:
+//                ConfirmView()
+//            case .tatekaeListView:
+//                TatekaeListView()
+//            }
+//        }
     }
 }
 

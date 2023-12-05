@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-enum Path {
+enum Path: Hashable {
     case tatekaeListView
+    case confirmView
 }
 
 final class ViewRouter: ObservableObject {

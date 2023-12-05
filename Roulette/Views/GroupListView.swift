@@ -87,11 +87,16 @@ struct GroupListView: View {
                     NavigationLink("Gang of Five", value: Path.tatekaeListView)
                     NavigationLink("ひなっこクラブ", value: Path.tatekaeListView)
                 }
+                
                 .navigationDestination(for: Path.self) { path in
                     switch path {
                     case .tatekaeListView:
                         TatekaeListView()
-//                            .environmentObject(viewRouter)
+                            .navigationTitle("Gang of five")
+                    case .confirmView:
+                        ConfirmView()
+                            .navigationTitle("立て替えの確認")
+                            .navigationBarTitleDisplayMode(.inline)
                     }
                 }
                 

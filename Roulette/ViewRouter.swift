@@ -10,6 +10,9 @@ import SwiftUI
 enum Path: Hashable {
     case tatekaeListView
     case confirmView
+    case rouletteView
+    case rouletteResultView
+    case seisanResultView
 }
 
 final class ViewRouter: ObservableObject {

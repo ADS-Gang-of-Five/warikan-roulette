@@ -39,6 +39,9 @@
 		696877002B0B6D6C00318B3E /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */; };
 		696877042B0B7DF300318B3E /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877032B0B7DF300318B3E /* Extention.swift */; };
 		69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */; };
+		69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E92B1F478500B24D4E /* RouletteView.swift */; };
+		69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */; };
+		69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */; };
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
@@ -90,6 +93,9 @@
 		696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		696877032B0B7DF300318B3E /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
+		69D8F3E92B1F478500B24D4E /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
+		69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteResultView.swift; sourceTree = "<group>"; };
+		69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultView.swift; sourceTree = "<group>"; };
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 				4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */,
 				4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */,
 				69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */,
+				69D8F3E92B1F478500B24D4E /* RouletteView.swift */,
+				69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */,
+				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,6 +323,7 @@
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,
 				A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */,
+				69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */,
 				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,
@@ -335,6 +345,7 @@
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,
 				4C64F42F2B0364E70053995E /* View1.swift in Sources */,
 				4C64F4372B0376BE0053995E /* View5.swift in Sources */,
+				69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
 				4C0D517D2AFDCA33003B720E /* RouletteViewWithCharts.swift in Sources */,
 				696877042B0B7DF300318B3E /* Extention.swift in Sources */,
@@ -342,6 +353,7 @@
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
 				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
 				4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */,
+				69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */,
 				A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

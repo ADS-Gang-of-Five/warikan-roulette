@@ -44,7 +44,7 @@ struct ConfirmView: View {
                     .padding(.horizontal, 50)
                 }
                 Spacer()
-                NavigationLink("端数ルーレットする", value: Path.tatekaeListView)
+                NavigationLink("端数ルーレットする", value: Path.rouletteView)
                     .modifier(LongStyle())
                     .padding(.bottom, 1)
             }

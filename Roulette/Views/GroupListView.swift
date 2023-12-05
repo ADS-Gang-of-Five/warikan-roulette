@@ -97,6 +97,12 @@ struct GroupListView: View {
                         ConfirmView()
                             .navigationTitle("立て替えの確認")
                             .navigationBarTitleDisplayMode(.inline)
+                    case .rouletteView:
+                        RouletteView()
+                    case .rouletteResultView:
+                        RouletteResultView()
+                    case .seisanResultView:
+                        SeisanResultView()
                     }
                 }
                 

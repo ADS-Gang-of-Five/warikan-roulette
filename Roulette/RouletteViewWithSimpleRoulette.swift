@@ -31,7 +31,7 @@ struct RouletteViewWithSimpleRoulette: View {
     
     var body: some View {
         VStack {
-            RouletteView(model: model)
+//            RouletteView(model: model)
             
             HStack {
                 Button {

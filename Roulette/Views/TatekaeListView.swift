@@ -45,7 +45,7 @@ struct TatekaeListView: View {
             } else {
                 Text("右下のボタンから立替を追加")
             }
-            MyButton(diameter: 65)
+            MyButton(diameter: 60)
                 .onTapGesture {
                     isShowAddTatekaeView = true
                 }
@@ -78,6 +78,7 @@ private struct MyButton: View {
                     .foregroundStyle(Color.blue)
                     .frame(width: diameter, height: diameter)
                     .background(.white)
+                    .clipShape(Circle())
                     .padding(.trailing)
             }
         }

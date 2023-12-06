@@ -49,7 +49,7 @@ struct GroupListView: View {
                         .font(.title2)
                         .padding(.horizontal, 30)
                 }
-                MyButton(diameter: 65)
+                MyButton(diameter: 60)
                     .onTapGesture {
                         isShowAddGroupListView = true
                     }
@@ -77,6 +77,7 @@ private struct MyButton: View {
                     .foregroundStyle(Color.blue)
                     .frame(width: diameter, height: diameter)
                     .background(.white)
+                    .clipShape(Circle())
                     .padding(.trailing)
             }
         }

@@ -9,54 +9,57 @@ import SwiftUI
 
 struct AddTatekaeView: View {
     @Binding var isShowAddTatekaeView: Bool
-    @State var text = ""
+    @State var tatekaeTitle = ""
+    @State private var tatekaeKingaku = ""
     @State var unluckeyMember = "未選択"
     
     var body: some View {
         NavigationStack{
-            VStack{
-                List {
-                    Section{
-                        HStack {
-                            Text("立替の名目")
-                            TextField("", text: $text)
-                                .textFieldStyle(.roundedBorder)
-                        }
-                        HStack {
-                            Text("立替の金額")
-                            TextField("", text: $text)
-                                .textFieldStyle(.roundedBorder)
-                        }
-                        HStack {
-                            Text("立替人")
-                            Spacer()
-                            Picker("", selection: $unluckeyMember) {
-                                Text("未選択").tag("未選択")
-                                Text("Sako").tag("sako")
-                                Text("Seigetsu").tag("seigetsu")
-                                Text("Maki").tag("maki")
-                            }
-                        }
-    //                    Button("立替を追加") {
-    //                        isShowAddTatekaeView = false
-    //                    }
-    //                    .font(.title2)
-    //                    .fontWeight(.semibold)
-    //                    .foregroundStyle(.white)
-    //                    .frame(width: 250, height: 50)
-    //                    .background(.blue)
-    //                    .clipShape(Capsule())
-    //                    .padding(.top)
+            ZStack{
+                Form {
+                    Section {
+                        TextField("例：カニ道楽のランチ", text: $tatekaeTitle)
+                    } header: {
+                        Text("立替の名目")
                     }
                     Section {
-                        Button(action: {}, label: {
-                            Image(systemName: "car")
-                        })
+                        TextField("￥ 5000", text: $tatekaeKingaku)
+                            .keyboardType(.numberPad) // TODO: 金額の入力に対して、このモディファイアが適切か調べる。
+                    } header: {
+                        Text("立替の金額")
+                    }
+                    Section {
+                        Picker("立替人", selection: $unluckeyMember) {
+                            Text("未選択").tag("未選択")
+                            Text("Sako").tag("sako")
+                            Text("Seigetsu").tag("seigetsu")
+                            Text("Maki").tag("maki")
+                        }
                     }
                 }
-                .navigationTitle("立替の追加")
-                .navigationBarTitleDisplayMode(.inline)
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        isShowAddTatekaeView = false
+                    }, label: {
+                        Text("立替を追加")
+                            .modifier(LongStyle())
+                    })
+                }
+                .padding(.bottom, 1)
             }
+            .navigationTitle("立替の追加")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isShowAddTatekaeView = false
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                }
+            }
+
         }
     }
 }

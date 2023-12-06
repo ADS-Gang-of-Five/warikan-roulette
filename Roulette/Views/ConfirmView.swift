@@ -11,46 +11,43 @@ struct ConfirmView: View {
     let members = ["ひな", "さこ", "かい", "せいげつ", "まき", "じょにー"]
     
     var body: some View {
-            VStack{
-                Spacer()
-                ZStack {
-                    VStack(alignment: .leading) {
-                        Text("昼飯")
-                            .font(.title2)
-                            .fontWeight(.medium)
-                        Text("合計 1801円")
-                        
-                        
-                        VStack {
-                            ForEach(members, id: \.self) { member in
-                                HStack {
-                                    Text(member)
-                                    Spacer()
-                                    Text("300円")
-                                }
-                            }
-                            Divider()
+        VStack{
+            Spacer()
+            ZStack {
+                VStack(alignment: .leading) {
+                    Text("昼飯")
+                        .font(.title2)
+                        .fontWeight(.medium)
+                    Text("合計 1801円")
+                    VStack {
+                        ForEach(members, id: \.self) { member in
                             HStack {
-                                Text("端数")
+                                Text(member)
                                 Spacer()
-                                Text("1円")
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.red)
+                                Text("300円")
                             }
                         }
-                        .padding(.top)
+                        Divider()
+                        HStack {
+                            Text("端数")
+                            Spacer()
+                            Text("1円")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.red)
+                        }
                     }
-                    .font(.title)
-                    .padding(.horizontal, 50)
+                    .padding(.top)
                 }
-                Spacer()
-                NavigationLink("端数ルーレットする", value: Path.rouletteView)
-                    .modifier(LongStyle())
-                    .padding(.bottom, 1)
+                .font(.title)
+                .padding(.horizontal, 50)
             }
+            Spacer()
+            NavigationLink("端数ルーレットする", value: Path.rouletteView)
+                .modifier(LongStyle())
+                .padding(.bottom, 1)
+        }
     }
 }
-
 
 #Preview {
     ConfirmView()

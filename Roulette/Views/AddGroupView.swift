@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddGroupListView: View {
+struct AddGroupView: View {
     @State private var groupName = "Gang of Five"
     @State private var member1 = "Sako"
     @State private var member2 = "Seigetsu"
@@ -48,10 +48,19 @@ struct AddGroupListView: View {
                 .padding(.bottom, 1)
             }
             .navigationTitle("割り勘グループ作成")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isShowAddGroupListView = false
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                }
+            }
         }
     }
 }
 
 #Preview {
-    AddGroupListView(isShowAddGroupListView: Binding.constant(true))
+    AddGroupView(isShowAddGroupListView: Binding.constant(true))
 }

@@ -13,7 +13,7 @@ struct AddGroupListView: View {
     @State private var member2 = "Seigetsu"
     @State private var member3 = "Maki"
     @Binding var isShowAddGroupListView: Bool
-
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -36,10 +36,9 @@ struct AddGroupListView: View {
                         Text("メンバーリスト")
                     }
                 }
-                
                 VStack {
                     Spacer()
-                       Button(action: {
+                    Button(action: {
                         isShowAddGroupListView = false
                     }, label: {
                         Text("グループ作成")

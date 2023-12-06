@@ -11,7 +11,7 @@ struct AddTatekaeView: View {
     @Binding var isShowAddTatekaeView: Bool
     @State var text = ""
     @State var unluckeyMember = "未選択"
-
+    
     var body: some View {
         Group {
             HStack {

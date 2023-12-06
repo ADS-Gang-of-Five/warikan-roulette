@@ -49,37 +49,16 @@ struct GroupListView: View {
                         .font(.title2)
                         .padding(.horizontal, 30)
                 }
-                MyButton(diameter: 60)
+                AddButton()
                     .onTapGesture {
                         isShowAddGroupListView = true
                     }
-                    .padding(.bottom, 1)
             }
             .navigationTitle("割り勘グループ")
         }
         .environmentObject(viewRouter)
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupListView(isShowAddGroupListView: $isShowAddGroupListView)
-        }
-    }
-}
-
-private struct MyButton: View {
-    let diameter: CGFloat
-    
-    var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .foregroundStyle(Color.blue)
-                    .frame(width: diameter, height: diameter)
-                    .background(.white)
-                    .clipShape(Circle())
-                    .padding(.trailing)
-            }
         }
     }
 }

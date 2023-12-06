@@ -45,11 +45,10 @@ struct TatekaeListView: View {
             } else {
                 Text("右下のボタンから立替を追加")
             }
-            MyButton(diameter: 60)
+            AddButton()
                 .onTapGesture {
                     isShowAddTatekaeView = true
                 }
-                .padding(.bottom, 1)
         }
         .sheet(isPresented: $isShowAddTatekaeView) {
             AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
@@ -60,26 +59,6 @@ struct TatekaeListView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("清算", value: Path.confirmView)
-            }
-        }
-    }
-}
-
-private struct MyButton: View {
-    let diameter: CGFloat
-    
-    var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .foregroundStyle(Color.blue)
-                    .frame(width: diameter, height: diameter)
-                    .background(.white)
-                    .clipShape(Circle())
-                    .padding(.trailing)
             }
         }
     }

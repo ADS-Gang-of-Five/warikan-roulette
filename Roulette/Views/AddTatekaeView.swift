@@ -28,9 +28,10 @@ struct AddTatekaeView: View {
                 Text("立替人")
                 Spacer()
                 Picker("", selection: $unluckeyMember) {
-                    Text("sako").tag("sako")
-                    Text("seigetsu").tag("seigetsu")
-                    Text("maki").tag("maki")
+                    Text("未選択").tag("未選択")
+                    Text("Sako").tag("sako")
+                    Text("Seigetsu").tag("seigetsu")
+                    Text("Maki").tag("maki")
                 }
             }
             Button("立替を追加") {

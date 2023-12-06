@@ -58,7 +58,7 @@ struct GroupListView: View {
         }
         .environmentObject(viewRouter)
         .sheet(isPresented: $isShowAddGroupListView) {
-            AddGroupListView(isShowAddGroupListView: $isShowAddGroupListView)
+            AddGroupView(isShowAddGroupListView: $isShowAddGroupListView)
         }
     }
 }

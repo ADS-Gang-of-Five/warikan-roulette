@@ -10,7 +10,6 @@ import Charts
 
 //TODO: ルーレットが回った後に、backできない使用に変更する。
 struct RouletteView: View {
-    
     private var members = [
         (name: "A", count: 100),
         (name: "B", count: 100),
@@ -24,20 +23,17 @@ struct RouletteView: View {
     @State private var angle = Angle(degrees: 0.0)
     
     var body: some View {
-        
         VStack {
             Image(systemName: "triangleshape.fill")
                 .rotationEffect(Angle(degrees: 180.0))
                 .foregroundStyle(.red)
                 .scaleEffect(1.3)
-            
             Chart {
                 ForEach(members, id: \.name) { member in
                     SectorMark(
                         angle: .value("", member.count),
-                        innerRadius:  MarkDimension.ratio(0.5), // 中央の空洞の割合
-                        //                        outerRadius: .inset(30),
-                        angularInset: 1 // 各要素間のスペース
+                        innerRadius:  MarkDimension.ratio(0.5),
+                        angularInset: 1
                     )
                     .cornerRadius(5)
                     .foregroundStyle(by: .value("", member.name))
@@ -52,7 +48,6 @@ struct RouletteView: View {
             .rotationEffect(angle)
             .frame(width: 300, height: 300)
             .padding(.top, 3)
-            
             Button {
                 angle = .zero
                 withAnimation(.spring(duration: 10)) {
@@ -65,13 +60,11 @@ struct RouletteView: View {
             .tint(.gray)
             .padding(.top)
             NavigationLink("Next", value: Path.rouletteResultView)
-            .buttonStyle(.borderedProminent)
-//            .tint(.gray)
-            .padding(.top)
+                .buttonStyle(.borderedProminent)
+                .padding(.top)
         }
     }
 }
-
 
 #Preview {
     RouletteView()

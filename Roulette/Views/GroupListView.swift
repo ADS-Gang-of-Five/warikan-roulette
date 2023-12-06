@@ -40,6 +40,8 @@ struct GroupListView: View {
                                 RouletteResultView()
                             case .seisanResultView:
                                 SeisanResultView()
+                                    .navigationTitle("精算結果")
+                                    .navigationBarTitleDisplayMode(.large)
                             }
                         }
                 } else {

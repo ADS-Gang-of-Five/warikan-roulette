@@ -34,7 +34,6 @@ struct TatekaeDetailView: View {
                     Text("日時")
                 }
             }
-            
             HStack {
                 Spacer()
                 VStack {

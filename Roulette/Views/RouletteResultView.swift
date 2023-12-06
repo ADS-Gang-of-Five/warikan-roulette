@@ -25,17 +25,12 @@ struct RouletteResultView: View {
                 .background(.blue)
                 .clipShape(Capsule(), style: FillStyle())
                 .padding(.top)
-            
         }
     }
 }
 
-
 private struct MyButton: View {
-    //    let diameter: CGFloat
-    
     var body: some View {
-        
         VStack {
             Spacer()
             Text("トップに戻る")
@@ -47,7 +42,6 @@ private struct MyButton: View {
                 .clipShape(Capsule())
                 .padding(.bottom, 1)
         }
-        
     }
 }
 

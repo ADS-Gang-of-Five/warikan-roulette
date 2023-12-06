@@ -86,5 +86,4 @@ private struct MyButton: View {
 
 #Preview {
     GroupListView()
-//    GroupListView(groups: [])
 }

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AddGroupListView: View {
-    @State private var text = "SampleText"
+    @State private var groupName = "Gang of Five"
+    @State private var member1 = "Sako"
+    @State private var member2 = "Seigetsu"
+    @State private var member3 = "Maki"
     @Binding var isShowAddGroupListView: Bool
 
     var body: some View {
@@ -16,15 +19,14 @@ struct AddGroupListView: View {
             ZStack {
                 Form {
                     Section {
-                        TextField("Placeholder", text: $text)
+                        TextField("", text: $groupName)
                     } header: {
                         Text("割り勘グループ名")
                     }
                     Section {
-                        TextField("Placeholder", text: $text)
-                        TextField("Placeholder", text: $text)
-                        TextField("Placeholder", text: $text)
-                        TextField("Placeholder", text: $text)
+                        TextField("", text: $member1)
+                        TextField("", text: $member2)
+                        TextField("", text: $member3)
                         HStack {
                             Spacer()
                             Button("メンバーを追加", action: {})

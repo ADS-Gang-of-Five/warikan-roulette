@@ -23,20 +23,22 @@ struct TatekaeListView: View {
                 List {
                     Section {
                         ForEach(tatekaes, id: \.self) { tatekae in
-                            HStack {
-                                Text(tatekae)
-                                    .font(.title2)
-                                Spacer()
-                                VStack {
-                                    Text("2023年11月14日")
-                                    Text("合計 XXXXX円")
-                                }
-                                .font(.footnote)
-                            }
-                            .padding(.vertical, 3)
-                            .onTapGesture {
+                            Button(action: {
                                 isShowTatekaeDetailView = true
-                            }
+                            }, label: {
+                                HStack {
+                                    Text(tatekae)
+                                        .font(.title2)
+                                    Spacer()
+                                    VStack {
+                                        Text("2023年11月14日")
+                                        Text("合計 XXXXX円")
+                                    }
+                                    .font(.footnote)
+                                }
+                                .padding(.vertical, 3)
+                            })
+                            .foregroundStyle(.primary)
                         }
                     } header: {
                         Text("立替一覧")

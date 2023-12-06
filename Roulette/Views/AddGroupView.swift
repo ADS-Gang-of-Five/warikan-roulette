@@ -48,6 +48,15 @@ struct AddGroupListView: View {
                 .padding(.bottom, 1)
             }
             .navigationTitle("割り勘グループ作成")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                }
+            }
         }
     }
 }

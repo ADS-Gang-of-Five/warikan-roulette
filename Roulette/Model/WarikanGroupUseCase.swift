@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: warikanGroupRepository.find の強制アンラップを外す。
 struct WarikanGroupUsecase {
     private var warikanGroupRepository: WarikanGroupRepositoryProtocol
     private var memberRepository: MemberRepositoryProtocol
@@ -47,7 +46,10 @@ struct WarikanGroupUsecase {
         try await warikanGroupRepository.transaction {
             var warikanGroups = [WarikanGroup]()
             for id in ids {
-                let warikanGroup = try await warikanGroupRepository.find(id: id)!
+                guard let warikanGroup = try await warikanGroupRepository.find(id: id) else {
+                    throw ValidationError.notFoundID(id)
+                }
+                // FIXME: appendになってる？？
                 warikanGroups.append(warikanGroup)
             }
             
@@ -69,7 +71,9 @@ struct WarikanGroupUsecase {
             try await memberRepository.save(Member(id: memberID, name: name))
             
             try await warikanGroupRepository.transaction {
-                var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+                guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
+                    throw ValidationError.notFoundID(warikanGroupID)
+                }
                 warikanGroup.members.append(memberID)
                 try await warikanGroupRepository.save(warikanGroup)
             }
@@ -79,7 +83,9 @@ struct WarikanGroupUsecase {
     /// メンバーを削除する。
     func removeMember(warikanGroup warikanGroupID: EntityID<WarikanGroup>, member memberID: EntityID<Member>) async throws {
         try await warikanGroupRepository.transaction {
-            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
+                throw ValidationError.notFoundID(warikanGroupID)
+            }
             warikanGroup.members.removeAll { $0 == memberID }
             try await warikanGroupRepository.save(warikanGroup)
             
@@ -96,7 +102,9 @@ struct WarikanGroupUsecase {
             try await tatekaeRepository.save(Tatekae(id: tatekaeID, name: tatekaeName, payer: payer, recipients: recipants, money: money))
             
             try await warikanGroupRepository.transaction {
-                var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+                guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
+                    throw ValidationError.notFoundID(warikanGroupID)
+                }
                 warikanGroup.tatekaeList.append(tatekaeID)
                 try await warikanGroupRepository.save(warikanGroup)
             }
@@ -106,7 +114,9 @@ struct WarikanGroupUsecase {
     /// 立て替えを一件削除する。
     func removeTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekae tatekaeID: EntityID<Tatekae>) async throws {
         try await warikanGroupRepository.transaction {
-            var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID)!
+            guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
+                throw ValidationError.notFoundID(warikanGroupID)
+            }
             warikanGroup.tatekaeList.removeAll { $0 == tatekaeID }
             try await warikanGroupRepository.save(warikanGroup)
             

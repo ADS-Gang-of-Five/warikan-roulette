@@ -155,7 +155,6 @@
 				4C6528282B2201E3000E8130 /* ViewModifiers */,
 				4C228AD22AFA861B00FE4F35 /* ContentView.swift */,
 				4C3EB2C72B1DE4A600423444 /* GroupListView.swift */,
-				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
 				4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */,
 				4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */,
 				4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */,
@@ -164,6 +163,7 @@
 				69D8F3E92B1F478500B24D4E /* RouletteView.swift */,
 				69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */,
 				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
+				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

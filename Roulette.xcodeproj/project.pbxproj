@@ -22,6 +22,17 @@
 		4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */; };
 		4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */; };
 		4C65282B2B220231000E8130 /* LongStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65282A2B220231000E8130 /* LongStyle.swift */; };
+		4C6528382B220D01000E8130 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528372B220D01000E8130 /* GroupListViewModel.swift */; };
+		4C65283A2B220D3C000E8130 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528392B220D3C000E8130 /* ContentViewModel.swift */; };
+		4C65283C2B220D58000E8130 /* AddGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */; };
+		4C65283E2B220D6F000E8130 /* TatekaeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */; };
+		4C6528402B220D80000E8130 /* AddTatekaeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */; };
+		4C6528422B220D95000E8130 /* TatekaeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */; };
+		4C6528442B220DA3000E8130 /* ConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */; };
+		4C6528462B220DB3000E8130 /* RouletteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528452B220DB3000E8130 /* RouletteViewModel.swift */; };
+		4C6528482B220DC9000E8130 /* RouletteResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */; };
+		4C65284A2B220DD9000E8130 /* SeisanResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */; };
+		4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */; };
 		4CA486312B206001009231FA /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA486302B206001009231FA /* AddButton.swift */; };
 		69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */; };
 		69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E92B1F478500B24D4E /* RouletteView.swift */; };
@@ -64,6 +75,17 @@
 		4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
 		4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeListView.swift; sourceTree = "<group>"; };
 		4C65282A2B220231000E8130 /* LongStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongStyle.swift; sourceTree = "<group>"; };
+		4C6528372B220D01000E8130 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
+		4C6528392B220D3C000E8130 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewModel.swift; sourceTree = "<group>"; };
+		4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeListViewModel.swift; sourceTree = "<group>"; };
+		4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeViewModel.swift; sourceTree = "<group>"; };
+		4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailViewModel.swift; sourceTree = "<group>"; };
+		4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewModel.swift; sourceTree = "<group>"; };
+		4C6528452B220DB3000E8130 /* RouletteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewModel.swift; sourceTree = "<group>"; };
+		4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteResultViewModel.swift; sourceTree = "<group>"; };
+		4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultViewModel.swift; sourceTree = "<group>"; };
+		4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
 		4CA486302B206001009231FA /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
 		69D8F3E92B1F478500B24D4E /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -120,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				4C3EB2C62B1DE46B00423444 /* Views */,
+				4C6528362B220CC3000E8130 /* ViewModels */,
 				4C2518052B120FD200965D43 /* Model */,
 				A67FE31B2B13387C00E10FFB /* Util */,
 				4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */,
@@ -257,6 +280,24 @@
 			path = Tatekae;
 			sourceTree = "<group>";
 		};
+		4C6528362B220CC3000E8130 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528392B220D3C000E8130 /* ContentViewModel.swift */,
+				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
+				4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */,
+				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
+				4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */,
+				4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */,
+				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
+				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
+				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
+				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
+				4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		A67FE31B2B13387C00E10FFB /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,21 +385,28 @@
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
+				4C6528382B220D01000E8130 /* GroupListViewModel.swift in Sources */,
 				A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */,
 				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
 				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
 				4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */,
+				4C6528482B220DC9000E8130 /* RouletteResultViewModel.swift in Sources */,
+				4C6528462B220DB3000E8130 /* RouletteViewModel.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,
+				4C65283A2B220D3C000E8130 /* ContentViewModel.swift in Sources */,
 				A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */,
 				69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */,
+				4C6528422B220D95000E8130 /* TatekaeDetailViewModel.swift in Sources */,
 				A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
 				4C65282B2B220231000E8130 /* LongStyle.swift in Sources */,
+				4C65283E2B220D6F000E8130 /* TatekaeListViewModel.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
+				4C6528402B220D80000E8130 /* AddTatekaeViewModel.swift in Sources */,
 				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
@@ -366,12 +414,16 @@
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,
 				A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */,
 				4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */,
+				4C6528442B220DA3000E8130 /* ConfirmViewModel.swift in Sources */,
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,
 				4CA486312B206001009231FA /* AddButton.swift in Sources */,
 				69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */,
+				4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
+				4C65284A2B220DD9000E8130 /* SeisanResultViewModel.swift in Sources */,
 				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
+				4C65283C2B220D58000E8130 /* AddGroupViewModel.swift in Sources */,
 				4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */,
 				69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */,
 				A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */,

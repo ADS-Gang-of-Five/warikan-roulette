@@ -26,7 +26,7 @@ struct WarikanGroupUsecase {
     
     /// 割り勘グループを新規作成する。
     ///
-    /// 新規作成した割り勘グループは `findAll()` で得られる割り勘グループ配列の末尾に追加される。
+    /// 新規作成した割り勘グループは `getAll()` で得られる割り勘グループ配列の末尾に追加される。
     func create(name: String, memberNames: [String]) async throws {
         try await memberRepository.transaction {
             let memberIDs = try await memberRepository.nextIDs(count: memberNames.count)

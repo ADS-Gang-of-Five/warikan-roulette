@@ -1,15 +1,13 @@
 //
-//  Extention.swift
+//  LongStyle.swift
 //  Roulette
 //
-//  Created by sako0602 on 2023/11/20.
+//  Created by Masaki Doi on 2023/12/07.
 //
 
-import Foundation
 import SwiftUI
 
 struct LongStyle: ViewModifier {
-   
    func body(content: Content) -> some View {
        content
            .font(.title2)

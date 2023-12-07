@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0D517D2AFDCA33003B720E /* RouletteViewWithCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */; };
-		4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */; };
-		4C0ECF152B039B5B00B6797C /* ViewRouter_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */; };
 		4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */; };
 		4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
@@ -25,20 +22,8 @@
 		4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */; };
 		4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */; };
 		4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */; };
-		4C64F42F2B0364E70053995E /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F42E2B0364E70053995E /* View1.swift */; };
-		4C64F4312B0367D50053995E /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4302B0367D50053995E /* View2.swift */; };
-		4C64F4332B036E070053995E /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4322B036E070053995E /* View3.swift */; };
-		4C64F4352B036F920053995E /* View4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4342B036F920053995E /* View4.swift */; };
-		4C64F4372B0376BE0053995E /* View5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4362B0376BE0053995E /* View5.swift */; };
-		4C64F43D2B03829F0053995E /* View6_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F43C2B03829F0053995E /* View6_1.swift */; };
-		4C64F43F2B0382F60053995E /* View6_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F43E2B0382F60053995E /* View6_2.swift */; };
-		4C64F4412B0386AD0053995E /* View7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4402B0386AD0053995E /* View7.swift */; };
-		4C64F4432B0387510053995E /* View8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4422B0387510053995E /* View8.swift */; };
-		4C64F4452B038C610053995E /* View9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64F4442B038C610053995E /* View9.swift */; };
-		4C834CCD2AFB05B600AEC209 /* Roulette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C834CCC2AFB05B600AEC209 /* Roulette.swift */; };
+		4C65282B2B220231000E8130 /* LongStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65282A2B220231000E8130 /* LongStyle.swift */; };
 		4CA486312B206001009231FA /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA486302B206001009231FA /* AddButton.swift */; };
-		696877002B0B6D6C00318B3E /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */; };
-		696877042B0B7DF300318B3E /* Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877032B0B7DF300318B3E /* Extention.swift */; };
 		69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */; };
 		69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E92B1F478500B24D4E /* RouletteView.swift */; };
 		69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */; };
@@ -64,9 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithCharts.swift; sourceTree = "<group>"; };
-		4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewWithSimpleRoulette.swift; sourceTree = "<group>"; };
-		4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter_old.swift; sourceTree = "<group>"; };
 		4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeView.swift; sourceTree = "<group>"; };
 		4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailView.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,20 +64,8 @@
 		4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
 		4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeListView.swift; sourceTree = "<group>"; };
-		4C64F42E2B0364E70053995E /* View1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
-		4C64F4302B0367D50053995E /* View2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
-		4C64F4322B036E070053995E /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
-		4C64F4342B036F920053995E /* View4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View4.swift; sourceTree = "<group>"; };
-		4C64F4362B0376BE0053995E /* View5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View5.swift; sourceTree = "<group>"; };
-		4C64F43C2B03829F0053995E /* View6_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View6_1.swift; sourceTree = "<group>"; };
-		4C64F43E2B0382F60053995E /* View6_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View6_2.swift; sourceTree = "<group>"; };
-		4C64F4402B0386AD0053995E /* View7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View7.swift; sourceTree = "<group>"; };
-		4C64F4422B0387510053995E /* View8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View8.swift; sourceTree = "<group>"; };
-		4C64F4442B038C610053995E /* View9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View9.swift; sourceTree = "<group>"; };
-		4C834CCC2AFB05B600AEC209 /* Roulette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roulette.swift; sourceTree = "<group>"; };
+		4C65282A2B220231000E8130 /* LongStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongStyle.swift; sourceTree = "<group>"; };
 		4CA486302B206001009231FA /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
-		696877032B0B7DF300318B3E /* Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extention.swift; sourceTree = "<group>"; };
 		69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
 		69D8F3E92B1F478500B24D4E /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteResultView.swift; sourceTree = "<group>"; };
@@ -155,23 +125,6 @@
 				A67FE31B2B13387C00E10FFB /* Util */,
 				4C2518052B120FD200965D43 /* Model */,
 				4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */,
-				4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */,
-				4C64F42E2B0364E70053995E /* View1.swift */,
-				4C64F4302B0367D50053995E /* View2.swift */,
-				4C64F4322B036E070053995E /* View3.swift */,
-				4C64F4342B036F920053995E /* View4.swift */,
-				4C64F4362B0376BE0053995E /* View5.swift */,
-				4C64F43C2B03829F0053995E /* View6_1.swift */,
-				4C64F43E2B0382F60053995E /* View6_2.swift */,
-				4C64F4402B0386AD0053995E /* View7.swift */,
-				4C0D517E2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift */,
-				4C0D517C2AFDCA33003B720E /* RouletteViewWithCharts.swift */,
-				4C64F4422B0387510053995E /* View8.swift */,
-				4C64F4442B038C610053995E /* View9.swift */,
-				4C0ECF142B039B5B00B6797C /* ViewRouter_old.swift */,
-				4C834CCC2AFB05B600AEC209 /* Roulette.swift */,
-				696876FF2B0B6D6C00318B3E /* NavigationViewModel.swift */,
-				696877032B0B7DF300318B3E /* Extention.swift */,
 				4C228AD42AFA861D00FE4F35 /* Assets.xcassets */,
 				4C228AD62AFA861D00FE4F35 /* Preview Content */,
 			);
@@ -216,6 +169,9 @@
 		4C3EB2C62B1DE46B00423444 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */,
+				4C6528292B2201FF000E8130 /* ViewComponents */,
+				4C6528282B2201E3000E8130 /* ViewModifiers */,
 				4C228AD22AFA861B00FE4F35 /* ContentView.swift */,
 				4C3EB2C72B1DE4A600423444 /* GroupListView.swift */,
 				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
@@ -227,9 +183,24 @@
 				69D8F3E92B1F478500B24D4E /* RouletteView.swift */,
 				69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */,
 				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
-				4CA486302B206001009231FA /* AddButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4C6528282B2201E3000E8130 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				4C65282A2B220231000E8130 /* LongStyle.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		4C6528292B2201FF000E8130 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				4CA486302B206001009231FA /* AddButton.swift */,
+			);
+			path = ViewComponents;
 			sourceTree = "<group>";
 		};
 		A67FE31B2B13387C00E10FFB /* Util */ = {
@@ -317,15 +288,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
-				696877002B0B6D6C00318B3E /* NavigationViewModel.swift in Sources */,
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
-				4C64F4412B0386AD0053995E /* View7.swift in Sources */,
-				4C834CCD2AFB05B600AEC209 /* Roulette.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
 				A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */,
-				4C64F43F2B0382F60053995E /* View6_2.swift in Sources */,
 				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
 				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
 				4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */,
@@ -335,33 +302,22 @@
 				69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */,
-				4C0D517F2AFDCB43003B720E /* RouletteViewWithSimpleRoulette.swift in Sources */,
-				4C64F4352B036F920053995E /* View4.swift in Sources */,
-				4C0ECF152B039B5B00B6797C /* ViewRouter_old.swift in Sources */,
-				4C64F4452B038C610053995E /* View9.swift in Sources */,
 				A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
+				4C65282B2B220231000E8130 /* LongStyle.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
-				4C64F43D2B03829F0053995E /* View6_1.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,
 				A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */,
 				4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */,
-				4C64F4332B036E070053995E /* View3.swift in Sources */,
-				4C64F4312B0367D50053995E /* View2.swift in Sources */,
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,
 				4CA486312B206001009231FA /* AddButton.swift in Sources */,
-				4C64F42F2B0364E70053995E /* View1.swift in Sources */,
-				4C64F4372B0376BE0053995E /* View5.swift in Sources */,
 				69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
-				4C0D517D2AFDCA33003B720E /* RouletteViewWithCharts.swift in Sources */,
-				696877042B0B7DF300318B3E /* Extention.swift in Sources */,
-				4C64F4432B0387510053995E /* View8.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
 				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
 				4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */,

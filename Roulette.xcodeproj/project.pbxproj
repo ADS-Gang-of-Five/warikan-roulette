@@ -13,7 +13,6 @@
 		4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD22AFA861B00FE4F35 /* ContentView.swift */; };
 		4C228AD52AFA861D00FE4F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD42AFA861D00FE4F35 /* Assets.xcassets */; };
 		4C228AD82AFA861D00FE4F35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C228AD72AFA861D00FE4F35 /* Preview Assets.xcassets */; };
-		4C228AE02AFA86A100FE4F35 /* SimpleRoulette in Frameworks */ = {isa = PBXBuildFile; productRef = 4C228ADF2AFA86A100FE4F35 /* SimpleRoulette */; };
 		4C2518092B12104900965D43 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2518082B12104900965D43 /* Member.swift */; };
 		4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180B2B12108000965D43 /* WarikanGroup.swift */; };
 		4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25180D2B12108D00965D43 /* Tatekae.swift */; };
@@ -95,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C228AE02AFA86A100FE4F35 /* SimpleRoulette in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +226,6 @@
 			);
 			name = Roulette;
 			packageProductDependencies = (
-				4C228ADF2AFA86A100FE4F35 /* SimpleRoulette */,
 			);
 			productName = Roulette;
 			productReference = 4C228ACD2AFA861B00FE4F35 /* Roulette.app */;
@@ -259,7 +256,6 @@
 			);
 			mainGroup = 4C228AC42AFA861B00FE4F35;
 			packageReferences = (
-				4C228ADE2AFA86A100FE4F35 /* XCRemoteSwiftPackageReference "SimpleRoulette" */,
 			);
 			productRefGroup = 4C228ACE2AFA861B00FE4F35 /* Products */;
 			projectDirPath = "";
@@ -528,25 +524,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4C228ADE2AFA86A100FE4F35 /* XCRemoteSwiftPackageReference "SimpleRoulette" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/fummicc1/SimpleRoulette.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4C228ADF2AFA86A100FE4F35 /* SimpleRoulette */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C228ADE2AFA86A100FE4F35 /* XCRemoteSwiftPackageReference "SimpleRoulette" */;
-			productName = SimpleRoulette;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C228AC52AFA861B00FE4F35 /* Project object */;
 }

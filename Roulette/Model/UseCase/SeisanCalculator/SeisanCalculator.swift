@@ -16,7 +16,7 @@ struct SeisanCalculator {
         fileprivate let zansais: DebtState
     }
     
-    /// `seisan(transactionRecords:)`の応答。
+    /// `seisan(tatekaeList:)`の応答。
     enum SeisanResponse {
         case needsUnluckyMember(SeisanContext)
         case success([Seisan])

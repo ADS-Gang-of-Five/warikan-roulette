@@ -8,44 +8,60 @@
 import SwiftUI
 
 struct ConfirmView: View {
-    let members = ["ひな", "さこ", "かい", "せいげつ", "まき", "じょにー"]
-    
     var body: some View {
-        VStack{
-            Spacer()
-            ZStack {
-                VStack(alignment: .leading) {
-                    Text("昼飯")
-                        .font(.title2)
-                        .fontWeight(.medium)
-                    Text("合計 1801円")
-                    VStack {
-                        ForEach(members, id: \.self) { member in
-                            HStack {
-                                Text(member)
-                                Spacer()
-                                Text("300円")
-                            }
-                        }
-                        Divider()
-                        HStack {
-                            Text("端数")
-                            Spacer()
-                            Text("1円")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.red)
-                        }
-                    }
-                    .padding(.top)
-                }
-                .font(.title)
-                .padding(.horizontal, 50)
+        VStack(alignment: .leading) {
+            Text("Gang of Five")
+                .font(.largeTitle)
+                .fontWeight(Font.Weight.heavy)
+            Text("メンバー")
+                .font(.callout)
+                .padding(.top, 1)
+            HStack(spacing: nil) {
+                Text("Sako,")
+                Text("Seigetsu,")
+                Text("Maki")
             }
-            Spacer()
-            NavigationLink("端数ルーレットする", value: Path.rouletteView)
-                .modifier(LongStyle())
-                .padding(.bottom, 1)
+            .font(.title2)
+            Text("立替一覧")
+                .font(.callout)
+                .padding(.top, 1)
+            Group {
+                HStack {
+                    Text("朝食")
+                    Spacer()
+                    Text("3,000円")
+                }
+                HStack {
+                    Text("昼食")
+                    Spacer()
+                    Text("3,000円")
+                }
+                HStack {
+                    Text("夕食")
+                    Spacer()
+                    Text("4,000円")
+                }
+            }
+            .font(.title2)
+            HStack {
+                Text("合計金額")
+                Spacer()
+                Text("10,000円")
+            }
+            .font(.title)
+            .fontWeight(.semibold)
+            .padding(.top, 1)
         }
+        .padding(.horizontal, 50)
+        NavigationLink("端数ルーレットする", value: Path.rouletteView)
+            .font(.title3)
+            .fontWeight(.semibold)
+            .foregroundStyle(.white)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 20)
+            .background(.blue)
+            .clipShape(Capsule())
+            .padding(.top)
     }
 }
 

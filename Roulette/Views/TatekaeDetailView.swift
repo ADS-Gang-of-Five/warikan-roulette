@@ -11,7 +11,7 @@ struct TatekaeDetailView: View {
     @Binding var isShowTatekaeDetailView: Bool
     
     var body: some View {
-        ZStack {
+        NavigationStack {
             List {
                 Section {
                     Text("朝食")
@@ -34,20 +34,15 @@ struct TatekaeDetailView: View {
                     Text("日時")
                 }
             }
-            HStack {
-                Spacer()
-                VStack {
-                    Spacer()
-                    Button("戻る") {
+            .navigationTitle("立替の詳細")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
                         isShowTatekaeDetailView = false
-                    }
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.white)
-                    .padding()
-                    .background(.blue)
-                    .clipShape(Capsule(), style: FillStyle())
-                    .padding(.trailing)
-                    .padding(.bottom)
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
                 }
             }
         }

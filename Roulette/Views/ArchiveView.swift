@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct ArchiveView: View {
+    let groups: [String]
+    
+    init(groups: [String] = ["Gang of Five", "ひなっこクラブ", "アプリ道場サロン"]) {
+        self.groups = groups
+    }
+    
     var body: some View {
-        Text("Here is ArchiveView.")
+        NavigationStack {
+            Group {
+                if groups != [] {
+                    List {
+                        ForEach(groups, id: \.self) { group in
+                            NavigationLink(group) {
+                                SeisanResultView()
+                                    .navigationTitle("清算結果")
+                            }
+                        }
+                    }
+                } else {
+                    Text("清算済割り勘グループはありません。")
+                        .font(.title2)
+                        .padding(.horizontal, 30)
+                }
+            }
+            .navigationTitle("清算済割り勘グループ")
+        }
     }
 }
 

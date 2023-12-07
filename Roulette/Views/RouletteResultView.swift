@@ -11,8 +11,8 @@ struct RouletteResultView: View {
     var body: some View {
         VStack(spacing: 10) {
             Group {
-                Text("ひなが")
-                Text("多く払うよ！")
+                Text("今回のアンラッキーメンバーは")
+                Text("Sakoさんに決定！")
             }
             .font(.title)
             .fontWeight(.bold)

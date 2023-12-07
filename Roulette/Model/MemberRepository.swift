@@ -62,7 +62,6 @@ struct MemberRepository: MemberRepositoryProtocol {
     }
     
     func find(ids: [EntityID<Member>]) throws -> [Member] {
-        let items = getItems()
         return try ids.map { id in
             guard let item = find(id: id) else {
                 throw ValidationError.notFoundID(id)

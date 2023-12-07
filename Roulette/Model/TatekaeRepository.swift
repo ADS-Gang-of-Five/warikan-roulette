@@ -62,7 +62,6 @@ class TatekaeRepository: TatekaeRepositoryProtocol {
     }
     
     func find(ids: [EntityID<Tatekae>]) throws -> [Tatekae] {
-        let items = getItems()
         return try ids.map { id in
             guard let item = find(id: id) else {
                 throw ValidationError.notFoundID(id)

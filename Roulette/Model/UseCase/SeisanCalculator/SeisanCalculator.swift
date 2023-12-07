@@ -10,7 +10,7 @@ import Foundation
 
 /// 清算の計算を行う。
 struct SeisanCalculator {
-    /// アンラッキーメンバーが確定しない段階での、清算手順の途中計算結果を保持する。
+    /// アンラッキーメンバーが確定しない段階での、途中計算結果を保持する。
     struct SeisanContext {
         fileprivate let debts: DebtState
         fileprivate let zansais: DebtState
@@ -22,7 +22,7 @@ struct SeisanCalculator {
         case success([Seisan])
     }
     
-    /// 立て替えリストから清算手順の計算を行う。
+    /// 立て替えリストを受け取り、清算リストを計算する。
     func seisan(tatekaeList: [Tatekae]) -> SeisanResponse {
         let debts = debts(tatekaeList: tatekaeList)
         
@@ -47,7 +47,7 @@ struct SeisanCalculator {
         return seisan(seisanPrises: debts - zansais)
     }
     
-    /// 清算必要額から清算手順を計算する。
+    /// 清算必要額を受け取り、清算リストを計算する。
     private func seisan(seisanPrises: DebtState) -> [Seisan] {
         var seisanState = seisanPrises  // 清算状況
         let sortedSeisanPriceMap = seisanPrises.debtRanking()

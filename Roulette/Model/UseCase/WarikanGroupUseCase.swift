@@ -26,7 +26,7 @@ struct WarikanGroupUsecase {
     
     /// 割り勘グループを新規作成する。
     ///
-    /// 新規作成した割り勘グループは `findAll()` で得られる割り勘グループ配列の末尾に追加される。
+    /// 新規作成した割り勘グループは `getAll()` で得られる割り勘グループ配列の末尾に追加される。
     func create(name: String, memberNames: [String]) async throws {
         try await memberRepository.transaction {
             let memberIDs = try await memberRepository.nextIDs(count: memberNames.count)
@@ -44,16 +44,15 @@ struct WarikanGroupUsecase {
     /// 指定したIDの割り勘グループを削除する。
     func remove(ids: [EntityID<WarikanGroup>]) async throws {
         try await warikanGroupRepository.transaction {
-            var warikanGroups = [WarikanGroup]()
+            var targets = [WarikanGroup]()
             for id in ids {
                 guard let warikanGroup = try await warikanGroupRepository.find(id: id) else {
                     throw ValidationError.notFoundID(id)
                 }
-                // FIXME: appendになってる？？
-                warikanGroups.append(warikanGroup)
+                targets.append(warikanGroup)
             }
             
-            for warikanGroup in warikanGroups {
+            for warikanGroup in targets {
                 try await warikanGroupRepository.remove(id: warikanGroup.id)
                 try await memberRepository.transaction {
                     try await memberRepository.remove(ids: warikanGroup.members)

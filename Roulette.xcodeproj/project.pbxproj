@@ -41,6 +41,7 @@
 		A600912F2B2298B6005C6535 /* ArchivedWarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */; };
 		A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */; };
 		A60091332B22A05D005C6535 /* WarikanGroupArchiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */; };
+		A60091352B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091342B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift */; };
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
@@ -97,6 +98,7 @@
 		A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroup.swift; sourceTree = "<group>"; };
 		A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupArchiveController.swift; sourceTree = "<group>"; };
+		A60091342B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupUseCase.swift; sourceTree = "<group>"; };
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
 				4C6528302B2208C4000E8130 /* SeisanCalculator */,
 				A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */,
+				A60091342B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				4C65282B2B220231000E8130 /* LongStyle.swift in Sources */,
 				4C65283E2B220D6F000E8130 /* TatekaeListViewModel.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
+				A60091352B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift in Sources */,
 				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				4C6528402B220D80000E8130 /* AddTatekaeViewModel.swift in Sources */,
 				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,

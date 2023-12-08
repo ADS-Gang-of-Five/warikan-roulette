@@ -40,6 +40,7 @@
 		69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */; };
 		A600912F2B2298B6005C6535 /* ArchivedWarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */; };
 		A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */; };
+		A60091332B22A05D005C6535 /* WarikanGroupArchiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */; };
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
@@ -95,6 +96,7 @@
 		69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultView.swift; sourceTree = "<group>"; };
 		A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroup.swift; sourceTree = "<group>"; };
 		A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
+		A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupArchiveController.swift; sourceTree = "<group>"; };
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
 				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
 				4C6528302B2208C4000E8130 /* SeisanCalculator */,
+				A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */,
 				4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */,
 				4C3EB2CC2B1DE63600423444 /* ViewRouter.swift in Sources */,
+				A60091332B22A05D005C6535 /* WarikanGroupArchiveController.swift in Sources */,
 				4C6528422B220D95000E8130 /* TatekaeDetailViewModel.swift in Sources */,
 				A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,

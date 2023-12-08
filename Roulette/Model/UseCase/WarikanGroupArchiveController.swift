@@ -23,8 +23,8 @@ struct WarikanGroupArchiveController {
     /// - parameter id: アーカイブする割り勘グループ。
     /// - parameter seisanList: その割り勘グループで計算された清算リスト。
     /// - parameter unluckyMember: 選ばれたアンラッキーメンバー。アンラッキーメンバーがいない場合は`nil`を渡す。
-    func archive(id: EntityID<WarikanGroup>, seisanList: [Seisan], unluckyMember: EntityID<Member>?) async throws {
-        try await warikanGroupRepository.transaction {
+    func archive(id: EntityID<WarikanGroup>, seisanList: [Seisan], unluckyMember: EntityID<Member>?) async throws -> EntityID<ArchivedWarikanGroup> {
+        return try await warikanGroupRepository.transaction {
             // 割り勘グループのリポジトリから削除
             guard let target = try await warikanGroupRepository.find(id: id) else {
                 throw ValidationError.notFoundID(id)
@@ -32,7 +32,7 @@ struct WarikanGroupArchiveController {
             try await warikanGroupRepository.remove(id: target.id)
             
             // 清算済グループのリポジトリに保存
-            try await archivedWarikanGroupRepository.transaction {
+            return try await archivedWarikanGroupRepository.transaction {
                 let archivedWarikanGroupID = try await archivedWarikanGroupRepository.nextID()
                 let archivedWarikanGroup = ArchivedWarikanGroup(
                     id: archivedWarikanGroupID,
@@ -43,6 +43,7 @@ struct WarikanGroupArchiveController {
                     seisanList: seisanList
                 )
                 try await archivedWarikanGroupRepository.save(archivedWarikanGroup)
+                return archivedWarikanGroupID
             }
         }
     }

@@ -21,7 +21,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
     }
     
     /// - NOTE: UserDefaultsにトランザクションの仕組みは存在しないため、実装していない。
-    func transaction(block: () async throws -> ()) async throws {
+    func transaction<Result>(block: () async throws -> Result) async throws -> Result {
         try await block()
     }
     

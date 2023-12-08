@@ -12,7 +12,7 @@ import Foundation
 class InMemoryWarikanGroupRepository: WarikanGroupRepositoryProtocol {
     private var items = [WarikanGroup]()
     
-    func transaction(block: () async throws -> ()) async throws {
+    func transaction(block: () async throws -> ()) async rethrows {
         try await block()
     }
     

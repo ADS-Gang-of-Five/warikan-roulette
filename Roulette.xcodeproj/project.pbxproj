@@ -39,6 +39,7 @@
 		69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */; };
 		69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */; };
 		A600912F2B2298B6005C6535 /* ArchivedWarikanGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */; };
+		A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */; };
 		A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */; };
 		A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE31C2B1338A900E10FFB /* Extensions.swift */; };
 		A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */; };
@@ -93,6 +94,7 @@
 		69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteResultView.swift; sourceTree = "<group>"; };
 		69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultView.swift; sourceTree = "<group>"; };
 		A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroup.swift; sourceTree = "<group>"; };
+		A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupRepositoryProtocol.swift; sourceTree = "<group>"; };
 		A67FE3192B1337FA00E10FFB /* SeisanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanCalculator.swift; sourceTree = "<group>"; };
 		A67FE31C2B1338A900E10FFB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupUseCase.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */,
 				A67FE33D2B19679400E10FFB /* Seisan.swift */,
+				A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */,
 			);
 			path = ArchivedWarikanGroup;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			files = (
 				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
+				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,

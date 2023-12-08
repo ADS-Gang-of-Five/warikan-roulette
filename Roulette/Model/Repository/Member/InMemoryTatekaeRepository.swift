@@ -12,7 +12,7 @@ import Foundation
 class InMemoryTatekaeRepository: TatekaeRepositoryProtocol {
     private var items = [EntityID<Tatekae>: Tatekae]()
     
-    func transaction(block: () async throws -> ()) async throws {
+    func transaction(block: () async throws -> ()) async rethrows {
         try await block()
     }
     

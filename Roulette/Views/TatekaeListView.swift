@@ -54,9 +54,11 @@ struct TatekaeListView: View {
         }
         .sheet(isPresented: $isShowAddTatekaeView) {
             AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
+                .interactiveDismissDisabled()
         }
         .sheet(isPresented: $isShowTatekaeDetailView) {
             TatekaeDetailView(isShowTatekaeDetailView: $isShowTatekaeDetailView)
+                .interactiveDismissDisabled()
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

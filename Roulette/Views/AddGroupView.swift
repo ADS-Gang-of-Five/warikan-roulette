@@ -29,25 +29,30 @@ struct AddGroupView: View {
                         TextField("", text: $member3)
                         HStack {
                             Spacer()
-                            Button("メンバーを追加", action: {})
+                            Button("追加", action: {})
                             Spacer()
                         }
                     } header: {
                         Text("メンバーリスト")
+                    } footer: {
+                        Button("グループ作成") {
+                            isShowAddGroupListView = false
+                        }
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .padding()
+                        .padding(.horizontal)
+                        .padding(.horizontal)
+                        .background(.blue)
+                        .clipShape(Capsule())
+                        .frame(maxWidth: .infinity)
+                        .padding(.top)
                     }
                 }
-                VStack {
-                    Spacer()
-                    Button(action: {
-                        isShowAddGroupListView = false
-                    }, label: {
-                        Text("グループ作成")
-                            .modifier(LongStyle())
-                    })
-                }
-                .padding(.bottom, 1)
             }
             .navigationTitle("割り勘グループ作成")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {

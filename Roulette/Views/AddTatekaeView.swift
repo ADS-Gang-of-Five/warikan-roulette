@@ -14,7 +14,7 @@ struct AddTatekaeView: View {
     @State var unluckeyMember = "未選択"
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack{
                 Form {
                     Section {

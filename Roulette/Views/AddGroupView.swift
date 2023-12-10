@@ -12,10 +12,11 @@ struct AddGroupView: View {
     @State private var member1 = "Sako"
     @State private var member2 = "Seigetsu"
     @State private var member3 = "Maki"
+    @State private var member4 = ""
     @Binding var isShowAddGroupListView: Bool
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 Form {
                     Section {
@@ -24,14 +25,20 @@ struct AddGroupView: View {
                         Text("割り勘グループ名")
                     }
                     Section {
+                        HStack{
+                            TextField("メンバー名", text: $member4)
+                            Button("追加"){
+                                
+                            }
+                        }
+                        
+                    } header: {
+                        Text("追加メンバー")
+                    }
+                    Section {
                         TextField("", text: $member1)
                         TextField("", text: $member2)
                         TextField("", text: $member3)
-                        HStack {
-                            Spacer()
-                            Button("追加", action: {})
-                            Spacer()
-                        }
                     } header: {
                         Text("メンバーリスト")
                     } footer: {

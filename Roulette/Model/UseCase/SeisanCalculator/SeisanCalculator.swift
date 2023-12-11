@@ -14,6 +14,7 @@ struct SeisanCalculator {
     struct SeisanContext {
         fileprivate let debts: DebtState
         fileprivate let zansais: DebtState
+        let unluckyMemberCandidates: [EntityID<Member>]
     }
     
     /// `seisan(tatekaeList:)`の応答。
@@ -32,7 +33,7 @@ struct SeisanCalculator {
         }
         
         if zansais.debtMap[.imaginary] != 0 {
-            let context = SeisanContext(debts: debts, zansais: zansais)
+            let context = SeisanContext(debts: debts, zansais: zansais, unluckyMemberCandidates: debts.getMembers())
             return SeisanResponse.needsUnluckyMember(context)
         } else {
             return SeisanResponse.success(seisan(seisanPrises: debts - zansais))

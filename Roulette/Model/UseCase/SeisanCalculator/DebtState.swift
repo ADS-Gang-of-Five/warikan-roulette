@@ -82,4 +82,16 @@ struct DebtState {
             }
         }
     }
+    
+    /// `debtMap` に登録されているメンバーの一覧を返す。
+    func getMembers() -> [EntityID<Member>] {
+        return debtMap.compactMap { (key: DebtMapKey, value: Int) in
+            switch key {
+            case .someone(let id):
+                return id
+            case .imaginary:
+                return nil
+            }
+        }
+    }
 }

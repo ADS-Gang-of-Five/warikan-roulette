@@ -87,8 +87,11 @@ final class SeisanCalculatorTests: XCTestCase {
         
         switch response {
         case .needsUnluckyMember(let context):
-            let unluckyMember = seig
-            let seisanList = calculator.seisan(context: context, unluckyMember: unluckyMember)
+            XCTAssertEqual(Set(context.unluckyMemberCandidates), Set([sako, seig, maki]))
+            
+            // アンラッキーメンバーを指定して計算続行
+            let seisanList = calculator.seisan(context: context, unluckyMember: seig)
+            
             let result = seisanList.descript(with: members)
             XCTAssertEqual(result, """
             霽月 -> さこ: 140円

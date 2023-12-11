@@ -102,5 +102,40 @@ final class SeisanCalculatorTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func test_case03_アンラッキーメンバー候補() throws {
+        let members = [
+            createMember(name: "さこ"),
+            createMember(name: "霽月"),
+            createMember(name: "まき")
+        ]
+        let sako = members[0].id
+        let seig = members[1].id
+        let maki = members[2].id
+        
+        let tatekaeList = [
+            createTatekae(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)
+        ]
+        
+        // 計算実行
+        let calculator = SeisanCalculator()
+        let response = calculator.seisan(tatekaeList: tatekaeList)
+        
+        switch response {
+        case .needsUnluckyMember(let context):
+            XCTAssertEqual(Set(context.unluckyMemberCandidates), Set([sako, seig]))
+            
+            // アンラッキーメンバーを指定して計算続行
+            let seisanList = calculator.seisan(context: context, unluckyMember: sako)
+            
+            let result = seisanList.descript(with: members)
+            XCTAssertEqual(result, """
+            さこ -> 霽月: 620円
+            """)
+            
+        default:
+            XCTFail()
+        }
+    }
 
 }

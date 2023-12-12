@@ -111,7 +111,6 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         let sako = members[0].id
         let seig = members[1].id
-        let maki = members[2].id
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)

@@ -137,5 +137,34 @@ final class SeisanCalculatorTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func test_case04_清算が不要の場合は空配列を返す() throws {
+        let members = [
+            createMember(name: "さこ"),
+            createMember(name: "霽月"),
+            createMember(name: "まき")
+        ]
+        let sako = members[0].id
+        let seig = members[1].id
+        let maki = members[2].id
+        
+        let tatekaeList = [
+            createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1000),
+            createTatekae(name: "タクシー代", payer: seig, recipients: [sako, seig], money: 667),
+            createTatekae(name: "宿代", payer: maki, recipients: [sako, maki], money: 667)
+        ]
+        
+        // 計算実行
+        let calculator = SeisanCalculator()
+        let response = calculator.seisan(tatekaeList: tatekaeList)
+        
+        switch response {
+        case .success(let seisanList):
+            XCTAssertTrue(seisanList.isEmpty)
+            
+        default:
+            XCTFail()
+        }
+    }
 
 }

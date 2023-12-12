@@ -28,28 +28,20 @@ struct DebtState {
         self.debtMap = debtMap
     }
     
-    /// メンバーに対して借金を課す。
-    mutating func impose(money: Int, on member: EntityID<Member>) {
-        let key = DebtMapKey.someone(id: member)
-        if let nowDebt = debtMap[key] {
-            debtMap[key] = nowDebt + money
-        } else {
-            debtMap[key] = money
-        }
+    /// メンバーとDouble型の借金額の辞書型を受け取って `DebtMap` を作成する。
+    ///
+    /// 借金額は四捨五入され、整数に変換される。
+    static func create(from originalDebtMap: [EntityID<Member>: Double]) -> Self {
+        let debtMap = Dictionary(uniqueKeysWithValues: originalDebtMap.map({ (member: EntityID<Member>, debt: Double) in
+            (DebtMapKey.someone(id: member), Int(debt.rounded()))
+        }))
+        return .init(debtMap: debtMap)
     }
     
     /// 送金する。送金元の借金額を減らし、送金先の借金額を増やす。
     mutating func payMoney(_ money: Int, from fromKey: DebtMapKey, to toKey: DebtMapKey) {
-        guard let fromDebt = debtMap[fromKey] else {
-            print("[WARNING] 存在しない送金元ID:", fromKey)
-            return
-        }
-        guard let toDebt = debtMap[toKey] else {
-            print("[WARNING] 存在しない送金先ID:", toKey)
-            return
-        }
-        debtMap[fromKey] = fromDebt - money
-        debtMap[toKey] = toDebt + money
+        debtMap[fromKey] = (debtMap[fromKey] ?? 0) - money
+        debtMap[toKey] = (debtMap[toKey] ?? 0) + money
     }
     
     /// 2つの`DebtState`が保持する借金の差額を取る。

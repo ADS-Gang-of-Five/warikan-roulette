@@ -18,7 +18,7 @@ struct DebtState {
     }
     
     /// メンバーの借金額を格納する辞書。
-    private(set) var debtMap = [DebtMapKey: Int]()
+    private(set) var debtMap: [DebtMapKey: Int]
     
     private init(debtMap: [DebtMapKey: Int]) {
         self.debtMap = debtMap

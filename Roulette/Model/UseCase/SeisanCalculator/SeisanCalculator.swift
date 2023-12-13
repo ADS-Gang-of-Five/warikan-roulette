@@ -14,6 +14,7 @@ struct SeisanCalculator {
     struct SeisanContext {
         fileprivate let debts: DebtState
         fileprivate let zansais: DebtState
+        let unluckyMemberCandidates: [EntityID<Member>]
     }
     
     /// `seisan(tatekaeList:)`の応答。
@@ -32,7 +33,7 @@ struct SeisanCalculator {
         }
         
         if zansais.debtMap[.imaginary] != 0 {
-            let context = SeisanContext(debts: debts, zansais: zansais)
+            let context = SeisanContext(debts: debts, zansais: zansais, unluckyMemberCandidates: debts.getMembers())
             return SeisanResponse.needsUnluckyMember(context)
         } else {
             return SeisanResponse.success(seisan(seisanPrises: debts - zansais))
@@ -73,12 +74,12 @@ struct SeisanCalculator {
     
     /// 各メンバーの借金額を計算する。
     private func debts(tatekaeList: [Tatekae]) -> DebtState {
-        var debts: DebtState = DebtState()
+        var debtMap = [EntityID<Member>: Double]()
         tatekaeList.forEach { tatekae in
-            debts.impose(money: -tatekae.money, on: tatekae.payer)
-            let splitAmount = tatekae.money / tatekae.recipients.count
-            tatekae.recipients.forEach { debts.impose(money: splitAmount, on: $0) }
+            let splitAmount = Double(tatekae.money) / Double(tatekae.recipients.count)
+            debtMap[tatekae.payer] = (debtMap[tatekae.payer] ?? 0.0) - Double(tatekae.money)
+            tatekae.recipients.forEach { debtMap[$0] = (debtMap[$0] ?? 0.0) + splitAmount }
         }
-        return debts
+        return DebtState.create(from: debtMap)
     }
 }

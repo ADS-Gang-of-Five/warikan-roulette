@@ -21,7 +21,7 @@ struct ArchiveView: View {
                     List {
                         ForEach(groups, id: \.self) { group in
                             NavigationLink(group) {
-                                SeisanResultView()
+                                ArchivedSeisanResultView()
                                     .navigationTitle("清算結果")
                             }
                         }

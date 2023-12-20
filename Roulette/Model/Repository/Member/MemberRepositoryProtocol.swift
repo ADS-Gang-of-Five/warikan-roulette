@@ -11,7 +11,7 @@ import Foundation
 /// `Member`のCRUD操作のために、データベースとやり取りを行うメソッド。
 protocol MemberRepositoryProtocol {
     /// データベースのトランザクションを実行する。
-    func transaction(block: () async throws -> ()) async throws
+    func transaction(block: () async throws -> Void) async throws
     
     /// 採番処理を行い、新しいIDを生成する。
     func nextID() async throws -> EntityID<Member>

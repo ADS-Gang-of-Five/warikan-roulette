@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView{
+        TabView {
             GroupListView()
                 .tabItem { Label("割り勘グループ", systemImage: "person.3.fill") }
             ArchiveView()

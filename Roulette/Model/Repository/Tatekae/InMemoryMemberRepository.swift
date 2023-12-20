@@ -12,7 +12,7 @@ import Foundation
 class InMemoryMemberRepository: MemberRepositoryProtocol {
     private var items = [EntityID<Member>: Member]()
     
-    func transaction(block: () async throws -> ()) async rethrows {
+    func transaction(block: () async throws -> Void) async rethrows {
         try await block()
     }
     

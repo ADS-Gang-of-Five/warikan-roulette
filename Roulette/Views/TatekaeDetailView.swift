@@ -49,7 +49,6 @@ struct TatekaeDetailView: View {
     }
 }
 
-
 #Preview {
     TatekaeDetailView(isShowTatekaeDetailView: Binding.constant(true))
 }

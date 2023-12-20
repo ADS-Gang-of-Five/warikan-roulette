@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
-    @State var isShowAddTatekaeView = false
-    @State var isShowTatekaeDetailView = false
+    @State private var isShowAddTatekaeView = false
+    @State private var isShowTatekaeDetailView = false
     let tatekaes: [String]
     
     init(tatekaes: [String] = ["朝食", "昼食", "夕食"]) {

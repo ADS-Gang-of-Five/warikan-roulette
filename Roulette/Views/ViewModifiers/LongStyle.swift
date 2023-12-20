@@ -21,4 +21,3 @@ struct LongStyle: ViewModifier {
            .padding(.horizontal)
    }
 }
-

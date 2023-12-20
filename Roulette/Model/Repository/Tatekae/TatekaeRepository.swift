@@ -20,11 +20,11 @@ class TatekaeRepository: TatekaeRepositoryProtocol {
     }
     
     /// - NOTE: UserDefaultsにトランザクションの仕組みは存在しないため、実装していない。
-    func transaction(block: () async throws -> ()) async rethrows {
+    func transaction(block: () async throws -> Void) async rethrows {
         try await block()
     }
     
-    private func write(block: (inout [EntityID<Tatekae>: Tatekae]) -> ()) {
+    private func write(block: (inout [EntityID<Tatekae>: Tatekae]) -> Void) {
         var items = getItems()
         block(&items)
         commit(items: items)

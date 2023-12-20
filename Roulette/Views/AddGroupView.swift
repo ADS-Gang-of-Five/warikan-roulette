@@ -25,13 +25,10 @@ struct AddGroupView: View {
                         Text("割り勘グループ名")
                     }
                     Section {
-                        HStack{
+                        HStack {
                             TextField("メンバー名", text: $member4)
-                            Button("追加"){
-                                
-                            }
+                            Button("追加") {}
                         }
-                        
                     } header: {
                         Text("追加メンバー")
                     }

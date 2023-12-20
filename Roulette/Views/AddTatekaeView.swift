@@ -9,13 +9,13 @@ import SwiftUI
 
 struct AddTatekaeView: View {
     @Binding var isShowAddTatekaeView: Bool
-    @State var tatekaeTitle = ""
+    @State private var tatekaeTitle = ""
     @State private var tatekaeKingaku = ""
-    @State var unluckeyMember = "未選択"
-    
+    @State private var unluckeyMember = "未選択"
+
     var body: some View {
         NavigationStack {
-            ZStack{
+            ZStack {
                 Form {
                     Section {
                         TextField("例：カニ道楽のランチ", text: $tatekaeTitle)
@@ -59,7 +59,6 @@ struct AddTatekaeView: View {
                     })
                 }
             }
-
         }
     }
 }

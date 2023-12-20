@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-//TODO: ルーレットが回った後に、backできない使用に変更する。
+// TODO: ルーレットが回った後に、backできない使用に変更する。
 struct RouletteView: View {
     private var members = [
         (name: "A", count: 100),
@@ -17,8 +17,7 @@ struct RouletteView: View {
         (name: "D", count: 100),
         (name: "E", count: 100),
         (name: "F", count: 100),
-        (name: "G", count: 100),
-        
+        (name: "G", count: 100)
     ]
     @State private var angle = Angle(degrees: 0.0)
     
@@ -32,7 +31,7 @@ struct RouletteView: View {
                 ForEach(members, id: \.name) { member in
                     SectorMark(
                         angle: .value("", member.count),
-                        innerRadius:  MarkDimension.ratio(0.5),
+                        innerRadius: MarkDimension.ratio(0.5),
                         angularInset: 1
                     )
                     .cornerRadius(5)

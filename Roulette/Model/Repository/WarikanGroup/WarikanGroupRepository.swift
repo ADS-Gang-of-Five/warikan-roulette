@@ -10,7 +10,6 @@ import Foundation
 
 /// UserDefaultsを用いて`WarikanGroup`配列のCRUD操作を行うリポジトリ。
 struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
-    
     private var userDefaultsKey: String
     
     init(userDefaultsKey: String) {
@@ -29,7 +28,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
         return .init(value: UUID().uuidString)
     }
     
-    private func write(block: (inout [WarikanGroup]) -> ()) {
+    private func write(block: (inout [WarikanGroup]) -> Void) {
         var items = findAll()
         block(&items)
         commit(items: items)
@@ -45,6 +44,7 @@ struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
             assertionFailure("リポジトリのデータソース userDefaultsKey=\(userDefaultsKey) が喪失しています。")
             return []
         }
+
         do {
             return try JSONDecoder().decode([WarikanGroup].self, from: data)
         } catch {

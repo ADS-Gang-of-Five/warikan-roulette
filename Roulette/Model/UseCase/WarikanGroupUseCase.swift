@@ -13,7 +13,11 @@ struct WarikanGroupUsecase {
     private var memberRepository: MemberRepositoryProtocol
     private var tatekaeRepository: TatekaeRepositoryProtocol
     
-    init(warikanGroupRepository: WarikanGroupRepositoryProtocol, memberRepository: MemberRepositoryProtocol, tatekaeRepository: TatekaeRepositoryProtocol) {
+    init(
+        warikanGroupRepository: WarikanGroupRepositoryProtocol,
+        memberRepository: MemberRepositoryProtocol,
+        tatekaeRepository: TatekaeRepositoryProtocol
+    ) {
         self.warikanGroupRepository = warikanGroupRepository
         self.memberRepository = memberRepository
         self.tatekaeRepository = tatekaeRepository
@@ -36,7 +40,14 @@ struct WarikanGroupUsecase {
             
             try await warikanGroupRepository.transaction {
                 let warikanGroupID = try await warikanGroupRepository.nextID()
-                try await warikanGroupRepository.save(WarikanGroup(id: warikanGroupID, name: name, members: memberIDs, tatekaeList: []))
+                try await warikanGroupRepository.save(
+                    WarikanGroup(
+                        id: warikanGroupID,
+                        name: name,
+                        members: memberIDs,
+                        tatekaeList: []
+                    )
+                )
             }
         }
     }
@@ -80,7 +91,10 @@ struct WarikanGroupUsecase {
     }
     
     /// メンバーを削除する。
-    func removeMember(warikanGroup warikanGroupID: EntityID<WarikanGroup>, member memberID: EntityID<Member>) async throws {
+    func removeMember(
+        warikanGroup warikanGroupID: EntityID<WarikanGroup>,
+        member memberID: EntityID<Member>
+    ) async throws {
         try await warikanGroupRepository.transaction {
             guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
                 throw ValidationError.notFoundID(warikanGroupID)
@@ -95,10 +109,24 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを追加する。
-    func appendTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekaeName: String, payer: EntityID<Member>, recipants: [EntityID<Member>], money: Int) async throws {
+    func appendTatekae(
+        warikanGroup warikanGroupID: EntityID<WarikanGroup>,
+        tatekaeName: String,
+        payer: EntityID<Member>,
+        recipants: [EntityID<Member>],
+        money: Int
+    ) async throws {
         try await tatekaeRepository.transaction {
             let tatekaeID = try await tatekaeRepository.nextID()
-            try await tatekaeRepository.save(Tatekae(id: tatekaeID, name: tatekaeName, payer: payer, recipients: recipants, money: money))
+            try await tatekaeRepository.save(
+                Tatekae(
+                    id: tatekaeID,
+                    name: tatekaeName,
+                    payer: payer,
+                    recipients: recipants,
+                    money: money
+                )
+            )
             
             try await warikanGroupRepository.transaction {
                 guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
@@ -111,7 +139,10 @@ struct WarikanGroupUsecase {
     }
     
     /// 立て替えを一件削除する。
-    func removeTatekae(warikanGroup warikanGroupID: EntityID<WarikanGroup>, tatekae tatekaeID: EntityID<Tatekae>) async throws {
+    func removeTatekae(
+        warikanGroup warikanGroupID: EntityID<WarikanGroup>,
+        tatekae tatekaeID: EntityID<Tatekae>
+    ) async throws {
         try await warikanGroupRepository.transaction {
             guard var warikanGroup = try await warikanGroupRepository.find(id: warikanGroupID) else {
                 throw ValidationError.notFoundID(warikanGroupID)
@@ -125,4 +156,3 @@ struct WarikanGroupUsecase {
         }
     }
 }
-

@@ -34,7 +34,7 @@ struct SeisanCalculator {
         let debts = debts(tatekaeList: tatekaeList)
         
         var zansais = debts
-        debts.debtMap.forEach { (key, debt) in
+        debts.debtMap.forEach { key, debt in
             zansais.payMoney(debt - debt %% 10, from: key, to: .imaginary)
         }
         

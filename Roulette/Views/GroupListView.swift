@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GroupListView: View {
-    @StateObject var viewRouter = ViewRouter()
-    @State var isShowAddGroupListView = false
+    @StateObject private var viewRouter = ViewRouter()
+    @State private var isShowAddGroupListView = false
     let groups: [String]
     
     init(groups: [String] = ["Gang of Five", "ひなっこクラブ", "アプリ道場サロン"]) {

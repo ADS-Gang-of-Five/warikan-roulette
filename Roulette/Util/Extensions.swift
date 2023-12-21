@@ -18,6 +18,6 @@ import Foundation
 /// -12 %% -10 == -2
 /// ```
 infix operator %%: MultiplicationPrecedence
-func %%(left: Int, right: Int) -> Int {
- ((left % right) + right) % right
+func %% (left: Int, right: Int) -> Int {
+    ((left % right) + right) % right
 }

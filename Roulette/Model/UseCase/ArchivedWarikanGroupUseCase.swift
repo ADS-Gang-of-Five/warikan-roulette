@@ -12,7 +12,10 @@ struct ArchivedWarikanGroupUseCase {
     private var repository: ArchivedWarikanGroupRepositoryProtocol
     private var memberRepository: MemberRepositoryProtocol
     
-    init(archivedWarikanGroupRepository: ArchivedWarikanGroupRepositoryProtocol, memberRepository: MemberRepositoryProtocol) {
+    init(
+        archivedWarikanGroupRepository: ArchivedWarikanGroupRepositoryProtocol,
+        memberRepository: MemberRepositoryProtocol
+    ) {
         self.repository = archivedWarikanGroupRepository
         self.memberRepository = memberRepository
     }

@@ -28,9 +28,9 @@ struct DebtState {
     ///
     /// 借金額は四捨五入され、整数に変換される。
     static func create(from originalDebtMap: [EntityID<Member>: Double]) -> Self {
-        let debtMap = Dictionary(uniqueKeysWithValues: originalDebtMap.map({ (member: EntityID<Member>, debt: Double) in
+        let debtMap = Dictionary(uniqueKeysWithValues: originalDebtMap.map { (member: EntityID<Member>, debt: Double) in
             (DebtMapKey.someone(id: member), Int(debt.rounded()))
-        }))
+        })
         return .init(debtMap: debtMap)
     }
     
@@ -43,11 +43,11 @@ struct DebtState {
     /// 2つの`DebtState`が保持する借金の差額を取る。
     ///
     /// `left`に登場するが`right`に登場しないメンバーは無視される。
-    static func -(left: DebtState, right: DebtState) -> DebtState {
+    static func - (left: DebtState, right: DebtState) -> DebtState {
         let leftDebtMap = left.debtMap
         let rightDebtMap = right.debtMap
         let newDebtMap: [DebtMapKey: Int] = Dictionary(
-            uniqueKeysWithValues: leftDebtMap.map { (key, leftDebt) in
+            uniqueKeysWithValues: leftDebtMap.map { key, leftDebt in
                 (key, leftDebt - (rightDebtMap[key] ?? 0))
             }
         )
@@ -61,7 +61,7 @@ struct DebtState {
     
     /// 借金額の多い順にメンバーを並べた配列を返す。
     func debtRanking() -> [EntityID<Member>] {
-        debtMap.sorted(by: { $0.value < $1.value }).compactMap { (key, debt) in
+        debtMap.sorted(by: { $0.value < $1.value }).compactMap { key, _ in  // swiftlint:disable:this trailing_closure
             switch key {
             case .someone(let id):
                 return id
@@ -73,7 +73,7 @@ struct DebtState {
     
     /// `debtMap` に登録されているメンバーの一覧を返す。
     func getMembers() -> [EntityID<Member>] {
-        return debtMap.compactMap { (key: DebtMapKey, value: Int) in
+        return debtMap.compactMap { key, _ in
             switch key {
             case .someone(let id):
                 return id

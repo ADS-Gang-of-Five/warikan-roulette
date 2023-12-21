@@ -27,7 +27,15 @@ struct WarikanGroupUsecase {
     func getAll() async throws -> [WarikanGroup] {
         return try await warikanGroupRepository.findAll()
     }
-    
+
+    /// 指定したIDの割り勘グループの、立て替えリストを返す。
+    func getTatekaeList(id: EntityID<WarikanGroup>) async throws -> [Tatekae] {
+        guard let warikanGroup = try await warikanGroupRepository.find(id: id) else {
+            throw ValidationError.notFoundID(id)
+        }
+        return try await tatekaeRepository.find(ids: warikanGroup.tatekaeList)
+    }
+
     /// 割り勘グループを新規作成する。
     ///
     /// 新規作成した割り勘グループは `getAll()` で得られる割り勘グループ配列の末尾に追加される。

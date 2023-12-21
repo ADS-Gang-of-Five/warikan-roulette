@@ -8,34 +8,39 @@
 import SwiftUI
 
 struct AddGroupView: View {
-    @State private var groupName = "Gang of Five"
-    @State private var member1 = "Sako"
-    @State private var member2 = "Seigetsu"
-    @State private var member3 = "Maki"
-    @State private var member4 = ""
+    @State private var groupName = ""
+    @State private var memberList: [String] = []
+//    @State private var member1 = "Sako"
+//    @State private var member2 = "Seigetsu"
+//    @State private var member3 = "Maki"
+//    @State private var member4 = ""
+    @State private var addMember = ""
     @Binding var isShowAddGroupListView: Bool
+//    let warikanGroupCreate: (WarikanGroup) -> Void
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Form {
                     Section {
-                        TextField("", text: $groupName)
+                        TextField("グループ名を入力", text: $groupName)
                     } header: {
                         Text("割り勘グループ名")
                     }
                     Section {
                         HStack {
-                            TextField("メンバー名", text: $member4)
-                            Button("追加") {}
+                            TextField("メンバー名", text: $addMember)
+                            Button("追加") {
+                                // 被っていないかチェックを行う。
+                            }
                         }
                     } header: {
                         Text("追加メンバー")
                     }
                     Section {
-                        TextField("", text: $member1)
-                        TextField("", text: $member2)
-                        TextField("", text: $member3)
+                        ForEach(memberList, id: \.self) { member in
+                            Text(member)
+                        }
                     } header: {
                         Text("メンバーリスト")
                     } footer: {

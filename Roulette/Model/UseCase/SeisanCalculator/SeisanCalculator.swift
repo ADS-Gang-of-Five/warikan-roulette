@@ -20,11 +20,17 @@ struct SeisanCalculator {
     /// `seisan(tatekaeList:)`の応答。
     enum SeisanResponse {
         case needsUnluckyMember(SeisanContext)
-        case success([Seisan])
+        case success([SeisanData])
     }
-    
+
+    private var memberRepository: MemberRepository
+
+    init(memberRepository: MemberRepository) {
+        self.memberRepository = memberRepository
+    }
+
     /// 立て替えリストを受け取り、清算リストを計算する。
-    func seisan(tatekaeList: [Tatekae]) -> SeisanResponse {
+    func seisan(tatekaeList: [Tatekae]) async throws -> SeisanResponse {
         let debts = debts(tatekaeList: tatekaeList)
         
         var zansais = debts
@@ -36,16 +42,18 @@ struct SeisanCalculator {
             let context = SeisanContext(debts: debts, zansais: zansais, unluckyMemberCandidates: debts.getMembers())
             return SeisanResponse.needsUnluckyMember(context)
         } else {
-            return SeisanResponse.success(seisan(seisanPrises: debts - zansais))
+            let seisanList = seisan(seisanPrises: debts - zansais)
+            return try await SeisanResponse.success(seisanList.mapToData(withMemberRepository: memberRepository))
         }
     }
     
     /// アンラッキーメンバーを指定して清算の計算を再開する。
-    func seisan(context: SeisanContext, unluckyMember: EntityID<Member>) -> [Seisan] {
+    func seisan(context: SeisanContext, unluckyMember: EntityID<Member>) async throws -> [SeisanData] {
         let debts = context.debts
         var zansais = context.zansais
         zansais.payMoney(zansais.debtMap[.imaginary]!, from: .imaginary, to: .someone(id: unluckyMember))
-        return seisan(seisanPrises: debts - zansais)
+        let seisanList = seisan(seisanPrises: debts - zansais)
+        return try await seisanList.mapToData(withMemberRepository: memberRepository)
     }
     
     /// 清算必要額を受け取り、清算リストを計算する。

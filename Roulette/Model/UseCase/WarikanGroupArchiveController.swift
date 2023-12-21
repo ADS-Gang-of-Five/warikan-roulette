@@ -29,7 +29,7 @@ struct WarikanGroupArchiveController {
     /// - returns: アーカイブ後の清算済グループの識別子。
     func archive(
         id: EntityID<WarikanGroup>,
-        seisanList: [Seisan],
+        seisanList: [SeisanData],
         unluckyMember: EntityID<Member>?
     ) async throws -> EntityID<ArchivedWarikanGroup> {
         return try await warikanGroupRepository.transaction {
@@ -48,7 +48,7 @@ struct WarikanGroupArchiveController {
                     members: target.members,
                     tatekaeList: target.tatekaeList,
                     unluckyMember: unluckyMember,
-                    seisanList: seisanList
+                    seisanList: seisanList.mapToEntity()
                 )
                 try await archivedWarikanGroupRepository.save(archivedWarikanGroup)
                 return archivedWarikanGroupID

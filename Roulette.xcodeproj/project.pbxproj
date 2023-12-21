@@ -63,6 +63,7 @@
 		A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */; };
 		A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */; };
 		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
+		A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepository.swift; sourceTree = "<group>"; };
 		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
+		A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				A695B6172B34555D0059B78D /* SeisanData.swift */,
+				A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				4C3EB2C82B1DE4A600423444 /* GroupListView.swift in Sources */,
 				69D8F3EE2B1F4ACE00B24D4E /* SeisanResultView.swift in Sources */,
 				A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */,
+				A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

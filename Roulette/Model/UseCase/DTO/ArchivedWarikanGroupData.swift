@@ -34,7 +34,10 @@ struct ArchivedWarikanGroupData: Identifiable {
     }
 
     /// 永続化用のデータ型から変換する。
-    static func create(from archivedWarikanGroup: ArchivedWarikanGroup, memberRepository: MemberRepositoryProtocol) async throws -> Self {
+    static func create(
+        from archivedWarikanGroup: ArchivedWarikanGroup,
+        memberRepository: MemberRepositoryProtocol
+    ) async throws -> Self {
         return .init(
             id: archivedWarikanGroup.id,
             name: archivedWarikanGroup.name,

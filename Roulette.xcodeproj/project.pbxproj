@@ -62,6 +62,7 @@
 		A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35A2B1CA2F300E10FFB /* DebtState.swift */; };
 		A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */; };
 		A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */; };
+		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		A67FE35A2B1CA2F300E10FFB /* DebtState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtState.swift; sourceTree = "<group>"; };
 		A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepository.swift; sourceTree = "<group>"; };
+		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 		4C65282E2B22088D000E8130 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A695B6162B3455030059B78D /* DTO */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
 				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
@@ -357,6 +360,14 @@
 				A67FE31C2B1338A900E10FFB /* Extensions.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		A695B6162B3455030059B78D /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				A695B6172B34555D0059B78D /* SeisanData.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,6 +497,7 @@
 				A60091332B22A05D005C6535 /* WarikanGroupArchiveController.swift in Sources */,
 				4C6528422B220D95000E8130 /* TatekaeDetailViewModel.swift in Sources */,
 				A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */,
+				A695B6182B34555D0059B78D /* SeisanData.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
 				4C65282B2B220231000E8130 /* LongStyle.swift in Sources */,
 				4C65283E2B220D6F000E8130 /* TatekaeListViewModel.swift in Sources */,

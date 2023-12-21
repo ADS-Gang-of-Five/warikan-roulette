@@ -17,7 +17,28 @@ struct SeisanData {
     /// 清算額。
     private(set) var money: Int
 
-    /// 永続化のためのデータ型に変換する。
+    private init(debtor: Member, creditor: Member, money: Int) {
+        self.debtor = debtor
+        self.creditor = creditor
+        self.money = money
+    }
+
+    /// 永続化用のデータ型から変換する。
+    static func create(from seisan: Seisan, memberRepository: MemberRepositoryProtocol) async throws -> Self {
+        guard let debtor = try await memberRepository.find(id: seisan.debtor) else {
+            throw ValidationError.notFoundID(seisan.debtor)
+        }
+        guard let creditor = try await memberRepository.find(id: seisan.creditor) else {
+            throw ValidationError.notFoundID(seisan.debtor)
+        }
+        return .init(
+            debtor: debtor,
+            creditor: creditor,
+            money: seisan.money
+        )
+    }
+
+    /// 永続化用のデータ型に変換する。
     /// - IMPORTANT: 原則ユースケース以外の場所で使用しないこと。
     func convertToSeisan() -> Seisan {
         Seisan(

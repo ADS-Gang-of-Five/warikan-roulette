@@ -20,7 +20,9 @@ extension [Seisan] {
 }
 
 extension [ArchivedWarikanGroup] {
-    func mapToData(withMemberRepository memberRepository: MemberRepositoryProtocol) async throws -> [ArchivedWarikanGroupData] {
+    func mapToData(
+        withMemberRepository memberRepository: MemberRepositoryProtocol
+    ) async throws -> [ArchivedWarikanGroupData] {
         var dataList: [ArchivedWarikanGroupData] = []
         for archivedWarikanGroup in self {
             let data = try await ArchivedWarikanGroupData.create(

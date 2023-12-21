@@ -9,20 +9,16 @@ import SwiftUI
 
 struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
+    @StateObject private var groupListViewModel = GroupListViewModel()
     @State private var isShowAddGroupListView = false
-    let groups: [String]
-    
-    init(groups: [String] = ["Gang of Five", "ひなっこクラブ", "アプリ道場サロン"]) {
-        self.groups = groups
-    }
     
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-                if groups != [] {
+                if !groupListViewModel.groups.isEmpty {
                         List {
-                            ForEach(groups, id: \.self) { group in
-                                NavigationLink(group, value: Path.tatekaeListView)
+                            ForEach(groupListViewModel.groups) { group in
+                                NavigationLink(group.name, value: Path.tatekaeListView)
                             }
                         }
                         .navigationDestination(for: Path.self) { path in
@@ -60,6 +56,9 @@ struct GroupListView: View {
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupView(isShowAddGroupListView: $isShowAddGroupListView)
                 .interactiveDismissDisabled()
+        }
+        .task {
+            await groupListViewModel.fecthGroupAll()
         }
     }
 }

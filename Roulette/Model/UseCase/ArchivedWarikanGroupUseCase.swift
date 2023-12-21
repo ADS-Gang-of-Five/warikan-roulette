@@ -18,8 +18,9 @@ struct ArchivedWarikanGroupUseCase {
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
-    func getAll() async throws -> [ArchivedWarikanGroup] {
-        return try await repository.findAll()
+    func getAll() async throws -> [ArchivedWarikanGroupData] {
+        let archivedWarikanGroups = try await repository.findAll()
+        return try await archivedWarikanGroups.mapToData(withMemberRepository: memberRepository)
     }
     
     /// 指定したIDの割り勘グループを削除する。

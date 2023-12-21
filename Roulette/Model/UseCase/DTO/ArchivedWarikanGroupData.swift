@@ -35,19 +35,12 @@ struct ArchivedWarikanGroupData: Identifiable {
 
     /// 永続化用のデータ型から変換する。
     static func create(from archivedWarikanGroup: ArchivedWarikanGroup, memberRepository: MemberRepositoryProtocol) async throws -> Self {
-        // seisanListの型を変換: [Seisan] -> [SeisanData]
-        var seisanList: [SeisanData] = []
-        for seisan in archivedWarikanGroup.seisanList {
-            let seisanData = try await SeisanData.create(from: seisan, memberRepository: memberRepository)
-            seisanList.append(seisanData)
-        }
-
         return .init(
             id: archivedWarikanGroup.id,
             name: archivedWarikanGroup.name,
             members: archivedWarikanGroup.members,
             tatekaeList: archivedWarikanGroup.tatekaeList,
-            seisanList: seisanList
+            seisanList: try await archivedWarikanGroup.seisanList.mapToData(withMemberRepository: memberRepository)
         )
     }
 

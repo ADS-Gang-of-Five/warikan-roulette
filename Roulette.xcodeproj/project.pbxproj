@@ -64,6 +64,7 @@
 		A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */; };
 		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
 		A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */; };
+		A695B6212B34633C0059B78D /* SeisanListExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6202B34633C0059B78D /* SeisanListExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepository.swift; sourceTree = "<group>"; };
 		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
 		A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupData.swift; sourceTree = "<group>"; };
+		A695B6202B34633C0059B78D /* SeisanListExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanListExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				A695B6162B3455030059B78D /* DTO */,
+				A695B6222B3463430059B78D /* Extension */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
 				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
 				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
@@ -373,6 +376,14 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
+		A695B6222B3463430059B78D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A695B6202B34633C0059B78D /* SeisanListExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -481,6 +492,7 @@
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
 				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
+				A695B6212B34633C0059B78D /* SeisanListExtension.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
 				4C6528382B220D01000E8130 /* GroupListViewModel.swift in Sources */,

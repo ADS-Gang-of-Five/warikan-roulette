@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddGroupView: View {
     @State private var groupName = ""
-    @State private var memberList: [String] = []
+    @State private var memberList: [String] = ["sako", "maki"]
 //    @State private var member1 = "Sako"
 //    @State private var member2 = "Seigetsu"
 //    @State private var member3 = "Maki"
@@ -38,8 +38,8 @@ struct AddGroupView: View {
                         Text("追加メンバー")
                     }
                     Section {
-                        ForEach(memberList, id: \.self) { member in
-                            Text(member)
+                        ForEach(memberList.indices, id: \.self) { index in
+                            TextField(memberList[index], text: $memberList[index])
                         }
                     } header: {
                         Text("メンバーリスト")

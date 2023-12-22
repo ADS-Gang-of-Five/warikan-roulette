@@ -10,13 +10,8 @@ import SwiftUI
 struct AddGroupView: View {
     @State private var groupName = ""
     @State private var memberList: [String] = ["sako", "maki"]
-//    @State private var member1 = "Sako"
-//    @State private var member2 = "Seigetsu"
-//    @State private var member3 = "Maki"
-//    @State private var member4 = ""
     @State private var addMember = ""
     @Binding var isShowAddGroupListView: Bool
-//    let warikanGroupCreate: (WarikanGroup) -> Void
     
     var body: some View {
         NavigationStack {

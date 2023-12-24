@@ -21,30 +21,10 @@ struct TatekaeListView: View {
     var body: some View {
         ZStack {
             if !tatekaeListViewModel.tatekaes.isEmpty {
-                List {
-                    Section {
-                        ForEach(tatekaeListViewModel.tatekaes) { tatekae in
-                            Button(action: {
-                                isShowTatekaeDetailView = true
-                            }, label: {
-                                HStack {
-                                    Text(tatekae.name)
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack {
-                                        Text("xxxx年xx月xx日")
-                                        Text("合計 \(tatekae.money.description)円")
-                                    }
-                                    .font(.footnote)
-                                }
-                                .padding(.vertical, 3)
-                            })
-                            .foregroundStyle(.primary)
-                        }
-                    } header: {
-                        Text("立替一覧")
-                    }
-                }
+                TatekaeList(
+                    tatekaes: tatekaeListViewModel.tatekaes,
+                    isShowTatekaeDetailView: $isShowTatekaeDetailView
+                )
             } else {
                 Text("右下のボタンから立替を追加")
             }
@@ -72,6 +52,37 @@ struct TatekaeListView: View {
     }
 }
 
+private struct TatekaeList: View {
+    let tatekaes: [Tatekae]
+    @Binding var isShowTatekaeDetailView: Bool
+
+    var body: some View {
+        List {
+            Section {
+                ForEach(tatekaes) { tatekae in
+                    Button(action: {
+                        isShowTatekaeDetailView = true
+                    }, label: {
+                        HStack {
+                            Text(tatekae.name)
+                                .font(.title2)
+                            Spacer()
+                            VStack {
+                                Text("xxxx年xx月xx日")
+                                Text("合計 \(tatekae.money.description)円")
+                            }
+                            .font(.footnote)
+                        }
+                        .padding(.vertical, 3)
+                    })
+                    .foregroundStyle(.primary)
+                }
+            } header: {
+                Text("立替一覧")
+            }
+        }
+    }
+}
 
 // swiftlint:disable comment_spacing
 //#Preview {

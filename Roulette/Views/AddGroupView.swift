@@ -13,7 +13,7 @@ struct AddGroupView: View {
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
     @Binding var isShowAddGroupListView: Bool
-    let saveMemberList: ( _ groupName: String, _  groupListMemeber: [String]) -> Void
+    let createWarikanGroup: ( _ groupName: String, _  groupListMemeber: [String]) async -> Void
     
     var body: some View {
         NavigationStack {
@@ -51,7 +51,9 @@ struct AddGroupView: View {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
-                            saveMemberList(groupName, memberList)
+                            Task{
+                                await createWarikanGroup(groupName, memberList)
+                            }
                             isShowAddGroupListView = false
                         }
                         .disabled(!(groupName.count > 2 && memberList.count >= 2))
@@ -70,7 +72,7 @@ struct AddGroupView: View {
             }
             .navigationTitle("割り勘グループ作成")
             .navigationBarTitleDisplayMode(.inline)
-            //右上バツボタン
+            // 右上バツボタン
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {

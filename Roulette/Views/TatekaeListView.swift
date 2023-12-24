@@ -11,28 +11,29 @@ struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var isShowAddTatekaeView = false
     @State private var isShowTatekaeDetailView = false
-    let tatekaes: [String]
-    
-    init(tatekaes: [String] = ["朝食", "昼食", "夕食"]) {
-        self.tatekaes = tatekaes
+    @StateObject private var tatekaeListViewModel = TatekaeListViewModel()
+    let groupID: EntityID<WarikanGroup>
+
+    init(groupID: EntityID<WarikanGroup>) {
+        self.groupID = groupID
     }
-    
+
     var body: some View {
         ZStack {
-            if tatekaes != [] {
+            if !tatekaeListViewModel.tatekaes.isEmpty {
                 List {
                     Section {
-                        ForEach(tatekaes, id: \.self) { tatekae in
+                        ForEach(tatekaeListViewModel.tatekaes) { tatekae in
                             Button(action: {
                                 isShowTatekaeDetailView = true
                             }, label: {
                                 HStack {
-                                    Text(tatekae)
+                                    Text(tatekae.name)
                                         .font(.title2)
                                     Spacer()
                                     VStack {
-                                        Text("2023年11月14日")
-                                        Text("合計 XXXXX円")
+                                        Text("xxxx年xx月xx日")
+                                        Text("合計 \(tatekae.money.description)円")
                                     }
                                     .font(.footnote)
                                 }
@@ -65,10 +66,16 @@ struct TatekaeListView: View {
                 NavigationLink("清算", value: Path.confirmView)
             }
         }
+        .task {
+            await tatekaeListViewModel.getTatakaeList(id: groupID)
+        }
     }
 }
 
-#Preview {
-    TatekaeListView()
-        .environmentObject(ViewRouter())
-}
+
+// swiftlint:disable comment_spacing
+//#Preview {
+//    TatekaeListView()
+//        .environmentObject(ViewRouter())
+//}
+// swiftlint:enable comment_spacing

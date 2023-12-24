@@ -8,47 +8,62 @@
 import SwiftUI
 
 struct AddGroupView: View {
-    @State private var groupName = "Gang of Five"
-    @State private var member1 = "Sako"
-    @State private var member2 = "Seigetsu"
-    @State private var member3 = "Maki"
-    @State private var member4 = ""
+    @State private var groupName = ""
+    @State private var memberList: [String] = ["sako", "maki"]
+    @State private var additionalMember = ""
+    @State private var isValidMemberName = false
     @Binding var isShowAddGroupListView: Bool
+    let createWarikanGroup: ( _ groupName: String, _  groupListMemeber: [String]) async -> Void
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Form {
                     Section {
-                        TextField("", text: $groupName)
+                        TextField("グループ名を入力", text: $groupName)
                     } header: {
                         Text("割り勘グループ名")
                     }
+                    // 追加メンバー・バリデーション（空文字NG・被りNG）
                     Section {
                         HStack {
-                            TextField("メンバー名", text: $member4)
-                            Button("追加") {}
+                            TextField("メンバー名", text: $additionalMember)
+                            Button("追加") {
+                                memberList.append(additionalMember)
+                                additionalMember.removeAll()
+                            }
+                            .disabled(!isValidMemberName)
                         }
                     } header: {
                         Text("追加メンバー")
+                    } footer: {
+                        if !isValidMemberName && additionalMember.count != 0 {
+                            Text("名前が被っています")
+                                .foregroundStyle(Color.red)
+                        }
                     }
+                    // メンバーリスト、グループ作成ボタン
                     Section {
-                        TextField("", text: $member1)
-                        TextField("", text: $member2)
-                        TextField("", text: $member3)
+                        ForEach(memberList.indices, id: \.self) { index in
+                            TextField(memberList[index], text: $memberList[index])
+                        }
                     } header: {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
+                            Task{
+                                await createWarikanGroup(groupName, memberList)
+                            }
                             isShowAddGroupListView = false
                         }
+                        .disabled(!(groupName.count > 2 && memberList.count >= 2))
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                         .padding()
                         .padding(.horizontal)
                         .padding(.horizontal)
-                        .background(.blue)
+                        .background(groupName.count > 2 && memberList.count >= 2 ?.blue : .gray)
                         .clipShape(Capsule())
                         .frame(maxWidth: .infinity)
                         .padding(.top)
@@ -57,6 +72,7 @@ struct AddGroupView: View {
             }
             .navigationTitle("割り勘グループ作成")
             .navigationBarTitleDisplayMode(.inline)
+            // 右上バツボタン
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -67,9 +83,17 @@ struct AddGroupView: View {
                 }
             }
         }
+        .onChange(of: additionalMember) { _, newValue in
+            if !memberList.contains(newValue) && additionalMember.count != 0 {
+                isValidMemberName = true
+            } else {
+                isValidMemberName = false
+            }
+        }
     }
 }
 
 #Preview {
-    AddGroupView(isShowAddGroupListView: Binding.constant(true))
+    AddGroupView(isShowAddGroupListView: Binding.constant(true)) { _, _ in
+    }
 }

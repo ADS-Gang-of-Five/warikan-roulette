@@ -54,11 +54,17 @@ struct GroupListView: View {
         }
         .environmentObject(viewRouter)
         .sheet(isPresented: $isShowAddGroupListView) {
-            AddGroupView(isShowAddGroupListView: $isShowAddGroupListView)
+            AddGroupView(
+                isShowAddGroupListView: $isShowAddGroupListView) { groupName, groupListMemeber in
+                    await groupListViewModel.createWarikanGroup(
+                        name: groupName,
+                        memberNames: groupListMemeber
+                    )
+                }
                 .interactiveDismissDisabled()
         }
         .task {
-            await groupListViewModel.fecthGroupAll()
+            await groupListViewModel.fecthAllGroups()
         }
     }
 }

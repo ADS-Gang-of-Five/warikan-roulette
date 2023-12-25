@@ -51,7 +51,7 @@ struct AddGroupView: View {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
-                            Task{
+                            Task {
                                 await createWarikanGroup(groupName, memberList)
                             }
                             isShowAddGroupListView = false

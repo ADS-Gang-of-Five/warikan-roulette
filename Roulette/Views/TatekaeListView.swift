@@ -11,39 +11,20 @@ struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var isShowAddTatekaeView = false
     @State private var isShowTatekaeDetailView = false
-    let tatekaes: [String]
-    
-    init(tatekaes: [String] = ["朝食", "昼食", "夕食"]) {
-        self.tatekaes = tatekaes
+    @StateObject private var tatekaeListViewModel = TatekaeListViewModel()
+    let groupID: EntityID<WarikanGroup>
+
+    init(groupID: EntityID<WarikanGroup>) {
+        self.groupID = groupID
     }
-    
+
     var body: some View {
         ZStack {
-            if tatekaes != [] {
-                List {
-                    Section {
-                        ForEach(tatekaes, id: \.self) { tatekae in
-                            Button(action: {
-                                isShowTatekaeDetailView = true
-                            }, label: {
-                                HStack {
-                                    Text(tatekae)
-                                        .font(.title2)
-                                    Spacer()
-                                    VStack {
-                                        Text("2023年11月14日")
-                                        Text("合計 XXXXX円")
-                                    }
-                                    .font(.footnote)
-                                }
-                                .padding(.vertical, 3)
-                            })
-                            .foregroundStyle(.primary)
-                        }
-                    } header: {
-                        Text("立替一覧")
-                    }
-                }
+            if !tatekaeListViewModel.tatekaes.isEmpty {
+                TatekaeList(
+                    tatekaes: tatekaeListViewModel.tatekaes,
+                    isShowTatekaeDetailView: $isShowTatekaeDetailView
+                )
             } else {
                 Text("右下のボタンから立替を追加")
             }
@@ -65,10 +46,47 @@ struct TatekaeListView: View {
                 NavigationLink("清算", value: Path.confirmView)
             }
         }
+        .task {
+            await tatekaeListViewModel.getTatakaeList(id: groupID)
+        }
     }
 }
 
-#Preview {
-    TatekaeListView()
-        .environmentObject(ViewRouter())
+private struct TatekaeList: View {
+    let tatekaes: [Tatekae]
+    @Binding var isShowTatekaeDetailView: Bool
+
+    var body: some View {
+        List {
+            Section {
+                ForEach(tatekaes) { tatekae in
+                    Button(action: {
+                        isShowTatekaeDetailView = true
+                    }, label: {
+                        HStack {
+                            Text(tatekae.name)
+                                .font(.title2)
+                            Spacer()
+                            VStack {
+                                Text("xxxx年xx月xx日")
+                                Text("合計 \(tatekae.money.description)円")
+                            }
+                            .font(.footnote)
+                        }
+                        .padding(.vertical, 3)
+                    })
+                    .foregroundStyle(.primary)
+                }
+            } header: {
+                Text("立替一覧")
+            }
+        }
+    }
 }
+
+// swiftlint:disable comment_spacing
+//#Preview {
+//    TatekaeListView()
+//        .environmentObject(ViewRouter())
+//}
+// swiftlint:enable comment_spacing

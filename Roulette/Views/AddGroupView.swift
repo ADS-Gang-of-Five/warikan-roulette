@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddGroupView: View {
     @State private var groupName = ""
-    @State private var memberList: [String] = ["sako", "maki"]
+    @State private var memberList: [String] = []
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
     @Binding var isShowAddGroupListView: Bool

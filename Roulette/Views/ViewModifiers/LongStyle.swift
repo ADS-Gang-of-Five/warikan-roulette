@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LongStyle: ViewModifier {
+   @Binding var isButtonDisabled: Bool
    func body(content: Content) -> some View {
        content
            .font(.title2)
@@ -15,7 +16,7 @@ struct LongStyle: ViewModifier {
            .frame(height: 60)
            .frame(maxWidth: .infinity)
            .foregroundStyle(.white)
-           .background(.blue)
+           .background(isButtonDisabled ? .gray : .blue)
            .clipShape(Capsule())
            .padding(.horizontal)
            .padding(.horizontal)

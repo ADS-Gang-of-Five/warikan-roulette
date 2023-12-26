@@ -18,14 +18,14 @@ struct GroupListView: View {
                 if !groupListViewModel.groups.isEmpty {
                         List {
                             ForEach(groupListViewModel.groups) { group in
-                                NavigationLink(group.name, value: Path.tatekaeListView(group.name, group.id))
+                                NavigationLink(group.name, value: Path.tatekaeListView(group))
                             }
                         }
                         .navigationDestination(for: Path.self) { path in
                             switch path {
-                            case .tatekaeListView(let groupName, let id):
-                                TatekaeListView(groupID: id)
-                                    .navigationTitle(groupName)
+                            case .tatekaeListView(let group):
+                                TatekaeListView(warikanGroup: group)
+                                    .navigationTitle(group.name)
                             case .confirmView:
                                 ConfirmView()
                                     .navigationTitle("立て替えの確認")

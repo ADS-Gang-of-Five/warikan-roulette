@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WarikanGroup: Identifiable, Codable {
+struct WarikanGroup: Identifiable, Codable, Equatable, Hashable {
     var id: EntityID<Self>
     private(set) var name: String
     var members: [EntityID<Member>]

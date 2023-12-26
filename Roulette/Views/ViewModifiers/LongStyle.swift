@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LongStyle: ViewModifier {
-   let isButtonDisabled: Bool
+   @Binding var isButtonDisabled: Bool
    func body(content: Content) -> some View {
        content
            .font(.title2)

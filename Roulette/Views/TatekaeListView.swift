@@ -9,15 +9,17 @@ import SwiftUI
 
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
+    @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
     @State private var isShowTatekaeDetailView = false
     @StateObject private var tatekaeListViewModel = TatekaeListViewModel()
-    let groupID: EntityID<WarikanGroup>
-
-    init(groupID: EntityID<WarikanGroup>) {
-        self.groupID = groupID
+    
+    let warikanGroup: WarikanGroup
+    
+    init(warikanGroup: WarikanGroup) {
+        self.warikanGroup = warikanGroup
     }
-
+    
     var body: some View {
         ZStack {
             if !tatekaeListViewModel.tatekaes.isEmpty {
@@ -30,16 +32,27 @@ struct TatekaeListView: View {
             }
             AddButton()
                 .onTapGesture {
+                    guard !tatekaeListViewModel.members.isEmpty else { return }
                     isShowAddTatekaeView = true
                 }
         }
-        .sheet(isPresented: $isShowAddTatekaeView) {
-            AddTatekaeView(isShowAddTatekaeView: $isShowAddTatekaeView)
-                .interactiveDismissDisabled()
-        }
+        .sheet(isPresented: $isShowAddTatekaeView,
+               onDismiss: {
+            // ロード場面を表示し、TatekaeListを再取得し更新
+            Task { await tatekaeListViewModel.getTatakaeList(id: warikanGroup.id) }
+        },
+               content: {
+            AddTatekaeView(
+                viewModel: tatekaeListViewModel,
+                isShowAddTatekaeView: $isShowAddTatekaeView, 
+                isButtonDisabled: $isButtonDisabled,
+                group: warikanGroup
+            )
+            .interactiveDismissDisabled()
+        })
         .sheet(isPresented: $isShowTatekaeDetailView) {
-            TatekaeDetailView(isShowTatekaeDetailView: $isShowTatekaeDetailView)
-                .interactiveDismissDisabled()
+            //            TatekaeDetailView(isShowTatekaeDetailView: $isShowTatekaeDetailView)
+            //                .interactiveDismissDisabled()
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -47,7 +60,8 @@ struct TatekaeListView: View {
             }
         }
         .task {
-            await tatekaeListViewModel.getTatakaeList(id: groupID)
+            await tatekaeListViewModel.getTatakaeList(id: warikanGroup.id)
+            await tatekaeListViewModel.getMembers(ids: warikanGroup.members)
         }
     }
 }
@@ -55,7 +69,7 @@ struct TatekaeListView: View {
 private struct TatekaeList: View {
     let tatekaes: [Tatekae]
     @Binding var isShowTatekaeDetailView: Bool
-
+    
     var body: some View {
         List {
             Section {
@@ -83,7 +97,6 @@ private struct TatekaeList: View {
         }
     }
 }
-
 // swiftlint:disable comment_spacing
 //#Preview {
 //    TatekaeListView()

@@ -8,42 +8,55 @@
 import SwiftUI
 
 struct AddTatekaeView: View {
+    @ObservedObject var viewModel: TatekaeListViewModel
     @Binding var isShowAddTatekaeView: Bool
-    @State private var tatekaeTitle = ""
-    @State private var tatekaeKingaku = ""
-    @State private var unluckeyMember = "未選択"
-
+    @Binding var isButtonDisabled: Bool
+    @State private var tatekaeName = ""
+    @State private var money = ""
+    @State private var payer: Member?
+    let group: WarikanGroup
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Form {
                     Section {
-                        TextField("例：カニ道楽のランチ", text: $tatekaeTitle)
+                        TextField("例：カニ道楽のランチ", text: $tatekaeName)
                     } header: {
                         Text("立替の名目")
                     }
                     Section {
-                        TextField("￥ 5000", text: $tatekaeKingaku)
+                        TextField("￥ 5000", text: $money)
                             .keyboardType(.numberPad) // TODO: 金額の入力に対して、このモディファイアが適切か調べる。
                     } header: {
                         Text("立替の金額")
                     }
                     Section {
-                        Picker("立替人", selection: $unluckeyMember) {
-                            Text("未選択").tag("未選択")
-                            Text("Sako").tag("sako")
-                            Text("Seigetsu").tag("seigetsu")
-                            Text("Maki").tag("maki")
+                        Picker("立替人", selection: $payer) {
+                            Text("未選択").tag(Member?.none)
+                            ForEach(viewModel.members) { member in
+                                Text(member.name).tag(Member?.some(member))
+                            }
                         }
                     }
                 }
                 VStack {
                     Spacer()
                     Button(action: {
-                        isShowAddTatekaeView = false
-                    }, label: {
+                        Task {
+                            await viewModel.appendTatekae(
+                                warikanGroupID: group.id,
+                                tatekaeName: tatekaeName,
+                                payerID: payer!.id,
+                                recipantIDs: group.members,
+                                money: 5000
+                            )
+                            isShowAddTatekaeView = false
+                        }
+                    },
+                           label: {
                         Text("立替を追加")
-                            .modifier(LongStyle())
+                            .modifier(LongStyle(isButtonDisabled: $isButtonDisabled))
                     })
                 }
                 .padding(.bottom, 1)
@@ -57,12 +70,18 @@ struct AddTatekaeView: View {
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
+//                    .disabled(isButtonDisabled)
                 }
             }
         }
     }
 }
 
-#Preview {
-    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true))
-}
+// swiftlint:disable comment_spacing
+//#Preview {
+//    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true), members: [Member])
+//}
+// swiftlint:enable comment_spacing
+//#Preview {
+//    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true))
+//}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Path: Hashable, Equatable {
-    case tatekaeListView(_ WarikanGroup: WarikanGroup)
+    case tatekaeListView(_ warikanGroup: WarikanGroup)
     case confirmView
     case rouletteView
     case rouletteResultView

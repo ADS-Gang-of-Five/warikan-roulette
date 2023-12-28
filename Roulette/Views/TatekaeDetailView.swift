@@ -7,48 +7,50 @@
 
 import SwiftUI
 
-//struct TatekaeDetailView: View {
- //    @Binding var isShowTatekaeDetailView: Bool
- //    let tatekae: Tatekae
- //
- //    var body: some View {
- //        NavigationStack {
- //            List {
- //                Section {
- //                    Text(tatekae.name)
- //                } header: {
- //                    Text("立替の名目")
- //                }
- //                Section {
- //                    Text("\(tatekae.money)円")
- //                } header: {
- //                    Text("立替の金額")
- //                }
- //                Section {
- //                    Text("xxxxxxxx")
- //                } header: {
- //                    Text("立替人")
- //                }
- //                Section {
- //                    Text("20xx年xx月xx日 10:00")
- //                } header: {
- //                    Text("日時")
- //                }
- //            }
- //            .navigationTitle("立替の詳細")
- //            .toolbarTitleDisplayMode(.inline)
- //            .toolbar {
- //                ToolbarItem(placement: .topBarTrailing) {
- //                    Button(action: {
- //                        isShowTatekaeDetailView = false
- //                    }, label: {
- //                        Image(systemName: "xmark.circle")
- //                    })
- //                }
- //            }
- //        }
- //    }
- //}
+struct TatekaeDetailView: View {
+//     @Binding var isShowTatekaeDetailView: Bool
+    let tatekae: Tatekae
+    let member: Member
+    
+     var body: some View {
+         NavigationStack {
+             List {
+                 Section {
+                     Text(tatekae.name)
+                 } header: {
+                     Text("立替の名目")
+                 }
+                 Section {
+                     Text("\(tatekae.money)円")
+                 } header: {
+                     Text("立替の金額")
+                 }
+                 Section {
+                     Text(member.name)
+                 } header: {
+                     Text("立替人")
+                 }
+                 Section {
+                     Text("20xx年xx月xx日 10:00")
+                 } header: {
+                     Text("日時")
+                 }
+             }
+             .navigationTitle("立替の詳細")
+             .toolbarTitleDisplayMode(.inline)
+             .toolbar {
+                 ToolbarItem(placement: .topBarTrailing) {
+                     Button(action: {
+//                         isShowTatekaeDetailView = false
+                     }, label: {
+                         Image(systemName: "xmark.circle")
+                     })
+                 }
+             }
+         }
+     }
+ }
+
  //
  // swiftlint:disable comment_spacing
  //#Preview {

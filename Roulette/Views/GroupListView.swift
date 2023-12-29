@@ -54,12 +54,7 @@ struct GroupListView: View {
         }
         .environmentObject(viewRouter)
         .sheet(isPresented: $isShowAddGroupListView) {
-            AddGroupView { groupName, groupListMemeber in
-                    await groupListViewModel.createWarikanGroup(
-                        name: groupName,
-                        memberNames: groupListMemeber
-                    )
-                }
+            AddGroupView()
 //                .interactiveDismissDisabled()//FIXME: 一時的にコメントアウト。
         }
         .task {

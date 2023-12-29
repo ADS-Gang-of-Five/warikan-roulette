@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct AddTatekaeView: View {
-    @ObservedObject var viewModel: TatekaeListViewModel
-    @Binding var isShowAddTatekaeView: Bool
-    @Binding var isButtonDisabled: Bool
     @State private var tatekaeName = ""
     @State private var money = ""
-    @State private var payer: Member?
-    let group: WarikanGroup
-    
+    @State private var payer: String?
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -33,30 +29,21 @@ struct AddTatekaeView: View {
                     }
                     Section {
                         Picker("立替人", selection: $payer) {
-                            Text("未選択").tag(Member?.none)
-                            ForEach(viewModel.members) { member in
-                                Text(member.name).tag(Member?.some(member))
-                            }
+                            Text("未選択").tag(String?.none)
+                            Text("Sako").tag(String?.some("Sako"))
+                            Text("Seigetsu").tag(String?.some("Seigetsu"))
+                            Text("Maki").tag(String?.some("Maki"))
                         }
                     }
                 }
                 VStack {
                     Spacer()
                     Button(action: {
-                        Task {
-                            await viewModel.appendTatekae(
-                                warikanGroupID: group.id,
-                                tatekaeName: tatekaeName,
-                                payerID: payer!.id,
-                                recipantIDs: group.members,
-                                money: 5000
-                            )
-                            isShowAddTatekaeView = false
-                        }
+                        // 立替追加の処理
                     },
                            label: {
                         Text("立替を追加")
-                            .modifier(LongStyle(isButtonDisabled: $isButtonDisabled))
+                            .modifier(LongStyle(isButtonDisabled: Binding.constant(true)))
                     })
                 }
                 .padding(.bottom, 1)
@@ -66,22 +53,17 @@ struct AddTatekaeView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        isShowAddTatekaeView = false
+                        // sheetを閉じる処理
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
-//                    .disabled(isButtonDisabled)
+                    //                    .disabled(isButtonDisabled)
                 }
             }
         }
     }
 }
 
-// swiftlint:disable comment_spacing
-//#Preview {
-//    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true), members: [Member])
-//}
-// swiftlint:enable comment_spacing
-// #Preview {
-//     AddTatekaeView(isShowAddTatekaeView: Binding.constant(true))
-// }
+#Preview {
+    AddTatekaeView()
+}

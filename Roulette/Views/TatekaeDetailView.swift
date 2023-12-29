@@ -8,25 +8,21 @@
 import SwiftUI
 
 struct TatekaeDetailView: View {
-//     @Binding var isShowTatekaeDetailView: Bool
-    let tatekae: Tatekae
-    let member: Member
-    
      var body: some View {
          NavigationStack {
              List {
                  Section {
-                     Text(tatekae.name)
+                     Text("朝食")
                  } header: {
                      Text("立替の名目")
                  }
                  Section {
-                     Text("\(tatekae.money)円")
+                     Text("5,000円")
                  } header: {
                      Text("立替の金額")
                  }
                  Section {
-                     Text(member.name)
+                     Text("Sako")
                  } header: {
                      Text("立替人")
                  }
@@ -41,7 +37,7 @@ struct TatekaeDetailView: View {
              .toolbar {
                  ToolbarItem(placement: .topBarTrailing) {
                      Button(action: {
-//                         isShowTatekaeDetailView = false
+                         // Tatekaeを追加する処理
                      }, label: {
                          Image(systemName: "xmark.circle")
                      })
@@ -51,10 +47,6 @@ struct TatekaeDetailView: View {
      }
  }
 
- //
- // swiftlint:disable comment_spacing
- //#Preview {
- //    TatekaeDetailView(isShowTatekaeDetailView: Binding.constant(true))
- //}
- // swiftlint:enable comment_spacing
-
+#Preview {
+    TatekaeDetailView()
+}

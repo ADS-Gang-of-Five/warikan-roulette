@@ -82,6 +82,6 @@ struct AddTatekaeView: View {
 //    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true), members: [Member])
 //}
 // swiftlint:enable comment_spacing
-//#Preview {
-//    AddTatekaeView(isShowAddTatekaeView: Binding.constant(true))
-//}
+// #Preview {
+//     AddTatekaeView(isShowAddTatekaeView: Binding.constant(true))
+// }

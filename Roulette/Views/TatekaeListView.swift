@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-//idで実体を取得すること
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @State private var tatekaeAndPayerForTatekaeDetailView: (Tatekae, Member)?

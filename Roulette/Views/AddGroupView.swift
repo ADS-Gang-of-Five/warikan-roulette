@@ -49,10 +49,6 @@ struct AddGroupView: View {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
-                            Task {
-                                await createWarikanGroup(groupName, memberList)
-                            }
-                            isShowAddGroupListView = false
                         }
                         .disabled(!(groupName.count > 2 && memberList.count >= 2))
                         .font(.title2)
@@ -74,7 +70,6 @@ struct AddGroupView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        isShowAddGroupListView = false
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
@@ -92,5 +87,5 @@ struct AddGroupView: View {
 }
 
 #Preview {
-    AddGroupView {_, _ in }
+    AddGroupView()
 }

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct TatekaeListView: View {
     @EnvironmentObject var viewRouter: ViewRouter
+    @State private var tatekaeAndPayerForTatekaeDetailView: (Tatekae, Member)?
     @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
-    @State private var isShowTatekaeDetailView = false
+//    @State private var payer: Member?
     @StateObject private var tatekaeListViewModel = TatekaeListViewModel()
     
     let warikanGroup: WarikanGroup
@@ -23,10 +24,10 @@ struct TatekaeListView: View {
     var body: some View {
         ZStack {
             if !tatekaeListViewModel.tatekaes.isEmpty {
-                TatekaeList(
-                    tatekaes: tatekaeListViewModel.tatekaes,
-                    isShowTatekaeDetailView: $isShowTatekaeDetailView
-                )
+//                TatekaeList(
+//                    payerForTatekaeDetailView: $payerForTatekaeDetailView,
+//                    tatekaes: tatekaeListViewModel.tatekaes
+//                )
             } else {
                 Text("右下のボタンから立替を追加")
             }
@@ -50,10 +51,10 @@ struct TatekaeListView: View {
             )
             .interactiveDismissDisabled()
         })
-        .sheet(isPresented: $isShowTatekaeDetailView) {
-            //            TatekaeDetailView(isShowTatekaeDetailView: $isShowTatekaeDetailView)
-            //                .interactiveDismissDisabled()
-        }
+//        .sheet(item: $payerForTatekaeDetailView, content: { tatekae in
+//            TatekaeDetailView(tatekae: tatekae, member: )
+//        })
+
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("清算", value: Path.confirmView)
@@ -67,15 +68,19 @@ struct TatekaeListView: View {
 }
 
 private struct TatekaeList: View {
+    @ObservedObject var tatekaeListViewModel: TatekaeListViewModel
+    @Binding var tatekaeAndPayerForTatekaeDetailView: (Tatekae, Member)?
     let tatekaes: [Tatekae]
-    @Binding var isShowTatekaeDetailView: Bool
     
     var body: some View {
         List {
             Section {
                 ForEach(tatekaes) { tatekae in
                     Button(action: {
-                        isShowTatekaeDetailView = true
+                        Task {
+                           let member = await tatekaeListViewModel.getMember(id: tatekae.payer)
+                            tatekaeAndPayerForTatekaeDetailView = (tatekae, member)
+                        }
                     }, label: {
                         HStack {
                             Text(tatekae.name)

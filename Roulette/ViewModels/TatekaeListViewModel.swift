@@ -40,8 +40,19 @@ import Foundation
          do {
              members = try await memberUsecase.get(ids: ids)
          } catch {
-//             print("error:", error)
-//             print(#file, #line)
+             print("error:", error)
+             print(#file, #line)
+         }
+     }
+     
+     func getMember(id: EntityID<Member>) async -> Member {
+         do {
+             let member = try await memberUsecase.get(id: id)!
+             return member
+         } catch {
+             print("error:", error)
+             print(#file, #line)
+             fatalError()
          }
      }
  

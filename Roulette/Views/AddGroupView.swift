@@ -12,7 +12,7 @@ struct AddGroupView: View {
     @State private var memberList: [String] = []
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
-    @Binding var isShowAddGroupListView: Bool
+    @State var isShowAddGroupListView = true
     let createWarikanGroup: ( _ groupName: String, _  groupListMemeber: [String]) async -> Void
     
     var body: some View {
@@ -94,6 +94,5 @@ struct AddGroupView: View {
 }
 
 #Preview {
-    AddGroupView(isShowAddGroupListView: Binding.constant(true)) { _, _ in
-    }
+    AddGroupView() { _, _ in }
 }

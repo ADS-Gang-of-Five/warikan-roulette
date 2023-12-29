@@ -12,7 +12,6 @@ struct TatekaeListView: View {
     @State private var tatekaeAndPayerForTatekaeDetailView: (Tatekae, Member)?
     @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
-//    @State private var payer: Member?
     @StateObject private var tatekaeListViewModel = TatekaeListViewModel()
     
     let warikanGroup: WarikanGroup
@@ -24,10 +23,7 @@ struct TatekaeListView: View {
     var body: some View {
         ZStack {
             if !tatekaeListViewModel.tatekaes.isEmpty {
-//                TatekaeList(
-//                    payerForTatekaeDetailView: $payerForTatekaeDetailView,
-//                    tatekaes: tatekaeListViewModel.tatekaes
-//                )
+                // TatekaeListを表示
             } else {
                 Text("右下のボタンから立替を追加")
             }
@@ -43,17 +39,9 @@ struct TatekaeListView: View {
             Task { await tatekaeListViewModel.getTatakaeList(id: warikanGroup.id) }
         },
                content: {
-            AddTatekaeView(
-                viewModel: tatekaeListViewModel,
-                isShowAddTatekaeView: $isShowAddTatekaeView, 
-                isButtonDisabled: $isButtonDisabled,
-                group: warikanGroup
-            )
-            .interactiveDismissDisabled()
+            AddTatekaeView()
+            // .interactiveDismissDisabled() // FIXME: 一時的にコメントアウト
         })
-//        .sheet(item: $payerForTatekaeDetailView, content: { tatekae in
-//            TatekaeDetailView(tatekae: tatekae, member: )
-//        })
 
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

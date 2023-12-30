@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+/// - Important: 何かを追加するという処理には、更新が付随することに注意。
 @MainActor
 final class MainViewModel: ObservableObject {
     @Published var allGroups: [WarikanGroup] = []
@@ -33,7 +35,7 @@ final class MainViewModel: ObservableObject {
         self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
     }
 
-    func fecthAllGroups() async {
+    func getAllWarikanGroups() async {
         do {
             allGroups = try await warikanGroupUseCase.getAll()
         } catch {
@@ -44,13 +46,13 @@ final class MainViewModel: ObservableObject {
     func createWarikanGroup(name: String, memberNames: [String]) async {
         do {
             try await warikanGroupUseCase.create(name: name, memberNames: memberNames)
-            await fecthAllGroups()
+            await getAllWarikanGroups()
         } catch {
             print(#function, error)
         }
     }
     
-    func getTatakaeList(id: EntityID<WarikanGroup>) async {
+    func getSelectedGroupTatakaeList(id: EntityID<WarikanGroup>) async {
         do {
             selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
         } catch {
@@ -58,7 +60,7 @@ final class MainViewModel: ObservableObject {
         }
     }
 
-    func getMembers(ids: [EntityID<Member>]) async {
+    func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {
             selectedGroupMembers = try await memberUsecase.get(ids: ids)
         } catch {          
@@ -71,7 +73,8 @@ final class MainViewModel: ObservableObject {
             let member = try await memberUsecase.get(id: id)!
             return member
         } catch {
-            print(#function, error); fatalError();
+            print(#function, error)
+            fatalError()
         }
     }
 
@@ -90,6 +93,7 @@ final class MainViewModel: ObservableObject {
                 recipants: recipantIDs,
                 money: money
             )
+            await getSelectedGroupTatakaeList(id: warikanGroupID)
         } catch {
             print(#function, error)
         }

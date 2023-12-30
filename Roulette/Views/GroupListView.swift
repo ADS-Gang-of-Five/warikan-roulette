@@ -9,23 +9,25 @@ import SwiftUI
 
 struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
-    @StateObject private var groupListViewModel = GroupListViewModel()
     @State private var isShowAddGroupListView = false
-    
+    let sampleGroups = [
+        "sampleGroup1", "sampleGroup2", "sampleGroup3", "sampleGroup4"
+    ]
+
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-                if !groupListViewModel.groups.isEmpty {
+                if !sampleGroups.isEmpty {
                         List {
-                            ForEach(groupListViewModel.groups) { group in
-                                NavigationLink(group.name, value: Path.tatekaeListView(group))
+                            ForEach(sampleGroups, id: \.self) { group in
+                                NavigationLink(group, value: Path.tatekaeListView)
                             }
                         }
                         .navigationDestination(for: Path.self) { path in
                             switch path {
-                            case .tatekaeListView(let group):
+                            case .tatekaeListView:
                                 TatekaeListView()
-                                    .navigationTitle(group.name)
+                                    .navigationTitle("groupName")
                             case .confirmView:
                                 ConfirmView()
                                     .navigationTitle("立て替えの確認")
@@ -56,9 +58,6 @@ struct GroupListView: View {
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupView()
 //                .interactiveDismissDisabled()//FIXME: 一時的にコメントアウト。
-        }
-        .task {
-            await groupListViewModel.fecthAllGroups()
         }
     }
 }

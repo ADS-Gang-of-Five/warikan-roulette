@@ -9,9 +9,12 @@ import Foundation
 
 @MainActor
 final class MainViewModel: ObservableObject {
-    @Published var groups: [WarikanGroup] = []
-    @Published var members: [Member] = []
-    @Published var tatekaes: [Tatekae] = []
+    @Published var allGroups: [WarikanGroup] = []
+
+    @Published var selectedGroup: WarikanGroup?
+    @Published var selectedGroupMembers: [Member]?
+    @Published var selectedGroupTatekaes: [Tatekae]?
+
     private let warikanGroupUseCase: WarikanGroupUsecase
     private let memberUsecase: MemberUsecase
     private let tatekaeUsecase: TatekaeUsecase
@@ -32,7 +35,7 @@ final class MainViewModel: ObservableObject {
 
     func fecthAllGroups() async {
         do {
-            groups = try await warikanGroupUseCase.getAll()
+            allGroups = try await warikanGroupUseCase.getAll()
         } catch {
             print(#function, error)
         }
@@ -49,7 +52,7 @@ final class MainViewModel: ObservableObject {
     
     func getTatakaeList(id: EntityID<WarikanGroup>) async {
         do {
-            tatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
+            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
         } catch {
             print(#function, error)
         }
@@ -57,7 +60,7 @@ final class MainViewModel: ObservableObject {
 
     func getMembers(ids: [EntityID<Member>]) async {
         do {
-            members = try await memberUsecase.get(ids: ids)
+            selectedGroupMembers = try await memberUsecase.get(ids: ids)
         } catch {          
             print(#function, error)
         }

@@ -7,61 +7,64 @@
 
 import Foundation
 
+
+/// - Important: 何かを追加するという処理には、更新が付随することに注意。
 @MainActor
 final class MainViewModel: ObservableObject {
-    @Published var members: [Member] = []
-    @Published var groups: [WarikanGroup] = []
-    @Published var tatekaes: [Tatekae] = []
+    @Published var allGroups: [WarikanGroup] = []
+
+    @Published var selectedGroup: WarikanGroup?
+    @Published var selectedGroupMembers: [Member]?
+    @Published var selectedGroupTatekaes: [Tatekae]?
+
     private let warikanGroupUseCase: WarikanGroupUsecase
     private let memberUsecase: MemberUsecase
+    private let tatekaeUsecase: TatekaeUsecase
 
     init() {
         let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
         let memberRepository = MemberRepository(userDefaultsKey: "member")
         let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
 
-        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
         self.warikanGroupUseCase = WarikanGroupUsecase(
             warikanGroupRepository: warikanGroupRepository,
             memberRepository: memberRepository,
             tatekaeRepository: tatekaeRepository
         )
+        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
+        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
     }
 
-    func fecthAllGroups() async {
-        print("fetchGroupAllが呼ばれました。")
+    func getAllWarikanGroups() async {
         do {
-            groups = try await warikanGroupUseCase.getAll()
-            print("groups", groups)
+            allGroups = try await warikanGroupUseCase.getAll()
         } catch {
-            print(error)
+            print(#function, error)
         }
     }
     
     func createWarikanGroup(name: String, memberNames: [String]) async {
         do {
             try await warikanGroupUseCase.create(name: name, memberNames: memberNames)
-            await fecthAllGroups()
+            await getAllWarikanGroups()
         } catch {
-            print(#file, #line, "couldn't create")
+            print(#function, error)
         }
     }
     
-    func getTatakaeList(id: EntityID<WarikanGroup>) async {
+    func getSelectedGroupTatakaeList(id: EntityID<WarikanGroup>) async {
         do {
-            tatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
+            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
         } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            print(#function, error)
         }
     }
 
-    func getMembers(ids: [EntityID<Member>]) async {
+    func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {
-            members = try await memberUsecase.get(ids: ids)
-        } catch {
-            print("error:", error)
-            print(#file, #line)
+            selectedGroupMembers = try await memberUsecase.get(ids: ids)
+        } catch {          
+            print(#function, error)
         }
     }
     
@@ -70,8 +73,7 @@ final class MainViewModel: ObservableObject {
             let member = try await memberUsecase.get(id: id)!
             return member
         } catch {
-            print("error:", error)
-            print(#file, #line)
+            print(#function, error)
             fatalError()
         }
     }
@@ -91,9 +93,9 @@ final class MainViewModel: ObservableObject {
                 recipants: recipantIDs,
                 money: money
             )
+            await getSelectedGroupTatakaeList(id: warikanGroupID)
         } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            print(#function, error)
         }
     }
 }

@@ -24,7 +24,7 @@ struct GroupListView: View {
                         .navigationDestination(for: Path.self) { path in
                             switch path {
                             case .tatekaeListView(let group):
-                                TatekaeListView(warikanGroup: group)
+                                TatekaeListView()
                                     .navigationTitle(group.name)
                             case .confirmView:
                                 ConfirmView()

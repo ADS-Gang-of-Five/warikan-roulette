@@ -9,32 +9,32 @@ import Foundation
 
 @MainActor
 final class MainViewModel: ObservableObject {
-    @Published var members: [Member] = []
     @Published var groups: [WarikanGroup] = []
+    @Published var members: [Member] = []
     @Published var tatekaes: [Tatekae] = []
     private let warikanGroupUseCase: WarikanGroupUsecase
     private let memberUsecase: MemberUsecase
+    private let tatekaeUsecase: TatekaeUsecase
 
     init() {
         let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
         let memberRepository = MemberRepository(userDefaultsKey: "member")
         let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
 
-        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
         self.warikanGroupUseCase = WarikanGroupUsecase(
             warikanGroupRepository: warikanGroupRepository,
             memberRepository: memberRepository,
             tatekaeRepository: tatekaeRepository
         )
+        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
+        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
     }
 
     func fecthAllGroups() async {
-        print("fetchGroupAllが呼ばれました。")
         do {
             groups = try await warikanGroupUseCase.getAll()
-            print("groups", groups)
         } catch {
-            print(error)
+            print(#function, error)
         }
     }
     
@@ -43,7 +43,7 @@ final class MainViewModel: ObservableObject {
             try await warikanGroupUseCase.create(name: name, memberNames: memberNames)
             await fecthAllGroups()
         } catch {
-            print(#file, #line, "couldn't create")
+            print(#function, error)
         }
     }
     
@@ -51,17 +51,15 @@ final class MainViewModel: ObservableObject {
         do {
             tatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
         } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            print(#function, error)
         }
     }
 
     func getMembers(ids: [EntityID<Member>]) async {
         do {
             members = try await memberUsecase.get(ids: ids)
-        } catch {
-            print("error:", error)
-            print(#file, #line)
+        } catch {          
+            print(#function, error)
         }
     }
     
@@ -70,9 +68,7 @@ final class MainViewModel: ObservableObject {
             let member = try await memberUsecase.get(id: id)!
             return member
         } catch {
-            print("error:", error)
-            print(#file, #line)
-            fatalError()
+            print(#function, error); fatalError();
         }
     }
 
@@ -92,8 +88,7 @@ final class MainViewModel: ObservableObject {
                 money: money
             )
         } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            print(#function, error)
         }
     }
 }

@@ -85,6 +85,16 @@ final class MainViewModel: ObservableObject {
         }
     }
 
+    // 立替リストを取得
+    func getTatekaeList(ids: [EntityID<Tatekae>]) async {
+        do {
+            selectedGroupTatekaes = try await tatekaeUsecase.get(ids: ids)
+        } catch {
+            print(#function, error)
+            fatalError()
+        }
+    }
+
     // 立替を追加
     func appendTatekae(
         warikanGroupID: EntityID<WarikanGroup>,

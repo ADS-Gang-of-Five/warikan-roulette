@@ -10,6 +10,7 @@ import SwiftUI
 struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
     @State private var isShowAddGroupListView = false
+    @EnvironmentObject var mainViewModel: MainViewModel
     let sampleGroups = [
         "sampleGroup1", "sampleGroup2", "sampleGroup3", "sampleGroup4"
     ]
@@ -17,10 +18,12 @@ struct GroupListView: View {
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-                if !sampleGroups.isEmpty {
+//                if !sampleGroups.isEmpty {
+                if !mainViewModel.groups.isEmpty {
                         List {
-                            ForEach(sampleGroups, id: \.self) { group in
-                                NavigationLink(group, value: Path.tatekaeListView)
+//                            ForEach(sampleGroups, id: \.self) { group in
+                            ForEach(mainViewModel.groups) { group in
+                                NavigationLink(group.name, value: Path.tatekaeListView)
                             }
                         }
                         .navigationDestination(for: Path.self) { path in
@@ -55,6 +58,7 @@ struct GroupListView: View {
             .navigationTitle("割り勘グループ")
         }
         .environmentObject(viewRouter)
+        .environmentObject(mainViewModel)
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupView()
 //                .interactiveDismissDisabled()//FIXME: 一時的にコメントアウト。

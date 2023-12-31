@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct AddGroupView: View {
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var groupName = ""
     @State private var memberList: [String] = []
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
-    @Binding var isShowAddGroupListView: Bool
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -57,7 +57,7 @@ struct AddGroupView: View {
                                     memberNames: memberList
                                 )
                             }
-                            isShowAddGroupListView = false
+                            dismiss()
                         }
                         .disabled(!(groupName.count > 2 && memberList.count >= 2))
                         .font(.title2)
@@ -79,7 +79,7 @@ struct AddGroupView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        isShowAddGroupListView = false
+                        dismiss()
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
@@ -97,5 +97,5 @@ struct AddGroupView: View {
 }
 
 #Preview {
-    AddGroupView(isShowAddGroupListView: Binding<Bool>.constant(false))
+    AddGroupView()
 }

@@ -60,6 +60,9 @@ struct GroupListView: View {
             )
                 .interactiveDismissDisabled()
         }
+        .task {
+            await mainViewModel.fecthAllGroups()
+        }
     }
 }
 

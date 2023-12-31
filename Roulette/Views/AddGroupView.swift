@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AddGroupView: View {
+    @EnvironmentObject var mainViewModel: MainViewModel
     @State private var groupName = ""
     @State private var memberList: [String] = []
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
+    @Binding var isShowAddGroupListView: Bool
     
     var body: some View {
         NavigationStack {
@@ -49,6 +51,13 @@ struct AddGroupView: View {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
+                            Task {
+                                await mainViewModel.createWarikanGroup(
+                                    name: groupName,
+                                    memberNames: memberList
+                                )
+                            }
+                            isShowAddGroupListView = false
                         }
                         .disabled(!(groupName.count > 2 && memberList.count >= 2))
                         .font(.title2)
@@ -70,6 +79,7 @@ struct AddGroupView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
+                        isShowAddGroupListView = false
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
@@ -87,5 +97,5 @@ struct AddGroupView: View {
 }
 
 #Preview {
-    AddGroupView()
+    AddGroupView(isShowAddGroupListView: Binding<Bool>.constant(false))
 }

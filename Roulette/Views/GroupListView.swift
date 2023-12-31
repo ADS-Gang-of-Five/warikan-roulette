@@ -11,9 +11,6 @@ struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
     @State private var isShowAddGroupListView = false
     @EnvironmentObject var mainViewModel: MainViewModel
-    let sampleGroups = [
-        "sampleGroup1", "sampleGroup2", "sampleGroup3", "sampleGroup4"
-    ]
 
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
@@ -58,7 +55,9 @@ struct GroupListView: View {
         .environmentObject(viewRouter)
         .environmentObject(mainViewModel)
         .sheet(isPresented: $isShowAddGroupListView) {
-            AddGroupView()
+            AddGroupView(
+                isShowAddGroupListView: $isShowAddGroupListView
+            )
                 .interactiveDismissDisabled()
         }
     }

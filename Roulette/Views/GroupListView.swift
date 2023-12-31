@@ -18,10 +18,8 @@ struct GroupListView: View {
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-//                if !sampleGroups.isEmpty {
                 if !mainViewModel.groups.isEmpty {
                         List {
-//                            ForEach(sampleGroups, id: \.self) { group in
                             ForEach(mainViewModel.groups) { group in
                                 NavigationLink(group.name, value: Path.tatekaeListView)
                             }
@@ -61,7 +59,7 @@ struct GroupListView: View {
         .environmentObject(mainViewModel)
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupView()
-//                .interactiveDismissDisabled()//FIXME: 一時的にコメントアウト。
+                .interactiveDismissDisabled()
         }
     }
 }

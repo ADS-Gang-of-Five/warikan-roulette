@@ -7,75 +7,95 @@
 
 import Foundation
 
+/// - Important: 何かを追加するという処理には、更新が付随することに注意。
 @MainActor
 final class MainViewModel: ObservableObject {
-    @Published var members: [Member] = []
-    @Published var groups: [WarikanGroup] = []
-    @Published var tatekaes: [Tatekae] = []
+    // 端末に保存されている全ての割り勘グループ
+    @Published var allGroups: [WarikanGroup] = []
+
+    // 使用中の割り勘グループ、及びそのメンバーと立て替えの一覧
+    @Published var selectedGroup: WarikanGroup?
+    @Published var selectedGroupMembers: [Member]?
+    @Published var selectedGroupTatekaes: [Tatekae]?
+
+    // ユースケース
     private let warikanGroupUseCase: WarikanGroupUsecase
     private let memberUsecase: MemberUsecase
+    private let tatekaeUsecase: TatekaeUsecase
 
     init() {
         let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
         let memberRepository = MemberRepository(userDefaultsKey: "member")
         let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
 
-        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
         self.warikanGroupUseCase = WarikanGroupUsecase(
             warikanGroupRepository: warikanGroupRepository,
             memberRepository: memberRepository,
             tatekaeRepository: tatekaeRepository
         )
+        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
+        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
     }
 
-    func fecthAllGroups() async {
-        print("fetchGroupAllが呼ばれました。")
+    // 全ての割り勘グループを取得
+    func getAllWarikanGroups() async {
         do {
-            groups = try await warikanGroupUseCase.getAll()
-            print("groups", groups)
+            allGroups = try await warikanGroupUseCase.getAll()
         } catch {
-            print(error)
+            print(#function, error)
         }
     }
     
+    // 割り勘グループを作成
     func createWarikanGroup(name: String, memberNames: [String]) async {
         do {
             try await warikanGroupUseCase.create(name: name, memberNames: memberNames)
-            await fecthAllGroups()
+            await getAllWarikanGroups()
         } catch {
-            print(#file, #line, "couldn't create")
+            print(#function, error)
         }
     }
     
-    func getTatakaeList(id: EntityID<WarikanGroup>) async {
+    // 割り勘グループIDからそのグループのメンバーリストを取得
+    func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {
-            tatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
-        } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            selectedGroupMembers = try await memberUsecase.get(ids: ids)
+        } catch {          
+            print(#function, error)
         }
     }
 
-    func getMembers(ids: [EntityID<Member>]) async {
+    // 割り勘グループIDからそのグループの立替リストを取得
+    func getSelectedGroupTatakaeList(id: EntityID<WarikanGroup>) async {
         do {
-            members = try await memberUsecase.get(ids: ids)
+            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
         } catch {
-            print("error:", error)
-            print(#file, #line)
+            print(#function, error)
         }
     }
-    
+
+    // メンバーIDから実体(Member)を取得
     func getMember(id: EntityID<Member>) async -> Member {
         do {
             let member = try await memberUsecase.get(id: id)!
             return member
         } catch {
-            print("error:", error)
-            print(#file, #line)
+            print(#function, error)
             fatalError()
         }
     }
 
+    // 立替リストを取得
+    func getTatekaeList(ids: [EntityID<Tatekae>]) async {
+        do {
+            selectedGroupTatekaes = try await tatekaeUsecase.get(ids: ids)
+        } catch {
+            print(#function, error)
+            fatalError()
+        }
+    }
+
+    // 立替を追加
     func appendTatekae(
         warikanGroupID: EntityID<WarikanGroup>,
         tatekaeName: String,
@@ -91,9 +111,9 @@ final class MainViewModel: ObservableObject {
                 recipants: recipantIDs,
                 money: money
             )
+            await getSelectedGroupTatakaeList(id: warikanGroupID)
         } catch {
-//             print("error:", error)
-//             print(#file, #line)
+            print(#function, error)
         }
     }
 }

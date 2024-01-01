@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct TatekaeListView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject private var viewRouter: ViewRouter
+    @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
 
-    let sampleTatekaes = ["朝食", "昼食", "夕食"]
-
     var body: some View {
         ZStack {
-            if !sampleTatekaes.isEmpty {
-                // TatekaeListを表示
-                TatekaeList(sampleTatekaes: sampleTatekaes)
-            } else {
+            switch mainViewModel.selectedGroupTatekaes {
+            case .none:
+                Text("エラーが発生しました。前の画面に一度戻り再度お試しください。")
+                    .padding(.horizontal)
+            case .some(let tatekaes) where tatekaes.isEmpty:
                 Text("右下のボタンから立替を追加")
+                    .padding(.horizontal)
+            case .some(let tatekaes):
+                TatekaeList(tatekaes: tatekaes)
             }
             AddButton()
                 .onTapGesture {
@@ -40,20 +43,22 @@ struct TatekaeListView: View {
 }
 
 private struct TatekaeList: View {
-    let sampleTatekaes: [String]
+    let tatekaes: [Tatekae]
 
     var body: some View {
         List {
             Section {
-                ForEach(sampleTatekaes, id: \.self) { tatekae in
-                    Button(action: {}, label: {
+                ForEach(tatekaes) { tatekae in
+                    Button(action: {
+                        // 詳細画面を表示する処理
+                    }, label: {
                         HStack {
-                            Text(tatekae)
+                            Text(tatekae.name)
                                 .font(.title2)
                             Spacer()
                             VStack {
                                 Text("xxxx年xx月xx日")
-                                Text("合計 xxxx円")
+                                Text("合計 \(tatekae.money)円")
                             }
                             .font(.footnote)
                         }
@@ -71,4 +76,5 @@ private struct TatekaeList: View {
 #Preview {
     TatekaeListView()
         .environmentObject(ViewRouter())
+        .environmentObject(MainViewModel())
 }

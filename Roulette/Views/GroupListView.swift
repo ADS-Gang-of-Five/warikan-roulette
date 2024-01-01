@@ -15,9 +15,9 @@ struct GroupListView: View {
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-                if !mainViewModel.groups.isEmpty {
+                if !mainViewModel.allGroups.isEmpty {
                     List {
-                        ForEach(mainViewModel.groups) { group in
+                        ForEach(mainViewModel.allGroups) { group in
                             NavigationLink(group.name, value: Path.tatekaeListView)
                         }
                     }
@@ -25,7 +25,6 @@ struct GroupListView: View {
                         switch path {
                         case .tatekaeListView:
                             TatekaeListView()
-                                .navigationTitle("groupName")
                         case .confirmView:
                             ConfirmView()
                                 .navigationTitle("立て替えの確認")
@@ -59,7 +58,7 @@ struct GroupListView: View {
                 .interactiveDismissDisabled()
         }
         .task {
-            await mainViewModel.fecthAllGroups()
+            await mainViewModel.getAllWarikanGroups()
         }
     }
 }

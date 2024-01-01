@@ -10,38 +10,35 @@ import SwiftUI
 struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
     @State private var isShowAddGroupListView = false
-    let sampleGroups = [
-        "sampleGroup1", "sampleGroup2", "sampleGroup3", "sampleGroup4"
-    ]
-
+    @EnvironmentObject private var mainViewModel: MainViewModel
+    
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             ZStack {
-                if !sampleGroups.isEmpty {
-                        List {
-                            ForEach(sampleGroups, id: \.self) { group in
-                                NavigationLink(group, value: Path.tatekaeListView)
-                            }
+                if !mainViewModel.allGroups.isEmpty {
+                    List {
+                        ForEach(mainViewModel.allGroups) { group in
+                            NavigationLink(group.name, value: Path.tatekaeListView)
                         }
-                        .navigationDestination(for: Path.self) { path in
-                            switch path {
-                            case .tatekaeListView:
-                                TatekaeListView()
-                                    .navigationTitle("groupName")
-                            case .confirmView:
-                                ConfirmView()
-                                    .navigationTitle("立て替えの確認")
-                                    .navigationBarTitleDisplayMode(.inline)
-                            case .rouletteView:
-                                RouletteView()
-                            case .rouletteResultView:
-                                RouletteResultView()
-                            case .seisanResultView:
-                                SeisanResultView()
-                                    .navigationTitle("精算結果")
-                                    .navigationBarTitleDisplayMode(.large)
-                            }
+                    }
+                    .navigationDestination(for: Path.self) { path in
+                        switch path {
+                        case .tatekaeListView:
+                            TatekaeListView()
+                        case .confirmView:
+                            ConfirmView()
+                                .navigationTitle("立て替えの確認")
+                                .navigationBarTitleDisplayMode(.inline)
+                        case .rouletteView:
+                            RouletteView()
+                        case .rouletteResultView:
+                            RouletteResultView()
+                        case .seisanResultView:
+                            SeisanResultView()
+                                .navigationTitle("精算結果")
+                                .navigationBarTitleDisplayMode(.large)
                         }
+                    }
                 } else {
                     Text("割り勘グループを右下のボタンから追加してください")
                         .font(.title2)
@@ -55,9 +52,13 @@ struct GroupListView: View {
             .navigationTitle("割り勘グループ")
         }
         .environmentObject(viewRouter)
+        .environmentObject(mainViewModel)
         .sheet(isPresented: $isShowAddGroupListView) {
             AddGroupView()
-//                .interactiveDismissDisabled()//FIXME: 一時的にコメントアウト。
+                .interactiveDismissDisabled()
+        }
+        .task {
+            await mainViewModel.getAllWarikanGroups()
         }
     }
 }

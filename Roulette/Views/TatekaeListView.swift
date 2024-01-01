@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TatekaeListView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject private var viewRouter: ViewRouter
+    @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
 
@@ -36,6 +37,7 @@ struct TatekaeListView: View {
                 NavigationLink("清算", value: Path.confirmView)
             }
         }
+        .navigationTitle("groupName")
     }
 }
 

@@ -12,6 +12,7 @@ struct ContentView: View {
         TabView {
             GroupListView()
                 .tabItem { Label("割り勘グループ", systemImage: "person.3.fill") }
+                .environmentObject(MainViewModel())
             ArchiveView()
                 .tabItem { Label("清算済グループ", systemImage: "archivebox.fill") }
         }

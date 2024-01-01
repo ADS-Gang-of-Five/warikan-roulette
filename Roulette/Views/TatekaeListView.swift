@@ -39,6 +39,7 @@ struct TatekaeListView: View {
                 NavigationLink("清算", value: Path.confirmView)
             }
         }
+        .navigationTitle("groupName")
     }
 }
 

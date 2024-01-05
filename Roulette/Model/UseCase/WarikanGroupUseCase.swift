@@ -132,7 +132,8 @@ struct WarikanGroupUsecase {
                     name: tatekaeName,
                     payer: payer,
                     recipients: recipants,
-                    money: money
+                    money: money,
+                    createdTime: Date()
                 )
             )
             

@@ -13,4 +13,5 @@ struct Tatekae: Identifiable, Codable {
     var payer: EntityID<Member>
     var recipients: [EntityID<Member>]
     var money: Int
+    var createdTime: Date
 }

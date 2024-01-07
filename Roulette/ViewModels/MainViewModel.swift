@@ -60,7 +60,7 @@ final class MainViewModel: ObservableObject {
     func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {
             selectedGroupMembers = try await memberUsecase.get(ids: ids)
-        } catch {          
+        } catch {
             print(#function, error)
         }
     }

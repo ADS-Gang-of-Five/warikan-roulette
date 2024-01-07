@@ -65,4 +65,5 @@ struct GroupListView: View {
 
 #Preview {
     GroupListView()
+        .environmentObject(MainViewModel())
 }

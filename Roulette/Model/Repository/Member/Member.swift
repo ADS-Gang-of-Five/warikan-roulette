@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Member: Identifiable, Codable {
+struct Member: Identifiable, Codable, Hashable {
     var id: EntityID<Self>
     private(set) var name: String
 }

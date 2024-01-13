@@ -8,45 +8,64 @@
 import SwiftUI
 
 struct TatekaeDetailView: View {
-     var body: some View {
-         NavigationStack {
-             List {
-                 Section {
-                     Text("朝食")
-                 } header: {
-                     Text("立替の名目")
-                 }
-                 Section {
-                     Text("5,000円")
-                 } header: {
-                     Text("立替の金額")
-                 }
-                 Section {
-                     Text("Sako")
-                 } header: {
-                     Text("立替人")
-                 }
-                 Section {
-                     Text("20xx年xx月xx日 10:00")
-                 } header: {
-                     Text("日時")
-                 }
-             }
-             .navigationTitle("立替の詳細")
-             .toolbarTitleDisplayMode(.inline)
-             .toolbar {
-                 ToolbarItem(placement: .topBarTrailing) {
-                     Button(action: {
-                         // Tatekaeを追加する処理
-                     }, label: {
-                         Image(systemName: "xmark.circle")
-                     })
-                 }
-             }
-         }
-     }
- }
-
-#Preview {
-    TatekaeDetailView()
+    @EnvironmentObject private var mainViewModel: MainViewModel
+    @Environment(\.dismiss) private var dismiss
+    
+    let tatekae: Tatekae
+    @State private var memberName: String?
+    @State private var dateString: String?
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                if let memberName, let dateString {
+                    Section {
+                        Text(tatekae.name)
+                    } header: {
+                        Text("立替の名目")
+                    }
+                    Section {
+                        Text("\(tatekae.money)円")
+                    } header: {
+                        Text("立替の金額")
+                    }
+                    Section {
+                        Text(memberName)
+                    } header: {
+                        Text("立替人")
+                    }
+                    Section {
+                        Text(dateString)
+                    } header: {
+                        Text("日時")
+                    }
+                } else {
+                    HStack {
+                        Text("読み込み中...")
+                        Spacer()
+                        ProgressView()
+                    }
+                }
+            }
+            .task {
+                let member = await mainViewModel.getMember(id: tatekae.payer)
+                self.memberName = member.name
+                
+                let df = DateFormatter()
+                df.dateFormat = "yyyy年MM月dd日 HH時mm分"
+                self.dateString = df.string(from: tatekae.createdTime)
+            }
+            .navigationTitle("立替の詳細")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                }
+            }
+        }
+    }
 }

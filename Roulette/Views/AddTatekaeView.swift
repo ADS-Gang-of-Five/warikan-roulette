@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AddTatekaeView: View {
+    @EnvironmentObject private var mainViewModel: MainViewModel
+    @Environment(\.dismiss) private var dismiss
+
     @State private var tatekaeName = ""
     @State private var money = ""
-    @State private var payer: String?
+    @State private var payer: EntityID<Member>?
 
     var body: some View {
         NavigationStack {
@@ -29,22 +32,44 @@ struct AddTatekaeView: View {
                     }
                     Section {
                         Picker("立替人", selection: $payer) {
-                            Text("未選択").tag(String?.none)
-                            Text("Sako").tag(String?.some("Sako"))
-                            Text("Seigetsu").tag(String?.some("Seigetsu"))
-                            Text("Maki").tag(String?.some("Maki"))
+                            Text("未選択").tag(EntityID<Member>?.none)
+                            if let members = mainViewModel.selectedGroupMembers {
+                                ForEach(members) { member in
+                                    Text(member.name)
+                                        .tag(EntityID<Member>?.some(member.id))
+                                }
+                            }
                         }
                     }
                 }
                 VStack {
                     Spacer()
                     Button(action: {
-                        // 立替追加の処理
+                        Task {
+                            guard let warikanGroupID: EntityID<WarikanGroup> = mainViewModel.selectedGroup?.id,
+                                  tatekaeName.isEmpty == false,
+                                  let payerID = payer,
+                                  let recipantIDs = mainViewModel.selectedGroup?.members,
+                                  let money = Int(self.money)
+                            else { return }
+
+                            await mainViewModel.appendTatekae(
+                                warikanGroupID: warikanGroupID,
+                                tatekaeName: tatekaeName,
+                                payerID: payerID,
+                                recipantIDs: recipantIDs,
+                                money: money
+                            )
+                            dismiss()
+                        }
                     },
                            label: {
                         Text("立替を追加")
                             .modifier(LongStyle(isButtonDisabled: Binding.constant(true)))
                     })
+                    .disabled(
+                        tatekaeName.isEmpty || money.isEmpty || payer == nil
+                    )
                 }
                 .padding(.bottom, 1)
             }
@@ -53,11 +78,10 @@ struct AddTatekaeView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        // sheetを閉じる処理
+                        dismiss()
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
-                    //                    .disabled(isButtonDisabled)
                 }
             }
         }
@@ -66,4 +90,5 @@ struct AddTatekaeView: View {
 
 #Preview {
     AddTatekaeView()
+        .environmentObject(MainViewModel())
 }

@@ -52,6 +52,7 @@ struct TatekaeDetailView: View {
                 self.memberName = member.name
                 
                 let df = DateFormatter()
+                df.calendar = Calendar(identifier: .gregorian)
                 df.dateFormat = "yyyy年MM月dd日 HH時mm分"
                 self.dateString = df.string(from: tatekae.createdTime)
             }

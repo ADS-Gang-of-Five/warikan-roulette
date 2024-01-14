@@ -10,8 +10,8 @@ import SwiftUI
 struct TatekaeListView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
     @EnvironmentObject private var mainViewModel: MainViewModel
-    @State private var isButtonDisabled = true
     @State private var isShowAddTatekaeView = false
+    @State private var focusedTatekaeForTatekaeDetailView: Tatekae?
 
     var body: some View {
         Group {
@@ -23,7 +23,7 @@ struct TatekaeListView: View {
                 Text("右下のボタンから立替を追加")
                     .padding(.horizontal)
             case .some(let tatekaes):
-                TatekaeList(tatekaes: tatekaes)
+                TatekaeList(tatekaes: tatekaes, focusedTatekae: $focusedTatekaeForTatekaeDetailView)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -35,7 +35,10 @@ struct TatekaeListView: View {
         }
         .sheet(isPresented: $isShowAddTatekaeView) {
             AddTatekaeView()
-            // .interactiveDismissDisabled() // FIXME: 一時的にコメントアウト
+                .interactiveDismissDisabled()
+        }
+        .sheet(item: $focusedTatekaeForTatekaeDetailView) { tatekae in
+            TatekaeDetailView(tatekae: tatekae)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -48,13 +51,14 @@ struct TatekaeListView: View {
 
 private struct TatekaeList: View {
     let tatekaes: [Tatekae]
+    @Binding var focusedTatekae: Tatekae?
 
     var body: some View {
         List {
             Section {
                 ForEach(tatekaes) { tatekae in
                     Button(action: {
-                        // 詳細画面を表示する処理
+                        focusedTatekae = tatekae
                     }, label: {
                         HStack {
                             Text(tatekae.name)

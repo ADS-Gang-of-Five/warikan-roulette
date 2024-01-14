@@ -18,7 +18,19 @@ struct GroupListView: View {
                 if !mainViewModel.allGroups.isEmpty {
                     List {
                         ForEach(mainViewModel.allGroups) { group in
-                            NavigationLink(group.name, value: Path.tatekaeListView)
+                            HStack {
+                                Button(action: {
+                                    Task {
+                                        await mainViewModel.selectWarikanGroup(warikanGroup: group)
+                                    }
+                                    viewRouter.path.append(Path.tatekaeListView)
+                                }, label: {
+                                    Text(group.name)
+                                        .foregroundStyle(.black)
+                                })
+                                Spacer()
+                                Image(systemName: "chevron.forward")
+                            }
                         }
                     }
                     .navigationDestination(for: Path.self) { path in

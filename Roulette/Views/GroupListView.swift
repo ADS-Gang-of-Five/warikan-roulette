@@ -59,7 +59,9 @@ struct GroupListView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(alignment: .bottomTrailing) {
-                AddButton {}
+                AddButton {
+                    isShowAddGroupListView = true
+                }
                     .padding(.trailing)
             }
             .navigationTitle("割り勘グループ")

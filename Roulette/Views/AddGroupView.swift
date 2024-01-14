@@ -14,7 +14,7 @@ struct AddGroupView: View {
     @State private var additionalMember = ""
     @State private var isValidMemberName = false
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         NavigationStack {
             ZStack {

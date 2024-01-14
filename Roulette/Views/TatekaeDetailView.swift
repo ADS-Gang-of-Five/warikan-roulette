@@ -10,11 +10,10 @@ import SwiftUI
 struct TatekaeDetailView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     @Environment(\.dismiss) private var dismiss
-    
     let tatekae: Tatekae
     @State private var memberName: String?
     @State private var dateString: String?
-    
+
     var body: some View {
         NavigationStack {
             List {
@@ -50,7 +49,6 @@ struct TatekaeDetailView: View {
             .task {
                 let member = await mainViewModel.getMember(id: tatekae.payer)
                 self.memberName = member.name
-                
                 let df = DateFormatter()
                 df.calendar = Calendar(identifier: .gregorian)
                 df.dateFormat = "yyyy年MM月dd日 HH時mm分"

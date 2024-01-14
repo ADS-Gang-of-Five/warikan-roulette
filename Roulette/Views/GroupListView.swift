@@ -21,8 +21,8 @@ struct GroupListView: View {
                                 Button(action: {
                                     Task {
                                         await mainViewModel.selectWarikanGroup(warikanGroup: group)
+                                        viewRouter.path.append(Path.tatekaeListView)
                                     }
-                                    viewRouter.path.append(Path.tatekaeListView)
                                 }, label: {
                                     Text(group.name)
                                         .foregroundStyle(.black)

@@ -14,7 +14,7 @@ struct GroupListView: View {
     
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
-            ZStack {
+            Group {
                 if !mainViewModel.allGroups.isEmpty {
                     List {
                         ForEach(mainViewModel.allGroups) { group in
@@ -44,10 +44,11 @@ struct GroupListView: View {
                         .font(.title2)
                         .padding(.horizontal, 30)
                 }
-                AddButton()
-                    .onTapGesture {
-                        isShowAddGroupListView = true
-                    }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .overlay(alignment: .bottomTrailing) {
+                AddButton {}
+                    .padding(.trailing)
             }
             .navigationTitle("割り勘グループ")
         }

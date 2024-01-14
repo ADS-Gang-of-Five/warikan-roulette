@@ -14,7 +14,7 @@ struct TatekaeListView: View {
     @State private var isShowAddTatekaeView = false
 
     var body: some View {
-        ZStack {
+        Group {
             switch mainViewModel.selectedGroupTatekaes {
             case .none:
                 Text("エラーが発生しました。前の画面に一度戻り再度お試しください。")
@@ -25,10 +25,13 @@ struct TatekaeListView: View {
             case .some(let tatekaes):
                 TatekaeList(tatekaes: tatekaes)
             }
-            AddButton()
-                .onTapGesture {
-                    isShowAddTatekaeView = true
-                }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .bottomTrailing) {
+            AddButton {
+                isShowAddTatekaeView = true
+            }
+            .padding(.trailing)
         }
         .sheet(isPresented: $isShowAddTatekaeView) {
             AddTatekaeView()

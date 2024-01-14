@@ -16,8 +16,7 @@ struct GroupListView: View {
         NavigationStack(path: $viewRouter.path) {
             VStack {
                 if !mainViewModel.allGroups.isEmpty {
-                    List {
-                        ForEach(mainViewModel.allGroups) { group in
+                    List(mainViewModel.allGroups) { group in
                             HStack {
                                 Button(action: {
                                     Task {
@@ -31,7 +30,6 @@ struct GroupListView: View {
                                 Spacer()
                                 Image(systemName: "chevron.forward")
                             }
-                        }
                     }
                     .navigationDestination(for: Path.self) { path in
                         switch path {
@@ -62,7 +60,7 @@ struct GroupListView: View {
                 AddButton {
                     isShowAddGroupListView = true
                 }
-                    .padding(.trailing)
+                .padding(.trailing)
             }
             .navigationTitle("割り勘グループ")
         }

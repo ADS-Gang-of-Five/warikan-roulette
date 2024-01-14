@@ -11,7 +11,7 @@ struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
     @State private var isShowAddGroupView = false
     @EnvironmentObject private var mainViewModel: MainViewModel
-    
+
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
             VStack {

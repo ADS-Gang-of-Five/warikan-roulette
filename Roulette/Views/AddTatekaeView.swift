@@ -10,7 +10,6 @@ import SwiftUI
 struct AddTatekaeView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     @Environment(\.dismiss) private var dismiss
-
     @State private var tatekaeName = ""
     @State private var money = ""
     @State private var payer: EntityID<Member>?

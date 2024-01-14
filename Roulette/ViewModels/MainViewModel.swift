@@ -116,4 +116,15 @@ final class MainViewModel: ObservableObject {
             print(#function, error)
         }
     }
+    
+    // 選択したwarikanGroupの実体を渡す
+    func selectWarikanGroup(warikanGroup: WarikanGroup) async {
+        do {
+            selectedGroup = warikanGroup
+            selectedGroupMembers = try await memberUsecase.get(ids: warikanGroup.members)
+            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: warikanGroup.id)
+        } catch {
+            print(#function, error)
+        }
+    }
 }

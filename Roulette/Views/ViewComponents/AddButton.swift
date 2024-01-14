@@ -8,29 +8,26 @@
 import SwiftUI
 
 struct AddButton: View {
+    let action: () -> Void
     let diameter: CGFloat
-    
-    init(diameter: CGFloat = 60) {
+
+    init(action: @escaping () -> Void, diameter: CGFloat = 60) {
+        self.action = action
         self.diameter = diameter
     }
-    
+
     var body: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .foregroundStyle(Color.blue)
-                    .frame(width: diameter, height: diameter)
-                    .background(.white)
-                    .clipShape(Circle())
-                    .padding(.trailing)
-            }
-        }
+        Button(action: {}, label: {
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .frame(width: diameter, height: diameter)
+                .foregroundStyle(.blue)
+                .background(.white)
+                .clipShape(Circle())
+        })
     }
 }
 
 #Preview {
-    AddButton()
+    AddButton {}
 }

@@ -14,7 +14,7 @@ struct GroupListView: View {
     
     var body: some View {
         NavigationStack(path: $viewRouter.path) {
-            Group {
+            VStack {
                 if !mainViewModel.allGroups.isEmpty {
                     List {
                         ForEach(mainViewModel.allGroups) { group in

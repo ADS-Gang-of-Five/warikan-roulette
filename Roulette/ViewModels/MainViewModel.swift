@@ -117,7 +117,7 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    // 選択したグループとそのメンバーを保持させる
+    // 選択したグループとそのメンバーと立て替えをMainViewModelに保持させる
     func selectWarikanGroup(warikanGroup: WarikanGroup) async {
         do {
             selectedGroup = warikanGroup

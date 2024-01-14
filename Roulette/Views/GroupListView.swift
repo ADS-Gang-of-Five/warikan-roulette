@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GroupListView: View {
     @StateObject private var viewRouter = ViewRouter()
-    @State private var isShowAddGroupListView = false
+    @State private var isShowAddGroupView = false
     @EnvironmentObject private var mainViewModel: MainViewModel
     
     var body: some View {
@@ -58,7 +58,7 @@ struct GroupListView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(alignment: .bottomTrailing) {
                 AddButton {
-                    isShowAddGroupListView = true
+                    isShowAddGroupView = true
                 }
                 .padding(.trailing)
             }
@@ -66,7 +66,7 @@ struct GroupListView: View {
         }
         .environmentObject(viewRouter)
         .environmentObject(mainViewModel)
-        .sheet(isPresented: $isShowAddGroupListView) {
+        .sheet(isPresented: $isShowAddGroupView) {
             AddGroupView()
                 .interactiveDismissDisabled()
         }

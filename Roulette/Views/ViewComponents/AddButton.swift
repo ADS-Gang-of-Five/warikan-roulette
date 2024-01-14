@@ -17,14 +17,14 @@ struct AddButton: View {
     }
 
     var body: some View {
-        Button(action: {}, label: {
+        Button(action: action) {
             Image(systemName: "plus.circle.fill")
                 .resizable()
                 .frame(width: diameter, height: diameter)
                 .foregroundStyle(.blue)
                 .background(.white)
                 .clipShape(Circle())
-        })
+        }
     }
 }
 

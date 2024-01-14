@@ -14,7 +14,7 @@ struct TatekaeListView: View {
     @State private var focusedTatekaeForTatekaeDetailView: Tatekae?
 
     var body: some View {
-        Group {
+        VStack {
             switch mainViewModel.selectedGroupTatekaes {
             case .none:
                 Text("エラーが発生しました。前の画面に一度戻り再度お試しください。")

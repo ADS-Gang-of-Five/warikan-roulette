@@ -45,7 +45,7 @@ struct TatekaeListView: View {
                 NavigationLink("清算", value: Path.confirmView)
             }
         }
-        .navigationTitle("groupName")
+        .navigationTitle(mainViewModel.selectedGroup?.name ?? "no Title")
     }
 }
 

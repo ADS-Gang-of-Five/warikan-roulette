@@ -32,11 +32,16 @@ struct SeisanResultView: View {
             }
             // アンラッキーメンバーセクション
             Section {
-                if case .success = mainViewModel.selectedGroupSeisanResponse {
+                switch mainViewModel.selectedGroupSeisanResponse {
+                case .needsUnluckyMember:
+                    Text("アンラッキーメンバー名をここに記載")
+                        .padding(.top, 3)
+                case .success:
                     Text("なし")
                         .padding(.top, 3)
-                } else {
-                    Text("アンラッキーメンバー名をここに記載")
+                case .none:
+                    Text("読み込みエラー")
+                        .padding(.top, 3)
                 }
             } header: {
                 Text("アンラッキーメンバー")

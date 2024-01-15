@@ -128,4 +128,19 @@ final class MainViewModel: ObservableObject {
             print(#function, error)
         }
     }
+
+    // 現在のselectedGroupTatekaesを基にSeisanResponseを取得する
+    func getSeisanResponse() async {
+        do {
+            let memberRepository = MemberRepository(userDefaultsKey: "member")
+            let seisanCaluculator = SeisanCalculator(memberRepository: memberRepository)
+            guard let tatekaeList = selectedGroupTatekaes else {
+                print("selectedGroupTatekaesがnilです。")
+                return
+            }
+            try await selectedGroupSeisanResponse = seisanCaluculator.seisan(tatekaeList: tatekaeList)
+        } catch {
+            print(#function, error)
+        }
+    }
 }

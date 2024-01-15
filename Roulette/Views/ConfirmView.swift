@@ -75,7 +75,7 @@ struct ConfirmView: View {
                     .clipShape(Capsule())
                     .padding(.top)
             case .none:
-                Text("エラー")
+                Text("計算中...")
             }
         } else {
             Text("エラーが発生しました。前の画面に一度戻り再度お試しください。")

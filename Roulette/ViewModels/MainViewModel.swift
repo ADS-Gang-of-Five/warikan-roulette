@@ -17,6 +17,7 @@ final class MainViewModel: ObservableObject {
     @Published var selectedGroup: WarikanGroup?
     @Published var selectedGroupMembers: [Member]?
     @Published var selectedGroupTatekaes: [Tatekae]?
+    @Published var selectedGroupSeisanResponse: SeisanCalculator.SeisanResponse?
 
     // ユースケース
     private let warikanGroupUseCase: WarikanGroupUsecase

@@ -44,10 +44,11 @@ struct SeisanResultView: View {
         .listStyle(.plain)
         .font(.title3)
         .padding(.top)
-        Button("トップに戻る") {
-            viewRouter.path.removeLast(viewRouter.path.count)
+        .overlay(alignment: .bottom) {
+            Button("トップに戻る") {
+                viewRouter.path.removeLast(viewRouter.path.count)
+            }
         }
-        .padding(.top)
     }
 }
 

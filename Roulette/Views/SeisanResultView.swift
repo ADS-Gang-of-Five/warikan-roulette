@@ -33,8 +33,16 @@ struct SeisanResultView: View {
                 Text("立替一覧")
             }
             Section {
-                Text("10,000円")
-                    .padding(.top, 3)
+                if let tatekaes = mainViewModel.selectedGroupTatekaes {
+                    let sum = tatekaes.reduce(0) { partialResult, tatekae in
+                        partialResult + tatekae.money
+                    }
+                    Text("\(sum)円")
+                        .padding(.top, 3)
+                } else {
+                    Text("???円")
+                        .padding(.top, 3)
+                }
             } header: {
                 Text("合計金額")
             }

@@ -48,14 +48,15 @@ struct SeisanResultView: View {
             }
             // 合計金額セクション
             Section {
-                if let tatekaes = mainViewModel.selectedGroupTatekaes {
+                switch mainViewModel.selectedGroupTatekaes {
+                case .some(let tatekaes):
                     let sum = tatekaes.reduce(0) { partialResult, tatekae in
                         partialResult + tatekae.money
                     }
                     Text("\(sum)円")
                         .padding(.top, 3)
-                } else {
-                    Text("???円")
+                case .none:
+                    Text("読み込みエラー")
                         .padding(.top, 3)
                 }
             } header: {

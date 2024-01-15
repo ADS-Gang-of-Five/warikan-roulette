@@ -79,7 +79,7 @@ struct SeisanResultView: View {
                     }
                 // その他
                 case .none:
-                    Text("Error")
+                    Text("読み込みエラー")
                 }
             } header: {
                 Text("精算結果")

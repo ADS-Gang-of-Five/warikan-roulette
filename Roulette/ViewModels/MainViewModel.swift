@@ -17,6 +17,7 @@ final class MainViewModel: ObservableObject {
     @Published var selectedGroup: WarikanGroup?
     @Published var selectedGroupMembers: [Member]?
     @Published var selectedGroupTatekaes: [Tatekae]?
+    @Published var selectedGroupSeisanResponse: SeisanCalculator.SeisanResponse?
 
     // ユースケース
     private let warikanGroupUseCase: WarikanGroupUsecase
@@ -123,6 +124,21 @@ final class MainViewModel: ObservableObject {
             selectedGroup = warikanGroup
             selectedGroupMembers = try await memberUsecase.get(ids: warikanGroup.members)
             selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: warikanGroup.id)
+        } catch {
+            print(#function, error)
+        }
+    }
+
+    // 現在のselectedGroupTatekaesを基にSeisanResponseを取得する
+    func getSeisanResponse() async {
+        do {
+            let memberRepository = MemberRepository(userDefaultsKey: "member")
+            let seisanCaluculator = SeisanCalculator(memberRepository: memberRepository)
+            guard let tatekaeList = selectedGroupTatekaes else {
+                print("selectedGroupTatekaesがnilです。")
+                return
+            }
+            try await selectedGroupSeisanResponse = seisanCaluculator.seisan(tatekaeList: tatekaeList)
         } catch {
             print(#function, error)
         }

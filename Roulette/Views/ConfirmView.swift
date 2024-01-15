@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConfirmView: View {
+    @EnvironmentObject private var mainViewModel: MainViewModel
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Gang of Five")
@@ -67,4 +69,5 @@ struct ConfirmView: View {
 
 #Preview {
     ConfirmView()
+        .environmentObject(MainViewModel())
 }

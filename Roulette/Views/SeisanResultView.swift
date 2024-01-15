@@ -10,7 +10,7 @@ import SwiftUI
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
     @EnvironmentObject private var mainViewModel: MainViewModel
-
+    
     var body: some View {
         List {
             Section {
@@ -33,6 +33,16 @@ struct SeisanResultView: View {
                 Text("立替一覧")
             }
             Section {
+                if case .success = mainViewModel.selectedGroupSeisanResponse {
+                    Text("なし")
+                        .padding(.top, 3)
+                } else {
+                    Text("アンラッキーメンバー名をここに記載")
+                }
+            } header: {
+                Text("アンラッキーメンバー")
+            }
+            Section {
                 if let tatekaes = mainViewModel.selectedGroupTatekaes {
                     let sum = tatekaes.reduce(0) { partialResult, tatekae in
                         partialResult + tatekae.money
@@ -47,17 +57,22 @@ struct SeisanResultView: View {
                 Text("合計金額")
             }
             Section {
-                Text("Sako")
-                    .padding(.top, 3)
-            } header: {
-                Text("アンラッキーメンバー")
-            }
-            Section {
-                VStack(alignment: .leading) {
-                    Text("SeigetsuがSakoに3,300円渡す")
-                        .padding(.top, 3)
-                    Text("MakiがSakoに3,300円渡す")
-                        .padding(.top, 3)
+                switch mainViewModel.selectedGroupSeisanResponse {
+                // アンラッキーメンバーあり
+                case .needsUnluckyMember:
+                    Text("アンラッキーメンバーがいる場合の記述")
+                // アンラッキーメンバーなし & 精算なし
+                case .success(let seisanDataList) where seisanDataList.isEmpty:
+                    Text("精算なし")
+                // アンラッキーメンバーなし & 精算あり
+                case .success(let seisanDataList):
+                    ForEach(seisanDataList.indices, id: \.self) { index in
+                        let seisanData = seisanDataList[index]
+                        Text("\(seisanData.debtor.name)が\(seisanData.creditor.name)に\(seisanData.money)円渡す")
+                    }
+                // その他
+                case .none:
+                    Text("Error")
                 }
             } header: {
                 Text("精算結果")

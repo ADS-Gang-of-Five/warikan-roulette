@@ -80,7 +80,6 @@ struct ConfirmView: View {
             }
             .padding(.horizontal, 50)
             .task {
-                print("task")
                 await mainViewModel.getSeisanResponse()
             }
         } else {

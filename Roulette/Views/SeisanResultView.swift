@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
-    
+    @EnvironmentObject private var mainViewModel: MainViewModel
+
     var body: some View {
         List {
             Section {
@@ -54,4 +55,5 @@ struct SeisanResultView: View {
 #Preview {
     SeisanResultView()
         .environmentObject(ViewRouter())
+        .environmentObject(MainViewModel())
 }

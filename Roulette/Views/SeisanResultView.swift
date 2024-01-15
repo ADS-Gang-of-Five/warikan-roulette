@@ -14,8 +14,21 @@ struct SeisanResultView: View {
     var body: some View {
         List {
             Section {
-                Text("朝食、昼食、夕食")
+                if let tatekaes = mainViewModel.selectedGroupTatekaes {
+                    HStack {
+                        ForEach(tatekaes) { tatekae in
+                            Text(tatekae.name)
+                        }
+                    }
                     .padding(.top, 3)
+                } else {
+                    HStack {
+                        Text("???")
+                        Text("???")
+                        Text("???")
+                    }
+                    .padding(.top, 3)
+                }
             } header: {
                 Text("立替一覧")
             }

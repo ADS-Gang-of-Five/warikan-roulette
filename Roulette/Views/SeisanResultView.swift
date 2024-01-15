@@ -13,6 +13,7 @@ struct SeisanResultView: View {
     
     var body: some View {
         List {
+            // 立替セクション
             Section {
                 if let tatekaes = mainViewModel.selectedGroupTatekaes {
                     HStack {
@@ -32,6 +33,7 @@ struct SeisanResultView: View {
             } header: {
                 Text("立替一覧")
             }
+            // アンラッキーメンバーセクション
             Section {
                 if case .success = mainViewModel.selectedGroupSeisanResponse {
                     Text("なし")
@@ -42,6 +44,7 @@ struct SeisanResultView: View {
             } header: {
                 Text("アンラッキーメンバー")
             }
+            // 合計金額セクション
             Section {
                 if let tatekaes = mainViewModel.selectedGroupTatekaes {
                     let sum = tatekaes.reduce(0) { partialResult, tatekae in
@@ -56,6 +59,7 @@ struct SeisanResultView: View {
             } header: {
                 Text("合計金額")
             }
+            // 精算結果セクション
             Section {
                 switch mainViewModel.selectedGroupSeisanResponse {
                 // アンラッキーメンバーあり

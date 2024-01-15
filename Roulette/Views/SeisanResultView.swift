@@ -15,20 +15,17 @@ struct SeisanResultView: View {
         List {
             // 立替セクション
             Section {
-                if let tatekaes = mainViewModel.selectedGroupTatekaes {
+                switch mainViewModel.selectedGroupTatekaes {
+                case .some(let tatekaes):
                     HStack {
                         ForEach(tatekaes) { tatekae in
                             Text(tatekae.name)
                         }
                     }
                     .padding(.top, 3)
-                } else {
-                    HStack {
-                        Text("???")
-                        Text("???")
-                        Text("???")
-                    }
-                    .padding(.top, 3)
+                case .none:
+                    Text("読み込みエラー")
+                        .padding(.top, 3)
                 }
             } header: {
                 Text("立替一覧")

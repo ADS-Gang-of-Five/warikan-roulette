@@ -86,6 +86,7 @@ struct SeisanResultView: View {
             }
         }
         .listStyle(.plain)
+        .navigationBarBackButtonHidden(true)
         .font(.title3)
         .padding(.top)
         .overlay(alignment: .bottom) {

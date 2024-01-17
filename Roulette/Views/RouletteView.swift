@@ -12,6 +12,7 @@ struct RouletteView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var angle = Angle(degrees: 0.0)
     @State private var isRotetion = false
+    @State private var isRouletteBottanTap = false
     
     var body: some View {
         if let members = mainViewModel.selectedGroupMembers {
@@ -43,16 +44,19 @@ struct RouletteView: View {
                         .frame(width: 300, height: 300)
                         .padding(.top, 3)
                 Button {
+                    guard !isRouletteBottanTap else { return }
+                    isRouletteBottanTap = true
                     let randomMember = members.randomElement()!
                     stopAtMember(named: randomMember.name)
                 } label: {
                     Text("Start")
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.gray)
+                .tint(isRouletteBottanTap ? .gray : .blue)
                 .padding(.top)
                 NavigationLink("Next", value: Path.rouletteResultView)
                     .buttonStyle(.borderedProminent)
+                    .tint(isRouletteBottanTap ? .blue : .gray)
                     .padding(.top)
             }
             } else {

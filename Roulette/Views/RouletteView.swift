@@ -11,24 +11,6 @@ import Charts
 // TODO: ルーレットが回った後に、backできない使用に変更する。
 struct RouletteView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
-//    private var members = [
-//        (name: "A", count: 100),
-//        (name: "B", count: 100),
-//        (name: "C", count: 100),
-//        (name: "D", count: 100),
-//        (name: "E", count: 100),
-//        (name: "F", count: 100),
-//        (name: "G", count: 100)
-//    ]
-    private var members = [
-        "りんご",
-        "もも",
-        "みかん",
-        "ぶどう",
-        "メロン",
-        "スイカ",
-        "ブルーベリー"
-    ]
     @State private var angle = Angle(degrees: 0.0)
     @State private var isRotetion = false
     

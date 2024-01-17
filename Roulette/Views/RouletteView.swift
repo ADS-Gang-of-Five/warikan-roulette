@@ -43,7 +43,8 @@ struct RouletteView: View {
                         .frame(width: 300, height: 300)
                         .padding(.top, 3)
                 Button {
-                    stopAtMember(named: "りんご")
+                    let randomMember = members.randomElement()!
+                    stopAtMember(named: randomMember.name)
                 } label: {
                     Text("Start")
                 }
@@ -54,17 +55,17 @@ struct RouletteView: View {
                     .buttonStyle(.borderedProminent)
                     .padding(.top)
             }
-//        } else {
-//            Text("前の画面へ戻り再度試してみてください")
-//        }
+            } else {
+                Text("メンバーが登録されていません。")
+            }
     }
     
     private func stopAtMember(named name: String) {
-        guard let selectedMemberIndex = members.firstIndex(of: name) else { return }
+        guard let members = mainViewModel.selectedGroupMembers else { return }
+        guard let selectedMemberIndex = members.firstIndex(where: { $0.name == name }) else { return }
         let degreesPerMember = 360.0 / Double(members.count)
         let halfSector = degreesPerMember / 2.0
         let targetDegrees = degreesPerMember * Double(selectedMemberIndex) + halfSector
-        
         isRotetion = true
         angle = .zero
         withAnimation(.spring(duration: 10)) {

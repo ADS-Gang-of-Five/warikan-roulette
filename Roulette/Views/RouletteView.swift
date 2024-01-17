@@ -21,47 +21,49 @@ struct RouletteView: View {
                     .rotationEffect(Angle(degrees: 180.0))
                     .foregroundStyle(.red)
                     .scaleEffect(1.3)
-                        Chart {
-                            ForEach(members, id: \.id) { member in
-                                SectorMark(
-                                    angle: .value("", 360.0),
-                                    innerRadius: MarkDimension.ratio(0.5),
-                                    angularInset: 1
-                                )
-                                .cornerRadius(1)
-                                .foregroundStyle(by: .value("", member.name))
-                                .annotation(position: .overlay) {
-                                    Text(member.name)
-                                        .font(.headline)
-                                        .foregroundStyle(.white)
-                                        .rotationEffect(-angle)
-                                }
-                            }
+                Chart {
+                    ForEach(members, id: \.id) { member in
+                        SectorMark(
+                            angle: .value("", 360.0),
+                            innerRadius: MarkDimension.ratio(0.5),
+                            angularInset: 1
+                        )
+                        .cornerRadius(1)
+                        .foregroundStyle(by: .value("", member.name))
+                        .annotation(position: .overlay) {
+                            Text(member.name)
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .rotationEffect(-angle)
                         }
-                        .chartLegend(.hidden)
-                        .navigationBarBackButtonHidden(true)
-                        .rotationEffect(angle)
-                        .frame(width: 300, height: 300)
-                        .padding(.top, 3)
-                Button {
-                    guard !isRouletteBottanTap else { return }
-                    isRouletteBottanTap = true
-                    let randomMember = members.randomElement()!
-                    stopAtMember(named: randomMember.name)
-                } label: {
-                    Text("Start")
+                    }
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(isRouletteBottanTap ? .gray : .blue)
-                .padding(.top)
-                NavigationLink("Next", value: Path.rouletteResultView)
+                .chartLegend(.hidden)
+                .navigationBarBackButtonHidden(isRouletteBottanTap)
+                .rotationEffect(angle)
+                .frame(width: 300, height: 300)
+                .padding(.top, 3)
+                if !isRouletteBottanTap {
+                    Button {
+                        isRouletteBottanTap = true
+                        let randomMember = members.randomElement()!
+                        stopAtMember(named: randomMember.name)
+                    } label: {
+                        Text("Start")
+                    }
                     .buttonStyle(.borderedProminent)
-                    .tint(isRouletteBottanTap ? .blue : .gray)
+                    .tint(isRouletteBottanTap ? .gray : .blue)
                     .padding(.top)
+                } else {
+                    NavigationLink("Next", value: Path.rouletteResultView)
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue)
+                        .padding(.top)
+                }
             }
-            } else {
-                Text("メンバーが登録されていません。")
-            }
+        } else {
+            Text("メンバーが登録されていません。")
+        }
     }
     
     private func stopAtMember(named name: String) {

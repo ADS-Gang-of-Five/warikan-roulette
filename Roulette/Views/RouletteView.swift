@@ -46,7 +46,7 @@ struct RouletteView: View {
                     Button {
                         isRouletteBottanTap = true
                         let randomMember = members.randomElement()!
-                        stopAtMember(named: randomMember.name)
+                        stopAtMember(id: randomMember.name)
                     } label: {
                         Text("Start")
                     }
@@ -65,9 +65,9 @@ struct RouletteView: View {
         }
     }
     
-    private func stopAtMember(named name: String) {
+    private func stopAtMember(id: String) {
         guard let members = mainViewModel.selectedGroupMembers else { return }
-        guard let selectedMemberIndex = members.firstIndex(where: { $0.name == name }) else { return }
+        guard let selectedMemberIndex = members.firstIndex(where: { $0.name == id }) else { return }
         let degreesPerMember = 360.0 / Double(members.count)
         let halfSector = degreesPerMember / 2.0
         let targetDegrees = degreesPerMember * Double(selectedMemberIndex) + halfSector

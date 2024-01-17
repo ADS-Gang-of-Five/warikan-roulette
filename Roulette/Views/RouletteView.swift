@@ -8,7 +8,6 @@
 import SwiftUI
 import Charts
 
-// TODO: ルーレットが回った後に、backできない使用に変更する。
 struct RouletteView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var angle = Angle(degrees: 0.0)

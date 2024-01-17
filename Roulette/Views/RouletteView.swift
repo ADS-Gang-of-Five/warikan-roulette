@@ -15,33 +15,33 @@ struct RouletteView: View {
     @State private var isRotetion = false
     
     var body: some View {
-//        if let warikanGroup = mainViewModel.selectedGroup {
+        if let members = mainViewModel.selectedGroupMembers {
             VStack {
                 Image(systemName: "triangleshape.fill")
                     .rotationEffect(Angle(degrees: 180.0))
                     .foregroundStyle(.red)
                     .scaleEffect(1.3)
-                Chart {
-                    ForEach(members, id: \.self) { member in
-                        SectorMark(
-                            angle: .value("", 360.0),
-                            innerRadius: MarkDimension.ratio(0.5),
-                            angularInset: 1
-                        )
-                        .cornerRadius(1)
-                        .foregroundStyle(by: .value("", member))
-                        .annotation(position: .overlay) {
-                            Text(member)
-                                .font(.headline)
-                                .foregroundStyle(.white)
-                                .rotationEffect(-angle)
+                        Chart {
+                            ForEach(members, id: \.id) { member in
+                                SectorMark(
+                                    angle: .value("", 360.0),
+                                    innerRadius: MarkDimension.ratio(0.5),
+                                    angularInset: 1
+                                )
+                                .cornerRadius(1)
+                                .foregroundStyle(by: .value("", member.name))
+                                .annotation(position: .overlay) {
+                                    Text(member.name)
+                                        .font(.headline)
+                                        .foregroundStyle(.white)
+                                        .rotationEffect(-angle)
+                                }
+                            }
                         }
-                    }
-                }
-                .chartLegend(.hidden)
-                .rotationEffect(angle)
-                .frame(width: 300, height: 300)
-                .padding(.top, 3)
+                        .chartLegend(.hidden)
+                        .rotationEffect(angle)
+                        .frame(width: 300, height: 300)
+                        .padding(.top, 3)
                 Button {
                     stopAtMember(named: "りんご")
                 } label: {

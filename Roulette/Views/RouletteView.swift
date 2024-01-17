@@ -11,7 +11,6 @@ import Charts
 struct RouletteView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     @State private var angle = Angle(degrees: 0.0)
-    @State private var isRotetion = false
     @State private var isRouletteBottanTap = false
     
     var body: some View {
@@ -72,7 +71,6 @@ struct RouletteView: View {
         let degreesPerMember = 360.0 / Double(members.count)
         let halfSector = degreesPerMember / 2.0
         let targetDegrees = degreesPerMember * Double(selectedMemberIndex) + halfSector
-        isRotetion = true
         angle = .zero
         withAnimation(.spring(duration: 10)) {
             let extraRotation = 360.0 * 5

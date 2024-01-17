@@ -39,6 +39,7 @@ struct RouletteView: View {
                             }
                         }
                         .chartLegend(.hidden)
+                        .navigationBarBackButtonHidden(true)
                         .rotationEffect(angle)
                         .frame(width: 300, height: 300)
                         .padding(.top, 3)

@@ -9,33 +9,77 @@ import SwiftUI
 
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
-    
+    @EnvironmentObject private var mainViewModel: MainViewModel
+
     var body: some View {
         List {
+            // 立替セクション
             Section {
-                Text("朝食、昼食、夕食")
+                switch mainViewModel.selectedGroupTatekaes {
+                case .some(let tatekaes):
+                    HStack {
+                        ForEach(tatekaes) { tatekae in
+                            Text(tatekae.name)
+                        }
+                    }
                     .padding(.top, 3)
+                case .none:
+                    Text("読み込みエラー")
+                        .padding(.top, 3)
+                }
             } header: {
                 Text("立替一覧")
             }
+            // アンラッキーメンバーセクション
             Section {
-                Text("10,000円")
-                    .padding(.top, 3)
-            } header: {
-                Text("合計金額")
-            }
-            Section {
-                Text("Sako")
-                    .padding(.top, 3)
+                switch mainViewModel.selectedGroupSeisanResponse {
+                case .needsUnluckyMember:
+                    Text("アンラッキーメンバー名をここに記載")
+                        .padding(.top, 3)
+                case .success:
+                    Text("なし")
+                        .padding(.top, 3)
+                case .none:
+                    Text("読み込みエラー")
+                        .padding(.top, 3)
+                }
             } header: {
                 Text("アンラッキーメンバー")
             }
+            // 合計金額セクション
             Section {
-                VStack(alignment: .leading) {
-                    Text("SeigetsuがSakoに3,300円渡す")
+                switch mainViewModel.selectedGroupTatekaes {
+                case .some(let tatekaes):
+                    let sum = tatekaes.reduce(0) { partialResult, tatekae in
+                        partialResult + tatekae.money
+                    }
+                    Text("\(sum)円")
                         .padding(.top, 3)
-                    Text("MakiがSakoに3,300円渡す")
+                case .none:
+                    Text("読み込みエラー")
                         .padding(.top, 3)
+                }
+            } header: {
+                Text("合計金額")
+            }
+            // 精算結果セクション
+            Section {
+                switch mainViewModel.selectedGroupSeisanResponse {
+                // アンラッキーメンバーあり
+                case .needsUnluckyMember:
+                    Text("アンラッキーメンバーがいる場合の記述")
+                // アンラッキーメンバーなし & 精算なし
+                case .success(let seisanDataList) where seisanDataList.isEmpty:
+                    Text("精算なし")
+                // アンラッキーメンバーなし & 精算あり
+                case .success(let seisanDataList):
+                    ForEach(seisanDataList.indices, id: \.self) { index in
+                        let seisanData = seisanDataList[index]
+                        Text("\(seisanData.debtor.name)が\(seisanData.creditor.name)に\(seisanData.money)円渡す")
+                    }
+                // その他
+                case .none:
+                    Text("読み込みエラー")
                 }
             } header: {
                 Text("精算結果")
@@ -54,4 +98,5 @@ struct SeisanResultView: View {
 #Preview {
     SeisanResultView()
         .environmentObject(ViewRouter())
+        .environmentObject(MainViewModel())
 }

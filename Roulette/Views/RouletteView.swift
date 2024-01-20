@@ -48,21 +48,15 @@ struct RouletteView: View {
                         isRouletteBottanTap = true
                         let randomMember = members.randomElement()!
                         stopAtMember(id: randomMember.id)
-//                        mainViewModel.unluckyMember = randomMember.id
                         Task {
                             switch response {
                             case .needsUnluckyMember(let seisanContext):
-                                print("---------------------")
-                                print("アンラッキーメンバーが必要")
                                 let seisanList = try await mainViewModel.seisanCalculator.seisan(
                                     context: seisanContext,
                                     unluckyMember: randomMember.id
                                 )
                                 mainViewModel.selectedGroupSeisanList = seisanList
-                                print("----------dump-----------")
-                                dump(seisanList)
-                            case .success(let array):
-                                print("アンラッキーメンバー不要")
+                            case .success(_): break
                             }
                         }
                     } label: {

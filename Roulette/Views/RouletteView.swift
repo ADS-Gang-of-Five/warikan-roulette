@@ -21,7 +21,7 @@ struct RouletteView: View {
                     .foregroundStyle(.red)
                     .scaleEffect(1.3)
                 Chart {
-                    ForEach(members, id: \.id) { member in
+                    ForEach(members) { member in
                         SectorMark(
                             angle: .value("", 360.0),
                             innerRadius: MarkDimension.ratio(0.5),

@@ -14,8 +14,7 @@ struct RouletteView: View {
     @State private var isRouletteBottanTap = false
     
     var body: some View {
-        if let members = mainViewModel.selectedGroupMembers,
-            let response = mainViewModel.selectedGroupSeisanResponse {
+        if let members = mainViewModel.selectedGroupMembers {
             VStack {
                 Image(systemName: "triangleshape.fill")
                     .rotationEffect(Angle(degrees: 180.0))
@@ -46,19 +45,9 @@ struct RouletteView: View {
                 if !isRouletteBottanTap {
                     Button {
                         isRouletteBottanTap = true
-                        let randomMember = members.randomElement()!
-                        stopAtMember(id: randomMember.id)
-                        Task {
-                            switch response {
-                            case .needsUnluckyMember(let seisanContext):
-                                let seisanList = try await mainViewModel.seisanCalculator.seisan(
-                                    context: seisanContext,
-                                    unluckyMember: randomMember.id
-                                )
-                                mainViewModel.selectedGroupSeisanList = seisanList
-                            case .success(_): break
-                            }
-                        }
+                        let unluckyMember = members.randomElement()!
+                        stopAtMember(id: unluckyMember.id)
+                        mainViewModel.unluckyMember = unluckyMember.id
                     } label: {
                         Text("Start")
                     }

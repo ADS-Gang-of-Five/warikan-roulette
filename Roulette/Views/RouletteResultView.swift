@@ -59,4 +59,5 @@ private struct MyButton: View {
 
 #Preview {
     RouletteResultView()
+        .environmentObject(MainViewModel())
 }

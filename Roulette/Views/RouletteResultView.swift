@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct RouletteResultView: View {
+    @EnvironmentObject private var mainViewModel: MainViewModel
+    @State private var unluckyMenber: Member?
+    
     var body: some View {
-        VStack(spacing: 10) {
-            Group {
-                Text("今回のアンラッキーメンバーは")
-                Text("Sakoさんに決定！")
-            }
-            .font(.title)
-            .fontWeight(.bold)
-            NavigationLink("OK", value: Path.seisanResultView)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 50)
-                .font(.title2)
+        if let unluckyMemberID = mainViewModel.unluckyMember {
+            VStack(spacing: 10) {
+                Group {
+                    Text("今回のアンラッキーメンバーは")
+                    if let unluckyMenber = unluckyMenber {
+                        Text("\(unluckyMenber.name)さんに決定！")
+                    } else {
+                        Text("適切にアンラッキーメンバーが読み込まれませんでした。")
+                    }
+                }
+                .font(.title)
                 .fontWeight(.bold)
-                .foregroundStyle(.white)
-                .background(.blue)
-                .clipShape(Capsule(), style: FillStyle())
-                .padding(.top)
+                NavigationLink("OK", value: Path.seisanResultView)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 50)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                    .background(.blue)
+                    .clipShape(Capsule(), style: FillStyle())
+                    .padding(.top)
+            }
+            .task {
+                await unluckyMenber = mainViewModel.getMember(id: unluckyMemberID)
+            }
         }
     }
 }

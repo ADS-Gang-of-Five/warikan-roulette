@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ArchiveView: View {
     let groups: [String]
-    
     init(groups: [String] = ["Gang of Five", "ひなっこクラブ", "アプリ道場サロン"]) {
         self.groups = groups
     }
+    
+    @StateObject private var archiveViewModel = ArchiveViewModel()
     
     var body: some View {
         NavigationStack {

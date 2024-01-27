@@ -18,7 +18,7 @@ final class MainViewModel: ObservableObject {
     @Published var selectedGroupMembers: [Member]?
     @Published var selectedGroupTatekaes: [Tatekae]?
     @Published var selectedGroupSeisanResponse: SeisanCalculator.SeisanResponse?
-    @Published var unluckyMember: Member.ID?
+    var unluckyMember: Member?
 
     // ユースケース
     private let warikanGroupUseCase: WarikanGroupUsecase
@@ -157,7 +157,11 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    func archiveWarikanGroup(id: EntityID<WarikanGroup>, seisanList: [SeisanData], unluckyMember: Member.ID) async {
+    func archiveWarikanGroup(
+        id: EntityID<WarikanGroup>,
+        seisanList: [SeisanData],
+        unluckyMember: EntityID<Member>?
+    ) async {
         do {
             _ = try await warikanGroupArchiveController.archive(
                 id: id,

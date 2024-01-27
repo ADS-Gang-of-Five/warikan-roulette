@@ -15,9 +15,10 @@ struct RouletteView: View {
     
     var body: some View {
         if let members = mainViewModel.selectedGroupMembers,
-           let selectedGroup = mainViewModel.selectedGroup,
-           let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse,
-            let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse {
+           let selectedGroup = mainViewModel.selectedGroup
+//           let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse,
+//            let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse 
+        {
             VStack {
                 Image(systemName: "triangleshape.fill")
                     .rotationEffect(Angle(degrees: 180.0))
@@ -50,8 +51,7 @@ struct RouletteView: View {
                         isRouletteBottanTap = true
                         let unluckyMember = members.randomElement()!
                         stopAtMember(id: unluckyMember.id)
-                        mainViewModel.unluckyMember = unluckyMember.id
-                        
+                        mainViewModel.unluckyMember = unluckyMember
                         Task {
                             switch mainViewModel.selectedGroupSeisanResponse {
                             case .needsUnluckyMember(let seisanContext):
@@ -64,14 +64,9 @@ struct RouletteView: View {
                                     seisanList: seisanList,
                                     unluckyMember: unluckyMember.id
                                 )
-                            case .success(let array):
-                                _ = await mainViewModel.archiveWarikanGroup(
-                                    id: selectedGroup.id,
-                                    seisanList: array,
-                                    unluckyMember: unluckyMember.id
-                                )
-                            case .none: 
-                                print("何を出力したらいいの？")
+                            case .success:
+                                print(".successは前のViewで作成")
+                            case .none:
                                 break
                             }
                         }

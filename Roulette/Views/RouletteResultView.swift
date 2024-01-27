@@ -9,14 +9,13 @@ import SwiftUI
 
 struct RouletteResultView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
-    @State private var unluckyMenber: Member?
     
     var body: some View {
         if let unluckyMemberID = mainViewModel.unluckyMember {
             VStack(spacing: 10) {
                 Group {
                     Text("今回のアンラッキーメンバーは")
-                    if let unluckyMenber = unluckyMenber {
+                    if let unluckyMenber = mainViewModel.unluckyMember {
                         Text("\(unluckyMenber.name)さんに決定！")
                     } else {
                         Text("適切にアンラッキーメンバーが読み込まれませんでした。")
@@ -33,9 +32,6 @@ struct RouletteResultView: View {
                     .background(.blue)
                     .clipShape(Capsule(), style: FillStyle())
                     .padding(.top)
-            }
-            .task {
-                await unluckyMenber = mainViewModel.getMember(id: unluckyMemberID)
             }
         }
     }

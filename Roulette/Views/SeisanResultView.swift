@@ -10,88 +10,97 @@ import SwiftUI
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
     @EnvironmentObject private var mainViewModel: MainViewModel
+    @State private var unluckyMember: Member?
 
     var body: some View {
-        List {
-            // 立替セクション
-            Section {
-                switch mainViewModel.selectedGroupTatekaes {
-                case .some(let tatekaes):
-                    HStack {
-                        ForEach(tatekaes) { tatekae in
-                            Text(tatekae.name)
+        if let unluckyMemberID = mainViewModel.unluckyMember{
+            List {
+                // 立替セクション
+                Section {
+                    switch mainViewModel.selectedGroupTatekaes {
+                    case .some(let tatekaes):
+                        HStack {
+                            ForEach(tatekaes) { tatekae in
+                                Text(tatekae.name)
+                            }
                         }
+                        .padding(.top, 3)
+                    case .none:
+                        Text("読み込みエラー")
+                            .padding(.top, 3)
                     }
-                    .padding(.top, 3)
-                case .none:
-                    Text("読み込みエラー")
-                        .padding(.top, 3)
+                } header: {
+                    Text("立替一覧")
                 }
-            } header: {
-                Text("立替一覧")
-            }
-            // アンラッキーメンバーセクション
-            Section {
-                switch mainViewModel.selectedGroupSeisanResponse {
-                case .needsUnluckyMember:
-                    Text("アンラッキーメンバー名をここに記載")
-                        .padding(.top, 3)
-                case .success:
-                    Text("なし")
-                        .padding(.top, 3)
-                case .none:
-                    Text("読み込みエラー")
-                        .padding(.top, 3)
-                }
-            } header: {
-                Text("アンラッキーメンバー")
-            }
-            // 合計金額セクション
-            Section {
-                switch mainViewModel.selectedGroupTatekaes {
-                case .some(let tatekaes):
-                    let sum = tatekaes.reduce(0) { partialResult, tatekae in
-                        partialResult + tatekae.money
+                // アンラッキーメンバーセクション
+                Section {
+                    switch mainViewModel.selectedGroupSeisanResponse {
+                    case .needsUnluckyMember:
+                        if let unluckyMember = unluckyMember {
+                            Text("\(unluckyMember.name)")
+                        } else {
+                            Text("アンラッキーメンバーを読み込めませんでした")
+                        }
+                    case .success:
+                        Text("なし")
+                            .padding(.top, 3)
+                    case .none:
+                        Text("読み込みエラー")
+                            .padding(.top, 3)
                     }
-                    Text("\(sum)円")
-                        .padding(.top, 3)
-                case .none:
-                    Text("読み込みエラー")
-                        .padding(.top, 3)
+                } header: {
+                    Text("アンラッキーメンバー")
                 }
-            } header: {
-                Text("合計金額")
-            }
-            // 精算結果セクション
-            Section {
-                switch mainViewModel.selectedGroupSeisanResponse {
-                // アンラッキーメンバーあり
-                case .needsUnluckyMember:
-                    Text("アンラッキーメンバーがいる場合の記述")
-                // アンラッキーメンバーなし & 精算なし
-                case .success(let seisanDataList) where seisanDataList.isEmpty:
-                    Text("精算なし")
-                // アンラッキーメンバーなし & 精算あり
-                case .success(let seisanDataList):
-                    ForEach(seisanDataList.indices, id: \.self) { index in
-                        let seisanData = seisanDataList[index]
-                        Text("\(seisanData.debtor.name)が\(seisanData.creditor.name)に\(seisanData.money)円渡す")
+                // 合計金額セクション
+                Section {
+                    switch mainViewModel.selectedGroupTatekaes {
+                    case .some(let tatekaes):
+                        let sum = tatekaes.reduce(0) { partialResult, tatekae in
+                            partialResult + tatekae.money
+                        }
+                        Text("\(sum)円")
+                            .padding(.top, 3)
+                    case .none:
+                        Text("読み込みエラー")
+                            .padding(.top, 3)
                     }
-                // その他
-                case .none:
-                    Text("読み込みエラー")
+                } header: {
+                    Text("合計金額")
                 }
-            } header: {
-                Text("精算結果")
+                // 精算結果セクション
+                Section {
+                    switch mainViewModel.selectedGroupSeisanResponse {
+                        // アンラッキーメンバーあり
+                    case .needsUnluckyMember:
+                        Text("アンラッキーメンバーがいる場合の記述")
+                        // アンラッキーメンバーなし & 精算なし
+                    case .success(let seisanDataList) where seisanDataList.isEmpty:
+                        Text("精算なし")
+                        // アンラッキーメンバーなし & 精算あり
+                    case .success(let seisanDataList):
+                        ForEach(seisanDataList.indices, id: \.self) { index in
+                            let seisanData = seisanDataList[index]
+                            Text("\(seisanData.debtor.name)が\(seisanData.creditor.name)に\(seisanData.money)円渡す")
+                        }
+                        // その他
+                    case .none:
+                        Text("読み込みエラー")
+                    }
+                } header: {
+                    Text("精算結果")
+                }
             }
-        }
-        .listStyle(.plain)
-        .navigationBarBackButtonHidden(true)
-        .font(.title3)
-        .padding(.top)
-        .overlay(alignment: .bottom) {
-            Button("トップに戻る") {
-                viewRouter.path.removeLast(viewRouter.path.count)
+            .task {
+                unluckyMember = await mainViewModel.getMember(id: unluckyMemberID)
+            }
+            .listStyle(.plain)
+            .navigationBarBackButtonHidden(true)
+            .font(.title3)
+            .padding(.top)
+            .overlay(alignment: .bottom) {
+                Button("トップに戻る") {
+                    viewRouter.path.removeLast(viewRouter.path.count)
+                }
             }
         }
     }

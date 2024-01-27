@@ -14,7 +14,10 @@ struct RouletteView: View {
     @State private var isRouletteBottanTap = false
     
     var body: some View {
-        if let members = mainViewModel.selectedGroupMembers {
+        if let members = mainViewModel.selectedGroupMembers,
+           let selectedGroup = mainViewModel.selectedGroup,
+           let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse,
+            let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse {
             VStack {
                 Image(systemName: "triangleshape.fill")
                     .rotationEffect(Angle(degrees: 180.0))
@@ -48,6 +51,30 @@ struct RouletteView: View {
                         let unluckyMember = members.randomElement()!
                         stopAtMember(id: unluckyMember.id)
                         mainViewModel.unluckyMember = unluckyMember.id
+                        
+                        Task {
+                            switch mainViewModel.selectedGroupSeisanResponse {
+                            case .needsUnluckyMember(let seisanContext):
+                                let seisanList = try await mainViewModel.seisanCalculator.seisan(
+                                    context: seisanContext,
+                                    unluckyMember: unluckyMember.id
+                                )
+                                _ = await mainViewModel.archiveWarikanGroup(
+                                    id: selectedGroup.id,
+                                    seisanList: seisanList,
+                                    unluckyMember: unluckyMember.id
+                                )
+                            case .success(let array):
+                                _ = await mainViewModel.archiveWarikanGroup(
+                                    id: selectedGroup.id,
+                                    seisanList: array,
+                                    unluckyMember: unluckyMember.id
+                                )
+                            case .none: 
+                                print("何を出力したらいいの？")
+                                break
+                            }
+                        }
                     } label: {
                         Text("Start")
                     }

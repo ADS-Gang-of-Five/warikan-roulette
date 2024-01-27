@@ -24,11 +24,21 @@ final class MainViewModel: ObservableObject {
     private let warikanGroupUseCase: WarikanGroupUsecase
     private let memberUsecase: MemberUsecase
     private let tatekaeUsecase: TatekaeUsecase
+    private let warikanGroupArchiveController: WarikanGroupArchiveController
+    let seisanCalculator: SeisanCalculator
 
     init() {
         let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
         let memberRepository = MemberRepository(userDefaultsKey: "member")
         let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
+        let archivedWarikanGroupRepository = ArchivedWarikanGroupRepository(
+            userDefaultsKey: "archivedWarikanGroup"
+        )
+        let warikanGroupArchiveController =  WarikanGroupArchiveController(
+            warikanGroupRepository: warikanGroupRepository,
+            archivedWarikanGroupRepository: archivedWarikanGroupRepository
+        )
+        let seisanCalculator = SeisanCalculator(memberRepository: memberRepository)
 
         self.warikanGroupUseCase = WarikanGroupUsecase(
             warikanGroupRepository: warikanGroupRepository,
@@ -37,6 +47,8 @@ final class MainViewModel: ObservableObject {
         )
         self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
         self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
+        self.warikanGroupArchiveController = warikanGroupArchiveController
+        self.seisanCalculator = seisanCalculator
     }
 
     // 全ての割り勘グループを取得
@@ -140,6 +152,18 @@ final class MainViewModel: ObservableObject {
                 return
             }
             try await selectedGroupSeisanResponse = seisanCaluculator.seisan(tatekaeList: tatekaeList)
+        } catch {
+            print(#function, error)
+        }
+    }
+    
+    func archiveWarikanGroup(id: EntityID<WarikanGroup>, seisanList: [SeisanData], unluckyMember: Member.ID) async {
+        do {
+            _ = try await warikanGroupArchiveController.archive(
+                id: id,
+                seisanList: seisanList,
+                unluckyMember: unluckyMember
+            )
         } catch {
             print(#function, error)
         }

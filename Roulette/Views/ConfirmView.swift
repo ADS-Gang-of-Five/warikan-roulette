@@ -65,14 +65,14 @@ struct ConfirmView: View {
                         .background(.blue)
                         .clipShape(Capsule())
                         .padding(.top)
-                case .success(let array):
+                case .success(let seisanList):
                     Button(action: {
                         viewRouter.path.append(Path.seisanResultView)
                         #warning("archiveWarikanGroup関数のunluckyMemberがnilを許容することができるようになったら、コメントアウトを外す。Taskの最後にViewRouterにappendする処理を記述する")
 //                        Task {
 //                            _ = await mainViewModel.archiveWarikanGroup(
 //                                id: warikanGroup.id,
-//                                seisanList: array,
+//                                seisanList: seisanList,
 //                                unluckyMember: nil
 //                            )
 //                        }

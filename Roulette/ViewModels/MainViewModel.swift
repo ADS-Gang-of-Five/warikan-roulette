@@ -157,7 +157,11 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    func archiveWarikanGroup(id: EntityID<WarikanGroup>, seisanList: [SeisanData], unluckyMember: Member.ID) async {
+    func archiveWarikanGroup(
+        id: EntityID<WarikanGroup>,
+        seisanList: [SeisanData],
+        unluckyMember: EntityID<Member>?
+    ) async {
         do {
             _ = try await warikanGroupArchiveController.archive(
                 id: id,

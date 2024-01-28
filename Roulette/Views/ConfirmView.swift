@@ -68,13 +68,14 @@ struct ConfirmView: View {
                 case .success(let array):
                     Button(action: {
                         viewRouter.path.append(Path.seisanResultView)
-                        Task {
-                            _ = await mainViewModel.archiveWarikanGroup(
-                                id: warikanGroup.id,
-                                seisanList: array,
-                                unluckyMember: nil
-                            )
-                        }
+                        #warning("archiveWarikanGroup関数のunluckyMemberがnilを許容することができるようになったら、コメントアウトを外す。Taskの最後にViewRouterにappendする処理を記述する")
+//                        Task {
+//                            _ = await mainViewModel.archiveWarikanGroup(
+//                                id: warikanGroup.id,
+//                                seisanList: array,
+//                                unluckyMember: nil
+//                            )
+//                        }
                     }, label: {
                         Text("精算結果を見る")
                             .font(.title3)

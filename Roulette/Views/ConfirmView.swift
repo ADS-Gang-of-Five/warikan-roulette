@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ConfirmView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
-
+    @EnvironmentObject private var viewRouter: ViewRouter
+    
     var body: some View {
         if let warikanGroup = mainViewModel.selectedGroup,
            let members = mainViewModel.selectedGroupMembers,
@@ -64,16 +65,27 @@ struct ConfirmView: View {
                         .background(.blue)
                         .clipShape(Capsule())
                         .padding(.top)
-                case .success:
-                    NavigationLink("精算結果を見る", value: Path.seisanResultView)
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .background(.blue)
-                        .clipShape(Capsule())
-                        .padding(.top)
+                case .success(let array):
+                    Button(action: {
+                        viewRouter.path.append(Path.seisanResultView)
+                        Task {
+                            _ = await mainViewModel.archiveWarikanGroup(
+                                id: warikanGroup.id,
+                                seisanList: array,
+                                unluckyMember: nil
+                            )
+                        }
+                    }, label: {
+                        Text("精算結果を見る")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background(.blue)
+                            .clipShape(Capsule())
+                            .padding(.top)
+                    })
                 case .none:
                     Text("計算中...")
                 }
@@ -92,4 +104,5 @@ struct ConfirmView: View {
 #Preview {
     ConfirmView()
         .environmentObject(MainViewModel())
+        .environmentObject(ViewRouter())
 }

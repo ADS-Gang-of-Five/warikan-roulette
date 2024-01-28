@@ -9,18 +9,14 @@ import SwiftUI
 
 struct RouletteResultView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
-    @State private var unluckyMenber: Member?
     
     var body: some View {
-        if let unluckyMemberID = mainViewModel.unluckyMember {
+        if let unluckyMenber = mainViewModel.unluckyMember {
             VStack(spacing: 10) {
                 Group {
                     Text("今回のアンラッキーメンバーは")
-                    if let unluckyMenber = unluckyMenber {
-                        Text("\(unluckyMenber.name)さんに決定！")
-                    } else {
-                        Text("適切にアンラッキーメンバーが読み込まれませんでした。")
-                    }
+#warning("unluckyMenberのIDが削除されたらコメントアウトを削除")
+//                                        Text("\(unluckyMenber.name)さんに決定！")
                 }
                 .font(.title)
                 .fontWeight(.bold)
@@ -34,9 +30,9 @@ struct RouletteResultView: View {
                     .clipShape(Capsule(), style: FillStyle())
                     .padding(.top)
             }
-            .task {
-                await unluckyMenber = mainViewModel.getMember(id: unluckyMemberID)
-            }
+        } else {
+            //ルーレットを回したのに、アンラッキーメンバーがいないのはおかしい。
+         Text("予期せぬエラーが発生しました")
         }
     }
 }

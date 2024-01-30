@@ -28,27 +28,18 @@ final class MainViewModel: ObservableObject {
     let seisanCalculator: SeisanCalculator
 
     init() {
-        let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
-        let memberRepository = MemberRepository(userDefaultsKey: "member")
-        let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
-        let archivedWarikanGroupRepository = ArchivedWarikanGroupRepository(
-            userDefaultsKey: "archivedWarikanGroup"
-        )
-        let warikanGroupArchiveController =  WarikanGroupArchiveController(
-            warikanGroupRepository: warikanGroupRepository,
-            archivedWarikanGroupRepository: archivedWarikanGroupRepository
-        )
-        let seisanCalculator = SeisanCalculator(memberRepository: memberRepository)
-
         self.warikanGroupUseCase = WarikanGroupUsecase(
-            warikanGroupRepository: warikanGroupRepository,
-            memberRepository: memberRepository,
-            tatekaeRepository: tatekaeRepository
+            warikanGroupRepository: WarikanGroupRepository(),
+            memberRepository: MemberRepository(),
+            tatekaeRepository: TatekaeRepository()
         )
-        self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
-        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
-        self.warikanGroupArchiveController = warikanGroupArchiveController
-        self.seisanCalculator = seisanCalculator
+        self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
+        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
+        self.warikanGroupArchiveController = WarikanGroupArchiveController(
+            warikanGroupRepository: WarikanGroupRepository(),
+            archivedWarikanGroupRepository: ArchivedWarikanGroupRepository()
+        )
+        self.seisanCalculator = SeisanCalculator(memberRepository: MemberRepository())
     }
 
     // 全ての割り勘グループを取得
@@ -145,13 +136,11 @@ final class MainViewModel: ObservableObject {
     // 現在のselectedGroupTatekaesを基にSeisanResponseを取得する
     func getSeisanResponse() async {
         do {
-            let memberRepository = MemberRepository(userDefaultsKey: "member")
-            let seisanCaluculator = SeisanCalculator(memberRepository: memberRepository)
             guard let tatekaeList = selectedGroupTatekaes else {
                 print("selectedGroupTatekaesがnilです。")
                 return
             }
-            try await selectedGroupSeisanResponse = seisanCaluculator.seisan(tatekaeList: tatekaeList)
+            try await selectedGroupSeisanResponse = seisanCalculator.seisan(tatekaeList: tatekaeList)
         } catch {
             print(#function, error)
         }

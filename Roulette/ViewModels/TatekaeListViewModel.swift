@@ -15,15 +15,11 @@ import Foundation
      private let memberUsecase: MemberUsecase
  
      init() {
-         let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
-         let memberRepository = MemberRepository(userDefaultsKey: "member")
-         let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
- 
-         self.memberUsecase = MemberUsecase(memberRepository: memberRepository)
+         self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
          self.warikanGroupUseCase = WarikanGroupUsecase(
-             warikanGroupRepository: warikanGroupRepository,
-             memberRepository: memberRepository,
-             tatekaeRepository: tatekaeRepository
+             warikanGroupRepository: WarikanGroupRepository(),
+             memberRepository: MemberRepository(),
+             tatekaeRepository: TatekaeRepository()
          )
      }
  

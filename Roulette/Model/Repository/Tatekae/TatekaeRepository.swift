@@ -10,10 +10,9 @@ import Foundation
 
 /// UserDefaultsを用いて`Tatekae`のCRUD操作を行うリポジトリ。
 class TatekaeRepository: TatekaeRepositoryProtocol {
-    private var userDefaultsKey: String
+    private var userDefaultsKey = "tatekae"
     
-    init(userDefaultsKey: String) {
-        self.userDefaultsKey = userDefaultsKey
+    init() {
         if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
             commit(items: [EntityID<Tatekae>: Tatekae]())
         }

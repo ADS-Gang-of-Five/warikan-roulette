@@ -26,20 +26,12 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
 
     init(archivedWarikanGroupData: ArchivedWarikanGroupData) {
         self.archivedWarikanGroupData = archivedWarikanGroupData
-
-        let archivedWarikanGroupRepository = ArchivedWarikanGroupRepository(userDefaultsKey: "archivedWarikanGroup")
-        let memberRepository = MemberRepository(userDefaultsKey: "member")
-        let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
-            archivedWarikanGroupRepository: archivedWarikanGroupRepository,
-            memberRepository: memberRepository
+        self.archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
+            archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
+            memberRepository: MemberRepository()
         )
-        let memberUsecase = MemberUsecase(memberRepository: memberRepository)
-        let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
-        let tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
-
-        self.archivedWarikanGroupUseCase = archivedWarikanGroupUseCase
-        self.memberUsecase = memberUsecase
-        self.tatekaeUsecase = tatekaeUsecase
+        self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
+        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
     }
 
     // `ViewData`の生成を行う関数

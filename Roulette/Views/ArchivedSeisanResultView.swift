@@ -38,8 +38,8 @@ struct ArchivedSeisanResultView: View {
                     }
                     Section {
                         Text(
-                            viewData.unluckeyMember != nil ?
-                            viewData.unluckeyMember! : "なし"
+                            viewData.unluckyMember != nil ?
+                            viewData.unluckyMember! : "なし"
                         )
                         .padding(.top, 3)
                     } header: {

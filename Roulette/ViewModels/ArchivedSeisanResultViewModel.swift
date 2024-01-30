@@ -19,7 +19,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
     struct ViewData {
         let tatekaeList: [String]
         let totalAmount: String
-        let unluckeyMember: String?
+        let unluckyMember: String?
         let seisanList: [(debtor: String, creditor: String, money: String)]
         // swiftlint:disable:previous large_tuple
     }
@@ -45,10 +45,10 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
             partialResult + tatekae.money
         }
-        // unluckeyMemberプロパティの準備
+        // unluckyMemberプロパティの準備
         var unluckyMember: String?
-        if let unluckeyMemberID = archivedWarikanGroupData.unluckyMember {
-            unluckyMember = try! await memberUsecase.get(id: unluckeyMemberID)?.name
+        if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
+            unluckyMember = try! await memberUsecase.get(id: unluckyMemberID)?.name
         }
         // seisanListプロパティの準備
         let seisanList = archivedWarikanGroupData.seisanList.map { seisanData in
@@ -61,7 +61,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         let viewData = ViewData(
             tatekaeList: tatekaeList,
             totalAmount: totalAmount.description,
-            unluckeyMember: unluckyMember,
+            unluckyMember: unluckyMember,
             seisanList: seisanList
         )
         self.viewData = viewData

@@ -10,6 +10,14 @@ import SwiftUI
 struct ArchivedSeisanResultView: View {
     @StateObject private var viewModel: ArchivedSeisanResultViewModel
 
+    init(archivedWarikanGroupData: ArchivedWarikanGroupData) {
+        self._viewModel = StateObject(
+            wrappedValue: ArchivedSeisanResultViewModel(
+                archivedWarikanGroupData: archivedWarikanGroupData
+            )
+        )
+    }
+
     var body: some View {
         VStack {
             if let viewData = viewModel.viewData {

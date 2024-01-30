@@ -8,23 +8,16 @@
 import SwiftUI
 
 struct ArchiveView: View {
-    let groups: [String]
-    init(groups: [String] = ["Gang of Five", "ひなっこクラブ", "アプリ道場サロン"]) {
-        self.groups = groups
-    }
-    
     @StateObject private var archiveViewModel = ArchiveViewModel()
     
     var body: some View {
         NavigationStack {
-            Group {
-                if groups != [] {
-                    List {
-                        ForEach(groups, id: \.self) { group in
-                            NavigationLink(group) {
-                                ArchivedSeisanResultView()
-                                    .navigationTitle("清算結果")
-                            }
+            VStack {
+                if archiveViewModel.archivedWarikanGroupDataList.isEmpty {
+                    List(archiveViewModel.archivedWarikanGroupDataList) { data in
+                        NavigationLink(data.name) {
+                            #warning("ArchivedSeisanResultViewの完成後NavigationLinkに書き換えを行う。")
+                            Text(data.name)
                         }
                     }
                 } else {
@@ -34,6 +27,9 @@ struct ArchiveView: View {
                 }
             }
             .navigationTitle("清算済割り勘グループ")
+            .task {
+                await archiveViewModel.getArchivedWarikanGroupDataList()
+            }
         }
     }
 }

@@ -15,8 +15,7 @@ struct RouletteResultView: View {
             VStack(spacing: 10) {
                 Group {
                     Text("今回のアンラッキーメンバーは")
-#warning("unluckyMenberのIDが削除されたらコメントアウトを削除")
-//                                        Text("\(unluckyMenber.name)さんに決定！")
+                    Text("\(unluckyMenber)さんに決定！")
                 }
                 .font(.title)
                 .fontWeight(.bold)
@@ -31,7 +30,7 @@ struct RouletteResultView: View {
                     .padding(.top)
             }
         } else {
-            //ルーレットを回したのに、アンラッキーメンバーがいないのはおかしい。
+            // ルーレットを回したのに、アンラッキーメンバーがいないのはおかしい。
          Text("予期せぬエラーが発生しました")
         }
     }

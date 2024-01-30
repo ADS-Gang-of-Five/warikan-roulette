@@ -10,10 +10,8 @@ import SwiftUI
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
     @EnvironmentObject private var mainViewModel: MainViewModel
-    @State private var unluckyMember: Member?
 
     var body: some View {
-        if let unluckyMemberID = mainViewModel.unluckyMember{
             List {
                 // 立替セクション
                 Section {
@@ -36,8 +34,8 @@ struct SeisanResultView: View {
                 Section {
                     switch mainViewModel.selectedGroupSeisanResponse {
                     case .needsUnluckyMember:
-                        if let unluckyMember = unluckyMember {
-                            Text("\(unluckyMember.name)")
+                        if let unluckyMember = mainViewModel.unluckyMember {
+                            Text("\(unluckyMember)")
                         } else {
                             Text("アンラッキーメンバーを読み込めませんでした")
                         }
@@ -90,9 +88,6 @@ struct SeisanResultView: View {
                     Text("精算結果")
                 }
             }
-            .task {
-                unluckyMember = await mainViewModel.getMember(id: unluckyMemberID)
-            }
             .listStyle(.plain)
             .navigationBarBackButtonHidden(true)
             .font(.title3)
@@ -102,7 +97,6 @@ struct SeisanResultView: View {
                     viewRouter.path.removeLast(viewRouter.path.count)
                 }
             }
-        }
     }
 }
 

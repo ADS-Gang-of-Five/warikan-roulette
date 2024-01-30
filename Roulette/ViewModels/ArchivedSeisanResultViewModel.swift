@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupData: ArchivedWarikanGroupData
-    private(set) var viewData: ViewData?
+    @Published private(set) var viewData: ViewData?
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
     private let memberUsecase: MemberUsecase
     private let tatekaeUsecase: TatekaeUsecase

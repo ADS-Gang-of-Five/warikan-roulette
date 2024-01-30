@@ -8,42 +8,54 @@
 import SwiftUI
 
 struct ArchivedSeisanResultView: View {
+    @StateObject private var viewModel: ArchivedSeisanResultViewModel
+
     var body: some View {
-        List {
-            Section {
-                Text("朝食、昼食、夕食")
-                    .padding(.top, 3)
-            } header: {
-                Text("立替一覧")
-            }
-            Section {
-                Text("10,000円")
-                    .padding(.top, 3)
-            } header: {
-                Text("合計金額")
-            }
-            Section {
-                Text("Sako")
-                    .padding(.top, 3)
-            } header: {
-                Text("アンラッキーメンバー")
-            }
-            Section {
-                VStack(alignment: .leading) {
-                    Text("SeigetsuがSakoに3,300円渡す")
+        VStack {
+            if let viewData = viewModel.viewData {
+                List {
+                    Section {
+                        ForEach(viewData.tatekaeList.indices, id: \.self) { i in
+                            Text(viewData.tatekaeList[i])
+                                .padding(.top, 3)
+                        }
+                    } header: {
+                        Text("立替一覧")
+                    }
+                    Section {
+                        Text("\(viewData.totalAmount)円")
+                            .padding(.top, 3)
+                    } header: {
+                        Text("合計金額")
+                    }
+                    Section {
+                        Text(
+                            viewData.unluckeyMember != nil ?
+                            viewData.unluckeyMember! : "なし"
+                        )
                         .padding(.top, 3)
-                    Text("MakiがSakoに3,300円渡す")
-                        .padding(.top, 3)
+                    } header: {
+                        Text("アンラッキーメンバー")
+                    }
+                    Section {
+                        VStack(alignment: .leading) {
+                            ForEach(viewData.seisanList.indices, id: \.self) { i in
+                                let seisanData = viewData.seisanList[i]
+                                Text("\(seisanData.debtor)が\(seisanData.creditor)に\(seisanData.money)円渡す。")
+                            }
+                        }
+                    } header: {
+                        Text("精算結果")
+                    }
                 }
-            } header: {
-                Text("精算結果")
+                .listStyle(.plain)
+            } else {
+                Text("データの読み込みに失敗しました。")
             }
         }
-        .listStyle(.plain)
         .font(.title3)
+        .task {
+            await viewModel.getGroupData()
+        }
     }
-}
-
-#Preview {
-    ArchivedSeisanResultView()
 }

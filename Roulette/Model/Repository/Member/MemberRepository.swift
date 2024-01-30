@@ -10,10 +10,9 @@ import Foundation
 
 /// UserDefaultsを用いて`Member`のCRUD操作を行うリポジトリ。
 struct MemberRepository: MemberRepositoryProtocol {
-    private var userDefaultsKey: String
+    private let userDefaultsKey = "member"
     
-    init(userDefaultsKey: String) {
-        self.userDefaultsKey = userDefaultsKey
+    init() {
         if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
             commit(items: [EntityID<Member>: Member]())
         }

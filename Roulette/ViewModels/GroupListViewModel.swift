@@ -13,14 +13,10 @@ final class GroupListViewModel: ObservableObject {
     private let warikanGroupUseCase: WarikanGroupUsecase
 
     init() {
-        let warikanGroupRepository = WarikanGroupRepository(userDefaultsKey: "warikanGroup")
-        let memberRepository = MemberRepository(userDefaultsKey: "member")
-        let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
-
         self.warikanGroupUseCase = WarikanGroupUsecase(
-            warikanGroupRepository: warikanGroupRepository,
-            memberRepository: memberRepository,
-            tatekaeRepository: tatekaeRepository
+            warikanGroupRepository: WarikanGroupRepository(),
+            memberRepository: MemberRepository(),
+            tatekaeRepository: TatekaeRepository()
         )
     }
 

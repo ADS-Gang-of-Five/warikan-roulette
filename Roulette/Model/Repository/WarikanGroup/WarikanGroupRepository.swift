@@ -10,10 +10,9 @@ import Foundation
 
 /// UserDefaultsを用いて`WarikanGroup`配列のCRUD操作を行うリポジトリ。
 struct WarikanGroupRepository: WarikanGroupRepositoryProtocol {
-    private var userDefaultsKey: String
+    private let userDefaultsKey = "warikanGroup"
     
-    init(userDefaultsKey: String) {
-        self.userDefaultsKey = userDefaultsKey
+    init() {
         if UserDefaults.standard.data(forKey: userDefaultsKey) == nil {
             commit(items: [])
         }

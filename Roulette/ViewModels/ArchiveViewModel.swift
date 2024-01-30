@@ -15,16 +15,11 @@ final class ArchiveViewModel: ObservableObject {
     private let tatekaeUsecase: TatekaeUsecase
     
     init() {
-        let memberRepository = MemberRepository(userDefaultsKey: "member")
-        let memberUsecase = MemberUsecase(memberRepository: memberRepository)
-        
-        let tatekaeRepository = TatekaeRepository(userDefaultsKey: "tatekae")
-        let tatekaeUsecase = TatekaeUsecase(tatekaeRepository: tatekaeRepository)
-        
-        let archivedWarikanGroupRepository = ArchivedWarikanGroupRepository(userDefaultsKey: "archivedWarikanGroup")
+        let memberUsecase = MemberUsecase(memberRepository: MemberRepository())
+        let tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
         let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
-            archivedWarikanGroupRepository: archivedWarikanGroupRepository,
-            memberRepository: memberRepository
+            archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
+            memberRepository: MemberRepository()
         )
         
         self.archivedWarikanGroupUseCase = archivedWarikanGroupUseCase

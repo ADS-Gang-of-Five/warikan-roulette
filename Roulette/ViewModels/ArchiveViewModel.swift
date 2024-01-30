@@ -9,8 +9,7 @@ import Foundation
 
 @MainActor
 final class ArchiveViewModel: ObservableObject {
-    @Published private(set) var archivedWarikanGroupsDataList: [ArchivedWarikanGroupData] = []
-    
+    @Published private(set) var archivedWarikanGroupDataList: [ArchivedWarikanGroupData] = []
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
     private let memberUsecase: MemberUsecase
     private let tatekaeUsecase: TatekaeUsecase
@@ -33,9 +32,9 @@ final class ArchiveViewModel: ObservableObject {
         self.tatekaeUsecase = tatekaeUsecase
     }
     
-    func getAllArchivedWarikanGroups() async {
+    func getArchivedWarikanGroupDataList() async {
         do {
-            archivedWarikanGroupsDataList = try await archivedWarikanGroupUseCase.getAll()
+            archivedWarikanGroupDataList = try await archivedWarikanGroupUseCase.getAll()
         } catch {
             print(#function, error)
         }

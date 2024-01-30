@@ -15,9 +15,7 @@ struct RouletteView: View {
     
     var body: some View {
         if let members = mainViewModel.selectedGroupMembers,
-           let selectedGroup = mainViewModel.selectedGroup,
-           let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse,
-            let selectedGroupSeisanResponse = mainViewModel.selectedGroupSeisanResponse {
+           let selectedGroup = mainViewModel.selectedGroup {
             VStack {
                 Image(systemName: "triangleshape.fill")
                     .rotationEffect(Angle(degrees: 180.0))
@@ -49,8 +47,8 @@ struct RouletteView: View {
                     Button {
                         isRouletteBottanTap = true
                         let unluckyMember = members.randomElement()!
-                        stopAtMember(id: unluckyMember.id)
-                        mainViewModel.unluckyMember = unluckyMember.id
+                        stopAtMember(name: unluckyMember.name)
+                        mainViewModel.unluckyMember = unluckyMember.name
                         
                         Task {
                             switch mainViewModel.selectedGroupSeisanResponse {
@@ -70,8 +68,7 @@ struct RouletteView: View {
                                     seisanList: array,
                                     unluckyMember: unluckyMember.id
                                 )
-                            case .none: 
-                                print("何を出力したらいいの？")
+                            case .none:
                                 break
                             }
                         }
@@ -93,9 +90,9 @@ struct RouletteView: View {
         }
     }
     
-    private func stopAtMember(id: EntityID<Member>) {
+    private func stopAtMember(name: String) {
         guard let members = mainViewModel.selectedGroupMembers else { return }
-        guard let selectedMemberIndex = members.firstIndex(where: { $0.id == id }) else { return }
+        guard let selectedMemberIndex = members.firstIndex(where: { $0.name == name }) else { return }
         let degreesPerMember = 360.0 / Double(members.count)
         let halfSector = degreesPerMember / 2.0
         let targetDegrees = degreesPerMember * Double(selectedMemberIndex) + halfSector

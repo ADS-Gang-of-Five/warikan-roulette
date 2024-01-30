@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ArchiveView: View {
     @StateObject private var archiveViewModel = ArchiveViewModel()
-    
+
     var body: some View {
         NavigationStack {
             VStack {
                 if archiveViewModel.archivedWarikanGroupDataList.isEmpty {
                     List(archiveViewModel.archivedWarikanGroupDataList) { data in
                         NavigationLink(data.name) {
-                            #warning("ArchivedSeisanResultViewの完成後NavigationLinkに書き換えを行う。")
-                            Text(data.name)
+                            ArchivedSeisanResultView(archivedWarikanGroupData: data)
                         }
                     }
                 } else {

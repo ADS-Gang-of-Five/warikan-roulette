@@ -13,7 +13,7 @@ struct ArchiveView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if archiveViewModel.archivedWarikanGroupDataList.isEmpty {
+                if !archiveViewModel.archivedWarikanGroupDataList.isEmpty {
                     List(archiveViewModel.archivedWarikanGroupDataList) { data in
                         NavigationLink(data.name) {
                             ArchivedSeisanResultView(archivedWarikanGroupData: data)

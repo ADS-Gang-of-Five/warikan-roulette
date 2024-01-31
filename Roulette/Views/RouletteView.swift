@@ -63,7 +63,7 @@ struct RouletteView: View {
                                     unluckyMember: unluckyMember.id
                                 )
                             case .success:
-                                print("successの場合はcomfirmeViewに遷移")
+                                print("successの場合はcomfirmeViewSeisanResultViewに遷移しているため、このビューでsuccessケースの処理は行うことはない。")
 //                                _ = await mainViewModel.archiveWarikanGroup(
 //                                    id: selectedGroup.id,
 //                                    seisanList: array,

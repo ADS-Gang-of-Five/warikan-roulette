@@ -15,7 +15,7 @@ struct ArchiveView: View {
             VStack {
                 if !archiveViewModel.archivedWarikanGroupDataList.isEmpty {
                     List(archiveViewModel.archivedWarikanGroupDataList) { data in
-                        NavigationLink(data.name) {
+                        NavigationLink(data.groupName) {
                             ArchivedSeisanResultView(archivedWarikanGroupData: data)
                         }
                     }

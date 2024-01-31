@@ -24,19 +24,10 @@ struct ArchivedWarikanGroupDTO {
 @MainActor
 final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupData: ArchivedWarikanGroupData
-    @Published private(set) var viewData: ViewData?
+    @Published private(set) var archivedWarikanGroupDTO: ArchivedWarikanGroupDTO?
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
     private let memberUsecase: MemberUsecase
     private let tatekaeUsecase: TatekaeUsecase
-
-    // Viewが必要とする割り勘グループのデータ
-    struct ViewData {
-        let tatekaeList: [String]
-        let totalAmount: String
-        let unluckyMember: String?
-        let seisanList: [(debtor: String, creditor: String, money: String)]
-        // swiftlint:disable:previous large_tuple
-    }
 
     init(archivedWarikanGroupData: ArchivedWarikanGroupData) {
         self.archivedWarikanGroupData = archivedWarikanGroupData
@@ -48,8 +39,10 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
     }
 
-    // `ViewData`の生成を行う関数
-    func getGroupData() async {
+    // `archivedWarikanGroupDTO`の生成を行う関数
+    func getArchivedWarikanGroupDTO() async {
+        // nameプロパティの準備
+        let name = archivedWarikanGroupData.name
         // tatekaeListプロパティの準備
         let tatekaes = try! await tatekaeUsecase.get(
             ids: archivedWarikanGroupData.tatekaeList
@@ -66,18 +59,19 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         }
         // seisanListプロパティの準備
         let seisanList = archivedWarikanGroupData.seisanList.map { seisanData in
-            let debtor = seisanData.debtor
-            let creditor = seisanData.creditor
+            let debtor = seisanData.debtor.name
+            let creditor = seisanData.creditor.name
             let money = seisanData.money.description
-            return (debtor: debtor.name, creditor: creditor.name, money: money)
+            return SeisanDTO(debtor: debtor, creditor: creditor, money: money)
         }
-        // `ViewData`の生成
-        let viewData = ViewData(
+        // `ArchivedWarikanGroupDTO`の生成
+        let archivedWarikanGroupDTO = ArchivedWarikanGroupDTO(
+            name: name,
             tatekaeList: tatekaeList,
             totalAmount: totalAmount.description,
             unluckyMember: unluckyMember,
             seisanList: seisanList
         )
-        self.viewData = viewData
+        self.archivedWarikanGroupDTO = archivedWarikanGroupDTO
     }
 }

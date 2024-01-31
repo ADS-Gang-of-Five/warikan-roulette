@@ -20,26 +20,26 @@ struct ArchivedSeisanResultView: View {
 
     var body: some View {
         VStack {
-            if let viewData = viewModel.viewData {
+            if let archivedWarikanGroup = viewModel.archivedWarikanGroupDTO {
                 List {
                     Section {
-                        ForEach(viewData.tatekaeList.indices, id: \.self) { i in
-                            Text(viewData.tatekaeList[i])
+                        ForEach(archivedWarikanGroup.tatekaeList.indices, id: \.self) { i in
+                            Text(archivedWarikanGroup.tatekaeList[i])
                                 .padding(.top, 3)
                         }
                     } header: {
                         Text("立替一覧")
                     }
                     Section {
-                        Text("\(viewData.totalAmount)円")
+                        Text("\(archivedWarikanGroup.totalAmount)円")
                             .padding(.top, 3)
                     } header: {
                         Text("合計金額")
                     }
                     Section {
                         Text(
-                            viewData.unluckyMember != nil ?
-                            viewData.unluckyMember! : "なし"
+                            archivedWarikanGroup.unluckyMember != nil ?
+                            archivedWarikanGroup.unluckyMember! : "なし"
                         )
                         .padding(.top, 3)
                     } header: {
@@ -47,8 +47,8 @@ struct ArchivedSeisanResultView: View {
                     }
                     Section {
                         VStack(alignment: .leading) {
-                            ForEach(viewData.seisanList.indices, id: \.self) { i in
-                                let seisanData = viewData.seisanList[i]
+                            ForEach(archivedWarikanGroup.seisanList.indices, id: \.self) { i in
+                                let seisanData = archivedWarikanGroup.seisanList[i]
                                 Text("\(seisanData.debtor)が\(seisanData.creditor)に\(seisanData.money)円渡す。")
                             }
                         }
@@ -63,7 +63,7 @@ struct ArchivedSeisanResultView: View {
         }
         .font(.title3)
         .task {
-            await viewModel.getGroupData()
+            await viewModel.getArchivedWarikanGroupDTO()
         }
     }
 }

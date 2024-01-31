@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct SeisanDTO {
+    let debtor: String
+    let creditor: String
+    let money: String
+}
+
 @MainActor
 final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupData: ArchivedWarikanGroupData

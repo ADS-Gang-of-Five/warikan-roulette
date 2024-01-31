@@ -13,6 +13,14 @@ struct SeisanDTO {
     let money: String
 }
 
+struct ArchivedWarikanGroupDTO {
+    let name: String
+    let tatekaeList: [String]
+    let totalAmount: String
+    let unluckyMember: String?
+    let seisanList: [SeisanDTO]
+}
+
 @MainActor
 final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupData: ArchivedWarikanGroupData

@@ -49,7 +49,6 @@ struct RouletteView: View {
                         let unluckyMember = members.randomElement()!
                         stopAtMember(name: unluckyMember.name)
                         mainViewModel.unluckyMemberName = unluckyMember.name
-                        
                         Task {
                             switch mainViewModel.selectedGroupSeisanResponse {
                             case .needsUnluckyMember(let seisanContext):
@@ -57,17 +56,19 @@ struct RouletteView: View {
                                     context: seisanContext,
                                     unluckyMember: unluckyMember.id
                                 )
+                                mainViewModel.convertSeisanResponseToSuccess(seisanList)
                                 _ = await mainViewModel.archiveWarikanGroup(
                                     id: selectedGroup.id,
                                     seisanList: seisanList,
                                     unluckyMember: unluckyMember.id
                                 )
-                            case .success(let array):
-                                _ = await mainViewModel.archiveWarikanGroup(
-                                    id: selectedGroup.id,
-                                    seisanList: array,
-                                    unluckyMember: unluckyMember.id
-                                )
+                            case .success:
+                                print("successの場合はcomfirmeViewSeisanResultViewに遷移しているため、このビューでsuccessケースの処理は行うことはない。")
+//                                _ = await mainViewModel.archiveWarikanGroup(
+//                                    id: selectedGroup.id,
+//                                    seisanList: array,
+//                                    unluckyMember: unluckyMember.id
+//                                )
                             case .none:
                                 break
                             }

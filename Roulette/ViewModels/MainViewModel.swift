@@ -146,6 +146,11 @@ final class MainViewModel: ObservableObject {
         }
     }
     
+    // 途中計算の.needsunluckymenberを.successへ変える
+    func convertSeisanResponseToSuccess( _ seisanDataList: [SeisanData]) {
+        selectedGroupSeisanResponse = .success(seisanDataList)
+    }
+    
     func archiveWarikanGroup(
         id: EntityID<WarikanGroup>,
         seisanList: [SeisanData],

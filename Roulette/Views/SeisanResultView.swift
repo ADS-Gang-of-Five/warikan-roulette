@@ -32,20 +32,9 @@ struct SeisanResultView: View {
                 }
                 // アンラッキーメンバーセクション
                 Section {
-                    switch mainViewModel.selectedGroupSeisanResponse {
-                    case .needsUnluckyMember:
-                        if let unluckyMember = mainViewModel.unluckyMember {
-                            Text("\(unluckyMember)")
-                        } else {
-                            Text("アンラッキーメンバーを読み込めませんでした")
-                        }
-                    case .success:
-                        Text("なし")
-                            .padding(.top, 3)
-                    case .none:
-                        Text("読み込みエラー")
-                            .padding(.top, 3)
-                    }
+                    let unluckyMemberName = mainViewModel.unluckyMemberName ?? "なし"
+                    Text(unluckyMemberName)
+                        .padding(.top, 3)
                 } header: {
                     Text("アンラッキーメンバー")
                 }

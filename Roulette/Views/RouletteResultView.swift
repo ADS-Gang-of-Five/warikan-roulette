@@ -11,7 +11,7 @@ struct RouletteResultView: View {
     @EnvironmentObject private var mainViewModel: MainViewModel
     
     var body: some View {
-        if let unluckyMenber = mainViewModel.unluckyMember {
+        if let unluckyMenber = mainViewModel.unluckyMemberName {
             VStack(spacing: 10) {
                 Group {
                     Text("今回のアンラッキーメンバーは")

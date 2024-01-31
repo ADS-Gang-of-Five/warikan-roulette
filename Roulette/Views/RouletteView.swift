@@ -48,7 +48,7 @@ struct RouletteView: View {
                         isRouletteBottanTap = true
                         let unluckyMember = members.randomElement()!
                         stopAtMember(name: unluckyMember.name)
-                        mainViewModel.unluckyMember = unluckyMember.name
+                        mainViewModel.unluckyMemberName = unluckyMember.name
                         
                         Task {
                             switch mainViewModel.selectedGroupSeisanResponse {

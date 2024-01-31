@@ -56,7 +56,7 @@ struct RouletteView: View {
                                     context: seisanContext,
                                     unluckyMember: unluckyMember.id
                                 )
-                                mainViewModel.convertSeisanResponseToSuccess( seisanList)
+                                mainViewModel.convertSeisanResponseToSuccess(seisanList)
                                 _ = await mainViewModel.archiveWarikanGroup(
                                     id: selectedGroup.id,
                                     seisanList: seisanList,

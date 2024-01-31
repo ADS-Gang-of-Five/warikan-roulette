@@ -32,7 +32,7 @@ struct SeisanResultView: View {
                 }
                 // アンラッキーメンバーセクション
                 Section {
-                    let unluckyMemberName = mainViewModel.unluckyMember ?? "なし"
+                    let unluckyMemberName = mainViewModel.unluckyMemberName ?? "なし"
                     Text(unluckyMemberName)
                         .padding(.top, 3)
                 } header: {

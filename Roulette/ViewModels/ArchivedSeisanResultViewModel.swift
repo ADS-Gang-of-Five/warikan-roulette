@@ -11,6 +11,23 @@ struct SeisanDTO {
     let debtor: String
     let creditor: String
     let money: String
+
+    private init(
+        debtor: String,
+        creditor: String,
+        money: String
+    ) {
+        self.debtor = debtor
+        self.creditor = creditor
+        self.money = money
+    }
+
+    static func convert(_ seisanData: SeisanData) -> Self {
+        let debtor = seisanData.debtor.name
+        let creditor = seisanData.creditor.name
+        let money = seisanData.money.description
+        return SeisanDTO(debtor: debtor, creditor: creditor, money: money)
+    }
 }
 
 struct ArchivedWarikanGroupDTO {
@@ -59,10 +76,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         }
         // seisanListプロパティの準備
         let seisanList = archivedWarikanGroupData.seisanList.map { seisanData in
-            let debtor = seisanData.debtor.name
-            let creditor = seisanData.creditor.name
-            let money = seisanData.money.description
-            return SeisanDTO(debtor: debtor, creditor: creditor, money: money)
+            SeisanDTO.convert(seisanData)
         }
         // `ArchivedWarikanGroupDTO`の生成
         let archivedWarikanGroupDTO = ArchivedWarikanGroupDTO(

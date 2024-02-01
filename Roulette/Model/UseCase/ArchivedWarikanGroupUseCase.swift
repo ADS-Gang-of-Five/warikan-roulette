@@ -26,6 +26,17 @@ struct ArchivedWarikanGroupUseCase {
         return try await archivedWarikanGroups.mapToData(withMemberRepository: memberRepository)
     }
     
+    /// 指定したIDの割り勘グループのデータを返す。
+    func get(id: EntityID<ArchivedWarikanGroup>) async throws -> ArchivedWarikanGroupData {
+        guard let archivedWarikanGroup = try await repository.find(id: id) else {
+            throw ValidationError.notFoundID(id)
+        }
+        return try await ArchivedWarikanGroupData.create(
+            from: archivedWarikanGroup,
+            memberRepository: memberRepository
+        )
+    }
+    
     /// 指定したIDの割り勘グループを削除する。
     func remove(ids: [EntityID<ArchivedWarikanGroup>]) async throws {
         try await repository.transaction {

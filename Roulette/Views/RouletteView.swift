@@ -64,13 +64,8 @@ struct RouletteView: View {
                                 )
                             case .success:
                                 print("successの場合はcomfirmeViewSeisanResultViewに遷移しているため、このビューでsuccessケースの処理は行うことはない。")
-//                                _ = await mainViewModel.archiveWarikanGroup(
-//                                    id: selectedGroup.id,
-//                                    seisanList: array,
-//                                    unluckyMember: unluckyMember.id
-//                                )
                             case .none:
-                                break
+                                print("【Error】RouletteViewに遷移した時点で、selectedGroupSeisanResponseがnilとなっているのはおかしい。")
                             }
                         }
                     } label: {

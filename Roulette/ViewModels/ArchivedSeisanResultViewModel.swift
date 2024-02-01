@@ -42,7 +42,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
     // `archivedWarikanGroupDTO`の生成を行う関数
     func getArchivedWarikanGroupDTO() async {
         // nameプロパティの準備
-        let name = archivedWarikanGroupData.name
+        let name = archivedWarikanGroupData.groupName
         // tatekaeListプロパティの準備
         let tatekaes = try! await tatekaeUsecase.get(
             ids: archivedWarikanGroupData.tatekaeList

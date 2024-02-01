@@ -11,7 +11,7 @@ import Foundation
 /// アーカイブされた割り勘グループのデータ。
 struct ArchivedWarikanGroupData: Identifiable {
     var id: EntityID<ArchivedWarikanGroup>
-    private(set) var name: String
+    private(set) var groupName: String
     private(set) var members: [EntityID<Member>]
     private(set) var tatekaeList: [EntityID<Tatekae>]
     private(set) var unluckyMember: EntityID<Member>?
@@ -26,7 +26,7 @@ struct ArchivedWarikanGroupData: Identifiable {
         seisanList: [SeisanData]
     ) {
         self.id = id
-        self.name = name
+        self.groupName = name
         self.members = members
         self.tatekaeList = tatekaeList
         self.unluckyMember = unluckyMember
@@ -52,7 +52,7 @@ struct ArchivedWarikanGroupData: Identifiable {
     func convertToSeisan() -> ArchivedWarikanGroup {
         ArchivedWarikanGroup(
             id: id,
-            name: name,
+            name: groupName,
             members: members,
             tatekaeList: tatekaeList,
             unluckyMember: unluckyMember,

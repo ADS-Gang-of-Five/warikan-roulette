@@ -36,6 +36,49 @@ struct ArchivedWarikanGroupDTO {
     let totalAmount: String
     let unluckyMember: String?
     let seisanList: [SeisanDTO]
+
+    private init(
+        name: String,
+        tatekaeList: [String],
+        totalAmount: String,
+        unluckyMember: String?,
+        seisanList: [SeisanDTO]
+    ) {
+        self.name = name
+        self.tatekaeList = tatekaeList
+        self.totalAmount = totalAmount
+        self.unluckyMember = unluckyMember
+        self.seisanList = seisanList
+    }
+
+    static func convert(
+        _ archivedWarikanGroupData: ArchivedWarikanGroupData,
+        tatekaeUsecase: TatekaeUsecase,
+        memberUsecase: MemberUsecase
+    ) async -> Self {
+        let name = archivedWarikanGroupData.groupName
+        let tatekaes = try! await tatekaeUsecase.get(
+            ids: archivedWarikanGroupData.tatekaeList
+        )
+        let tatekaeList = tatekaes.map { $0.name }
+        let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
+            partialResult + tatekae.money
+        }
+        var unluckyMember: String?
+        if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
+            unluckyMember = try! await memberUsecase.get(id: unluckyMemberID)?.name
+        }
+        let seisanList = archivedWarikanGroupData.seisanList.map {
+            SeisanDTO.convert($0)
+        }
+        return ArchivedWarikanGroupDTO(
+            name: name,
+            tatekaeList: tatekaeList,
+            totalAmount: totalAmount.description,
+            unluckyMember: unluckyMember,
+            seisanList: seisanList
+        )
+    }
 }
 
 @MainActor
@@ -58,34 +101,10 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
 
     // `archivedWarikanGroupDTO`の生成を行う関数
     func getArchivedWarikanGroupDTO() async {
-        // nameプロパティの準備
-        let name = archivedWarikanGroupData.groupName
-        // tatekaeListプロパティの準備
-        let tatekaes = try! await tatekaeUsecase.get(
-            ids: archivedWarikanGroupData.tatekaeList
+        archivedWarikanGroupDTO = await ArchivedWarikanGroupDTO.convert(
+            archivedWarikanGroupData,
+            tatekaeUsecase: tatekaeUsecase,
+            memberUsecase: memberUsecase
         )
-        let tatekaeList = tatekaes.map { $0.name }
-        // totalAmountプロパティの準備
-        let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
-            partialResult + tatekae.money
-        }
-        // unluckyMemberプロパティの準備
-        var unluckyMember: String?
-        if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
-            unluckyMember = try! await memberUsecase.get(id: unluckyMemberID)?.name
-        }
-        // seisanListプロパティの準備
-        let seisanList = archivedWarikanGroupData.seisanList.map { seisanData in
-            SeisanDTO.convert(seisanData)
-        }
-        // `ArchivedWarikanGroupDTO`の生成
-        let archivedWarikanGroupDTO = ArchivedWarikanGroupDTO(
-            name: name,
-            tatekaeList: tatekaeList,
-            totalAmount: totalAmount.description,
-            unluckyMember: unluckyMember,
-            seisanList: seisanList
-        )
-        self.archivedWarikanGroupDTO = archivedWarikanGroupDTO
     }
 }

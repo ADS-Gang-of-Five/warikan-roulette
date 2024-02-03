@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TatekaeUsecase {
+struct TatekaeUseCase {
     private var tatekaeRepository: TatekaeRepositoryProtocol
     
     init(tatekaeRepository: TatekaeRepositoryProtocol) {

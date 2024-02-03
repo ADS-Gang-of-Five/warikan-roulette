@@ -21,20 +21,20 @@ final class MainViewModel: ObservableObject {
     @Published var unluckyMemberName: String?
 
     // ユースケース
-    private let warikanGroupUseCase: WarikanGroupUsecase
-    private let memberUsecase: MemberUsecase
-    private let tatekaeUsecase: TatekaeUsecase
+    private let warikanGroupUseCase: WarikanGroupUseCase
+    private let memberUseCase: MemberUseCase
+    private let tatekaeUseCase: TatekaeUseCase
     private let warikanGroupArchiveController: WarikanGroupArchiveController
     let seisanCalculator: SeisanCalculator
 
     init() {
-        self.warikanGroupUseCase = WarikanGroupUsecase(
+        self.warikanGroupUseCase = WarikanGroupUseCase(
             warikanGroupRepository: WarikanGroupRepository(),
             memberRepository: MemberRepository(),
             tatekaeRepository: TatekaeRepository()
         )
-        self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
-        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
+        self.memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+        self.tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
         self.warikanGroupArchiveController = WarikanGroupArchiveController(
             warikanGroupRepository: WarikanGroupRepository(),
             archivedWarikanGroupRepository: ArchivedWarikanGroupRepository()
@@ -64,7 +64,7 @@ final class MainViewModel: ObservableObject {
     // 割り勘グループIDからそのグループのメンバーリストを取得
     func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {
-            selectedGroupMembers = try await memberUsecase.get(ids: ids)
+            selectedGroupMembers = try await memberUseCase.get(ids: ids)
         } catch {
             print(#function, error)
         }
@@ -82,7 +82,7 @@ final class MainViewModel: ObservableObject {
     // メンバーIDから実体(Member)を取得
     func getMember(id: EntityID<Member>) async -> Member {
         do {
-            let member = try await memberUsecase.get(id: id)!
+            let member = try await memberUseCase.get(id: id)!
             return member
         } catch {
             print(#function, error)
@@ -93,7 +93,7 @@ final class MainViewModel: ObservableObject {
     // 立替リストを取得
     func getTatekaeList(ids: [EntityID<Tatekae>]) async {
         do {
-            selectedGroupTatekaes = try await tatekaeUsecase.get(ids: ids)
+            selectedGroupTatekaes = try await tatekaeUseCase.get(ids: ids)
         } catch {
             print(#function, error)
             fatalError()
@@ -126,7 +126,7 @@ final class MainViewModel: ObservableObject {
     func selectWarikanGroup(warikanGroup: WarikanGroup) async {
         do {
             selectedGroup = warikanGroup
-            selectedGroupMembers = try await memberUsecase.get(ids: warikanGroup.members)
+            selectedGroupMembers = try await memberUseCase.get(ids: warikanGroup.members)
             selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: warikanGroup.id)
         } catch {
             print(#function, error)

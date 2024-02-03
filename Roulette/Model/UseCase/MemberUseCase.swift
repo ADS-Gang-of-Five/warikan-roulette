@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MemberUsecase {
+struct MemberUseCase {
     private var memberRepository: MemberRepositoryProtocol
     
     init(memberRepository: MemberRepositoryProtocol) {

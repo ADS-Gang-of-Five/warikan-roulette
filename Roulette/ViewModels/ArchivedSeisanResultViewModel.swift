@@ -12,8 +12,8 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupData: ArchivedWarikanGroupData
     @Published private(set) var viewData: ViewData?
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
-    private let memberUsecase: MemberUsecase
-    private let tatekaeUsecase: TatekaeUsecase
+    private let memberUseCase: MemberUseCase
+    private let tatekaeUseCase: TatekaeUseCase
 
     // Viewが必要とする割り勘グループのデータ
     struct ViewData {
@@ -30,14 +30,14 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
             archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
             memberRepository: MemberRepository()
         )
-        self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
-        self.tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
+        self.memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+        self.tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
     }
 
     // `ViewData`の生成を行う関数
     func getGroupData() async {
         // tatekaeListプロパティの準備
-        let tatekaes = try! await tatekaeUsecase.get(
+        let tatekaes = try! await tatekaeUseCase.get(
             ids: archivedWarikanGroupData.tatekaeList
         )
         let tatekaeList = tatekaes.map { $0.name }
@@ -48,7 +48,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         // unluckyMemberプロパティの準備
         var unluckyMember: String?
         if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
-            unluckyMember = try! await memberUsecase.get(id: unluckyMemberID)?.name
+            unluckyMember = try! await memberUseCase.get(id: unluckyMemberID)?.name
         }
         // seisanListプロパティの準備
         let seisanList = archivedWarikanGroupData.seisanList.map { seisanData in

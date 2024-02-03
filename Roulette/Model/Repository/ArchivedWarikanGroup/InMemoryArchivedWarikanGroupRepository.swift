@@ -9,7 +9,7 @@
 import Foundation
 
 /// テスト用のリポジトリ。`WarikanGroup`配列のCRUD操作を行う。
-class InArchivedMemoryWarikanGroupRepository: ArchivedWarikanGroupRepositoryProtocol {
+class InMemoryArchivedWarikanGroupRepository: ArchivedWarikanGroupRepositoryProtocol {
     private var items = [ArchivedWarikanGroup]()
     
     func transaction<Result>(block: () async throws -> Result) async throws -> Result {

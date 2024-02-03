@@ -11,20 +11,20 @@ import Foundation
 final class ArchiveViewModel: ObservableObject {
     @Published private(set) var archivedWarikanGroupDataList: [ArchivedWarikanGroupData] = []
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
-    private let memberUsecase: MemberUsecase
-    private let tatekaeUsecase: TatekaeUsecase
+    private let memberUseCase: MemberUseCase
+    private let tatekaeUseCase: TatekaeUseCase
     
     init() {
-        let memberUsecase = MemberUsecase(memberRepository: MemberRepository())
-        let tatekaeUsecase = TatekaeUsecase(tatekaeRepository: TatekaeRepository())
+        let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+        let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
         let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
             archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
             memberRepository: MemberRepository()
         )
         
         self.archivedWarikanGroupUseCase = archivedWarikanGroupUseCase
-        self.memberUsecase = memberUsecase
-        self.tatekaeUsecase = tatekaeUsecase
+        self.memberUseCase = memberUseCase
+        self.tatekaeUseCase = tatekaeUseCase
     }
     
     func getArchivedWarikanGroupDataList() async {

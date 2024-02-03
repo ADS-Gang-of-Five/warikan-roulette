@@ -10,10 +10,10 @@ import Foundation
 @MainActor
 final class GroupListViewModel: ObservableObject {
     @Published var groups: [WarikanGroup] = .init()
-    private let warikanGroupUseCase: WarikanGroupUsecase
+    private let warikanGroupUseCase: WarikanGroupUseCase
 
     init() {
-        self.warikanGroupUseCase = WarikanGroupUsecase(
+        self.warikanGroupUseCase = WarikanGroupUseCase(
             warikanGroupRepository: WarikanGroupRepository(),
             memberRepository: MemberRepository(),
             tatekaeRepository: TatekaeRepository()

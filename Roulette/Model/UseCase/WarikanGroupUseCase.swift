@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WarikanGroupUsecase {
+struct WarikanGroupUseCase {
     private var warikanGroupRepository: WarikanGroupRepositoryProtocol
     private var memberRepository: MemberRepositoryProtocol
     private var tatekaeRepository: TatekaeRepositoryProtocol

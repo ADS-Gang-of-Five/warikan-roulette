@@ -11,12 +11,12 @@ import Foundation
  final class TatekaeListViewModel: ObservableObject {
      @Published var tatekaes: [Tatekae] = []
      @Published var members: [Member] = []
-     private let warikanGroupUseCase: WarikanGroupUsecase
-     private let memberUsecase: MemberUsecase
+     private let warikanGroupUseCase: WarikanGroupUseCase
+     private let memberUseCase: MemberUseCase
  
      init() {
-         self.memberUsecase = MemberUsecase(memberRepository: MemberRepository())
-         self.warikanGroupUseCase = WarikanGroupUsecase(
+         self.memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+         self.warikanGroupUseCase = WarikanGroupUseCase(
              warikanGroupRepository: WarikanGroupRepository(),
              memberRepository: MemberRepository(),
              tatekaeRepository: TatekaeRepository()
@@ -34,7 +34,7 @@ import Foundation
  
      func getMembers(ids: [EntityID<Member>]) async {
          do {
-             members = try await memberUsecase.get(ids: ids)
+             members = try await memberUseCase.get(ids: ids)
          } catch {
              print("error:", error)
              print(#file, #line)
@@ -43,7 +43,7 @@ import Foundation
      
      func getMember(id: EntityID<Member>) async -> Member {
          do {
-             let member = try await memberUsecase.get(id: id)!
+             let member = try await memberUseCase.get(id: id)!
              return member
          } catch {
              print("error:", error)

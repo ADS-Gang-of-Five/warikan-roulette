@@ -43,6 +43,15 @@ struct TatekaeListView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("清算", value: Path.confirmView)
+                    // OneView-OneViewModelに切り替え時にViewModelにプロパティとして作成する。
+                    .disabled({
+                        return switch mainViewModel.selectedGroupTatekaes {
+                        case .some(let tatekaes) where tatekaes.count >= 1:
+                            false
+                        default:
+                            true
+                        }
+                    }())
             }
         }
         .navigationTitle(mainViewModel.selectedGroup?.name ?? "no Title")

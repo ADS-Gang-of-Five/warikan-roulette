@@ -1,4 +1,5 @@
 opt_in_rules:
+  - file_name
   - first_where
   - last_where
   - private_swiftui_state

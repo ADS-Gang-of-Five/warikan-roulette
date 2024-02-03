@@ -83,6 +83,7 @@ struct SeisanResultView: View {
             .padding(.top)
             .overlay(alignment: .bottom) {
                 Button("トップに戻る") {
+                    mainViewModel.didTapBackToTopButtonAction()
                     viewRouter.path.removeLast(viewRouter.path.count)
                 }
             }

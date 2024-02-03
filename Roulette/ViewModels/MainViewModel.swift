@@ -166,4 +166,12 @@ final class MainViewModel: ObservableObject {
             print(#function, error)
         }
     }
+
+    func didTapBackToTopButtonAction() {
+       selectedGroup = nil
+       selectedGroupMembers = nil
+       selectedGroupTatekaes = nil
+       selectedGroupSeisanResponse = nil
+       unluckyMemberName = nil
+    }
 }

@@ -16,7 +16,7 @@ struct ArchiveView: View {
                 if !archiveViewModel.archivedWarikanGroupDataList.isEmpty {
                     List(archiveViewModel.archivedWarikanGroupDataList) { data in
                         NavigationLink(data.groupName) {
-                            ArchivedSeisanResultView(archivedWarikanGroupData: data)
+                            ArchivedSeisanResultView(archivedWarikanGroupID: data.id)
                         }
                     }
                 } else {

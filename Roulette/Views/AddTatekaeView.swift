@@ -64,7 +64,14 @@ struct AddTatekaeView: View {
                     },
                            label: {
                         Text("立替を追加")
-                            .modifier(LongStyle(isButtonDisabled: Binding.constant(true)))
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .frame(height: 60)
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(.white)
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                            .padding(.horizontal)
                     })
                     .disabled(
                         tatekaeName.isEmpty || money.isEmpty || payer == nil

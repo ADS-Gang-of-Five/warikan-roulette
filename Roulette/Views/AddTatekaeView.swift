@@ -19,7 +19,7 @@ struct AddTatekaeView: View {
             ZStack {
                 Form {
                     Section {
-                        TextField("例：カニ道楽のランチ", text: $tatekaeName)
+                        TextField("例：イタリアンレストランでのランチ", text: $tatekaeName)
                     } header: {
                         Text("立替の名目")
                     }

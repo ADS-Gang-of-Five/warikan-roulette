@@ -10,10 +10,10 @@ import SwiftUI
 struct ArchivedSeisanResultView: View {
     @StateObject private var viewModel: ArchivedSeisanResultViewModel
 
-    init(archivedWarikanGroupData: ArchivedWarikanGroupData) {
+    init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
         self._viewModel = StateObject(
             wrappedValue: ArchivedSeisanResultViewModel(
-                archivedWarikanGroupData: archivedWarikanGroupData
+                archivedWarikanGroupID: archivedWarikanGroupID
             )
         )
     }

@@ -55,6 +55,9 @@ struct GroupListView: View {
                         .padding(.horizontal, 30)
                 }
             }
+            .task {
+                await mainViewModel.getAllWarikanGroups()
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(alignment: .bottomTrailing) {
                 AddButton {
@@ -69,9 +72,6 @@ struct GroupListView: View {
         .sheet(isPresented: $isShowAddGroupView) {
             AddGroupView()
                 .interactiveDismissDisabled()
-        }
-        .task {
-            await mainViewModel.getAllWarikanGroups()
         }
     }
 }

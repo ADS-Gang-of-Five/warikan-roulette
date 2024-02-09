@@ -69,6 +69,7 @@ struct AddTatekaeView: View {
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .foregroundStyle(.white)
+                            .background(tatekaeName.isEmpty || money.isEmpty || payer == nil ? .gray : .blue)
                             .clipShape(Capsule())
                             .padding(.horizontal)
                             .padding(.horizontal)

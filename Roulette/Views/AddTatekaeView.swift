@@ -13,7 +13,6 @@ struct AddTatekaeView: View {
     @State private var tatekaeName = ""
     @State private var money = ""
     @State private var payer: EntityID<Member>?
-    @State private var isConditionMet = false
 
     var body: some View {
         NavigationStack {

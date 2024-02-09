@@ -74,7 +74,7 @@ private struct TatekaeList: View {
                                 .font(.title2)
                             Spacer()
                             VStack {
-                                Text("xxxx年xx月xx日")
+                                Text(tatekae.createdTime.string)
                                 Text("合計 \(tatekae.money)円")
                             }
                             .font(.footnote)

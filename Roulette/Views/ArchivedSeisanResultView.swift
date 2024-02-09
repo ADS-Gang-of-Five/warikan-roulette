@@ -46,10 +46,14 @@ struct ArchivedSeisanResultView: View {
                         Text("アンラッキーメンバー")
                     }
                     Section {
-                        VStack(alignment: .leading) {
-                            ForEach(viewData.seisanList.indices, id: \.self) { i in
-                                let seisanData = viewData.seisanList[i]
-                                Text("\(seisanData.debtor)が\(seisanData.creditor)に\(seisanData.money)円渡す。")
+                        if viewData.seisanList.isEmpty {
+                            Text("なし")
+                        } else {
+                            VStack(alignment: .leading) {
+                                ForEach(viewData.seisanList.indices, id: \.self) { i in
+                                    let seisanData = viewData.seisanList[i]
+                                    Text("\(seisanData.debtor)が\(seisanData.creditor)に\(seisanData.money)円渡す。")
+                                }
                             }
                         }
                     } header: {

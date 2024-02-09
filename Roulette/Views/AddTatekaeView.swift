@@ -13,6 +13,7 @@ struct AddTatekaeView: View {
     @State private var tatekaeName = ""
     @State private var money = ""
     @State private var payer: EntityID<Member>?
+    @State private var isConditionMet = false
 
     var body: some View {
         NavigationStack {
@@ -64,7 +65,15 @@ struct AddTatekaeView: View {
                     },
                            label: {
                         Text("立替を追加")
-                            .modifier(LongStyle(isButtonDisabled: Binding.constant(true)))
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .frame(height: 60)
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(.white)
+                            .background(tatekaeName.isEmpty || money.isEmpty || payer == nil ? .gray : .blue)
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                            .padding(.horizontal)
                     })
                     .disabled(
                         tatekaeName.isEmpty || money.isEmpty || payer == nil

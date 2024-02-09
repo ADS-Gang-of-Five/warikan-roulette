@@ -23,7 +23,6 @@
 		4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */; };
 		4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */; };
 		4C44E82C2B688FA000DC653F /* ArchivedSeisanResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44E82B2B688FA000DC653F /* ArchivedSeisanResultViewModel.swift */; };
-		4C65282B2B220231000E8130 /* LongStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65282A2B220231000E8130 /* LongStyle.swift */; };
 		4C6528382B220D01000E8130 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528372B220D01000E8130 /* GroupListViewModel.swift */; };
 		4C65283A2B220D3C000E8130 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528392B220D3C000E8130 /* ContentViewModel.swift */; };
 		4C65283C2B220D58000E8130 /* AddGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */; };
@@ -100,7 +99,6 @@
 		4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupView.swift; sourceTree = "<group>"; };
 		4C3EB2CF2B1DEE5100423444 /* TatekaeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeListView.swift; sourceTree = "<group>"; };
 		4C44E82B2B688FA000DC653F /* ArchivedSeisanResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSeisanResultViewModel.swift; sourceTree = "<group>"; };
-		4C65282A2B220231000E8130 /* LongStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongStyle.swift; sourceTree = "<group>"; };
 		4C6528372B220D01000E8130 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		4C6528392B220D3C000E8130 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewModel.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			children = (
 				4C3EB2CB2B1DE63600423444 /* ViewRouter.swift */,
 				4C6528292B2201FF000E8130 /* ViewComponents */,
-				4C6528282B2201E3000E8130 /* ViewModifiers */,
 				4C228AD22AFA861B00FE4F35 /* ContentView.swift */,
 				4C3EB2C72B1DE4A600423444 /* GroupListView.swift */,
 				4C3EB2CD2B1DEA9F00423444 /* AddGroupView.swift */,
@@ -238,14 +235,6 @@
 				4C30C3722B2AF8400040F9B2 /* ArchivedSeisanResultView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		4C6528282B2201E3000E8130 /* ViewModifiers */ = {
-			isa = PBXGroup;
-			children = (
-				4C65282A2B220231000E8130 /* LongStyle.swift */,
-			);
-			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		4C6528292B2201FF000E8130 /* ViewComponents */ = {
@@ -531,7 +520,6 @@
 				A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */,
 				A695B6182B34555D0059B78D /* SeisanData.swift in Sources */,
 				A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */,
-				4C65282B2B220231000E8130 /* LongStyle.swift in Sources */,
 				4C65283E2B220D6F000E8130 /* TatekaeListViewModel.swift in Sources */,
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A60091352B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift in Sources */,

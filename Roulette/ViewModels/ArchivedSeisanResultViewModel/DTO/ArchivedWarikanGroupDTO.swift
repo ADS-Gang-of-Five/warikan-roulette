@@ -32,9 +32,9 @@ struct ArchivedWarikanGroupDTO {
         _ archivedWarikanGroupData: ArchivedWarikanGroupData,
         tatekaeUsecase: TatekaeUseCase,
         memberUsecase: MemberUseCase
-    ) async -> Self {
+    ) async throws -> Self {
         let name = archivedWarikanGroupData.groupName
-        let tatekaes = try! await tatekaeUsecase.get(
+        let tatekaes = try await tatekaeUsecase.get(
             ids: archivedWarikanGroupData.tatekaeList
         )
         let tatekaeList = tatekaes.map { $0.name }
@@ -43,7 +43,7 @@ struct ArchivedWarikanGroupDTO {
         }
         var unluckyMember: String?
         if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
-            unluckyMember = try! await memberUsecase.get(id: unluckyMemberID)?.name
+            unluckyMember = try await memberUsecase.get(id: unluckyMemberID)?.name
         }
         let seisanList = archivedWarikanGroupData.seisanList.map {
             SeisanDTO.convert($0)

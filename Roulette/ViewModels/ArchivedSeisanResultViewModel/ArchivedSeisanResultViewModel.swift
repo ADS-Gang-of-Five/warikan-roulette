@@ -29,7 +29,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
     func makeArchivedWarikanGroupDTO() async {
         do {
             let archivedWarikanGroupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
-            self.archivedWarikanGroupDTO = await ArchivedWarikanGroupDTO.convert(
+            self.archivedWarikanGroupDTO = try await ArchivedWarikanGroupDTO.convert(
                 archivedWarikanGroupData,
                 tatekaeUsecase: tatekaeUseCase,
                 memberUsecase: memberUseCase

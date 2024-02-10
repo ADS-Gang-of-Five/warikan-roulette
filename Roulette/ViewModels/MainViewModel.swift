@@ -51,16 +51,6 @@ final class MainViewModel: ObservableObject {
         }
     }
     
-    // 割り勘グループを作成
-    func createWarikanGroup(name: String, memberNames: [String]) async {
-        do {
-            try await warikanGroupUseCase.create(name: name, memberNames: memberNames)
-            await getAllWarikanGroups()
-        } catch {
-            print(#function, error)
-        }
-    }
-    
     // 割り勘グループIDからそのグループのメンバーリストを取得
     func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
         do {

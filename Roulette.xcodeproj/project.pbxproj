@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C0138DA2B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */; };
+		4C0138E12B7708870011EAA7 /* ArchiveViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */; };
 		4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */; };
 		4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSeisanResultViewModelDTO.swift; sourceTree = "<group>"; };
+		4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModelDTO.swift; sourceTree = "<group>"; };
 		4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeView.swift; sourceTree = "<group>"; };
 		4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailView.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */,
+				4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */,
 			);
 			path = ArchiveViewModel;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
+				4C0138E12B7708870011EAA7 /* ArchiveViewModelDTO.swift in Sources */,
 				4C65284A2B220DD9000E8130 /* SeisanResultViewModel.swift in Sources */,
 				A67FE32D2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift in Sources */,
 				A65940F02B6472D200CBD2B3 /* InMemoryArchivedWarikanGroupRepository.swift in Sources */,

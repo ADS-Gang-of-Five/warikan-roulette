@@ -23,12 +23,14 @@ struct AddTatekaeView: View {
                 Form {
                     Section {
                         TextField("例：イタリアンレストランでのランチ", text: $viewModel.tatekaeName)
+                            .disabled(viewModel.isTatekaeNameTextFieldDisabled)
                     } header: {
                         Text("立替の名目")
                     }
                     Section {
                         TextField("￥ 5000", text: $viewModel.money)
                             .keyboardType(.numberPad)
+                            .disabled(viewModel.isMoneyTextFieldDisabled)
                     } header: {
                         Text("立替の金額")
                     }
@@ -42,6 +44,7 @@ struct AddTatekaeView: View {
                                 }
                             }
                         }
+                        .disabled(viewModel.isPayerPickerDisabled)
                     }
                 }
                 VStack {

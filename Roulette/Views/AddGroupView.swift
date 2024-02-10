@@ -8,65 +8,52 @@
 import SwiftUI
 
 struct AddGroupView: View {
-    @EnvironmentObject private var mainViewModel: MainViewModel
-    @State private var groupName = ""
-    @State private var memberList: [String] = []
-    @State private var additionalMember = ""
-    @State private var isValidMemberName = false
-    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel = AddGroupViewModel()
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Form {
                     Section {
-                        TextField("グループ名を入力", text: $groupName)
+                        TextField("グループ名を入力", text: $viewModel.groupName)
                     } header: {
                         Text("割り勘グループ名")
                     }
-                    // 追加メンバー・バリデーション（空文字NG・被りNG）
                     Section {
                         HStack {
-                            TextField("メンバー名", text: $additionalMember)
+                            TextField("メンバー名", text: $viewModel.additionalMember)
                             Button("追加") {
-                                memberList.append(additionalMember)
-                                additionalMember.removeAll()
+                                viewModel.didTapAddMemberButton()
                             }
-                            .disabled(!isValidMemberName)
+                            .disabled(viewModel.isAddMemberButtonDisabled)
                         }
                     } header: {
                         Text("追加メンバー")
-                    } footer: {
-                        if !isValidMemberName && additionalMember.count != 0 {
-                            Text("名前が被っています")
-                                .foregroundStyle(Color.red)
-                        }
                     }
-                    // メンバーリスト、グループ作成ボタン
                     Section {
-                        ForEach(memberList.indices, id: \.self) { index in
-                            TextField(memberList[index], text: $memberList[index])
+                        ForEach(viewModel.memberList.indices, id: \.self) { index in
+                            TextField(
+                                viewModel.memberList[index],
+                                text: $viewModel.memberList[index]
+                            )
                         }
                     } header: {
                         Text("メンバーリスト")
                     } footer: {
                         Button("グループ作成") {
-                            Task {
-                                await mainViewModel.createWarikanGroup(
-                                    name: groupName,
-                                    memberNames: memberList
-                                )
-                            }
-                            dismiss()
+                            viewModel.didTapCreateGroupButton { dismiss() }
                         }
-                        .disabled(!(groupName.count > 2 && memberList.count >= 2))
+                        .disabled(viewModel.isCreateGroupButtonDisabled)
                         .font(.title2)
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                         .padding()
                         .padding(.horizontal)
                         .padding(.horizontal)
-                        .background(groupName.count > 2 && memberList.count >= 2 ?.blue : .gray)
+                        .background(
+                            viewModel.isCreateGroupButtonDisabled ? .gray : .blue
+                        )
                         .clipShape(Capsule())
                         .frame(maxWidth: .infinity)
                         .padding(.top)
@@ -75,7 +62,6 @@ struct AddGroupView: View {
             }
             .navigationTitle("割り勘グループ作成")
             .navigationBarTitleDisplayMode(.inline)
-            // 右上バツボタン
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -85,13 +71,7 @@ struct AddGroupView: View {
                     })
                 }
             }
-        }
-        .onChange(of: additionalMember) { _, newValue in
-            if !memberList.contains(newValue) && additionalMember.count != 0 {
-                isValidMemberName = true
-            } else {
-                isValidMemberName = false
-            }
+            .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}
         }
     }
 }

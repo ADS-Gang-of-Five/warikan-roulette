@@ -69,10 +69,16 @@ struct GroupListView: View {
         }
         .environmentObject(viewRouter)
         .environmentObject(mainViewModel)
-        .sheet(isPresented: $isShowAddGroupView) {
+        .sheet(isPresented: $isShowAddGroupView,
+               onDismiss: {
+            Task {
+                await mainViewModel.getAllWarikanGroups()
+            }
+        },
+               content: {
             AddGroupView()
                 .interactiveDismissDisabled()
-        }
+        })
     }
 }
 

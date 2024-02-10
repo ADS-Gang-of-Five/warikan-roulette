@@ -13,10 +13,12 @@ struct ArchiveView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if !archiveViewModel.archivedWarikanGroupDataList.isEmpty {
-                    List(archiveViewModel.archivedWarikanGroupDataList) { data in
-                        NavigationLink(data.groupName) {
-                            ArchivedSeisanResultView(archivedWarikanGroupID: data.id)
+                if !archiveViewModel.archivedWarikanGroupDTOs.isEmpty {
+                    List(archiveViewModel.archivedWarikanGroupDTOs) { archivedWarikanGroup in
+                        NavigationLink(archivedWarikanGroup.name) {
+                            ArchivedSeisanResultView(
+                                archivedWarikanGroupID: archivedWarikanGroup.id
+                            )
                         }
                     }
                 } else {
@@ -27,7 +29,7 @@ struct ArchiveView: View {
             }
             .navigationTitle("清算済割り勘グループ")
             .task {
-                await archiveViewModel.getArchivedWarikanGroupDataList()
+                await archiveViewModel.makeArchivedWarikanGroupDTO()
             }
         }
     }

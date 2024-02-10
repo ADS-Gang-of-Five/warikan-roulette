@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct TatekaeDetailView: View {
-    @EnvironmentObject private var mainViewModel: MainViewModel
+    @StateObject private var viewModel: TatekaeDetailViewModel
     @Environment(\.dismiss) private var dismiss
-    let tatekae: Tatekae
-    @State private var memberName: String?
-    @State private var dateString: String?
+
+    init(_ tatekaeID: EntityID<Tatekae>) {
+        self._viewModel = StateObject(
+            wrappedValue: TatekaeDetailViewModel(tatekaeID)
+        )
+    }
 
     var body: some View {
         NavigationStack {
             List {
-                if let memberName, let dateString {
+                if let tatekae = viewModel.tatekaeDTO {
                     Section {
                         Text(tatekae.name)
                     } header: {
@@ -29,30 +32,19 @@ struct TatekaeDetailView: View {
                         Text("立替の金額")
                     }
                     Section {
-                        Text(memberName)
+                        Text(tatekae.payer)
                     } header: {
                         Text("立替人")
                     }
                     Section {
-                        Text(dateString)
+                        Text(tatekae.createdTime)
                     } header: {
                         Text("日時")
-                    }
-                } else {
-                    HStack {
-                        Text("読み込み中...")
-                        Spacer()
-                        ProgressView()
                     }
                 }
             }
             .task {
-                let member = await mainViewModel.getMember(id: tatekae.payer)
-                self.memberName = member.name
-                let df = DateFormatter()
-                df.calendar = Calendar(identifier: .gregorian)
-                df.dateFormat = "yyyy年MM月dd日 HH時mm分"
-                self.dateString = df.string(from: tatekae.createdTime)
+                await viewModel.makeTatekaeDTO()
             }
             .navigationTitle("立替の詳細")
             .toolbarTitleDisplayMode(.inline)

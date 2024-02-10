@@ -42,7 +42,7 @@ struct TatekaeListView: View {
                 .interactiveDismissDisabled()
         })
         .sheet(item: $focusedTatekaeForTatekaeDetailView) { tatekae in
-            TatekaeDetailView(tatekae: tatekae)
+            TatekaeDetailView(tatekae.id)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

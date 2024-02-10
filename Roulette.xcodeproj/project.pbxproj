@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C0138DA2B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */; };
 		4C0138E12B7708870011EAA7 /* ArchiveViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */; };
+		4C0139002B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */; };
 		4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */; };
 		4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
@@ -86,6 +87,7 @@
 /* Begin PBXFileReference section */
 		4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSeisanResultViewModelDTO.swift; sourceTree = "<group>"; };
 		4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModelDTO.swift; sourceTree = "<group>"; };
+		4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailViewModelDTO.swift; sourceTree = "<group>"; };
 		4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeView.swift; sourceTree = "<group>"; };
 		4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailView.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */,
+				4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */,
 			);
 			path = TatekaeDetailViewModel;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,
 				A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */,
+				4C0139002B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift in Sources */,
 				4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */,
 				4C6528442B220DA3000E8130 /* ConfirmViewModel.swift in Sources */,
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,

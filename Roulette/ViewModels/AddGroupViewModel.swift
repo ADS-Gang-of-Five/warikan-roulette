@@ -17,11 +17,15 @@ final class AddGroupViewModel: ObservableObject {
     @Published var alertText = ""
 
     var isAddMemberButtonDisabled: Bool {
-        !(additionalMember.isEmpty == false && memberList.count <= 20)
+        !(additionalMember.isEmpty == false && memberList.count <= 20 && isCreatingWarikanGroup == false)
     }
 
     var isCreateGroupButtonDisabled: Bool {
-        !(groupName.count > 0 && memberList.count > 1)
+        !(groupName.count > 0 && memberList.count > 1 && isCreatingWarikanGroup == false)
+    }
+
+    var isDissmissButtonDisabled: Bool {
+        isCreatingWarikanGroup
     }
 
     private let warikanGroupUseCase = WarikanGroupUseCase(

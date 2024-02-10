@@ -69,6 +69,7 @@ struct AddGroupView: View {
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
+                    .disabled(viewModel.isDissmissButtonDisabled)
                 }
             }
             .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}

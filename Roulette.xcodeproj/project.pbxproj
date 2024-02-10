@@ -177,6 +177,14 @@
 			path = ArchivedSeisanResultViewModel;
 			sourceTree = "<group>";
 		};
+		4C0138DF2B7708290011EAA7 /* ArchiveViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */,
+			);
+			path = ArchiveViewModel;
+			sourceTree = "<group>";
+		};
 		4C228AC42AFA861B00FE4F35 = {
 			isa = PBXGroup;
 			children = (
@@ -347,7 +355,7 @@
 				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
 				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
 				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
-				4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */,
+				4C0138DF2B7708290011EAA7 /* ArchiveViewModel */,
 				4C0138CF2B767BBE0011EAA7 /* ArchivedSeisanResultViewModel */,
 			);
 			path = ViewModels;

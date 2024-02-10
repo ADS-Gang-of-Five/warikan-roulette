@@ -188,6 +188,14 @@
 			path = ArchiveViewModel;
 			sourceTree = "<group>";
 		};
+		4C0138FC2B777D050011EAA7 /* AddGroupViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */,
+			);
+			path = AddGroupViewModel;
+			sourceTree = "<group>";
+		};
 		4C228AC42AFA861B00FE4F35 = {
 			isa = PBXGroup;
 			children = (
@@ -352,7 +360,7 @@
 				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
 				4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */,
 				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
-				4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */,
+				4C0138FC2B777D050011EAA7 /* AddGroupViewModel */,
 				4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */,
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
 				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,

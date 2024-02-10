@@ -90,28 +90,12 @@ final class MainViewModel: ObservableObject {
         }
     }
 
-    // 立替を追加
-    func appendTatekae(
-        warikanGroupID: EntityID<WarikanGroup>,
-        tatekaeName: String,
-        payerID: EntityID<Member>,
-        recipantIDs: [EntityID<Member>],
-        money: Int
-    ) async {
-        do {
-            try await warikanGroupUseCase.appendTatekae(
-                warikanGroup: warikanGroupID,
-                tatekaeName: tatekaeName,
-                payer: payerID,
-                recipants: recipantIDs,
-                money: money
-            )
-            await getSelectedGroupTatakaeList(id: warikanGroupID)
-        } catch {
-            print(#function, error)
+    func reloadTatekaeList() {
+        Task {
+            await getSelectedGroupTatakaeList(id: self.selectedGroup!.id)
         }
     }
-    
+
     // 選択したグループとそのメンバーと立て替えをMainViewModelに保持させる
     func selectWarikanGroup(warikanGroup: WarikanGroup) async {
         do {

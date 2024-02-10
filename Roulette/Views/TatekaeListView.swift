@@ -33,10 +33,14 @@ struct TatekaeListView: View {
             }
             .padding(.trailing)
         }
-        .sheet(isPresented: $isShowAddTatekaeView) {
-            AddTatekaeView()
+        .sheet(isPresented: $isShowAddTatekaeView,
+               onDismiss: {
+            mainViewModel.reloadTatekaeList()
+        },
+               content: {
+            AddTatekaeView(mainViewModel.selectedGroup!.id)
                 .interactiveDismissDisabled()
-        }
+        })
         .sheet(item: $focusedTatekaeForTatekaeDetailView) { tatekae in
             TatekaeDetailView(tatekae: tatekae)
         }

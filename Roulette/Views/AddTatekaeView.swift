@@ -8,31 +8,34 @@
 import SwiftUI
 
 struct AddTatekaeView: View {
-    @EnvironmentObject private var mainViewModel: MainViewModel
+    @StateObject private var viewModel: AddTatekaeViewModel
     @Environment(\.dismiss) private var dismiss
-    @State private var tatekaeName = ""
-    @State private var money = ""
-    @State private var payer: EntityID<Member>?
+
+    init(_ warikanGroupID: EntityID<WarikanGroup>) {
+        self._viewModel = StateObject(
+            wrappedValue: AddTatekaeViewModel(warikanGroupID)
+        )
+    }
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Form {
                     Section {
-                        TextField("例：イタリアンレストランでのランチ", text: $tatekaeName)
+                        TextField("例：イタリアンレストランでのランチ", text: $viewModel.tatekaeName)
                     } header: {
                         Text("立替の名目")
                     }
                     Section {
-                        TextField("￥ 5000", text: $money)
-                            .keyboardType(.numberPad) // TODO: 金額の入力に対して、このモディファイアが適切か調べる。
+                        TextField("￥ 5000", text: $viewModel.money)
+                            .keyboardType(.numberPad)
                     } header: {
                         Text("立替の金額")
                     }
                     Section {
-                        Picker("立替人", selection: $payer) {
+                        Picker("立替人", selection: $viewModel.payer) {
                             Text("未選択").tag(EntityID<Member>?.none)
-                            if let members = mainViewModel.selectedGroupMembers {
+                            if let members = viewModel.members {
                                 ForEach(members) { member in
                                     Text(member.name)
                                         .tag(EntityID<Member>?.some(member.id))
@@ -44,23 +47,7 @@ struct AddTatekaeView: View {
                 VStack {
                     Spacer()
                     Button(action: {
-                        Task {
-                            guard let warikanGroupID: EntityID<WarikanGroup> = mainViewModel.selectedGroup?.id,
-                                  tatekaeName.isEmpty == false,
-                                  let payerID = payer,
-                                  let recipantIDs = mainViewModel.selectedGroup?.members,
-                                  let money = Int(self.money)
-                            else { return }
-
-                            await mainViewModel.appendTatekae(
-                                warikanGroupID: warikanGroupID,
-                                tatekaeName: tatekaeName,
-                                payerID: payerID,
-                                recipantIDs: recipantIDs,
-                                money: money
-                            )
-                            dismiss()
-                        }
+                        viewModel.didTapAppendTatakaeButton { dismiss() }
                     },
                            label: {
                         Text("立替を追加")
@@ -69,14 +56,15 @@ struct AddTatekaeView: View {
                             .frame(height: 60)
                             .frame(maxWidth: .infinity)
                             .foregroundStyle(.white)
-                            .background(tatekaeName.isEmpty || money.isEmpty || payer == nil ? .gray : .blue)
+                            .background(
+                                viewModel.isAppendTatekaeButtonDisabled
+                                ? .gray : .blue
+                            )
                             .clipShape(Capsule())
                             .padding(.horizontal)
                             .padding(.horizontal)
                     })
-                    .disabled(
-                        tatekaeName.isEmpty || money.isEmpty || payer == nil
-                    )
+                    .disabled(viewModel.isAppendTatekaeButtonDisabled)
                 }
                 .padding(.bottom, 1)
             }
@@ -89,13 +77,17 @@ struct AddTatekaeView: View {
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
+                    .disabled(viewModel.isDismissButtonDisabled)
                 }
             }
+            .task {
+                await viewModel.getMembers()
+            }
+            .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}
         }
     }
 }
 
 #Preview {
-    AddTatekaeView()
-        .environmentObject(MainViewModel())
+    AddTatekaeView(EntityID<WarikanGroup>(value: "test"))
 }

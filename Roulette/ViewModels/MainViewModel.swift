@@ -111,7 +111,13 @@ final class MainViewModel: ObservableObject {
             print(#function, error)
         }
     }
-    
+
+    func reloadTatekaeList() {
+        Task {
+            await getSelectedGroupTatakaeList(id: self.selectedGroup!.id)
+        }
+    }
+
     // 選択したグループとそのメンバーと立て替えをMainViewModelに保持させる
     func selectWarikanGroup(warikanGroup: WarikanGroup) async {
         do {

@@ -25,7 +25,10 @@ final class AddTatekaeViewModel: ObservableObject {
     var isAppendTatekaeButtonDisabled: Bool {
         !(tatekaeName.isEmpty == false && Int(money) != nil && payer != nil && isAppendingTatekae == false)
     }
-
+    
+    var isTatekaeNameTextFieldDisabled: Bool { isAppendingTatekae }
+    var isMoneyTextFieldDisabled: Bool { isAppendingTatekae }
+    var isPayerPickerDisabled: Bool { isAppendingTatekae }
     var isDismissButtonDisabled: Bool { isAppendingTatekae }
 
     init(_ warikanGroupID: EntityID<WarikanGroup>) {

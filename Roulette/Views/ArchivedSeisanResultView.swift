@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ArchivedSeisanResultView: View {
     @StateObject private var viewModel: ArchivedSeisanResultViewModel
+    @Environment(\.dismiss) private var dismiss
 
     init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
         self._viewModel = StateObject(
@@ -68,6 +69,9 @@ struct ArchivedSeisanResultView: View {
         .font(.title3)
         .task {
             await viewModel.makeArchivedWarikanGroupDTO()
+        }
+        .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
+            Button("戻る") { dismiss() }
         }
     }
 }

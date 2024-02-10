@@ -14,6 +14,8 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
     private let memberUseCase: MemberUseCase
     private let tatekaeUseCase: TatekaeUseCase
+    @Published var isShowAlert = false
+    let alertText = "データの読み込み中にエラーが発生しました。前の画面に戻りもう一度お試しください。"
 
     init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
         self.archivedWarikanGroupID = archivedWarikanGroupID
@@ -35,7 +37,7 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
                 memberUsecase: memberUseCase
             )
         } catch {
-            print(error)
+            self.isShowAlert = true
         }
     }
 }

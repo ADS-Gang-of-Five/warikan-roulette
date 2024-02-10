@@ -12,6 +12,7 @@ final class TatekaeDetailViewModel: ObservableObject {
     private let tatekaeID: EntityID<Tatekae>
     @Published private(set) var tatekaeDTO: TatekaeDTO?
     private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
+    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
 
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""
@@ -23,7 +24,10 @@ final class TatekaeDetailViewModel: ObservableObject {
     func makeTatekaeDTO() async {
         do {
             if let tatekae = try await tatekaeUseCase.get(id: tatekaeID) {
-                self.tatekaeDTO = TatekaeDTO.convert(tatekae)
+                tatekaeDTO = try await TatekaeDTO.convert(
+                    tatekae,
+                    memberUseCase: memberUseCase
+                )
             } else {
                 alertText = "データの読み込み中にエラーが発生しました。前の画面に戻って再度お試しください。"
                 isShowAlert = true

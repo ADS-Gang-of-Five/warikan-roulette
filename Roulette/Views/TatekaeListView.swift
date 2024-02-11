@@ -38,8 +38,10 @@ struct TatekaeListView: View {
             mainViewModel.reloadTatekaeList()
         },
                content: {
-            AddTatekaeView(mainViewModel.selectedGroup!.id)
-                .interactiveDismissDisabled()
+            NavigationStack {
+                AddTatekaeView(mainViewModel.selectedGroup!.id)
+                    .interactiveDismissDisabled()
+            }
         })
         .sheet(item: $focusedTatekaeForTatekaeDetailView) { tatekae in
             TatekaeDetailView(tatekae: tatekae)

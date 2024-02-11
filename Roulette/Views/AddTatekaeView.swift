@@ -18,79 +18,59 @@ struct AddTatekaeView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Form {
-                    Section {
-                        TextField("例：イタリアンレストランでのランチ", text: $viewModel.tatekaeName)
-                            .disabled(viewModel.isTatekaeNameTextFieldDisabled)
-                    } header: {
-                        Text("立替の名目")
-                    }
-                    Section {
-                        TextField("￥ 5000", text: $viewModel.money)
-                            .keyboardType(.numberPad)
-                            .disabled(viewModel.isMoneyTextFieldDisabled)
-                    } header: {
-                        Text("立替の金額")
-                    }
-                    Section {
-                        Picker("立替人", selection: $viewModel.payer) {
-                            Text("未選択").tag(EntityID<Member>?.none)
-                            if let members = viewModel.members {
-                                ForEach(members) { member in
-                                    Text(member.name)
-                                        .tag(EntityID<Member>?.some(member.id))
-                                }
-                            }
+        Form {
+            Section {
+                TextField("例：イタリアンレストランでのランチ", text: $viewModel.tatekaeName)
+                    .disabled(viewModel.isTatekaeNameTextFieldDisabled)
+            } header: { Text("立替の名目") }
+            Section {
+                TextField("￥ 5000", text: $viewModel.money)
+                    .keyboardType(.numberPad)
+                    .disabled(viewModel.isMoneyTextFieldDisabled)
+            } header: { Text("立替の金額") }
+            Section {
+                Picker("立替人", selection: $viewModel.payer) {
+                    Text("未選択").tag(EntityID<Member>?.none)
+                    if let members = viewModel.members {
+                        ForEach(members) { member in
+                            Text(member.name)
+                                .tag(EntityID<Member>?.some(member.id))
                         }
-                        .disabled(viewModel.isPayerPickerDisabled)
                     }
                 }
-                VStack {
-                    Spacer()
-                    Button(action: {
-                        viewModel.didTapAppendTatakaeButton { dismiss() }
-                    },
-                           label: {
-                        Text("立替を追加")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .frame(height: 60)
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(.white)
-                            .background(
-                                viewModel.isAppendTatekaeButtonDisabled
-                                ? .gray : .blue
-                            )
-                            .clipShape(Capsule())
-                            .padding(.horizontal)
-                            .padding(.horizontal)
-                    })
-                    .disabled(viewModel.isAppendTatekaeButtonDisabled)
-                }
-                .padding(.bottom, 1)
+                .disabled(viewModel.isPayerPickerDisabled)
             }
-            .navigationTitle("立替の追加")
-            .toolbarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "xmark.circle")
-                    })
+        }
+        .navigationTitle("立替の追加")
+        .toolbarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("dissmiss", systemImage: "xmark.circle") { dismiss() }
                     .disabled(viewModel.isDismissButtonDisabled)
-                }
             }
-            .task {
-                await viewModel.getMembers()
+        }
+        .task { await viewModel.getMembers() }
+        .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
+        }
+        .overlay(alignment: .bottom) {
+            Button("立替を追加") {
+                viewModel.didTapAppendTatakaeButton { dismiss() }
             }
-            .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}
+            .disabled(viewModel.isAppendTatekaeButtonDisabled)
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical)
+            .background(viewModel.isAppendTatekaeButtonDisabled ? .gray : .blue)
+            .clipShape(Capsule())
+            .padding(.horizontal)
         }
     }
 }
 
 #Preview {
-    AddTatekaeView(EntityID<WarikanGroup>(value: "test"))
+    NavigationStack {
+        AddTatekaeView(EntityID<WarikanGroup>(value: "test"))
+    }
 }

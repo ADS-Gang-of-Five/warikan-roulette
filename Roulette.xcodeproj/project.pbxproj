@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C0138DA2B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */; };
 		4C0138E12B7708870011EAA7 /* ArchiveViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */; };
+		4C0139002B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */; };
 		4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */; };
 		4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */; };
 		4C228AD12AFA861B00FE4F35 /* RouletteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C228AD02AFA861B00FE4F35 /* RouletteApp.swift */; };
@@ -86,6 +87,7 @@
 /* Begin PBXFileReference section */
 		4C0138D92B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedSeisanResultViewModelDTO.swift; sourceTree = "<group>"; };
 		4C0138E02B7708870011EAA7 /* ArchiveViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModelDTO.swift; sourceTree = "<group>"; };
+		4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailViewModelDTO.swift; sourceTree = "<group>"; };
 		4C1C38E52B1E0B7E00839663 /* AddTatekaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTatekaeView.swift; sourceTree = "<group>"; };
 		4C1C38E72B1F01BF00839663 /* TatekaeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeDetailView.swift; sourceTree = "<group>"; };
 		4C228ACD2AFA861B00FE4F35 /* Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roulette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,9 +193,26 @@
 		4C0138FC2B777D050011EAA7 /* AddGroupViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */,
+				4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */,
 			);
 			path = AddGroupViewModel;
+			sourceTree = "<group>";
+		};
+		4C0138FD2B77A86E0011EAA7 /* AddTatekaeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C65283F2B220D80000E8130 /* AddTatekaeViewModel.swift */,
+			);
+			path = AddTatekaeViewModel;
+			sourceTree = "<group>";
+		};
+		4C0138FE2B77A8B10011EAA7 /* TatekaeDetailViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */,
+				4C0138FF2B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift */,
+			);
+			path = TatekaeDetailViewModel;
 			sourceTree = "<group>";
 		};
 		4C228AC42AFA861B00FE4F35 = {
@@ -358,10 +377,10 @@
 				4C6528392B220D3C000E8130 /* ContentViewModel.swift */,
 				69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */,
 				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
-				4C65283B2B220D58000E8130 /* AddGroupViewModel.swift */,
-				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
 				4C0138FC2B777D050011EAA7 /* AddGroupViewModel */,
-				4C6528412B220D95000E8130 /* TatekaeDetailViewModel.swift */,
+				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
+				4C0138FD2B77A86E0011EAA7 /* AddTatekaeViewModel */,
+				4C0138FE2B77A8B10011EAA7 /* TatekaeDetailViewModel */,
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
 				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
 				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
@@ -563,6 +582,7 @@
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
 				4C25180C2B12108000965D43 /* WarikanGroup.swift in Sources */,
 				A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */,
+				4C0139002B77AA3B0011EAA7 /* TatekaeDetailViewModelDTO.swift in Sources */,
 				4C3EB2CE2B1DEA9F00423444 /* AddGroupView.swift in Sources */,
 				4C6528442B220DA3000E8130 /* ConfirmViewModel.swift in Sources */,
 				A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */,

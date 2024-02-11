@@ -55,18 +55,16 @@ class TatekaeRepository: TatekaeRepositoryProtocol {
         }
     }
     
-    func find(id: EntityID<Tatekae>) -> Tatekae? {
+    func find(id: EntityID<Tatekae>) throws -> Tatekae {
         let items = getItems()
-        return items[id]
+        guard let item = items[id] else {
+            throw ValidationError.notFoundID(id)
+        }
+        return item
     }
     
     func find(ids: [EntityID<Tatekae>]) throws -> [Tatekae] {
-        return try ids.map { id in
-            guard let item = find(id: id) else {
-                throw ValidationError.notFoundID(id)
-            }
-            return item
-        }
+        return try ids.map { try find(id: $0) }
     }
     
     func save(_ item: Tatekae) {

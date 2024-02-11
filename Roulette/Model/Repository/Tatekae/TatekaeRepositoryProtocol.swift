@@ -20,7 +20,7 @@ protocol TatekaeRepositoryProtocol {
     func nextIDs(count: Int) async throws -> [EntityID<Tatekae>]
     
     /// 指定したIDの立て替えを取得する。
-    func find(id: EntityID<Tatekae>) async throws -> Tatekae?
+    func find(id: EntityID<Tatekae>) async throws -> Tatekae
     
     /// 指定したIDの立て替えを取得する。
     ///

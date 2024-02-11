@@ -55,18 +55,16 @@ struct MemberRepository: MemberRepositoryProtocol {
         }
     }
     
-    func find(id: EntityID<Member>) -> Member? {
+    func find(id: EntityID<Member>) throws -> Member {
         let items = getItems()
-        return items[id]
+        guard let item = items[id] else {
+            throw ValidationError.notFoundID(id)
+        }
+        return item
     }
     
     func find(ids: [EntityID<Member>]) throws -> [Member] {
-        return try ids.map { id in
-            guard let item = find(id: id) else {
-                throw ValidationError.notFoundID(id)
-            }
-            return item
-        }
+        return try ids.map { try find(id: $0) }
     }
     
     func save(_ item: Member) {

@@ -20,7 +20,7 @@ protocol MemberRepositoryProtocol {
     func nextIDs(count: Int) async throws -> [EntityID<Member>]
     
     /// 指定したIDのメンバーを取得する。
-    func find(id: EntityID<Member>) async throws -> Member?
+    func find(id: EntityID<Member>) async throws -> Member
     
     /// 指定した複数のIDのメンバーを取得する。
     ///

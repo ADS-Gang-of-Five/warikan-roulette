@@ -36,6 +36,7 @@ struct RouletteResultView: View {
     }
 }
 
+#warning("SeisanResultViewへのリンクは未変更")
 struct NewRouletteResultView: View {
     @StateObject private var viewModel: RouletteResultViewModel
 

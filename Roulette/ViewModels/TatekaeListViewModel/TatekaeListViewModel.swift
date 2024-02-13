@@ -23,7 +23,7 @@ import Foundation
      @Published private(set) var alertText = ""
 
      @Published var isShowAddTatekaeView = false
-     @Published var focusedTatekae: EntityID<Tatekae>?
+     @Published var focusedTatekaeDTO: TatekaeDTO?
 
      var isNavigateToConfirmViewButtonDisabled: Bool {
          return switch tatekaeDTOs {

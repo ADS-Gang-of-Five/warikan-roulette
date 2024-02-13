@@ -72,7 +72,7 @@ final class MainViewModel: ObservableObject {
     // メンバーIDから実体(Member)を取得
     func getMember(id: EntityID<Member>) async -> Member {
         do {
-            let member = try await memberUseCase.get(id: id)!
+            let member = try await memberUseCase.get(id: id)
             return member
         } catch {
             print(#function, error)

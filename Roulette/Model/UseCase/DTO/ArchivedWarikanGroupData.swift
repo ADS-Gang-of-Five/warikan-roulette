@@ -22,7 +22,7 @@ struct ArchivedWarikanGroupData: Identifiable {
         name: String,
         members: [EntityID<Member>],
         tatekaeList: [EntityID<Tatekae>],
-        unluckyMember: EntityID<Member>? = nil,
+        unluckyMember: EntityID<Member>?,
         seisanList: [SeisanData]
     ) {
         self.id = id
@@ -43,6 +43,7 @@ struct ArchivedWarikanGroupData: Identifiable {
             name: archivedWarikanGroup.name,
             members: archivedWarikanGroup.members,
             tatekaeList: archivedWarikanGroup.tatekaeList,
+            unluckyMember: archivedWarikanGroup.unluckyMember,
             seisanList: try await archivedWarikanGroup.seisanList.mapToData(withMemberRepository: memberRepository)
         )
     }

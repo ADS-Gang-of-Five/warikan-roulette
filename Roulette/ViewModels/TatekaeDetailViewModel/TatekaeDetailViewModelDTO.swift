@@ -24,7 +24,7 @@ extension TatekaeDetailViewModel {
 
         static func convert(_ tatekae: Tatekae, memberUseCase: MemberUseCase) async throws -> Self {
             let name = tatekae.name
-            let payer = try await memberUseCase.get(id: tatekae.payer)!.name
+            let payer = try await memberUseCase.get(id: tatekae.payer).name
             let money = String(tatekae.money)
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = Calendar.autoupdatingCurrent

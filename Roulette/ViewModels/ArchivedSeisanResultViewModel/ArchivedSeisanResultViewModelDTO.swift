@@ -62,9 +62,10 @@ extension ArchivedSeisanResultViewModel {
             let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
                 partialResult + tatekae.money
             }
-            var unluckyMember: String?
-            if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
-                unluckyMember = try await memberUsecase.get(id: unluckyMemberID)?.name
+            let unluckyMember = if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
+                try await memberUsecase.get(id: unluckyMemberID).name
+            } else {
+                Optional<String>.none
             }
             let seisanList = archivedWarikanGroupData.seisanList.map {
                 SeisanDTO.convert($0)

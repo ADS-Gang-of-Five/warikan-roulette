@@ -9,7 +9,7 @@
 import Foundation
 
 extension TatekaeListViewModel {
-    struct TatekaeDTO {
+    struct TatekaeDTO: Identifiable {
         let id: EntityID<Tatekae>
         let name: String
         let money: String

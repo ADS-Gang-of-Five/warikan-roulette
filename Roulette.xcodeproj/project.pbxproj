@@ -265,6 +265,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4C3073552B7B44A5007517BB /* TatekaeListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
+			);
+			path = TatekaeListViewModel;
+			sourceTree = "<group>";
+		};
 		4C3EB2C62B1DE46B00423444 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,7 +386,7 @@
 				69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */,
 				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
 				4C0138FC2B777D050011EAA7 /* AddGroupViewModel */,
-				4C65283D2B220D6F000E8130 /* TatekaeListViewModel.swift */,
+				4C3073552B7B44A5007517BB /* TatekaeListViewModel */,
 				4C0138FD2B77A86E0011EAA7 /* AddTatekaeViewModel */,
 				4C0138FE2B77A8B10011EAA7 /* TatekaeDetailViewModel */,
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,

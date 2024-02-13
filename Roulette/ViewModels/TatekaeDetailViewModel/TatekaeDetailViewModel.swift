@@ -23,15 +23,8 @@ final class TatekaeDetailViewModel: ObservableObject {
 
     func makeTatekaeDTO() async {
         do {
-            if let tatekae = try await tatekaeUseCase.get(id: tatekaeID) {
-                tatekaeDTO = try await TatekaeDTO.convert(
-                    tatekae,
-                    memberUseCase: memberUseCase
-                )
-            } else {
-                alertText = "データの読み込み中にエラーが発生しました。前の画面に戻って再度お試しください。"
-                isShowAlert = true
-            }
+            let tatekae = try await tatekaeUseCase.get(id: tatekaeID)
+            tatekaeDTO = try await TatekaeDTO.convert(tatekae, memberUseCase: memberUseCase)
         } catch {
             print(error)
             alertText = "データの読み込み中にエラーが発生しました。前の画面に戻って再度お試しください。"

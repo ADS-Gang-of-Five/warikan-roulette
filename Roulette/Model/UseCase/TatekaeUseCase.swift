@@ -16,7 +16,7 @@ struct TatekaeUseCase {
     }
     
     /// 指定したIDの立て替えを返す。
-    func get(id: EntityID<Tatekae>) async throws -> Tatekae? {
+    func get(id: EntityID<Tatekae>) async throws -> Tatekae {
         return try await tatekaeRepository.find(id: id)
     }
     

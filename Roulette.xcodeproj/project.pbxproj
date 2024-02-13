@@ -355,7 +355,7 @@
 				4C2518082B12104900965D43 /* Member.swift */,
 				A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */,
 				A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */,
-				A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */,
+				A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -366,7 +366,7 @@
 				4C25180D2B12108D00965D43 /* Tatekae.swift */,
 				A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */,
 				A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */,
-				A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */,
+				A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */,
 			);
 			path = Tatekae;
 			sourceTree = "<group>";

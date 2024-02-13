@@ -43,7 +43,7 @@ import Foundation
      
      func getMember(id: EntityID<Member>) async -> Member {
          do {
-             let member = try await memberUseCase.get(id: id)!
+             let member = try await memberUseCase.get(id: id)
              return member
          } catch {
              print("error:", error)

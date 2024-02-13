@@ -25,12 +25,8 @@ struct SeisanData {
 
     /// 永続化用のデータ型から変換する。
     static func create(from seisan: Seisan, memberRepository: MemberRepositoryProtocol) async throws -> Self {
-        guard let debtor = try await memberRepository.find(id: seisan.debtor) else {
-            throw ValidationError.notFoundID(seisan.debtor)
-        }
-        guard let creditor = try await memberRepository.find(id: seisan.creditor) else {
-            throw ValidationError.notFoundID(seisan.debtor)
-        }
+        let debtor = try await memberRepository.find(id: seisan.debtor)
+        let creditor = try await memberRepository.find(id: seisan.creditor)
         return .init(
             debtor: debtor,
             creditor: creditor,

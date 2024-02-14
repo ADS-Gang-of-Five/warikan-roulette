@@ -29,8 +29,8 @@ final class RouletteResultViewModel: ObservableObject {
         do {
             let groupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
             guard let unluckyMemberID = groupData.unluckyMember else {
-                           throw NSError(domain: "RouletteResultViewに遷移しているのにunluckyMemberが存在しないのはおかしい。", code: 0)
-                       }
+                throw NSError(domain: "RouletteResultViewに遷移しているのにunluckyMemberが存在しないのはおかしい。", code: 0)
+            }
             self.unluckyMember = try await memberUseCase.get(id: unluckyMemberID)
         } catch {
             print(error)

@@ -28,12 +28,10 @@ final class RouletteResultViewModel: ObservableObject {
     func getUnluckyMember() async {
         do {
             let groupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
-            guard let unluckyMemberID = groupData.unluckyMember,
-                  let unluckyMember = try await memberUseCase.get(id: unluckyMemberID)
-            else {
+            guard let unluckyMemberID = groupData.unluckyMember else {
                 throw NSError(domain: "RouletteResultViewに遷移しているのにunluckyMemberが存在しないのはおかしい。", code: 0)
             }
-            self.unluckyMember = unluckyMember
+            self.unluckyMember = try await memberUseCase.get(id: unluckyMemberID)
         } catch {
             print(error)
             aletText = "データの読み込みに失敗しました。前の画面に戻り再度お試しください。"

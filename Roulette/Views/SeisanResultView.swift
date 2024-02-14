@@ -55,7 +55,9 @@ struct SeisanResultView: View {
                     Text("合計金額")
                 }
                 // 精算結果セクション
-                Section {
+                Section { // 🟥オプショナルのアンラッキーメンバーが必要。
+                    // 🟥debtorとcreditorが必要。
+                    // 🟥if文を使って表示を切り替える。
                     switch mainViewModel.selectedGroupSeisanResponse {
                         // アンラッキーメンバーあり
                     case .needsUnluckyMember:

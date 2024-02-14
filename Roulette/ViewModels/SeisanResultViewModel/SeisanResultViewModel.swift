@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+@MainActor
+final class SeisanResultViewModel: ObservableObject {
+}

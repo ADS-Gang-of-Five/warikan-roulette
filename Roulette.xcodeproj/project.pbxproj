@@ -394,12 +394,20 @@
 				4C0138FE2B77A8B10011EAA7 /* TatekaeDetailViewModel */,
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
 				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
-				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
+				4C85D1C22B787E1700F760BE /* RouletteResultViewModel */,
 				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
 				4C0138DF2B7708290011EAA7 /* ArchiveViewModel */,
 				4C0138CF2B767BBE0011EAA7 /* ArchivedSeisanResultViewModel */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4C85D1C22B787E1700F760BE /* RouletteResultViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
+			);
+			path = RouletteResultViewModel;
 			sourceTree = "<group>";
 		};
 		A600912D2B229888005C6535 /* ArchivedWarikanGroup */ = {

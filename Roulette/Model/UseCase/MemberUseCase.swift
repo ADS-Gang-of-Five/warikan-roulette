@@ -16,7 +16,7 @@ struct MemberUseCase {
     }
     
     /// 指定したIDのメンバーを返す。
-    func get(id: EntityID<Member>) async throws -> Member? {
+    func get(id: EntityID<Member>) async throws -> Member {
         return try await memberRepository.find(id: id)
     }
     

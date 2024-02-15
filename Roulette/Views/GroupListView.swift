@@ -43,8 +43,8 @@ struct GroupListView: View {
                             RouletteView()
                         case .rouletteResultView:
                             RouletteResultView()
-                        case .seisanResultView:
-                            SeisanResultView()
+                        case .seisanResultView(let id):
+                            SeisanResultView(archivedWarikanGroupID: id)
                                 .navigationTitle("精算結果")
                                 .navigationBarTitleDisplayMode(.large)
                         }
@@ -80,9 +80,4 @@ struct GroupListView: View {
                 .interactiveDismissDisabled()
         })
     }
-}
-
-#Preview {
-    GroupListView()
-        .environmentObject(MainViewModel())
 }

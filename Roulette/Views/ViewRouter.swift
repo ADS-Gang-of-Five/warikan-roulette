@@ -12,7 +12,7 @@ enum Path: Hashable, Equatable {
     case confirmView
     case rouletteView
     case rouletteResultView
-    case seisanResultView
+    case seisanResultView(EntityID<ArchivedWarikanGroup>)
 }
 
 final class ViewRouter: ObservableObject {

@@ -43,8 +43,8 @@ struct GroupListView: View {
                             RouletteView()
                         case .rouletteResultView:
                             RouletteResultView()
-                        case .seisanResultView:
-                            SeisanResultView()
+                        case .seisanResultView(let archivedWarikanGroupID):
+                            SeisanResultView(archivedWarikanGroupID: archivedWarikanGroupID)
                                 .navigationTitle("精算結果")
                                 .navigationBarTitleDisplayMode(.large)
                         }

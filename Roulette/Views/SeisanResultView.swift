@@ -9,89 +9,51 @@ import SwiftUI
 
 struct SeisanResultView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
-    @EnvironmentObject private var mainViewModel: MainViewModel
+    @StateObject private var viewModel: SeisanResultViewModel
+    
+    init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
+        self._viewModel = StateObject(
+            wrappedValue: SeisanResultViewModel(
+                archivedWarikanGroupID: archivedWarikanGroupID
+            )
+        )
+    }
 
     var body: some View {
-            List {
-                // 立替セクション
-                Section {
-                    switch mainViewModel.selectedGroupTatekaes {
-                    case .some(let tatekaes):
-                        HStack {
-                            ForEach(tatekaes) { tatekae in
-                                Text(tatekae.name)
-                            }
-                        }
-                        .padding(.top, 3)
-                    case .none:
-                        Text("読み込みエラー")
-                            .padding(.top, 3)
+        VStack(spacing: 20) {
+            if let archivedWarikanGroupDTO = viewModel.archivedWarikanGroupDTO {
+                Text("立て替え一覧")
+                HStack {
+                    let tatekaeList = archivedWarikanGroupDTO.tatekaeList
+                    ForEach(tatekaeList, id: \.self) { tatekae in
+                        Text(tatekae)
                     }
-                } header: {
-                    Text("立替一覧")
                 }
-                // アンラッキーメンバーセクション
-                Section {
-                    let unluckyMemberName = mainViewModel.unluckyMemberName ?? "なし"
-                    Text(unluckyMemberName)
-                        .padding(.top, 3)
-                } header: {
-                    Text("アンラッキーメンバー")
-                }
-                // 合計金額セクション
-                Section {
-                    switch mainViewModel.selectedGroupTatekaes {
-                    case .some(let tatekaes):
-                        let sum = tatekaes.reduce(0) { partialResult, tatekae in
-                            partialResult + tatekae.money
-                        }
-                        Text("\(sum)円")
-                            .padding(.top, 3)
-                    case .none:
-                        Text("読み込みエラー")
-                            .padding(.top, 3)
+                Text("アンラッキーメンバー")
+                Text(archivedWarikanGroupDTO.unluckyMember ?? "なし")
+                Text("合計金額")
+                Text("\(archivedWarikanGroupDTO.totalAmount)円")
+                Text("清算結果")
+                if archivedWarikanGroupDTO.seisanList.isEmpty {
+                    Text("清算なし")
+                } else {
+                    ForEach(archivedWarikanGroupDTO.seisanList.indices, id: \.self) { index in
+                        let seisan = archivedWarikanGroupDTO.seisanList[index]
+                        Text("\(seisan.creditor)が\(seisan.debtor)に\(seisan.money)円渡す")
                     }
-                } header: {
-                    Text("合計金額")
                 }
-                // 精算結果セクション
-                Section {
-                    switch mainViewModel.selectedGroupSeisanResponse {
-                        // アンラッキーメンバーあり
-                    case .needsUnluckyMember:
-                        Text("アンラッキーメンバーがいる場合の記述")
-                        // アンラッキーメンバーなし & 精算なし
-                    case .success(let seisanDataList) where seisanDataList.isEmpty:
-                        Text("精算なし")
-                        // アンラッキーメンバーなし & 精算あり
-                    case .success(let seisanDataList):
-                        ForEach(seisanDataList.indices, id: \.self) { index in
-                            let seisanData = seisanDataList[index]
-                            Text("\(seisanData.debtor.name)が\(seisanData.creditor.name)に\(seisanData.money)円渡す")
-                        }
-                        // その他
-                    case .none:
-                        Text("読み込みエラー")
-                    }
-                } header: {
-                    Text("精算結果")
-                }
-            }
-            .listStyle(.plain)
-            .navigationBarBackButtonHidden(true)
-            .font(.title3)
-            .padding(.top)
-            .overlay(alignment: .bottom) {
                 Button("トップに戻る") {
-                    mainViewModel.didTapBackToTopButtonAction()
                     viewRouter.path.removeLast(viewRouter.path.count)
                 }
             }
+        }
+        .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
+            Button("戻る") {
+                viewRouter.path.removeLast(viewRouter.path.count)
+            }
+        }
+        .task {
+            await viewModel.makeArchivedWarikanGroupDTO()
+        }
     }
-}
-
-#Preview {
-    SeisanResultView()
-        .environmentObject(ViewRouter())
-        .environmentObject(MainViewModel())
 }

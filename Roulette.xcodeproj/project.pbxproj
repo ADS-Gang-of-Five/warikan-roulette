@@ -39,6 +39,7 @@
 		4C65284A2B220DD9000E8130 /* SeisanResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */; };
 		4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */; };
 		4CA486312B206001009231FA /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA486302B206001009231FA /* AddButton.swift */; };
+		694EAF392B807D3400050E07 /* SeisanResultViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */; };
 		69ACC2472B3FEF0F0049F887 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */; };
 		69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */; };
 		69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E92B1F478500B24D4E /* RouletteView.swift */; };
@@ -119,6 +120,7 @@
 		4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultViewModel.swift; sourceTree = "<group>"; };
 		4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
 		4CA486302B206001009231FA /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultViewModelDTO.swift; sourceTree = "<group>"; };
 		69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
 		69D8F3E92B1F478500B24D4E /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -395,7 +397,7 @@
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
 				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
 				4C85D1C22B787E1700F760BE /* RouletteResultViewModel */,
-				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
+				694EAF372B807D0F00050E07 /* SeisanResultViewModel */,
 				4C0138DF2B7708290011EAA7 /* ArchiveViewModel */,
 				4C0138CF2B767BBE0011EAA7 /* ArchivedSeisanResultViewModel */,
 			);
@@ -408,6 +410,15 @@
 				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
 			);
 			path = RouletteResultViewModel;
+			sourceTree = "<group>";
+		};
+		694EAF372B807D0F00050E07 /* SeisanResultViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
+				694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */,
+			);
+			path = SeisanResultViewModel;
 			sourceTree = "<group>";
 		};
 		A600912D2B229888005C6535 /* ArchivedWarikanGroup */ = {
@@ -576,6 +587,7 @@
 				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
 				4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */,
 				4C6528482B220DC9000E8130 /* RouletteResultViewModel.swift in Sources */,
+				694EAF392B807D3400050E07 /* SeisanResultViewModelDTO.swift in Sources */,
 				4C6528462B220DB3000E8130 /* RouletteViewModel.swift in Sources */,
 				A67FE3242B14657400E10FFB /* WarikanGroupUseCase.swift in Sources */,
 				A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */,

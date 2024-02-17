@@ -125,17 +125,20 @@ final class MainViewModel: ObservableObject {
         selectedGroupSeisanResponse = .success(seisanDataList)
     }
     
+    var archivedWarkanGroupID: EntityID<ArchivedWarikanGroup>?
+    
     func archiveWarikanGroup(
         id: EntityID<WarikanGroup>,
         seisanList: [SeisanData],
         unluckyMember: EntityID<Member>?
     ) async {
         do {
-            _ = try await warikanGroupArchiveController.archive(
+            let id = try await warikanGroupArchiveController.archive(
                 id: id,
                 seisanList: seisanList,
                 unluckyMember: unluckyMember
             )
+            archivedWarkanGroupID = id
         } catch {
             print(#function, error)
         }

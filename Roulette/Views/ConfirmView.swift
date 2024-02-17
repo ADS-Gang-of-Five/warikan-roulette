@@ -73,7 +73,9 @@ struct ConfirmView: View {
                                 seisanList: seisanList,
                                 unluckyMember: nil
                             )
-                            viewRouter.path.append(Path.seisanResultView)
+                            if let id = mainViewModel.archivedWarkanGroupID {
+                                viewRouter.path.append(Path.seisanResultView(id))
+                            }
                         }
                     }, label: {
                         Text("精算結果を見る")

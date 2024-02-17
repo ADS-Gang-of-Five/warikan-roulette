@@ -19,15 +19,17 @@ struct RouletteResultView: View {
                 }
                 .font(.title)
                 .fontWeight(.bold)
-                NavigationLink("OK", value: Path.seisanResultView)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 50)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
-                    .background(.blue)
-                    .clipShape(Capsule(), style: FillStyle())
-                    .padding(.top)
+                if let id = mainViewModel.archivedWarkanGroupID {
+                    NavigationLink("OK", value: Path.seisanResultView(id))
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 50)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .background(.blue)
+                        .clipShape(Capsule(), style: FillStyle())
+                        .padding(.top)
+                }
             }
         } else {
             // ルーレットを回したのに、アンラッキーメンバーがいないのはおかしい。
@@ -57,15 +59,15 @@ struct NewRouletteResultView: View {
                 }
                 .font(.title)
                 .fontWeight(.bold)
-                NavigationLink("OK", value: Path.seisanResultView)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 50)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
-                    .background(.blue)
-                    .clipShape(Capsule(), style: FillStyle())
-                    .padding(.top)
+//                NavigationLink("OK", value: Path.seisanResultView)
+//                    .padding(.vertical, 10)
+//                    .padding(.horizontal, 50)
+//                    .font(.title2)
+//                    .fontWeight(.bold)
+//                    .foregroundStyle(.white)
+//                    .background(.blue)
+//                    .clipShape(Capsule(), style: FillStyle())
+//                    .padding(.top)
             }
         }
         .task {

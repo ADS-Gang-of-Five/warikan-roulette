@@ -75,10 +75,11 @@ struct RouletteView: View {
                     .tint(isRouletteBottanTap ? .gray : .blue)
                     .padding(.top)
                 } else {
-                    NavigationLink("Next", value: Path.rouletteResultView)
-                        .buttonStyle(.borderedProminent)
-                        .tint(.blue)
-                        .padding(.top)
+                    if let id = mainViewModel.archivedWarkanGroupID {
+                        NavigationLink("Next", value: Path.rouletteResultView(id))
+                            .buttonStyle(.borderedProminent)
+                            .padding(.top)
+                    }
                 }
             }
         } else {

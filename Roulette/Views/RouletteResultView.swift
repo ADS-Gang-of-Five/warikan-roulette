@@ -8,38 +8,6 @@
 import SwiftUI
 
 struct RouletteResultView: View {
-    @EnvironmentObject private var mainViewModel: MainViewModel
-    
-    var body: some View {
-        if let unluckyMenber = mainViewModel.unluckyMemberName {
-            VStack(spacing: 10) {
-                Group {
-                    Text("今回のアンラッキーメンバーは")
-                    Text("\(unluckyMenber)さんに決定！")
-                }
-                .font(.title)
-                .fontWeight(.bold)
-                if let id = mainViewModel.archivedWarkanGroupID {
-                    NavigationLink("OK", value: Path.seisanResultView(id))
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 50)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                        .background(.blue)
-                        .clipShape(Capsule(), style: FillStyle())
-                        .padding(.top)
-                }
-            }
-        } else {
-            // ルーレットを回したのに、アンラッキーメンバーがいないのはおかしい。
-         Text("予期せぬエラーが発生しました")
-        }
-    }
-}
-
-#warning("SeisanResultViewへのリンクは未変更")
-struct NewRouletteResultView: View {
     @StateObject private var viewModel: RouletteResultViewModel
 
     init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
@@ -59,15 +27,17 @@ struct NewRouletteResultView: View {
                 }
                 .font(.title)
                 .fontWeight(.bold)
-//                NavigationLink("OK", value: Path.seisanResultView)
-//                    .padding(.vertical, 10)
-//                    .padding(.horizontal, 50)
-//                    .font(.title2)
-//                    .fontWeight(.bold)
-//                    .foregroundStyle(.white)
-//                    .background(.blue)
-//                    .clipShape(Capsule(), style: FillStyle())
-//                    .padding(.top)
+                NavigationLink(value: Path.seisanResultView(viewModel.archivedWarikanGroupID)) {
+                    Text("OK") 
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 50)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .background(.blue)
+                        .clipShape(Capsule())
+                }
+                .padding(.top)
             }
         }
         .task {
@@ -75,9 +45,4 @@ struct NewRouletteResultView: View {
         }
         .alert(viewModel.aletText, isPresented: $viewModel.isShowAlert) {}
     }
-}
-
-#Preview {
-    RouletteResultView()
-        .environmentObject(MainViewModel())
 }

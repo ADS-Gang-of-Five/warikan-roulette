@@ -69,27 +69,6 @@ final class MainViewModel: ObservableObject {
         }
     }
 
-    // メンバーIDから実体(Member)を取得
-    func getMember(id: EntityID<Member>) async -> Member {
-        do {
-            let member = try await memberUseCase.get(id: id)
-            return member
-        } catch {
-            print(#function, error)
-            fatalError()
-        }
-    }
-
-    // 立替リストを取得
-    func getTatekaeList(ids: [EntityID<Tatekae>]) async {
-        do {
-            selectedGroupTatekaes = try await tatekaeUseCase.get(ids: ids)
-        } catch {
-            print(#function, error)
-            fatalError()
-        }
-    }
-
     func reloadTatekaeList() {
         Task {
             await getSelectedGroupTatakaeList(id: self.selectedGroup!.id)
@@ -142,13 +121,5 @@ final class MainViewModel: ObservableObject {
         } catch {
             print(#function, error)
         }
-    }
-
-    func didTapBackToTopButtonAction() {
-       selectedGroup = nil
-       selectedGroupMembers = nil
-       selectedGroupTatekaes = nil
-       selectedGroupSeisanResponse = nil
-       unluckyMemberName = nil
     }
 }

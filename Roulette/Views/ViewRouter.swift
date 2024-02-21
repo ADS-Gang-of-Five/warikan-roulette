@@ -11,7 +11,7 @@ enum Path: Hashable, Equatable {
     case tatekaeListView
     case confirmView
     case rouletteView
-    case rouletteResultView
+    case rouletteResultView(EntityID<ArchivedWarikanGroup>)
     case seisanResultView(EntityID<ArchivedWarikanGroup>)
 }
 

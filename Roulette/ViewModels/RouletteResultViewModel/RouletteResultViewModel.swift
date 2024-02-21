@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class RouletteResultViewModel: ObservableObject {
-    private let archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>
+    let archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>
     private let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
         archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
         memberRepository: MemberRepository()

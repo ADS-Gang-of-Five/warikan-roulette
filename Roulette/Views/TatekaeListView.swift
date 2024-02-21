@@ -21,7 +21,7 @@ struct TatekaeListView: View {
 
     var body: some View {
         Group {
-            if let tatekaes = viewModel.tatekaeDTOs {
+            if let tatekaes = viewModel.tatekaeDTOs, tatekaes.isEmpty == false {
                 List {
                     Section {
                         ForEach(tatekaes) { tatekae in

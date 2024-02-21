@@ -53,7 +53,6 @@ struct TatekaeListView: View {
             AddButton { viewModel.isShowAddTatekaeView = true }
                 .padding(.trailing)
         }
-        .navigationTitle("Group Name")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("清算", value: Path.confirmView)

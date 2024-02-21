@@ -21,9 +21,15 @@ struct GroupListView: View {
                                 Button(action: {
                                     Task {
                                         await mainViewModel.selectWarikanGroup(warikanGroup: group)
-                                        viewRouter.path.append(Path.tatekaeListView(group.id))
+                                        viewRouter.path.append(
+                                            Path.tatekaeListView(
+                                                id: group.id,
+                                                navigationTitle: group.name
+                                            )
+                                        )
                                     }
-                                }, label: {
+                                },
+                                       label: {
                                     Text(group.name)
                                         .foregroundStyle(.black)
                                 })
@@ -33,8 +39,9 @@ struct GroupListView: View {
                     }
                     .navigationDestination(for: Path.self) { path in
                         switch path {
-                        case .tatekaeListView(let id):
+                        case .tatekaeListView(let id, let navigationTitle):
                             TatekaeListView(warikanGroupID: id)
+                                .navigationTitle(navigationTitle)
                         case .confirmView:
                             ConfirmView()
                                 .navigationTitle("立て替えの確認")

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum Path: Hashable, Equatable {
-    case tatekaeListView(EntityID<WarikanGroup>)
+    case tatekaeListView(id: EntityID<WarikanGroup>, navigationTitle: String)
     case confirmView
     case rouletteView
     case rouletteResultView

@@ -389,7 +389,7 @@
 			children = (
 				4C6528392B220D3C000E8130 /* ContentViewModel.swift */,
 				69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */,
-				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
+				4C87FFF52B8717BD00A720D2 /* GroupListViewModel */,
 				4C0138FC2B777D050011EAA7 /* AddGroupViewModel */,
 				4C3073552B7B44A5007517BB /* TatekaeListViewModel */,
 				4C0138FD2B77A86E0011EAA7 /* AddTatekaeViewModel */,
@@ -410,6 +410,14 @@
 				4C6528472B220DC9000E8130 /* RouletteResultViewModel.swift */,
 			);
 			path = RouletteResultViewModel;
+			sourceTree = "<group>";
+		};
+		4C87FFF52B8717BD00A720D2 /* GroupListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528372B220D01000E8130 /* GroupListViewModel.swift */,
+			);
+			path = GroupListViewModel;
 			sourceTree = "<group>";
 		};
 		694EAF372B807D0F00050E07 /* SeisanResultViewModel */ = {

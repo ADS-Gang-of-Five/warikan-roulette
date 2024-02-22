@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ConfirmView: View {
-    @EnvironmentObject private var mainViewModel: MainViewModel
+    @StateObject private var viewModel: ConfirmViewModel
     @EnvironmentObject private var viewRouter: ViewRouter
     
+    init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
+        self._viewModel = StateObject(
+            wrappedValue: ConfirmViewModel(archivedWarikanGroupID)
+        )
+    }
+    
     var body: some View {
-        if let warikanGroup = mainViewModel.selectedGroup,
-           let members = mainViewModel.selectedGroupMembers,
-           let tatekaes = mainViewModel.selectedGroupTatekaes {
+        if let warikanGroup = viewModel.selectedGroup,
+           let members = viewModel.selectedGroupMembers,
+           let tatekaes = viewModel.selectedGroupTatekaes {
             VStack {
                 VStack(alignment: .leading) {
                     Text(warikanGroup.name)
@@ -54,7 +60,7 @@ struct ConfirmView: View {
                     .fontWeight(.semibold)
                     .padding(.top, 1)
                 }
-                switch mainViewModel.selectedGroupSeisanResponse {
+                switch viewModel.selectedGroupSeisanResponse {
                 case .needsUnluckyMember:
                     NavigationLink("端数ルーレットする", value: Path.rouletteView)
                         .font(.title3)
@@ -68,14 +74,13 @@ struct ConfirmView: View {
                 case .success(let seisanList):
                     Button(action: {
                         Task {
-                            _ = await mainViewModel.archiveWarikanGroup(
+                            _ = await viewModel.archiveWarikanGroup(
                                 id: warikanGroup.id,
                                 seisanList: seisanList,
                                 unluckyMember: nil
                             )
-                            if let id = mainViewModel.archivedWarkanGroupID {
-                                viewRouter.path.append(Path.seisanResultView(id))
-                            }
+                            let id = viewModel.archivedWarikanGroupID
+                            viewRouter.path.append(Path.seisanResultView(id))
                         }
                     }, label: {
                         Text("精算結果を見る")
@@ -94,17 +99,11 @@ struct ConfirmView: View {
             }
             .padding(.horizontal, 50)
             .task {
-                await mainViewModel.getSeisanResponse()
+                await viewModel.getSeisanResponse()
             }
         } else {
             Text("エラーが発生しました。前の画面に一度戻り再度お試しください。")
                 .padding(.horizontal)
         }
     }
-}
-
-#Preview {
-    ConfirmView()
-        .environmentObject(MainViewModel())
-        .environmentObject(ViewRouter())
 }

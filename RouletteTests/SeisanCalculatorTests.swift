@@ -9,12 +9,12 @@
 import XCTest
 @testable import Roulette
 
-fileprivate extension [Seisan] {
+fileprivate extension [SeisanData] {
     func descript(with members: [Member]) -> String {
         let names = Dictionary(uniqueKeysWithValues: members.map { ($0.id, $0.name) })
         return self.map { seisan in
-            let a = names[seisan.debtor]!
-            let b = names[seisan.creditor]!
+            let a = names[seisan.debtor.id]!
+            let b = names[seisan.creditor.id]!
             return "\(a) -> \(b): \(seisan.money)円"
         }.joined(separator: "\n")
     }
@@ -29,10 +29,10 @@ final class SeisanCalculatorTests: XCTestCase {
     
     private func createTatekae(name: String, payer: EntityID<Member>, recipients: [EntityID<Member>], money: Int) -> Tatekae {
         let id = EntityID<Tatekae>(value: UUID().uuidString)
-        return Tatekae(id: id, name: name, payer: payer, recipients: recipients, money: money)
+        return Tatekae(id: id, name: name, payer: payer, recipients: recipients, money: money, createdTime: Date())
     }
     
-    func test_case01_success() throws {
+    func test_case01_success() async throws {
         let members = [
             createMember(name: "さこ"),
             createMember(name: "霽月"),
@@ -41,6 +41,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
+        let memberRepository = InMemoryMemberRepository()
+        members.forEach { memberRepository.save($0) }
+        let calculator = SeisanCalculator(memberRepository: memberRepository)
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
@@ -49,8 +52,7 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         
         // 計算実行
-        let calculator = SeisanCalculator()
-        let response = calculator.seisan(tatekaeList: tatekaeList)
+        let response = try await calculator.seisan(tatekaeList: tatekaeList)
         
         switch response {
         case .success(let seisanList):
@@ -65,7 +67,7 @@ final class SeisanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_case02_needsUnluckyMember() throws {
+    func test_case02_needsUnluckyMember() async throws {
         let members = [
             createMember(name: "さこ"),
             createMember(name: "霽月"),
@@ -74,6 +76,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
+        let memberRepository = InMemoryMemberRepository()
+        members.forEach { memberRepository.save($0) }
+        let calculator = SeisanCalculator(memberRepository: memberRepository)
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
@@ -82,15 +87,14 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         
         // 計算実行
-        let calculator = SeisanCalculator()
-        let response = calculator.seisan(tatekaeList: tatekaeList)
+        let response = try await calculator.seisan(tatekaeList: tatekaeList)
         
         switch response {
         case .needsUnluckyMember(let context):
             XCTAssertEqual(Set(context.unluckyMemberCandidates), Set([sako, seig, maki]))
             
             // アンラッキーメンバーを指定して計算続行
-            let seisanList = calculator.seisan(context: context, unluckyMember: seig)
+            let seisanList = try await calculator.seisan(context: context, unluckyMember: seig)
             
             let result = seisanList.descript(with: members)
             XCTAssertEqual(result, """
@@ -103,7 +107,7 @@ final class SeisanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_case03_アンラッキーメンバー候補() throws {
+    func test_case03_アンラッキーメンバー候補() async throws {
         let members = [
             createMember(name: "さこ"),
             createMember(name: "霽月"),
@@ -111,21 +115,23 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         let sako = members[0].id
         let seig = members[1].id
+        let memberRepository = InMemoryMemberRepository()
+        members.forEach { memberRepository.save($0) }
+        let calculator = SeisanCalculator(memberRepository: memberRepository)
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)
         ]
         
         // 計算実行
-        let calculator = SeisanCalculator()
-        let response = calculator.seisan(tatekaeList: tatekaeList)
+        let response = try await calculator.seisan(tatekaeList: tatekaeList)
         
         switch response {
         case .needsUnluckyMember(let context):
             XCTAssertEqual(Set(context.unluckyMemberCandidates), Set([sako, seig]))
             
             // アンラッキーメンバーを指定して計算続行
-            let seisanList = calculator.seisan(context: context, unluckyMember: sako)
+            let seisanList = try await calculator.seisan(context: context, unluckyMember: sako)
             
             let result = seisanList.descript(with: members)
             XCTAssertEqual(result, """
@@ -137,7 +143,7 @@ final class SeisanCalculatorTests: XCTestCase {
         }
     }
     
-    func test_case04_清算が不要の場合は空配列を返す() throws {
+    func test_case04_清算が不要の場合は空配列を返す() async throws {
         let members = [
             createMember(name: "さこ"),
             createMember(name: "霽月"),
@@ -146,6 +152,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
+        let memberRepository = InMemoryMemberRepository()
+        members.forEach { memberRepository.save($0) }
+        let calculator = SeisanCalculator(memberRepository: memberRepository)
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1000),
@@ -154,8 +163,7 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         
         // 計算実行
-        let calculator = SeisanCalculator()
-        let response = calculator.seisan(tatekaeList: tatekaeList)
+        let response = try await calculator.seisan(tatekaeList: tatekaeList)
         
         switch response {
         case .success(let seisanList):

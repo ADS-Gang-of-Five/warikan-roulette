@@ -23,9 +23,9 @@ struct SeisanCalculator {
         case success([SeisanData])
     }
 
-    private var memberRepository: MemberRepository
+    private var memberRepository: MemberRepositoryProtocol
 
-    init(memberRepository: MemberRepository) {
+    init(memberRepository: MemberRepositoryProtocol) {
         self.memberRepository = memberRepository
     }
 

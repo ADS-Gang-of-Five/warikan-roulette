@@ -9,7 +9,8 @@ import Foundation
 
 @MainActor
 class ConfirmViewModel: ObservableObject {
-    var archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>
+    let warikanGroupID: EntityID<WarikanGroup>
+    var archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>?
     @Published var selectedGroup: WarikanGroup?
     @Published var selectedGroupMembers: [Member]?
     @Published var selectedGroupTatekaes: [Tatekae]?
@@ -17,30 +18,47 @@ class ConfirmViewModel: ObservableObject {
     
     // ユースケース
     private let warikanGroupArchiveController: WarikanGroupArchiveController
+    private let warikanGroupUseCase: WarikanGroupUseCase
+    private let memberUseCase: MemberUseCase
     let seisanCalculator: SeisanCalculator
-    
-    init(_ archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
-        self.archivedWarikanGroupID = archivedWarikanGroupID
-        self.seisanCalculator = SeisanCalculator(memberRepository: MemberRepository())
+
+    init(_ warikanGroupID: EntityID<WarikanGroup>) {
+        self.warikanGroupID = warikanGroupID
+        self.warikanGroupUseCase = WarikanGroupUseCase(
+            warikanGroupRepository: WarikanGroupRepository(),
+            memberRepository: MemberRepository(),
+            tatekaeRepository: TatekaeRepository()
+        )
         self.warikanGroupArchiveController = WarikanGroupArchiveController(
             warikanGroupRepository: WarikanGroupRepository(),
             archivedWarikanGroupRepository: ArchivedWarikanGroupRepository()
         )
+        self.memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+        self.seisanCalculator = SeisanCalculator(memberRepository: MemberRepository())
     }
     
-    // 現在のselectedGroupTatekaesを基にSeisanResponseを取得する
-    func getSeisanResponse() async {
+    // ConfirmViewに必要な割り勘グループ情報を取得する。
+    func getConfirmViewBuildingElements() async {
         do {
+            try await selectedGroupTatekaes = warikanGroupUseCase.getTatekaeList(id: warikanGroupID)
             guard let tatekaeList = selectedGroupTatekaes else {
-                print("selectedGroupTatekaesがnilです。")
-                return
+                return print("selectedGroupTatekaesがnilです。")
             }
             try await selectedGroupSeisanResponse = seisanCalculator.seisan(tatekaeList: tatekaeList)
+            let warikanGroups = try await warikanGroupUseCase.getAll()
+            let warikanGroup = warikanGroups.first { $0.id == warikanGroupID }
+            selectedGroup = warikanGroup
+            guard let memberIDs = selectedGroup?.members else {
+                return print("memberのIDsを取得できませんでした。")
+            }
+            let members = try await memberUseCase.get(ids: memberIDs)
+            selectedGroupMembers = members
         } catch {
             print(#function, error)
         }
     }
     
+    // warikanGroupのIDを使って、archiveを作成する。
     func archiveWarikanGroup(
         id: EntityID<WarikanGroup>,
         seisanList: [SeisanData],

@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 //
 //  Extensions.swift
 //  Roulette
@@ -21,20 +20,4 @@ import Foundation
 infix operator %%: MultiplicationPrecedence
 func %% (left: Int, right: Int) -> Int {
     ((left % right) + right) % right
-}
-
-/// 一時的な拡張
-/// OneView-OneViewModelに変更後削除
-/// Issue #139
-extension Date {
-    static let dateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar.autoupdatingCurrent
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-        return dateFormatter
-    }()
-
-    var string: String {
-        return Self.dateFormatter.string(from: self)
-    }
 }

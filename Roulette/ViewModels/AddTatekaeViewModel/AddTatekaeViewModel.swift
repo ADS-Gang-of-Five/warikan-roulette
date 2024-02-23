@@ -23,9 +23,12 @@ final class AddTatekaeViewModel: ObservableObject {
     @Published private(set) var isAppendingTatekae = false
 
     var isAppendTatekaeButtonDisabled: Bool {
-        !(tatekaeName.isEmpty == false && Int(money).flatMap { $0 > 0 } ?? false && payer != nil && isAppendingTatekae == false)
+        !(tatekaeName.isEmpty == false &&
+          Int(money).flatMap { $0 > 0 } ?? false &&
+          payer != nil &&
+          isAppendingTatekae == false)
     }
-    
+
     var isTatekaeNameTextFieldDisabled: Bool { isAppendingTatekae }
     var isMoneyTextFieldDisabled: Bool { isAppendingTatekae }
     var isPayerPickerDisabled: Bool { isAppendingTatekae }

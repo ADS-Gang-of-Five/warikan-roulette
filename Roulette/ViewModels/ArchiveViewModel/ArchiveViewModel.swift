@@ -10,23 +10,18 @@ import Foundation
 @MainActor
 final class ArchiveViewModel: ObservableObject {
     @Published private(set) var archivedWarikanGroupDTOs: [ArchivedWarikanGroupDTO] = []
-    private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
-    private let memberUseCase: MemberUseCase
-    private let tatekaeUseCase: TatekaeUseCase
-    
-    init() {
-        let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
-        let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
-        let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
-            archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
-            memberRepository: MemberRepository()
-        )
-        
-        self.archivedWarikanGroupUseCase = archivedWarikanGroupUseCase
-        self.memberUseCase = memberUseCase
-        self.tatekaeUseCase = tatekaeUseCase
-    }
-    
+    @Published private var isDeletingGroup = false
+    @Published var isShowAlert = false
+    @Published private(set) var alertText = ""
+    var isNavigationLinkListDisabled: Bool { isDeletingGroup }
+
+    private let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
+        archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
+        memberRepository: MemberRepository()
+    )
+    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
+    private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
+
     func makeArchivedWarikanGroupDTO() async {
         do {
             let archivedWarikanGroupDataList = try await archivedWarikanGroupUseCase.getAll()
@@ -34,6 +29,22 @@ final class ArchiveViewModel: ObservableObject {
                 .map { ArchivedWarikanGroupDTO.convert($0) }
         } catch {
             print(#function, error)
+        }
+    }
+
+    func didTappedGroupDeleteButtonAction(id: EntityID<ArchivedWarikanGroup>) {
+        guard isDeletingGroup == false else { return }
+        Task {
+            do {
+                isDeletingGroup = true
+                defer { isDeletingGroup = false }
+                try await archivedWarikanGroupUseCase.remove(ids: [id])
+                await makeArchivedWarikanGroupDTO()
+            } catch {
+                print(error)
+                alertText = "精算済み割り勘グループの削除に失敗しました。"
+                isShowAlert = true
+            }
         }
     }
 }

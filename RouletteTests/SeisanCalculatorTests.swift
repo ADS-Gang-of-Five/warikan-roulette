@@ -9,6 +9,8 @@
 import XCTest
 @testable import Roulette
 
+// MARK: - Extensions
+
 private extension [SeisanData] {
     func descript(with members: [Member]) -> String {
         let names = Dictionary(uniqueKeysWithValues: members.map { ($0.id, $0.name) })
@@ -40,6 +42,8 @@ private extension Tatekae {
         return Tatekae(id: id, name: name, payer: payer, recipients: recipients, money: money, createdTime: Date())
     }
 }
+
+// MARK: - Tests
 
 final class SeisanCalculatorTests: XCTestCase {
     func test_case01_success() async throws {

@@ -27,30 +27,34 @@ private extension InMemoryMemberRepository {
     }
 }
 
-final class SeisanCalculatorTests: XCTestCase {
-    private func createMember(name: String) -> Member {
+private extension Member {
+    static func make(name: String) -> Self {
         let id = EntityID<Member>(value: UUID().uuidString)
         return Member(id: id, name: name)
     }
-    
-    private func createTatekae(name: String, payer: EntityID<Member>, recipients: [EntityID<Member>], money: Int) -> Tatekae {
+}
+
+private extension Tatekae {
+    static func make(name: String, payer: EntityID<Member>, recipients: [EntityID<Member>], money: Int) -> Tatekae {
         let id = EntityID<Tatekae>(value: UUID().uuidString)
         return Tatekae(id: id, name: name, payer: payer, recipients: recipients, money: money, createdTime: Date())
     }
-    
+}
+
+final class SeisanCalculatorTests: XCTestCase {
     func test_case01_success() async throws {
-        let members = [
-            createMember(name: "さこ"),
-            createMember(name: "霽月"),
-            createMember(name: "まき")
+        let members: [Member] = [
+            .make(name: "さこ"),
+            .make(name: "霽月"),
+            .make(name: "まき")
         ]
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let tatekaeList = [
-            createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
-            createTatekae(name: "タクシー代", payer: seig, recipients: [sako, seig, maki], money: 900),
-            createTatekae(name: "宿代", payer: maki, recipients: [sako, seig, maki], money: 1080)
+        let tatekaeList: [Tatekae] = [
+            .make(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
+            .make(name: "タクシー代", payer: seig, recipients: [sako, seig, maki], money: 900),
+            .make(name: "宿代", payer: maki, recipients: [sako, seig, maki], money: 1080)
         ]
         let calculator = SeisanCalculator(
             memberRepository: InMemoryMemberRepository(members: members)
@@ -72,18 +76,18 @@ final class SeisanCalculatorTests: XCTestCase {
     }
     
     func test_case02_needsUnluckyMember() async throws {
-        let members = [
-            createMember(name: "さこ"),
-            createMember(name: "霽月"),
-            createMember(name: "まき")
+        let members: [Member] = [
+            .make(name: "さこ"),
+            .make(name: "霽月"),
+            .make(name: "まき")
         ]
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let tatekaeList = [
-            createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
-            createTatekae(name: "タクシー代", payer: seig, recipients: [sako, seig, maki], money: 900),
-            createTatekae(name: "宿代", payer: maki, recipients: [sako, seig, maki], money: 1100)
+        let tatekaeList: [Tatekae] = [
+            .make(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
+            .make(name: "タクシー代", payer: seig, recipients: [sako, seig, maki], money: 900),
+            .make(name: "宿代", payer: maki, recipients: [sako, seig, maki], money: 1100)
         ]
         let calculator = SeisanCalculator(
             memberRepository: InMemoryMemberRepository(members: members)
@@ -109,18 +113,18 @@ final class SeisanCalculatorTests: XCTestCase {
     }
     
     func test_case03_アンラッキーメンバー候補() async throws {
-        let members = [
-            createMember(name: "さこ"),
-            createMember(name: "霽月"),
-            createMember(name: "まき")
+        let members: [Member] = [
+            .make(name: "さこ"),
+            .make(name: "霽月"),
+            .make(name: "まき")
         ]
         let sako = members[0].id
         let seig = members[1].id
         let calculator = SeisanCalculator(
             memberRepository: InMemoryMemberRepository(members: members)
         )
-        let tatekaeList = [
-            createTatekae(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)
+        let tatekaeList: [Tatekae] = [
+            .make(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)
         ]
         
         // 計算実行
@@ -142,18 +146,18 @@ final class SeisanCalculatorTests: XCTestCase {
     }
     
     func test_case04_清算が不要の場合は空配列を返す() async throws {
-        let members = [
-            createMember(name: "さこ"),
-            createMember(name: "霽月"),
-            createMember(name: "まき")
+        let members: [Member] = [
+            .make(name: "さこ"),
+            .make(name: "霽月"),
+            .make(name: "まき")
         ]
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let tatekaeList = [
-            createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1000),
-            createTatekae(name: "タクシー代", payer: seig, recipients: [sako, seig], money: 667),
-            createTatekae(name: "宿代", payer: maki, recipients: [sako, maki], money: 667)
+        let tatekaeList: [Tatekae] = [
+            .make(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1000),
+            .make(name: "タクシー代", payer: seig, recipients: [sako, seig], money: 667),
+            .make(name: "宿代", payer: maki, recipients: [sako, maki], money: 667)
         ]
         let calculator = SeisanCalculator(
             memberRepository: InMemoryMemberRepository(members: members)

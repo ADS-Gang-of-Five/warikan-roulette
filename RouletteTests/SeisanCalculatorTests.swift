@@ -9,7 +9,7 @@
 import XCTest
 @testable import Roulette
 
-fileprivate extension [SeisanData] {
+private extension [SeisanData] {
     func descript(with members: [Member]) -> String {
         let names = Dictionary(uniqueKeysWithValues: members.map { ($0.id, $0.name) })
         return self.map { seisan in
@@ -20,8 +20,14 @@ fileprivate extension [SeisanData] {
     }
 }
 
-final class SeisanCalculatorTests: XCTestCase {
+private extension InMemoryMemberRepository {
+    convenience init(members: [Member]) {
+        self.init()
+        members.forEach { self.save($0) }
+    }
+}
 
+final class SeisanCalculatorTests: XCTestCase {
     private func createMember(name: String) -> Member {
         let id = EntityID<Member>(value: UUID().uuidString)
         return Member(id: id, name: name)
@@ -41,9 +47,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let memberRepository = InMemoryMemberRepository()
-        members.forEach { memberRepository.save($0) }
-        let calculator = SeisanCalculator(memberRepository: memberRepository)
+        let calculator = SeisanCalculator(
+            memberRepository: InMemoryMemberRepository(members: members)
+        )
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
@@ -76,9 +82,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let memberRepository = InMemoryMemberRepository()
-        members.forEach { memberRepository.save($0) }
-        let calculator = SeisanCalculator(memberRepository: memberRepository)
+        let calculator = SeisanCalculator(
+            memberRepository: InMemoryMemberRepository(members: members)
+        )
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1200),
@@ -115,9 +121,9 @@ final class SeisanCalculatorTests: XCTestCase {
         ]
         let sako = members[0].id
         let seig = members[1].id
-        let memberRepository = InMemoryMemberRepository()
-        members.forEach { memberRepository.save($0) }
-        let calculator = SeisanCalculator(memberRepository: memberRepository)
+        let calculator = SeisanCalculator(
+            memberRepository: InMemoryMemberRepository(members: members)
+        )
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: seig, recipients: [sako, seig], money: 1234)
@@ -152,9 +158,9 @@ final class SeisanCalculatorTests: XCTestCase {
         let sako = members[0].id
         let seig = members[1].id
         let maki = members[2].id
-        let memberRepository = InMemoryMemberRepository()
-        members.forEach { memberRepository.save($0) }
-        let calculator = SeisanCalculator(memberRepository: memberRepository)
+        let calculator = SeisanCalculator(
+            memberRepository: InMemoryMemberRepository(members: members)
+        )
         
         let tatekaeList = [
             createTatekae(name: "昼飯代", payer: sako, recipients: [sako, seig, maki], money: 1000),

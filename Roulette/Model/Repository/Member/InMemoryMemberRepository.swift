@@ -9,7 +9,7 @@
 import Foundation
 
 /// テスト用のリポジトリ。`Member`のCRUD操作を行う。
-class InMemoryMemberRepository: MemberRepositoryProtocol {
+final class InMemoryMemberRepository: MemberRepositoryProtocol {
     private var items = [EntityID<Member>: Member]()
     
     func transaction(block: () async throws -> Void) async rethrows {

@@ -9,7 +9,7 @@
 import Foundation
 
 /// テスト用のリポジトリ。`Tatekae`のCRUD操作を行う。
-class InMemoryTatekaeRepository: TatekaeRepositoryProtocol {
+final class InMemoryTatekaeRepository: TatekaeRepositoryProtocol {
     private var items = [EntityID<Tatekae>: Tatekae]()
     
     func transaction(block: () async throws -> Void) async rethrows {

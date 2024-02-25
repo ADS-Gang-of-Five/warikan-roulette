@@ -9,7 +9,7 @@
 import Foundation
 
 /// UserDefaultsを用いて`Tatekae`のCRUD操作を行うリポジトリ。
-class TatekaeRepository: TatekaeRepositoryProtocol {
+struct TatekaeRepository: TatekaeRepositoryProtocol {
     private let userDefaultsKey = "tatekae"
     
     init() {

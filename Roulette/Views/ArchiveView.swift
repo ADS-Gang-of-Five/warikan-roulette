@@ -21,7 +21,13 @@ struct ArchiveView: View {
                             )
                             .navigationTitle(archivedWarikanGroup.name)
                         }
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button("Delete", systemImage: "trash.fill", role: .destructive) {
+                                archiveViewModel.didTappedGroupDeleteButtonAction(id: archivedWarikanGroup.id)
+                            }.tint(.red)
+                        }
                     }
+                    .disabled(archiveViewModel.isNavigationLinkListDisabled)
                 } else {
                     Text("清算済割り勘グループはありません。")
                         .font(.title2)

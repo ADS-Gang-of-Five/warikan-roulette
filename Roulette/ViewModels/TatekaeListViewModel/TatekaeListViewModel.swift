@@ -25,11 +25,13 @@ import Foundation
      @Published var isShowAddTatekaeView = false
      @Published var focusedTatekaeDTO: TatekaeDTO?
 
+     @Published private var isDeletingTatekae = false
+
+     var isTatekaeListDisabled: Bool { isDeletingTatekae }
+     var isAddTatekaeButtonDisabled: Bool { isDeletingTatekae }
+     var isBackToPreviousviewButtonDisabled: Bool { isDeletingTatekae }
      var isNavigateToConfirmViewButtonDisabled: Bool {
-         return switch tatekaeDTOs {
-         case .some(let tatekaeDTOs) where tatekaeDTOs.count > 0: false
-         default: true
-         }
+         !(tatekaeDTOs.flatMap { $0.count > 0 } ?? false && isDeletingTatekae == false)
      }
 
      init(warikanGroupID: EntityID<WarikanGroup>) {
@@ -47,6 +49,25 @@ import Foundation
              print(error)
              alertText = "データの読み込み中にエラーが発生しました。前の画面に戻り再度お試しください。"
              isShowAlert = true
+         }
+     }
+
+     func didTappedTatekaeDeleteButtonAction(id: EntityID<Tatekae>) {
+         guard isDeletingTatekae == false else { return }
+         Task {
+             do {
+                 isDeletingTatekae = true
+                 defer { isDeletingTatekae = false }
+                 try await warikanGroupUseCase.removeTatekae(
+                    warikanGroup: warikanGroupID,
+                    tatekae: id
+                 )
+                 await makeTatekaeDTOs()
+             } catch {
+                 print(error)
+                 alertText = "立替の削除に失敗しました。"
+                 isShowAlert = true
+             }
          }
      }
  }

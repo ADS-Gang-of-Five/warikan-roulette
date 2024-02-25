@@ -40,10 +40,16 @@ struct TatekaeListView: View {
                                 }
                                 .padding(.vertical, 3)
                             })
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(viewModel.isTatekaeListDisabled ? .secondary : .primary)
+                            .swipeActions(allowsFullSwipe: false) {
+                                Button("Delete", systemImage: "trash.fill", role: .destructive) {
+                                    viewModel.didTappedTatekaeDeleteButtonAction(id: tatekae.id)
+                                }
+                            }
                         }
                     } header: { Text("立替一覧") }
                 }
+                .disabled(viewModel.isTatekaeListDisabled)
             } else {
                 Text("右下のボタンから立替を追加してください。")
             }
@@ -51,6 +57,7 @@ struct TatekaeListView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .bottomTrailing) {
             AddButton { viewModel.isShowAddTatekaeView = true }
+                .disabled(viewModel.isAddTatekaeButtonDisabled)
                 .padding(.trailing)
         }
         .toolbar {
@@ -71,5 +78,6 @@ struct TatekaeListView: View {
         .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
             Button("戻る") { dismiss() }
         }
+        .navigationBarBackButtonHidden(viewModel.isBackToPreviousviewButtonDisabled)
     }
 }

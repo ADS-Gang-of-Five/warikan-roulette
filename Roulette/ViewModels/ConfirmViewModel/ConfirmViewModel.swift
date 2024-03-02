@@ -46,7 +46,7 @@ class ConfirmViewModel: ObservableObject {
             return totalAmount ?? "合計金額がわかりません"
         } catch {
             // TODO: エラーハンドリングを記述
-            return "合計金額を計算できません"
+            return "合計金額を計算できませんでした"
         }
     }
     

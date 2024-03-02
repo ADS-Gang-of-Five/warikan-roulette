@@ -37,20 +37,10 @@ struct ConfirmView: View {
                         Text("立替一覧")
                             .font(.callout)
                             .padding(.top, 1)
-                        Group {
+                        ForEach(warikanGroup.tatekaeList) { tatekaeList in
                             HStack {
-                                // タプルにする。
-                                VStack {
-                                    ForEach(warikanGroup.tatekaeListName, id: \.self) { name in
-                                        Text(name)
-                                    }
-                                }
-                                Spacer()
-                                VStack {
-                                    ForEach(warikanGroup.tatekaeListMoney, id: \.self) { money in
-                                        Text("\(money)円")
-                                    }
-                                }
+                                Text("\(tatekaeList.name)")
+                                Text("\(tatekaeList.money)")
                             }
                         }
                         .font(.title2)
@@ -60,7 +50,7 @@ struct ConfirmView: View {
                             if let totalAmount = viewModel.totalAmount {
                                 Text("\(totalAmount)円")
                             } else {
-                                Text("合計金額を計算することができませんでした。")
+                                Text("合計金額の計算に失敗しました。")
                             }
                         }
                         .font(.title)
@@ -126,7 +116,7 @@ struct ConfirmView: View {
                                 .clipShape(Capsule())
                                 .padding(.top)
                         }
-//                        サクセスの場合か、ニーズアンラッキーメンバーの場合か
+                        //                        サクセスの場合か、ニーズアンラッキーメンバーの場合か
                     }
                     .font(.title3)
                     .fontWeight(.semibold)
@@ -136,31 +126,31 @@ struct ConfirmView: View {
                     .background(.blue)
                     .clipShape(Capsule())
                     .padding(.top)
-//                    switch viewModel.selectedGroupSeisanResponse {
-//                    case .needsUnluckyMember:
-////                        NavigationLink("端数ルーレットする", value: Path.rouletteView)
-//
-//                    case .success(let seisanList):
-//                        Button(action: {
-//                            // taskの処理はViewModelにもたす
-//                        Task {
-//                            _ = await viewModel.archiveWarikanGroup(
-//                                id: warikanGroup.id,
-//                                seisanList: seisanList,
-//                                unluckyMember: nil
-//                            )
-//                            if let id = viewModel.archivedWarikanGroupID {
-//                                viewRouter.path.append(Path.seisanResultView(id))
-//                            } else {
-//                                
-//                            }
-//                        }
-//                        }, label: {
-//
-//                        })
-//                    case .none:
-//                        Text("計算中...")
-//                    }
+                    //                    switch viewModel.selectedGroupSeisanResponse {
+                    //                    case .needsUnluckyMember:
+                    ////                        NavigationLink("端数ルーレットする", value: Path.rouletteView)
+                    //
+                    //                    case .success(let seisanList):
+                    //                        Button(action: {
+                    //                            // taskの処理はViewModelにもたす
+                    //                        Task {
+                    //                            _ = await viewModel.archiveWarikanGroup(
+                    //                                id: warikanGroup.id,
+                    //                                seisanList: seisanList,
+                    //                                unluckyMember: nil
+                    //                            )
+                    //                            if let id = viewModel.archivedWarikanGroupID {
+                    //                                viewRouter.path.append(Path.seisanResultView(id))
+                    //                            } else {
+                    //
+                    //                            }
+                    //                        }
+                    //                        }, label: {
+                    //
+                    //                        })
+                    //                    case .none:
+                    //                        Text("計算中...")
+                    //                    }
                 }
                 .padding(.horizontal, 50)
             } else {

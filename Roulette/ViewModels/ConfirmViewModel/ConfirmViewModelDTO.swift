@@ -9,16 +9,18 @@ import Foundation
 
 extension ConfirmViewModel {
     struct WarikanGroupDTO {
+        struct TatekaeList: Identifiable{
+            let id = UUID()
+            let name: String
+            let money: String
+        }
         let name: String
         let members: [String]
-        let tatekaeList: [(name: String,money:String)]
-        let tatekaeListName: [String]
-        let tatekaeListMoney: [String]
-        private init(name: String, members: [String], tatekaeListName: [String], tatekaeListMoney: [String]) {
+        let tatekaeList: [TatekaeList]
+        private init(name: String, members: [String], tatekaeList: [TatekaeList]) {
             self.name = name
             self.members = members
-            self.tatekaeListName = tatekaeListName
-            self.tatekaeListMoney = tatekaeListMoney
+            self.tatekaeList = tatekaeList
         }
         
         static func convert(
@@ -27,29 +29,26 @@ extension ConfirmViewModel {
             warikanGroup: WarikanGroup
         ) async throws -> WarikanGroupDTO {
             let warikanGroups = try await warikanGroupUseCase.getAll()
-            // nameを取得
+            // nameを取得・変換
             let warikanGroup = warikanGroups.first { $0.id == warikanGroup.id }
             guard let warikanGroup else { 
-                return WarikanGroupDTO(name: "nil", members: [], tatekaeListName: [], tatekaeListMoney: [])
+                return WarikanGroupDTO(name: "nil", members: [], tatekaeList: [])
             }
             let name = warikanGroup.name
-            // membersを取得
+            // membersを取得・変換
             guard let memberIDs = warikanGroups.first(where: { $0.id == warikanGroup.id })?.members else {
-                return WarikanGroupDTO(name: "nil", members: [], tatekaeListName: [], tatekaeListMoney: [])
+                return WarikanGroupDTO(name: "nil", members: [], tatekaeList: [])
             }
             let members = try await memberUseCase.get(ids: memberIDs)
             let convertMembers = members.map { $0.name }
-            // tatekaeListNameを取得
+            // nameとmoneyをTatekaeList型で取得・変換
             let tatekaeList = try await warikanGroupUseCase.getTatekaeList(id: warikanGroup.id)
-            let convertTatekaeListName = tatekaeList.map { $0.name }
-            // tatekaeListMoneyを取得
-            let convertTatekaeListMoney = tatekaeList.map { String($0.money) }
+            let convertNameMoney = tatekaeList.map { TatekaeList(name: $0.name, money: String($0.money))}
             // DTOで返す
             return WarikanGroupDTO(
                 name: name,
                 members: convertMembers,
-                tatekaeListName: convertTatekaeListName,
-                tatekaeListMoney: convertTatekaeListMoney
+                tatekaeList: convertNameMoney
             )
         }
     }
@@ -72,9 +71,5 @@ extension ConfirmViewModel {
                 money: tatekae.money.description
             )
         }
-    }
-    
-    struct SeisanResponseDTO {
-        
     }
 }

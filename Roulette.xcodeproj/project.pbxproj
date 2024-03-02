@@ -40,6 +40,7 @@
 		4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */; };
 		4CA486312B206001009231FA /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA486302B206001009231FA /* AddButton.swift */; };
 		694EAF392B807D3400050E07 /* SeisanResultViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */; };
+		6964927B2B8B15FC00ECF165 /* ConfirmViewModelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964927A2B8B15FC00ECF165 /* ConfirmViewModelDTO.swift */; };
 		69ACC2472B3FEF0F0049F887 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */; };
 		69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */; };
 		69D8F3EA2B1F478500B24D4E /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E92B1F478500B24D4E /* RouletteView.swift */; };
@@ -121,6 +122,7 @@
 		4C65284B2B220DEB000E8130 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
 		4CA486302B206001009231FA /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultViewModelDTO.swift; sourceTree = "<group>"; };
+		6964927A2B8B15FC00ECF165 /* ConfirmViewModelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewModelDTO.swift; sourceTree = "<group>"; };
 		69ACC2462B3FEF0F0049F887 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmView.swift; sourceTree = "<group>"; };
 		69D8F3E92B1F478500B24D4E /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6528432B220DA3000E8130 /* ConfirmViewModel.swift */,
+				6964927A2B8B15FC00ECF165 /* ConfirmViewModelDTO.swift */,
 			);
 			path = ConfirmViewModel;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
 				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
+				6964927B2B8B15FC00ECF165 /* ConfirmViewModelDTO.swift in Sources */,
 				A695B6212B34633C0059B78D /* MapToDataExtensions.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C3073572B7B49F0007517BB /* TatekaeListViewModelDTO.swift in Sources */,

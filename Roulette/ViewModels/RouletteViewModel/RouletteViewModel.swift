@@ -28,7 +28,7 @@ final class RouletteViewModel: ObservableObject {
     @Published private(set) var members: [Member]?
     @Published private(set) var tatekaeList: [Tatekae]?
     let warikanGroupID: EntityID<WarikanGroup>
-    private(set) var archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>?
+    @Published private(set) var archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>?
 
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""
@@ -82,9 +82,13 @@ final class RouletteViewModel: ObservableObject {
             do {
                 guard let tatekaeList else { fatalError() } // FIXME: fatalError()
                 let seisanResponse = try await seisanCalculator.seisan(tatekaeList: tatekaeList)
-                guard case .success(let seisanDataList) = seisanResponse else {
+                guard case .needsUnluckyMember(let seisanContext) = seisanResponse else {
                     fatalError() // FIXME: fatalError()
                 }
+                let seisanDataList = try await seisanCalculator.seisan(
+                    context: seisanContext,
+                    unluckyMember: unluckyMember.id
+                )
                 archivedWarikanGroupID = try await archiveController.archive(
                     id: warikanGroupID,
                     seisanList: seisanDataList,

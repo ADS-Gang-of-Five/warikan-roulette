@@ -55,8 +55,8 @@ struct GroupListView: View {
                     ConfirmView(warikanGroupID: id)
                         .navigationTitle("立て替えの確認")
                         .navigationBarTitleDisplayMode(.inline)
-                case .rouletteView:
-                    RouletteView()
+                case .rouletteView(let id):
+                    RouletteView(warikanGroupID: id)
                 case .rouletteResultView(let id):
                     RouletteResultView(archivedWarikanGroupID: id)
                 case .seisanResultView(let archivedWarikanGroupID):

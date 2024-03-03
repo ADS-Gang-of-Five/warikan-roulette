@@ -51,8 +51,8 @@ struct GroupListView: View {
                 case .tatekaeListView(let id, let navigationTitle):
                     TatekaeListView(warikanGroupID: id)
                         .navigationTitle(navigationTitle)
-                case .confirmView:
-                    ConfirmView()
+                case .confirmView(let id):
+                    ConfirmView(warikanGroupID: id)
                         .navigationTitle("立て替えの確認")
                         .navigationBarTitleDisplayMode(.inline)
                 case .rouletteView:

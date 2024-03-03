@@ -397,7 +397,7 @@
 				4C0138FD2B77A86E0011EAA7 /* AddTatekaeViewModel */,
 				4C0138FE2B77A8B10011EAA7 /* TatekaeDetailViewModel */,
 				4CFD6BF62B9400B7001104DD /* ConfirmViewModel */,
-				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
+				4CFD6BFA2B9437BC001104DD /* RouletteViewModel */,
 				4C85D1C22B787E1700F760BE /* RouletteResultViewModel */,
 				694EAF372B807D0F00050E07 /* SeisanResultViewModel */,
 				4C0138DF2B7708290011EAA7 /* ArchiveViewModel */,
@@ -429,6 +429,14 @@
 				4CFD6BF72B940471001104DD /* ConfirmViewModelDTO.swift */,
 			);
 			path = ConfirmViewModel;
+			sourceTree = "<group>";
+		};
+		4CFD6BFA2B9437BC001104DD /* RouletteViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C6528452B220DB3000E8130 /* RouletteViewModel.swift */,
+			);
+			path = RouletteViewModel;
 			sourceTree = "<group>";
 		};
 		694EAF372B807D0F00050E07 /* SeisanResultViewModel */ = {

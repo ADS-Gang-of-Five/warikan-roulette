@@ -41,63 +41,6 @@ final class MainViewModel: ObservableObject {
         )
         self.seisanCalculator = SeisanCalculator(memberRepository: MemberRepository())
     }
-
-    // 全ての割り勘グループを取得
-    func getAllWarikanGroups() async {
-        do {
-            allGroups = try await warikanGroupUseCase.getAll()
-        } catch {
-            print(#function, error)
-        }
-    }
-    
-    // 割り勘グループIDからそのグループのメンバーリストを取得
-    func getSelectedGroupMembers(ids: [EntityID<Member>]) async {
-        do {
-            selectedGroupMembers = try await memberUseCase.get(ids: ids)
-        } catch {
-            print(#function, error)
-        }
-    }
-
-    // 割り勘グループIDからそのグループの立替リストを取得
-    func getSelectedGroupTatakaeList(id: EntityID<WarikanGroup>) async {
-        do {
-            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: id)
-        } catch {
-            print(#function, error)
-        }
-    }
-
-    func reloadTatekaeList() {
-        Task {
-            await getSelectedGroupTatakaeList(id: self.selectedGroup!.id)
-        }
-    }
-
-    // 選択したグループとそのメンバーと立て替えをMainViewModelに保持させる
-    func selectWarikanGroup(warikanGroup: WarikanGroup) async {
-        do {
-            selectedGroup = warikanGroup
-            selectedGroupMembers = try await memberUseCase.get(ids: warikanGroup.members)
-            selectedGroupTatekaes = try await warikanGroupUseCase.getTatekaeList(id: warikanGroup.id)
-        } catch {
-            print(#function, error)
-        }
-    }
-
-    // 現在のselectedGroupTatekaesを基にSeisanResponseを取得する
-    func getSeisanResponse() async {
-        do {
-            guard let tatekaeList = selectedGroupTatekaes else {
-                print("selectedGroupTatekaesがnilです。")
-                return
-            }
-            try await selectedGroupSeisanResponse = seisanCalculator.seisan(tatekaeList: tatekaeList)
-        } catch {
-            print(#function, error)
-        }
-    }
     
     // 途中計算の.needsunluckymenberを.successへ変える
     func convertSeisanResponseToSuccess( _ seisanDataList: [SeisanData]) {

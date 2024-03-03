@@ -55,5 +55,6 @@ struct SeisanResultView: View {
         .task {
             await viewModel.makeArchivedWarikanGroupDTO()
         }
+        .navigationBarBackButtonHidden()
     }
 }

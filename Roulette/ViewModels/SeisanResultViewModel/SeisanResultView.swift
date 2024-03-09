@@ -53,3 +53,19 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
         }
     }
 }
+
+#Preview {
+    let data = SeisanResultViewModel.ArchivedWarikanGroupDTO(
+        name: "サンプルグループ",
+        tatekaeList: ["昼食代", "タクシー代", "宿泊費"],
+        totalAmount: "12000",
+        unluckyMember: "さこ",
+        seisanList: [
+            .init(debtor: "霽月", creditor: "さこ", money: "1600"),
+            .init(debtor: "霽月", creditor: "まき", money: "1700")
+        ]
+    )
+    return SeisanResultView(
+        viewModel: StubSeisanResultViewModel(archivedWarikanGroup: data)
+    )
+}

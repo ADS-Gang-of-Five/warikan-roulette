@@ -19,4 +19,3 @@ final class StubSeisanResultViewModel: SeisanResultViewModelProtocol {
     
     func reload() {}
 }
-

@@ -13,7 +13,7 @@ extension SeisanResultViewModel {
         let creditor: String
         let money: String
 
-        private init(debtor: String, creditor: String, money: String) {
+        init(debtor: String, creditor: String, money: String) {
             self.debtor = debtor
             self.creditor = creditor
             self.money = money
@@ -34,7 +34,7 @@ extension SeisanResultViewModel {
         let unluckyMember: String?
         let seisanList: [SeisanDTO]
 
-        private init(
+        init(
             name: String,
             tatekaeList: [String],
             totalAmount: String,

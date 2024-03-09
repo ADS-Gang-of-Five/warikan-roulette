@@ -13,12 +13,6 @@ extension SeisanResultViewModel {
         let creditor: String
         let money: Int
 
-        init(debtor: String, creditor: String, money: Int) {
-            self.debtor = debtor
-            self.creditor = creditor
-            self.money = money
-        }
-
         static func convert(_ seisanData: SeisanData) -> Self {
             let debtor = seisanData.debtor.name
             let creditor = seisanData.creditor.name
@@ -33,20 +27,6 @@ extension SeisanResultViewModel {
         let totalAmount: Int
         let unluckyMember: String?
         let seisanList: [SeisanDTO]
-
-        init(
-            name: String,
-            tatekaeList: [String],
-            totalAmount: Int,
-            unluckyMember: String?,
-            seisanList: [SeisanDTO]
-        ) {
-            self.name = name
-            self.tatekaeList = tatekaeList
-            self.totalAmount = totalAmount
-            self.unluckyMember = unluckyMember
-            self.seisanList = seisanList
-        }
 
         static func convert(
             _ archivedWarikanGroupData: ArchivedWarikanGroupData,

@@ -45,7 +45,7 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
             }
         }
         .task {
-            await viewModel.makeArchivedWarikanGroupDTO()
+            await viewModel.reload()
         }
     }
 }

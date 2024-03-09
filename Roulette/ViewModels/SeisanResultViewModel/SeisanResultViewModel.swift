@@ -26,7 +26,7 @@ final class SeisanResultViewModel: SeisanResultViewModelProtocol {
         self.tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
     }
 
-    func makeArchivedWarikanGroupDTO() async {
+    func reload() async {
         do {
             let archivedWarikanGroupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
             self.archivedWarikanGroupDTO = try await ArchivedWarikanGroupDTO.convert(

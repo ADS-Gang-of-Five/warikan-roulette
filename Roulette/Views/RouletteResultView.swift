@@ -44,5 +44,6 @@ struct RouletteResultView: View {
             await viewModel.getUnluckyMember()
         }
         .alert(viewModel.aletText, isPresented: $viewModel.isShowAlert) {}
+        .navigationBarBackButtonHidden()
     }
 }

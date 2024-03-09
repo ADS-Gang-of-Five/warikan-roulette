@@ -7,8 +7,7 @@
 
 import Foundation
 
-@MainActor
-final class SeisanResultViewModel: ObservableObject {
+final class SeisanResultViewModel: SeisanResultViewModelProtocol {
     private let archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>
     @Published private(set) var archivedWarikanGroupDTO: ArchivedWarikanGroupDTO?
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
@@ -27,7 +26,6 @@ final class SeisanResultViewModel: ObservableObject {
         self.tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
     }
 
-    // `archivedWarikanGroupDTO`の作成を行う関数
     func makeArchivedWarikanGroupDTO() async {
         do {
             let archivedWarikanGroupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)

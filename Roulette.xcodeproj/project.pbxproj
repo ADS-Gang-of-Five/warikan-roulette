@@ -71,6 +71,7 @@
 		A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35A2B1CA2F300E10FFB /* DebtState.swift */; };
 		A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */; };
 		A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */; };
+		A688E8712B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688E8702B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift */; };
 		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
 		A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */; };
 		A695B6212B34633C0059B78D /* MapToDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6202B34633C0059B78D /* MapToDataExtensions.swift */; };
@@ -154,6 +155,7 @@
 		A67FE35A2B1CA2F300E10FFB /* DebtState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtState.swift; sourceTree = "<group>"; };
 		A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepository.swift; sourceTree = "<group>"; };
+		A688E8702B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanResultViewModelProtocol.swift; sourceTree = "<group>"; };
 		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
 		A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupData.swift; sourceTree = "<group>"; };
 		A695B6202B34633C0059B78D /* MapToDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapToDataExtensions.swift; sourceTree = "<group>"; };
@@ -294,7 +296,6 @@
 				69D8F3E52B1E011A00B24D4E /* ConfirmView.swift */,
 				69D8F3E92B1F478500B24D4E /* RouletteView.swift */,
 				69D8F3EB2B1F4AC100B24D4E /* RouletteResultView.swift */,
-				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
 				4C3EB2C92B1DE4CA00423444 /* ArchiveView.swift */,
 				4C30C3722B2AF8400040F9B2 /* ArchivedSeisanResultView.swift */,
 			);
@@ -442,6 +443,8 @@
 		694EAF372B807D0F00050E07 /* SeisanResultViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
+				A688E8702B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift */,
 				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
 				694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */,
 			);
@@ -602,6 +605,7 @@
 			files = (
 				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
+				A688E8712B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift in Sources */,
 				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
 				4CFD6BF82B940471001104DD /* ConfirmViewModelDTO.swift in Sources */,

@@ -7,17 +7,9 @@
 
 import SwiftUI
 
-struct SeisanResultView: View {
+struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelProtocol {
     @EnvironmentObject private var viewRouter: ViewRouter
-    @StateObject private var viewModel: SeisanResultViewModel
-    
-    init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
-        self._viewModel = StateObject(
-            wrappedValue: SeisanResultViewModel(
-                archivedWarikanGroupID: archivedWarikanGroupID
-            )
-        )
-    }
+    @StateObject var viewModel: ViewModel
 
     var body: some View {
         VStack(spacing: 20) {

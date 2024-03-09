@@ -55,7 +55,7 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
 }
 
 #Preview {
-    let data = SeisanResultViewModel.ArchivedWarikanGroupDTO(
+    let data = SeisanResultView<StubSeisanResultViewModel>.ArchivedWarikanGroupDTO(
         name: "サンプルグループ",
         tatekaeList: ["昼食代", "タクシー代", "宿泊費"],
         totalAmount: 12000,

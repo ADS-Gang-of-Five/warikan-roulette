@@ -14,11 +14,11 @@ extension SeisanResultView {
         let totalAmount: Int
         let unluckyMember: String?
         let seisanList: [SeisanDTO]
-        
-        struct SeisanDTO {
-            let debtor: String
-            let creditor: String
-            let money: Int
-        }
+    }
+    
+    struct SeisanDTO {
+        let debtor: String
+        let creditor: String
+        let money: Int
     }
 }

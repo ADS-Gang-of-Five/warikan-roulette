@@ -9,11 +9,11 @@
 import Foundation
 
 final class StubSeisanResultViewModel: SeisanResultViewModelProtocol {
-    let archivedWarikanGroup: SeisanResultViewModel.ArchivedWarikanGroupDTO?
+    let archivedWarikanGroup: ArchivedWarikanGroupDTO?
     var isShowingAlert = false
     let alertText = "データを取得できなかったためトップに戻ります。"
     
-    init(archivedWarikanGroup: SeisanResultViewModel.ArchivedWarikanGroupDTO?) {
+    init(archivedWarikanGroup: ArchivedWarikanGroupDTO?) {
         self.archivedWarikanGroup = archivedWarikanGroup
     }
     

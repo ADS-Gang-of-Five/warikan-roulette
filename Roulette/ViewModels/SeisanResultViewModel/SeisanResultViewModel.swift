@@ -70,7 +70,7 @@ private extension SeisanResultViewModel {
         )
     }
     
-    func makeSeisanDTO(seisanData: SeisanData) -> ArchivedWarikanGroupDTO.SeisanDTO {
+    func makeSeisanDTO(seisanData: SeisanData) -> SeisanDTO {
         let debtor = seisanData.debtor.name
         let creditor = seisanData.creditor.name
         let money = seisanData.money

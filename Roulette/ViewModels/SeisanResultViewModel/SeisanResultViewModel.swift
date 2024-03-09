@@ -9,11 +9,11 @@ import Foundation
 
 final class SeisanResultViewModel: SeisanResultViewModelProtocol {
     private let archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>
-    @Published private(set) var archivedWarikanGroupDTO: ArchivedWarikanGroupDTO?
+    @Published private(set) var archivedWarikanGroup: ArchivedWarikanGroupDTO?
     private let archivedWarikanGroupUseCase: ArchivedWarikanGroupUseCase
     private let memberUseCase: MemberUseCase
     private let tatekaeUseCase: TatekaeUseCase
-    @Published var isShowAlert = false
+    @Published var isShowingAlert = false
     let alertText = "データを取得できなかったためトップに戻ります。"
 
     init(archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>) {
@@ -29,13 +29,13 @@ final class SeisanResultViewModel: SeisanResultViewModelProtocol {
     func reload() async {
         do {
             let archivedWarikanGroupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
-            self.archivedWarikanGroupDTO = try await ArchivedWarikanGroupDTO.convert(
+            self.archivedWarikanGroup = try await ArchivedWarikanGroupDTO.convert(
                 archivedWarikanGroupData,
                 tatekaeUsecase: tatekaeUseCase,
                 memberUsecase: memberUseCase
             )
         } catch {
-            self.isShowAlert = true
+            self.isShowingAlert = true
         }
     }
 }

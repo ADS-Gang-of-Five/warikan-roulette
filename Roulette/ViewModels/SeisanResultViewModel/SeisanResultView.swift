@@ -17,7 +17,7 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
 
     var body: some View {
         VStack(spacing: 20) {
-            if let archivedWarikanGroupDTO = viewModel.archivedWarikanGroupDTO {
+            if let archivedWarikanGroupDTO = viewModel.archivedWarikanGroup {
                 Text("立て替え一覧")
                 HStack {
                     let tatekaeList = archivedWarikanGroupDTO.tatekaeList
@@ -43,7 +43,7 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
                 }
             }
         }
-        .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
+        .alert(viewModel.alertText, isPresented: $viewModel.isShowingAlert) {
             Button("戻る") {
                 viewRouter.path.removeLast(viewRouter.path.count)
             }

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelProtocol {
     @EnvironmentObject private var viewRouter: ViewRouter
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
+    
+    init(viewModel: @escaping @autoclosure () -> ViewModel) {
+        self._viewModel = .init(wrappedValue: viewModel())
+    }
 
     var body: some View {
         VStack(spacing: 20) {

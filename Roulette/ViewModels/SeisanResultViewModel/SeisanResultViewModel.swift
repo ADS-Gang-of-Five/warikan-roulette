@@ -29,7 +29,7 @@ final class SeisanResultViewModel: SeisanResultViewModelProtocol {
     func reload() async {
         do {
             let archivedWarikanGroupData = try await archivedWarikanGroupUseCase.get(id: archivedWarikanGroupID)
-            self.archivedWarikanGroup = try await ArchivedWarikanGroupDTO.convert(
+            self.archivedWarikanGroup = try await makeArchivedWarikanGroupDTO(
                 archivedWarikanGroupData,
                 tatekaeUsecase: tatekaeUseCase,
                 memberUsecase: memberUseCase
@@ -37,5 +37,43 @@ final class SeisanResultViewModel: SeisanResultViewModelProtocol {
         } catch {
             self.isShowingAlert = true
         }
+    }
+}
+
+private extension SeisanResultViewModel {
+    func makeArchivedWarikanGroupDTO(
+        _ archivedWarikanGroupData: ArchivedWarikanGroupData,
+        tatekaeUsecase: TatekaeUseCase,
+        memberUsecase: MemberUseCase
+    ) async throws -> ArchivedWarikanGroupDTO {
+        let name = archivedWarikanGroupData.groupName
+        let tatekaes = try await tatekaeUsecase.get(
+            ids: archivedWarikanGroupData.tatekaeList
+        )
+        let tatekaeList = tatekaes.map { $0.name }
+        let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
+            partialResult + tatekae.money
+        }
+        var unluckyMember: String?
+        if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
+            unluckyMember = try await memberUsecase.get(id: unluckyMemberID).name
+        }
+        let seisanList = archivedWarikanGroupData.seisanList.map {
+            makeSeisanDTO(seisanData: $0)
+        }
+        return ArchivedWarikanGroupDTO(
+            name: name,
+            tatekaeList: tatekaeList,
+            totalAmount: totalAmount,
+            unluckyMember: unluckyMember,
+            seisanList: seisanList
+        )
+    }
+    
+    func makeSeisanDTO(seisanData: SeisanData) -> ArchivedWarikanGroupDTO.SeisanDTO {
+        let debtor = seisanData.debtor.name
+        let creditor = seisanData.creditor.name
+        let money = seisanData.money
+        return .init(debtor: debtor, creditor: creditor, money: money)
     }
 }

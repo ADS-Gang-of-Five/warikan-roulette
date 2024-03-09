@@ -10,7 +10,9 @@ import Foundation
 
 @MainActor
 protocol SeisanResultViewModelProtocol: ObservableObject {
-    var archivedWarikanGroup: SeisanResultViewModel.ArchivedWarikanGroupDTO? { get }
+    typealias ArchivedWarikanGroupDTO = SeisanResultView<Self>.ArchivedWarikanGroupDTO
+    
+    var archivedWarikanGroup: ArchivedWarikanGroupDTO? { get }
     var isShowingAlert: Bool { get set }
     var alertText: String { get }
     

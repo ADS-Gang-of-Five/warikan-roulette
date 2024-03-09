@@ -446,9 +446,9 @@
 			isa = PBXGroup;
 			children = (
 				69D8F3ED2B1F4ACE00B24D4E /* SeisanResultView.swift */,
+				694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */,
 				A688E8702B9C005B0094AF50 /* SeisanResultViewModelProtocol.swift */,
 				4C6528492B220DD9000E8130 /* SeisanResultViewModel.swift */,
-				694EAF382B807D3400050E07 /* SeisanResultViewModelDTO.swift */,
 				A688E8742B9C0BF60094AF50 /* StubSeisanResultViewModel.swift */,
 			);
 			path = SeisanResultViewModel;

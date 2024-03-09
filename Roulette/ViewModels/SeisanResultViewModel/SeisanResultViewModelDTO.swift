@@ -11,9 +11,9 @@ extension SeisanResultViewModel {
     struct SeisanDTO {
         let debtor: String
         let creditor: String
-        let money: String
+        let money: Int
 
-        init(debtor: String, creditor: String, money: String) {
+        init(debtor: String, creditor: String, money: Int) {
             self.debtor = debtor
             self.creditor = creditor
             self.money = money
@@ -22,7 +22,7 @@ extension SeisanResultViewModel {
         static func convert(_ seisanData: SeisanData) -> Self {
             let debtor = seisanData.debtor.name
             let creditor = seisanData.creditor.name
-            let money = seisanData.money.description
+            let money = seisanData.money
             return SeisanDTO(debtor: debtor, creditor: creditor, money: money)
         }
     }
@@ -30,14 +30,14 @@ extension SeisanResultViewModel {
     struct ArchivedWarikanGroupDTO {
         let name: String
         let tatekaeList: [String]
-        let totalAmount: String
+        let totalAmount: Int
         let unluckyMember: String?
         let seisanList: [SeisanDTO]
 
         init(
             name: String,
             tatekaeList: [String],
-            totalAmount: String,
+            totalAmount: Int,
             unluckyMember: String?,
             seisanList: [SeisanDTO]
         ) {
@@ -71,7 +71,7 @@ extension SeisanResultViewModel {
             return ArchivedWarikanGroupDTO(
                 name: name,
                 tatekaeList: tatekaeList,
-                totalAmount: totalAmount.description,
+                totalAmount: totalAmount,
                 unluckyMember: unluckyMember,
                 seisanList: seisanList
             )

@@ -86,8 +86,8 @@ final class ConfirmViewModel: ObservableObject {
     }
 
     private func checkIsNeedUnluckyMember() async throws {
-        let allWarikanGroup = try await warikanGroupUseCase.getAll()
-        guard let warikanGroup = allWarikanGroup.first(where: { warikanGroup in
+        let allWarikanGroups = try await warikanGroupUseCase.getAll()
+        guard let warikanGroup = allWarikanGroups.first(where: { warikanGroup in
             warikanGroup.id == self.warikanGroupID
         }) else { throw NSError(domain: "not found", code: 404) }
         let tatekaeList = try await tatekaeUseCase.get(ids: warikanGroup.tatekaeList)

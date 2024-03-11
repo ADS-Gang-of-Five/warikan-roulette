@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-enum Path: Hashable, Equatable {
-    case tatekaeListView(id: EntityID<WarikanGroup>, navigationTitle: String)
-    case confirmView(EntityID<WarikanGroup>)
-    case rouletteView(EntityID<WarikanGroup>)
-    case rouletteResultView(EntityID<ArchivedWarikanGroup>)
-    case seisanResultView(EntityID<ArchivedWarikanGroup>)
-}
-
 final class ViewRouter: ObservableObject {
     @Published var path = NavigationPath()
+
+    enum Path: Hashable {
+        case tatekaeListView(id: EntityID<WarikanGroup>, navigationTitle: String)
+        case confirmView(EntityID<WarikanGroup>)
+        case rouletteView(EntityID<WarikanGroup>)
+        case rouletteResultView(EntityID<ArchivedWarikanGroup>)
+        case seisanResultView(EntityID<ArchivedWarikanGroup>)
+    }
 
     @ViewBuilder
     func view(_ path: Path) -> some View {

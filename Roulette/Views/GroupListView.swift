@@ -16,7 +16,10 @@ struct GroupListView: View {
             Group {
                 if let warikanGroups = viewModel.warikanGroups {
                     List(warikanGroups) { warikanGroup in
-                        let path = Path.tatekaeListView(id: warikanGroup.id, navigationTitle: warikanGroup.name)
+                        let path = ViewRouter.Path.tatekaeListView(
+                            id: warikanGroup.id,
+                            navigationTitle: warikanGroup.name
+                        )
                         NavigationLink(warikanGroup.name, value: path)
                             .swipeActions(allowsFullSwipe: false) {
                                 Button("Delete", systemImage: "trash.fill", role: .destructive) {
@@ -46,7 +49,7 @@ struct GroupListView: View {
                 onDismiss: { Task { await viewModel.fetchAllWarikanGroups() }},
                 content: { AddGroupView().interactiveDismissDisabled() }
             )
-            .navigationDestination(for: Path.self) { path in
+            .navigationDestination(for: ViewRouter.Path.self) { path in
                 viewRouter.view(path)
             }
         }

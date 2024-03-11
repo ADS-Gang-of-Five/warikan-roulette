@@ -33,7 +33,7 @@ final class ConfirmViewModel: ObservableObject {
     }
 
     func didTappedNavigateToSeisanResultViewButton(
-        completionHandler: @escaping (Path) -> Void
+        completionHandler: @escaping (ViewRouter.Path) -> Void
     ) {
         Task {
             do {
@@ -44,7 +44,7 @@ final class ConfirmViewModel: ObservableObject {
                         code: 0
                     )
                 }
-                completionHandler(Path.seisanResultView(archivedWarikanGroupID))
+                completionHandler(ViewRouter.Path.seisanResultView(archivedWarikanGroupID))
             } catch {
                 print(error)
                 isShowAlert = true

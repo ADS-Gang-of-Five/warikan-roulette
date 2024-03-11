@@ -60,7 +60,7 @@ struct ConfirmView: View {
                     }
                     switch viewModel.seisanResponse {
                     case .needsUnluckyMember:
-                        NavigationLink("端数ルーレットする", value: Path.rouletteView(viewModel.warikanGroupID))
+                        NavigationLink("端数ルーレットする", value: ViewRouter.Path.rouletteView(viewModel.warikanGroupID))
                             .font(.title3)
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)

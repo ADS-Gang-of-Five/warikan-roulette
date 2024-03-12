@@ -27,7 +27,7 @@ struct RouletteResultView: View {
                 }
                 .font(.title)
                 .fontWeight(.bold)
-                NavigationLink(value: Path.seisanResultView(viewModel.archivedWarikanGroupID)) {
+                NavigationLink(value: ViewRouter.Path.seisanResultView(viewModel.archivedWarikanGroupID)) {
                     Text("OK") 
                         .padding(.vertical, 10)
                         .padding(.horizontal, 50)

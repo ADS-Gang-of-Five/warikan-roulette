@@ -62,7 +62,7 @@ struct TatekaeListView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink("清算", value: Path.confirmView(viewModel.warikanGroupID))
+                NavigationLink("清算", value: ViewRouter.Path.confirmView(viewModel.warikanGroupID))
                     .disabled(viewModel.isNavigateToConfirmViewButtonDisabled)
             }
         }

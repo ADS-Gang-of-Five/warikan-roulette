@@ -58,7 +58,7 @@ struct RouletteView: View {
                         .padding(.top)
                     } else {
                         if let id = viewModel.archivedWarikanGroupID {
-                            NavigationLink("Next", value: Path.rouletteResultView(id))
+                            NavigationLink("Next", value: ViewRouter.Path.rouletteResultView(id))
                                 .buttonStyle(.borderedProminent)
                                 .padding(.top)
                         }

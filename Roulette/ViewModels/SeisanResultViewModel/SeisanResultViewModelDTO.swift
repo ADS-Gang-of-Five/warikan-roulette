@@ -16,7 +16,8 @@ extension SeisanResultView {
         let seisanList: [SeisanDTO]
     }
     
-    struct SeisanDTO {
+    struct SeisanDTO: Identifiable {
+        let id = UUID()
         let debtor: String
         let creditor: String
         let money: Int

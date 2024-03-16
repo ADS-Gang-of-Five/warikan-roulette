@@ -10,6 +10,7 @@ import SwiftUI
 struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelProtocol {
     @EnvironmentObject private var viewRouter: ViewRouter
     @StateObject private var viewModel: ViewModel
+    @State private var tatekaeListIsExpanded = false
     
     init(viewModel: @escaping @autoclosure () -> ViewModel) {
         self._viewModel = .init(wrappedValue: viewModel())
@@ -18,29 +19,46 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
     var body: some View {
         VStack(spacing: 20) {
             if let archivedWarikanGroupDTO = viewModel.archivedWarikanGroup {
-                Text("立て替え一覧")
-                HStack {
-                    let tatekaeList = archivedWarikanGroupDTO.tatekaeList
-                    ForEach(tatekaeList, id: \.self) { tatekae in
-                        Text(tatekae)
+                List {
+                    Section(isExpanded: $tatekaeListIsExpanded) {
+                        let tatekaeList = archivedWarikanGroupDTO.tatekaeList
+                        ForEach(tatekaeList, id: \.self) { tatekae in
+                            Text(tatekae)
+                        }
+                    } header: {
+                        Text("立て替え")
+                            .font(.subheadline)
+                    }
+                    
+                    Section {
+                        Text("\(archivedWarikanGroupDTO.totalAmount)円")
+                    } header: {
+                        Text("合計金額")
+                            .font(.subheadline)
+                    }
+                    
+                    Section {
+                        Text(archivedWarikanGroupDTO.unluckyMember ?? "なし")
+                    } header: {
+                        Text("アンラッキーメンバー")
+                            .font(.subheadline)
+                    }
+                    
+                    Section {
+                        if archivedWarikanGroupDTO.seisanList.isEmpty {
+                            Text("清算なし")
+                        } else {
+                            ForEach(archivedWarikanGroupDTO.seisanList.indices, id: \.self) { index in
+                                let seisan = archivedWarikanGroupDTO.seisanList[index]
+                                Text("\(seisan.creditor) が \(seisan.debtor) に \(seisan.money)円 渡す")
+                            }
+                        }
+                    } header: {
+                        Text("清算結果")
+                            .font(.subheadline)
                     }
                 }
-                Text("アンラッキーメンバー")
-                Text(archivedWarikanGroupDTO.unluckyMember ?? "なし")
-                Text("合計金額")
-                Text("\(archivedWarikanGroupDTO.totalAmount)円")
-                Text("清算結果")
-                if archivedWarikanGroupDTO.seisanList.isEmpty {
-                    Text("清算なし")
-                } else {
-                    ForEach(archivedWarikanGroupDTO.seisanList.indices, id: \.self) { index in
-                        let seisan = archivedWarikanGroupDTO.seisanList[index]
-                        Text("\(seisan.creditor)が\(seisan.debtor)に\(seisan.money)円渡す")
-                    }
-                }
-                Button("トップに戻る") {
-                    viewRouter.path.removeLast(viewRouter.path.count)
-                }
+                .listStyle(.sidebar)
             }
         }
         .alert(viewModel.alertText, isPresented: $viewModel.isShowingAlert) {
@@ -50,6 +68,20 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
         }
         .task {
             await viewModel.reload()
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewRouter.path.removeLast(viewRouter.path.count)
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "chevron.backward")
+                            .fontWeight(.semibold)
+                        Text("トップに戻る")
+                    }
+                }
+            }
         }
     }
 }
@@ -65,7 +97,11 @@ struct SeisanResultView<ViewModel>: View where ViewModel: SeisanResultViewModelP
             .init(debtor: "霽月", creditor: "まき", money: 1700)
         ]
     )
-    return SeisanResultView(
-        viewModel: StubSeisanResultViewModel(archivedWarikanGroup: data)
-    )
+    return NavigationStack {
+        SeisanResultView(
+            viewModel: StubSeisanResultViewModel(archivedWarikanGroup: data)
+        )
+        .navigationTitle("精算結果")
+        .navigationBarTitleDisplayMode(.large)
+    }
 }

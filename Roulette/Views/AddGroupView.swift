@@ -65,7 +65,7 @@ struct AddGroupView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        dismiss()
+                        viewModel.didTapDismissButtonAction(dismissFunction: dismiss.callAsFunction)
                     }, label: {
                         Image(systemName: "xmark.circle")
                     })
@@ -73,6 +73,14 @@ struct AddGroupView: View {
                 }
             }
             .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}
+            .confirmationDialog(
+                "割り勘グループの作成を中止しますか？\n（入力内容は破棄されます。）",
+                isPresented: $viewModel.isShowDismissConfirmationDialog,
+                titleVisibility: .visible
+            ) {
+                Button("作成を中止する", role: .destructive, action: dismiss.callAsFunction)
+                Button("作成を続ける", role: .cancel) {}
+            }
         }
     }
 }

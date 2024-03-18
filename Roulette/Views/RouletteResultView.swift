@@ -27,16 +27,18 @@ struct RouletteResultView: View {
                 }
                 .font(.title)
                 .fontWeight(.bold)
-                NavigationLink(value: ViewRouter.Path.seisanResultView(viewModel.archivedWarikanGroupID)) {
-                    Text("OK") 
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 50)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                NavigationLink(
+                    value: ViewRouter.Path.seisanResultView(viewModel.archivedWarikanGroupID)
+                ) {
+                    Text("OK")
+                        .font(.title3)
+                        .fontWeight(.semibold)
                         .foregroundStyle(.white)
-                        .background(.blue)
-                        .clipShape(Capsule())
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 15)
                 }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
                 .padding(.top)
             }
         }

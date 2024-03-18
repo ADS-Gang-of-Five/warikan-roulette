@@ -21,6 +21,7 @@ final class AddTatekaeViewModel: ObservableObject {
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""
     @Published private(set) var isAppendingTatekae = false
+    @Published var isShowDismissConfirmationDialog = false
 
     var isAppendTatekaeButtonDisabled: Bool {
         !(tatekaeName.isEmpty == false &&
@@ -89,6 +90,14 @@ final class AddTatekaeViewModel: ObservableObject {
                 alertText = "立替の追加に失敗しました。"
                 isShowAlert = true
             }
+        }
+    }
+
+    func didTapDismissButtonAction(dismissFunction: () -> Void) {
+        if tatekaeName.isEmpty, money.isEmpty, payer == nil {
+            dismissFunction()
+        } else {
+            isShowDismissConfirmationDialog = true
         }
     }
 }

@@ -12,13 +12,13 @@ struct ConfirmView: View {
     @EnvironmentObject private var viewRouter: ViewRouter
     // アラートのボタンで使用する
     @Environment(\.dismiss) private var dismiss
-
+    
     init(warikanGroupID: EntityID<WarikanGroup>) {
         _viewModel = StateObject(
             wrappedValue: ConfirmViewModel(warikanGroupID: warikanGroupID)
         )
     }
-
+    
     var body: some View {
         VStack {
             if let warikanGroup = viewModel.warikanGroupDTO {
@@ -72,14 +72,19 @@ struct ConfirmView: View {
                     }
                     switch viewModel.seisanResponse {
                     case .needsUnluckyMember:
-                        NavigationLink("端数ルーレットする", value: ViewRouter.Path.rouletteView(viewModel.warikanGroupID))
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(.white)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .background(.blue)
-                            .clipShape(Capsule())
+                        NavigationLink(
+                            value: ViewRouter.Path.rouletteView(viewModel.warikanGroupID)
+                        ) {
+                            Text("端数ルーレットする")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 15)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
+                        .padding(.top)
                     case .success:
                         Button(action: {
                             viewModel.didTappedNavigateToSeisanResultViewButton(

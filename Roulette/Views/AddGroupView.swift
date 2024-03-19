@@ -41,22 +41,20 @@ struct AddGroupView: View {
                     } header: {
                         Text("メンバーリスト")
                     } footer: {
-                        Button("グループ作成") {
+                        Button(action: {
                             viewModel.didTapCreateGroupButton { dismiss() }
-                        }
+                        }, label: {
+                            Text("グループ作成")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 20)
+                        })
                         .disabled(viewModel.isCreateGroupButtonDisabled)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .padding(.horizontal)
-                        .padding(.horizontal)
-                        .background(
-                            viewModel.isCreateGroupButtonDisabled ? .gray : .blue
-                        )
-                        .clipShape(Capsule())
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
                         .frame(maxWidth: .infinity)
-                        .padding(.top)
                     }
                 }
             }

@@ -58,17 +58,19 @@ struct AddTatekaeView: View {
             .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {
             }
             .overlay(alignment: .bottom) {
-                Button("立替を追加") {
+                Button(action: {
                     viewModel.didTapAppendTatakaeButton { dismiss() }
-                }
+                }, label: {
+                    Text("立替を追加")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 5)
+                        .frame(maxWidth: .infinity)
+                })
                 .disabled(viewModel.isAppendTatekaeButtonDisabled)
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical)
-                .background(viewModel.isAppendTatekaeButtonDisabled ? .gray : .blue)
-                .clipShape(Capsule())
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
                 .padding(.horizontal)
             }   
             .confirmationDialog(

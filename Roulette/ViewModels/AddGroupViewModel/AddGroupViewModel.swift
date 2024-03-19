@@ -29,6 +29,10 @@ final class AddGroupViewModel: ObservableObject {
         isCreatingWarikanGroup
     }
 
+    var hasAnyInput: Bool {
+        !(groupName.isEmpty && memberList.isEmpty && additionalMember.isEmpty)
+    }
+
     private let warikanGroupUseCase = WarikanGroupUseCase(
         warikanGroupRepository: WarikanGroupRepository(),
         memberRepository: MemberRepository(),
@@ -51,7 +55,7 @@ final class AddGroupViewModel: ObservableObject {
     }
 
     func didTapDismissButtonAction(dismissFunction: () -> Void) {
-        if groupName.isEmpty, memberList.isEmpty, additionalMember.isEmpty {
+        if hasAnyInput == false {
             dismissFunction()
         } else {
             isShowDismissConfirmationDialog = true

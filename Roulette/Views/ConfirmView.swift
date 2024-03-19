@@ -39,16 +39,28 @@ struct ConfirmView: View {
                         Text("立替一覧")
                             .font(.callout)
                             .padding(.top, 1)
-                        Group {
-                            ForEach(warikanGroup.tatekaeList.indices, id: \.self) { i in
-                                HStack {
-                                    Text(warikanGroup.tatekaeList[i].name)
-                                    Spacer()
-                                    Text("\(warikanGroup.tatekaeList[i].money)円")
+                        ViewThatFits(in: .vertical) {
+                            VStack {
+                                ForEach(warikanGroup.tatekaeList.indices, id: \.self) { i in
+                                    HStack {
+                                        Text(warikanGroup.tatekaeList[i].name)
+                                        Spacer()
+                                        Text("\(warikanGroup.tatekaeList[i].money)円")
+                                    }
+                                    .font(.title2)
+                                }
+                            }
+                            ScrollView {
+                                ForEach(warikanGroup.tatekaeList.indices, id: \.self) { i in
+                                    HStack {
+                                        Text(warikanGroup.tatekaeList[i].name)
+                                        Spacer()
+                                        Text("\(warikanGroup.tatekaeList[i].money)円")
+                                    }
+                                    .font(.title2)
                                 }
                             }
                         }
-                        .font(.title2)
                         HStack {
                             Text("合計金額")
                             Spacer()
@@ -68,7 +80,6 @@ struct ConfirmView: View {
                             .padding(.horizontal, 20)
                             .background(.blue)
                             .clipShape(Capsule())
-                            .padding(.top)
                     case .success:
                         Button(action: {
                             viewModel.didTappedNavigateToSeisanResultViewButton(
@@ -76,8 +87,7 @@ struct ConfirmView: View {
                                     viewRouter.path.append($0)
                                 }
                             )
-                        },
-                               label: {
+                        }, label: {
                             Text("精算結果を見る")
                                 .font(.title3)
                                 .fontWeight(.semibold)
@@ -86,7 +96,6 @@ struct ConfirmView: View {
                                 .padding(.horizontal, 20)
                                 .background(.blue)
                                 .clipShape(Capsule())
-                                .padding(.top)
                         })
                     case .none:
                         Text("計算中...")

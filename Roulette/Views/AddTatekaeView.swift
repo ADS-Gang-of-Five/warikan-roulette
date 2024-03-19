@@ -82,6 +82,7 @@ struct AddTatekaeView: View {
                 Button("立替の追加を続ける", role: .cancel) {}
             }
         }
+        .interactiveDismissDisabled(viewModel.hasAnyInput)
     }
 }
 

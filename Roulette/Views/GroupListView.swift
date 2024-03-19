@@ -47,7 +47,7 @@ struct GroupListView: View {
             .sheet(
                 isPresented: $viewModel.isShowAddGroupView,
                 onDismiss: { Task { await viewModel.fetchAllWarikanGroups() }},
-                content: { AddGroupView().interactiveDismissDisabled() }
+                content: { AddGroupView() }
             )
             .navigationDestination(for: ViewRouter.Path.self) { path in
                 viewRouter.view(path)

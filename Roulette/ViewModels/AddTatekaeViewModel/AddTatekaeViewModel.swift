@@ -30,6 +30,10 @@ final class AddTatekaeViewModel: ObservableObject {
           isAppendingTatekae == false)
     }
 
+    var hasAnyInput: Bool {
+        !(tatekaeName.isEmpty && money.isEmpty && payer == nil)
+    }
+
     var isTatekaeNameTextFieldDisabled: Bool { isAppendingTatekae }
     var isMoneyTextFieldDisabled: Bool { isAppendingTatekae }
     var isPayerPickerDisabled: Bool { isAppendingTatekae }
@@ -94,7 +98,7 @@ final class AddTatekaeViewModel: ObservableObject {
     }
 
     func didTapDismissButtonAction(dismissFunction: () -> Void) {
-        if tatekaeName.isEmpty, money.isEmpty, payer == nil {
+        if hasAnyInput == false {
             dismissFunction()
         } else {
             isShowDismissConfirmationDialog = true

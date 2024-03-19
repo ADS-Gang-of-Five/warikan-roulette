@@ -80,6 +80,7 @@ struct AddGroupView: View {
                 Button("作成を続ける", role: .cancel) {}
             }
         }
+        .interactiveDismissDisabled(viewModel.hasAnyInput)
     }
 }
 

@@ -15,6 +15,7 @@ final class AddGroupViewModel: ObservableObject {
     @Published var isCreatingWarikanGroup = false
     @Published var isShowAlert = false
     @Published var alertText = ""
+    @Published var isShowDismissConfirmationDialog = false
 
     var isAddMemberButtonDisabled: Bool {
         !(additionalMember.isEmpty == false && memberList.count <= 20 && isCreatingWarikanGroup == false)
@@ -47,6 +48,14 @@ final class AddGroupViewModel: ObservableObject {
     func didTapCreateGroupButton(onCompleted completedAction: @escaping () -> Void) {
         guard isCreatingWarikanGroup == false else { return }
         createWarikanGroup(onCompleted: completedAction)
+    }
+
+    func didTapDismissButtonAction(dismissFunction: () -> Void) {
+        if groupName.isEmpty, memberList.isEmpty, additionalMember.isEmpty {
+            dismissFunction()
+        } else {
+            isShowDismissConfirmationDialog = true
+        }
     }
 
     private func createWarikanGroup(onCompleted completedAction: @escaping () -> Void) {

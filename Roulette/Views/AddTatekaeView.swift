@@ -46,8 +46,12 @@ struct AddTatekaeView: View {
             .toolbarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("dissmiss", systemImage: "xmark.circle") { dismiss() }
-                        .disabled(viewModel.isDismissButtonDisabled)
+                    Button(action: {
+                        viewModel.didTapDismissButtonAction(dismissFunction: dismiss.callAsFunction)
+                    }, label: {
+                        Image(systemName: "xmark.circle")
+                    })
+                    .disabled(viewModel.isDismissButtonDisabled)
                 }
             }
             .task { await viewModel.getMembers() }
@@ -66,6 +70,14 @@ struct AddTatekaeView: View {
                 .background(viewModel.isAppendTatekaeButtonDisabled ? .gray : .blue)
                 .clipShape(Capsule())
                 .padding(.horizontal)
+            }   
+            .confirmationDialog(
+                "立替の追加を中止しますか？\n（入力内容は破棄されます。）",
+                isPresented: $viewModel.isShowDismissConfirmationDialog,
+                titleVisibility: .visible
+            ) {
+                Button("立替の追加を中止する", role: .destructive, action: dismiss.callAsFunction)
+                Button("立替の追加を続ける", role: .cancel) {}
             }
         }
     }

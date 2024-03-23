@@ -3,10 +3,16 @@
 アプリ『割り勘ルーレット』は、端数を払う人をルーレットで公平に決めることができる割り勘計算アプリです。10 円単位で精算を行うので 1 円単位で支払う必要がなく、楽に精算を行うことができます。
 
 - __動作環境__：iOS 17.0 以降, iPadOS 17.0 以降
-- __App Store__：(未リリース) <!-- TODO: App Storeのリンクを貼り付ける -->
+- __App Store__：https://apple.co/4aaA3Wn
 - __言語__：日本語
 
-<!-- TODO: アプリのスクリーンショットを貼り付ける -->
+<div style="display: flex">
+    <img src="./Screenshot/67-1.png" width="18%">
+    <img src="./Screenshot/67-2.png" width="18%">
+    <img src="./Screenshot/67-3.png" width="18%">
+    <img src="./Screenshot/67-4.png" width="18%">
+    <img src="./Screenshot/67-5.png" width="18%">
+</div>
 
 ## プライバシーポリシー
 
@@ -16,8 +22,7 @@
 
 不具合の報告や要望に関しては、下記の宛先にてお問い合わせください。
 
-(保留)
-<!-- TODO: リリース時にリリースを行う人のアドレスを貼り付ける -->
+sasasan537@yahoo.co.jp
 
 ## ソースコード
 
@@ -25,5 +30,5 @@
 
 ### 開発環境
 
-- Xcode 15.1    <!-- TODO: リリース時に全員が使っているバージョンに書き換える -->
-- Swift 5.9.2   <!-- TODO: リリース時に全員が使っているバージョンに書き換える  -->
+- Xcode 15.2
+- Swift 5.9.2

@@ -6,7 +6,13 @@
 - __App Store__：https://apple.co/4aaA3Wn
 - __言語__：日本語
 
-<!-- TODO: アプリのスクリーンショットを貼り付ける -->
+<div style="display: flex">
+    <img src="./Screenshot/67-1.png" width="18%">
+    <img src="./Screenshot/67-2.png" width="18%">
+    <img src="./Screenshot/67-3.png" width="18%">
+    <img src="./Screenshot/67-4.png" width="18%">
+    <img src="./Screenshot/67-5.png" width="18%">
+</div>
 
 ## プライバシーポリシー
 

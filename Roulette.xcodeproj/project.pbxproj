@@ -262,6 +262,7 @@
 			children = (
 				4C65282C2B220879000E8130 /* Error */,
 				4C65282E2B22088D000E8130 /* UseCase */,
+				A69408C62BB84D21002BCD7D /* Entity */,
 				4C65282F2B2208A0000E8130 /* Repository */,
 			);
 			path = Model;
@@ -331,7 +332,6 @@
 		4C65282F2B2208A0000E8130 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
 				4C6528312B2208DB000E8130 /* WarikanGroup */,
 				A600912D2B229888005C6535 /* ArchivedWarikanGroup */,
 				4C6528322B2208EC000E8130 /* Member */,
@@ -352,7 +352,6 @@
 		4C6528312B2208DB000E8130 /* WarikanGroup */ = {
 			isa = PBXGroup;
 			children = (
-				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */,
 				A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */,
 				A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */,
@@ -363,7 +362,6 @@
 		4C6528322B2208EC000E8130 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				4C2518082B12104900965D43 /* Member.swift */,
 				A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */,
 				A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */,
 				A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */,
@@ -374,7 +372,6 @@
 		4C6528332B2208F5000E8130 /* Tatekae */ = {
 			isa = PBXGroup;
 			children = (
-				4C25180D2B12108D00965D43 /* Tatekae.swift */,
 				A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */,
 				A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */,
 				A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */,
@@ -445,8 +442,6 @@
 		A600912D2B229888005C6535 /* ArchivedWarikanGroup */ = {
 			isa = PBXGroup;
 			children = (
-				A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */,
-				A67FE33D2B19679400E10FFB /* Seisan.swift */,
 				A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */,
 				A65940ED2B6470F600CBD2B3 /* ArchivedWarikanGroupRepository.swift */,
 				A65940EF2B6472D200CBD2B3 /* InMemoryArchivedWarikanGroupRepository.swift */,
@@ -468,6 +463,19 @@
 				A67FE31C2B1338A900E10FFB /* Extensions.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		A69408C62BB84D21002BCD7D /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
+				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
+				A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */,
+				A67FE33D2B19679400E10FFB /* Seisan.swift */,
+				4C2518082B12104900965D43 /* Member.swift */,
+				4C25180D2B12108D00965D43 /* Tatekae.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		A695B6162B3455030059B78D /* DTO */ = {

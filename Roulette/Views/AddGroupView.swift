@@ -68,17 +68,17 @@ struct AddGroupView: View {
                         Image(systemName: "xmark.circle")
                     })
                     .disabled(viewModel.isDissmissButtonDisabled)
+                    .confirmationDialog(
+                        "割り勘グループの作成を中止しますか？\n（入力内容は破棄されます。）",
+                        isPresented: $viewModel.isShowDismissConfirmationDialog,
+                        titleVisibility: .visible
+                    ) {
+                        Button("作成を中止する", role: .destructive, action: dismiss.callAsFunction)
+                        Button("作成を続ける", role: .cancel) {}
+                    }
                 }
             }
             .alert(viewModel.alertText, isPresented: $viewModel.isShowAlert) {}
-            .confirmationDialog(
-                "割り勘グループの作成を中止しますか？\n（入力内容は破棄されます。）",
-                isPresented: $viewModel.isShowDismissConfirmationDialog,
-                titleVisibility: .visible
-            ) {
-                Button("作成を中止する", role: .destructive, action: dismiss.callAsFunction)
-                Button("作成を続ける", role: .cancel) {}
-            }
         }
         .interactiveDismissDisabled(viewModel.hasAnyInput)
     }

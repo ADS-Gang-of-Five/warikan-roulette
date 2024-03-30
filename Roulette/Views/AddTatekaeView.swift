@@ -52,6 +52,14 @@ struct AddTatekaeView: View {
                         Image(systemName: "xmark.circle")
                     })
                     .disabled(viewModel.isDismissButtonDisabled)
+                    .confirmationDialog(
+                        "立替の追加を中止しますか？\n（入力内容は破棄されます。）",
+                        isPresented: $viewModel.isShowDismissConfirmationDialog,
+                        titleVisibility: .visible
+                    ) {
+                        Button("立替の追加を中止する", role: .destructive, action: dismiss.callAsFunction)
+                        Button("立替の追加を続ける", role: .cancel) {}
+                    }
                 }
             }
             .task { await viewModel.getMembers() }
@@ -72,14 +80,6 @@ struct AddTatekaeView: View {
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
                 .padding(.horizontal)
-            }   
-            .confirmationDialog(
-                "立替の追加を中止しますか？\n（入力内容は破棄されます。）",
-                isPresented: $viewModel.isShowDismissConfirmationDialog,
-                titleVisibility: .visible
-            ) {
-                Button("立替の追加を中止する", role: .destructive, action: dismiss.callAsFunction)
-                Button("立替の追加を続ける", role: .cancel) {}
             }
         }
         .interactiveDismissDisabled(viewModel.hasAnyInput)

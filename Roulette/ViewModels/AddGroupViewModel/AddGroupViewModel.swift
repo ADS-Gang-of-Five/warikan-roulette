@@ -46,7 +46,7 @@ final class AddGroupViewModel: ObservableObject {
             return
         }
         memberList.append(additionalMember)
-        additionalMember.removeAll()
+        clearAdditionalMember()
     }
 
     func didTapCreateGroupButton(onCompleted completedAction: @escaping () -> Void) {
@@ -59,6 +59,16 @@ final class AddGroupViewModel: ObservableObject {
             dismissFunction()
         } else {
             isShowDismissConfirmationDialog = true
+        }
+    }
+    
+    /// `additionalMember`の入力のクリア処理
+    ///
+    /// 冗長な実装に見えるが、確実にクリアするために必要。(cf. Issue #222)
+    private func clearAdditionalMember() {
+        additionalMember.append(" ")
+        Task { @MainActor in
+            additionalMember.removeAll()
         }
     }
 

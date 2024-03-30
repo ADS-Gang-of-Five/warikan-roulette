@@ -25,8 +25,8 @@ final class RouletteViewModel: ObservableObject {
     @Published var angle = Angle(degrees: 0.0) // 見直し
     @Published var isRouletteBottanTap = false // 見直し
 
-    @Published private(set) var members: [Member]?
-    @Published private(set) var tatekaeList: [Tatekae]?
+    @Published private(set) var members: [MemberData]?
+    @Published private(set) var tatekaeList: [TatekaeData]?
     let warikanGroupID: EntityID<WarikanGroup>
     @Published private(set) var archivedWarikanGroupID: EntityID<ArchivedWarikanGroup>?
 
@@ -52,8 +52,8 @@ final class RouletteViewModel: ObservableObject {
         guard let warikanGroup = allWarikanGroups.first(where: { warikanGroup in
             warikanGroup.id == self.warikanGroupID
         }) else { throw NSError(domain: "not found", code: 404) }
-        self.members = try await memberUseCase.get(ids: warikanGroup.members)
-        self.tatekaeList = try await tatekaeUseCase.get(ids: warikanGroup.tatekaeList)
+        self.members = warikanGroup.members
+        self.tatekaeList = warikanGroup.tatekaeList
     }
 
     private func archiveWarikanGroup() {}

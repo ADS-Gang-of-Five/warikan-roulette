@@ -30,7 +30,7 @@ struct SeisanCalculator {
     }
 
     /// 立て替えリストを受け取り、清算リストを計算する。
-    func seisan(tatekaeList: [Tatekae]) async throws -> SeisanResponse {
+    func seisan(tatekaeList: [TatekaeData]) async throws -> SeisanResponse {
         let debts = debts(tatekaeList: tatekaeList)
         
         var zansais = debts
@@ -81,12 +81,12 @@ struct SeisanCalculator {
     }
     
     /// 各メンバーの借金額を計算する。
-    private func debts(tatekaeList: [Tatekae]) -> DebtState {
+    private func debts(tatekaeList: [TatekaeData]) -> DebtState {
         var debtMap = [EntityID<Member>: Double]()
         tatekaeList.forEach { tatekae in
             let splitAmount = Double(tatekae.money) / Double(tatekae.recipients.count)
-            debtMap[tatekae.payer] = (debtMap[tatekae.payer] ?? 0.0) - Double(tatekae.money)
-            tatekae.recipients.forEach { debtMap[$0] = (debtMap[$0] ?? 0.0) + splitAmount }
+            debtMap[tatekae.payer.id] = (debtMap[tatekae.payer.id] ?? 0.0) - Double(tatekae.money)
+            tatekae.recipients.forEach { debtMap[$0.id] = (debtMap[$0.id] ?? 0.0) + splitAmount }
         }
         return DebtState.create(from: debtMap)
     }

@@ -24,8 +24,11 @@ struct WarikanGroupUseCase {
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
-    func getAll() async throws -> [WarikanGroup] {
-        return try await warikanGroupRepository.findAll()
+    func getAll() async throws -> [WarikanGroupData] {
+        return try await warikanGroupRepository.findAll().mapToData(
+            withMemberRepository: memberRepository,
+            withTatekaeRepository: tatekaeRepository
+        )
     }
 
     /// 指定したIDの割り勘グループの、立て替えリストを返す。

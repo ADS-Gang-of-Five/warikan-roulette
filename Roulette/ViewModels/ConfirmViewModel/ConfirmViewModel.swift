@@ -90,7 +90,7 @@ final class ConfirmViewModel: ObservableObject {
         guard let warikanGroup = allWarikanGroups.first(where: { warikanGroup in
             warikanGroup.id == self.warikanGroupID
         }) else { throw NSError(domain: "not found", code: 404) }
-        let tatekaeList = try await tatekaeUseCase.get(ids: warikanGroup.tatekaeList)
+        let tatekaeList = warikanGroup.tatekaeList
         self.seisanResponse = try await seisanCalculator.seisan(tatekaeList: tatekaeList)
     }
 }

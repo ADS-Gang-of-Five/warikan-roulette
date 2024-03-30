@@ -46,7 +46,9 @@ final class AddGroupViewModel: ObservableObject {
             return
         }
         memberList.append(additionalMember)
-        additionalMember.removeAll()
+        Task { @MainActor in // Taskにしてる理由は Issue #222 参照
+            additionalMember.removeAll()
+        }
     }
 
     func didTapCreateGroupButton(onCompleted completedAction: @escaping () -> Void) {

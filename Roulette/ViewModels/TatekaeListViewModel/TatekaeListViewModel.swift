@@ -15,7 +15,6 @@ import Foundation
         memberRepository: MemberRepository(),
         tatekaeRepository: TatekaeRepository()
      )
-     private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
 
      @Published private(set) var tatekaeDTOs: [TatekaeDTO]?
 

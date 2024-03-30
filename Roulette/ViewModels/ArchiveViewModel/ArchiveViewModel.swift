@@ -20,8 +20,6 @@ final class ArchiveViewModel: ObservableObject {
         memberRepository: MemberRepository(),
         tatekaeRepository: TatekaeRepository()
     )
-    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
-    private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
 
     func makeArchivedWarikanGroupDTO() async {
         do {

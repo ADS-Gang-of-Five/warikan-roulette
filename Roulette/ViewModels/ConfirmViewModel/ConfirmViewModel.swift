@@ -14,8 +14,6 @@ final class ConfirmViewModel: ObservableObject {
         memberRepository: MemberRepository(),
         tatekaeRepository: TatekaeRepository()
     )
-    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
-    private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
     private let archiveController = WarikanGroupArchiveController(
         warikanGroupRepository: WarikanGroupRepository(),
         archivedWarikanGroupRepository: ArchivedWarikanGroupRepository()
@@ -78,11 +76,7 @@ final class ConfirmViewModel: ObservableObject {
         guard let warikanGroup = allWarikanGroup.first(where: { warikanGroup in
             warikanGroup.id == self.warikanGroupID
         }) else { throw NSError(domain: "not found", code: 0) }
-        self.warikanGroupDTO = try await WarikanGroupDTO.convert(
-            warikanGroup: warikanGroup,
-            memberUseCase: memberUseCase,
-            tatekaeUseCase: tatekaeUseCase
-        )
+        self.warikanGroupDTO = try await WarikanGroupDTO.convert(warikanGroup: warikanGroup)
     }
 
     private func checkIsNeedUnluckyMember() async throws {

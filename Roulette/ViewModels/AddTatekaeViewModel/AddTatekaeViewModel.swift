@@ -16,7 +16,6 @@ final class AddTatekaeViewModel: ObservableObject {
 
     private let warikanGroupID: EntityID<WarikanGroup>
     private let groupUseCase: WarikanGroupUseCase
-    private let memberUseCase: MemberUseCase
 
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""
@@ -41,9 +40,6 @@ final class AddTatekaeViewModel: ObservableObject {
 
     init(_ warikanGroupID: EntityID<WarikanGroup>) {
         self.warikanGroupID = warikanGroupID
-        self.memberUseCase = MemberUseCase(
-            memberRepository: MemberRepository()
-        )
         self.groupUseCase = WarikanGroupUseCase(
             warikanGroupRepository: WarikanGroupRepository(),
             memberRepository: MemberRepository(),

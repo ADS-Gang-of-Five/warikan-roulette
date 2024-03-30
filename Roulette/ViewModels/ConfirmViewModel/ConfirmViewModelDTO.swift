@@ -27,11 +27,7 @@ extension ConfirmViewModel {
             self.totalAmount = totalAmount
         }
 
-        static func convert(
-            warikanGroup: WarikanGroupData,
-            memberUseCase: MemberUseCase,
-            tatekaeUseCase: TatekaeUseCase
-        ) async throws -> Self {
+        static func convert(warikanGroup: WarikanGroupData) async throws -> Self {
             let name = warikanGroup.name
             let members = warikanGroup.members
                 .map { $0.name }

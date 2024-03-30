@@ -49,9 +49,7 @@ extension SeisanResultViewModel {
         }
 
         static func convert(
-            _ archivedWarikanGroupData: ArchivedWarikanGroupData,
-            tatekaeUsecase: TatekaeUseCase,
-            memberUsecase: MemberUseCase
+            _ archivedWarikanGroupData: ArchivedWarikanGroupData
         ) async throws -> Self {
             let name = archivedWarikanGroupData.groupName
             let tatekaes = archivedWarikanGroupData.tatekaeList

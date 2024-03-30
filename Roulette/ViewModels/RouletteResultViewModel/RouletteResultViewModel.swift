@@ -15,7 +15,6 @@ final class RouletteResultViewModel: ObservableObject {
         memberRepository: MemberRepository(),
         tatekaeRepository: TatekaeRepository()
     )
-    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
 
     @Published private(set) var unluckyMember: MemberData?
 

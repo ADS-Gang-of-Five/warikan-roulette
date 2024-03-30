@@ -14,8 +14,6 @@ final class RouletteViewModel: ObservableObject {
         memberRepository: MemberRepository(),
         tatekaeRepository: TatekaeRepository()
     )
-    private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
-    private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())
     private let seisanCalculator = SeisanCalculator(memberRepository: MemberRepository())
     private let archiveController = WarikanGroupArchiveController(
         warikanGroupRepository: WarikanGroupRepository(),

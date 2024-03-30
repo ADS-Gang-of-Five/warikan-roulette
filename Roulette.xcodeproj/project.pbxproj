@@ -72,8 +72,7 @@
 		A69408CC2BB84FC1002BCD7D /* TatekaeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69408CB2BB84FC1002BCD7D /* TatekaeData.swift */; };
 		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
 		A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */; };
-		A6C656A62BB862A0005A0769 /* MemberUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C656A52BB862A0005A0769 /* MemberUseCase.swift */; };
-		A6C656A82BB862AD005A0769 /* TatekaeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C656A72BB862AD005A0769 /* TatekaeUseCase.swift */; };
+		A6C656AA2BB86EC9005A0769 /* TatekaeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,8 +153,7 @@
 		A69408CB2BB84FC1002BCD7D /* TatekaeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeData.swift; sourceTree = "<group>"; };
 		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
 		A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupData.swift; sourceTree = "<group>"; };
-		A6C656A52BB862A0005A0769 /* MemberUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUseCase.swift; sourceTree = "<group>"; };
-		A6C656A72BB862AD005A0769 /* TatekaeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeUseCase.swift; sourceTree = "<group>"; };
+		A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,8 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
-				A6C656A52BB862A0005A0769 /* MemberUseCase.swift */,
-				A6C656A72BB862AD005A0769 /* TatekaeUseCase.swift */,
+				A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */,
 				4C6528302B2208C4000E8130 /* SeisanCalculator */,
 				A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */,
 				A60091342B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift */,
@@ -600,6 +597,7 @@
 				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
 				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
+				A6C656AA2BB86EC9005A0769 /* TatekaeUseCase.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
 				4CFD6BF82B940471001104DD /* ConfirmViewModelDTO.swift in Sources */,
 				A69408C82BB84F55002BCD7D /* WarikanGroupData.swift in Sources */,
@@ -630,7 +628,6 @@
 				4C30C3732B2AF8400040F9B2 /* ArchivedSeisanResultView.swift in Sources */,
 				4C6528402B220D80000E8130 /* AddTatekaeViewModel.swift in Sources */,
 				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,
-				A6C656A62BB862A0005A0769 /* MemberUseCase.swift in Sources */,
 				A69408CA2BB84F93002BCD7D /* MemberData.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
@@ -646,7 +643,6 @@
 				A600912F2B2298B6005C6535 /* ArchivedWarikanGroup.swift in Sources */,
 				69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */,
 				4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */,
-				A6C656A82BB862AD005A0769 /* TatekaeUseCase.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
 				4C2518092B12104900965D43 /* Member.swift in Sources */,
 				4C0138E12B7708870011EAA7 /* ArchiveViewModelDTO.swift in Sources */,

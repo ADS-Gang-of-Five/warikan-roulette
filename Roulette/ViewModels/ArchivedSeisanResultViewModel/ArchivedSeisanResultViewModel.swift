@@ -21,7 +21,8 @@ final class ArchivedSeisanResultViewModel: ObservableObject {
         self.archivedWarikanGroupID = archivedWarikanGroupID
         self.archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
             archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
-            memberRepository: MemberRepository()
+            memberRepository: MemberRepository(),
+            tatekaeRepository: TatekaeRepository()
         )
         self.memberUseCase = MemberUseCase(memberRepository: MemberRepository())
         self.tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())

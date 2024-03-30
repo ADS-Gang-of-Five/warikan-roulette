@@ -17,7 +17,8 @@ final class ArchiveViewModel: ObservableObject {
 
     private let archivedWarikanGroupUseCase = ArchivedWarikanGroupUseCase(
         archivedWarikanGroupRepository: ArchivedWarikanGroupRepository(),
-        memberRepository: MemberRepository()
+        memberRepository: MemberRepository(),
+        tatekaeRepository: TatekaeRepository()
     )
     private let memberUseCase = MemberUseCase(memberRepository: MemberRepository())
     private let tatekaeUseCase = TatekaeUseCase(tatekaeRepository: TatekaeRepository())

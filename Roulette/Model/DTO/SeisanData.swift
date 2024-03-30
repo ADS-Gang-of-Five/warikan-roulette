@@ -11,11 +11,11 @@ import Foundation
 /// 清算の一手順。
 struct SeisanData {
     /// 債務者。清算で支払いをする人。
-    private(set) var debtor: Member
+    let debtor: Member
     /// 債権者。清算で受け取る側の人。
-    private(set) var creditor: Member
+    let creditor: Member
     /// 清算額。
-    private(set) var money: Int
+    let money: Int
 
     private init(debtor: Member, creditor: Member, money: Int) {
         self.debtor = debtor
@@ -42,5 +42,26 @@ struct SeisanData {
             creditor: creditor.id,
             money: money
         )
+    }
+}
+
+// MARK: - [Seisan]
+
+extension [Seisan] {
+    func mapToData(withMemberRepository memberRepository: MemberRepositoryProtocol) async throws -> [SeisanData] {
+        var dataList: [SeisanData] = []
+        for seisan in self {
+            let data = try await SeisanData.create(from: seisan, memberRepository: memberRepository)
+            dataList.append(data)
+        }
+        return dataList
+    }
+}
+
+// MARK: - [SeisanData]
+
+extension [SeisanData] {
+    func mapToEntity() -> [Seisan] {
+        self.map { $0.convertToSeisan() }
     }
 }

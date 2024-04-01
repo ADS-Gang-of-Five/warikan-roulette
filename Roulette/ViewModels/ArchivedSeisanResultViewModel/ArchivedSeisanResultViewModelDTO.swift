@@ -50,23 +50,15 @@ extension ArchivedSeisanResultViewModel {
         }
 
         static func convert(
-            _ archivedWarikanGroupData: ArchivedWarikanGroupData,
-            tatekaeUsecase: TatekaeUseCase,
-            memberUsecase: MemberUseCase
+            _ archivedWarikanGroupData: ArchivedWarikanGroupData
         ) async throws -> Self {
             let name = archivedWarikanGroupData.groupName
-            let tatekaes = try await tatekaeUsecase.get(
-                ids: archivedWarikanGroupData.tatekaeList
-            )
+            let tatekaes = archivedWarikanGroupData.tatekaeList
             let tatekaeList = tatekaes.map { $0.name }
             let totalAmount = tatekaes.reduce(0) { partialResult, tatekae in
                 partialResult + tatekae.money
             }
-            let unluckyMember = if let unluckyMemberID = archivedWarikanGroupData.unluckyMember {
-                try await memberUsecase.get(id: unluckyMemberID).name
-            } else {
-                Optional<String>.none
-            }
+            let unluckyMember = archivedWarikanGroupData.unluckyMember?.name
             let seisanList = archivedWarikanGroupData.seisanList.map {
                 SeisanDTO.convert($0)
             }

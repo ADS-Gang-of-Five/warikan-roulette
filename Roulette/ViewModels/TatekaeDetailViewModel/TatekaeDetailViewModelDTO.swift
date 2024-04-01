@@ -22,9 +22,9 @@ extension TatekaeDetailViewModel {
             self.createdTime = createdTime
         }
 
-        static func convert(_ tatekae: Tatekae, memberUseCase: MemberUseCase) async throws -> Self {
+        static func convert(_ tatekae: TatekaeData) async throws -> Self {
             let name = tatekae.name
-            let payer = try await memberUseCase.get(id: tatekae.payer).name
+            let payer = tatekae.payer.name
             let money = String(tatekae.money)
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = Calendar.autoupdatingCurrent

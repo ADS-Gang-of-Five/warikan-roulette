@@ -11,19 +11,25 @@ import Foundation
 struct ArchivedWarikanGroupUseCase {
     private var repository: ArchivedWarikanGroupRepositoryProtocol
     private var memberRepository: MemberRepositoryProtocol
+    private var tatekaeRepository: TatekaeRepositoryProtocol
     
     init(
         archivedWarikanGroupRepository: ArchivedWarikanGroupRepositoryProtocol,
-        memberRepository: MemberRepositoryProtocol
+        memberRepository: MemberRepositoryProtocol,
+        tatekaeRepository: TatekaeRepositoryProtocol
     ) {
         self.repository = archivedWarikanGroupRepository
         self.memberRepository = memberRepository
+        self.tatekaeRepository = tatekaeRepository
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
     func getAll() async throws -> [ArchivedWarikanGroupData] {
         let archivedWarikanGroups = try await repository.findAll()
-        return try await archivedWarikanGroups.mapToData(withMemberRepository: memberRepository)
+        return try await archivedWarikanGroups.mapToData(
+            withMemberRepository: memberRepository,
+            withTatekaeRepository: tatekaeRepository
+        )
     }
     
     /// 指定したIDの割り勘グループのデータを返す。
@@ -33,7 +39,8 @@ struct ArchivedWarikanGroupUseCase {
         }
         return try await ArchivedWarikanGroupData.create(
             from: archivedWarikanGroup,
-            memberRepository: memberRepository
+            memberRepository: memberRepository,
+            tatekaeRepository: tatekaeRepository
         )
     }
     

@@ -60,19 +60,19 @@
 		A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33D2B19679400E10FFB /* Seisan.swift */; };
 		A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE33F2B1C345D00E10FFB /* EntityID.swift */; };
 		A67FE3462B1C651E00E10FFB /* MemberRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */; };
-		A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3472B1C656500E10FFB /* MemberUseCase.swift */; };
 		A67FE3512B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */; };
-		A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */; };
 		A67FE3552B1C98D700E10FFB /* InMemoryMemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */; };
 		A67FE3572B1C98F600E10FFB /* InMemoryTatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */; };
 		A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3582B1C9A8B00E10FFB /* ValidationError.swift */; };
 		A67FE35B2B1CA2F300E10FFB /* DebtState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35A2B1CA2F300E10FFB /* DebtState.swift */; };
 		A67FE35F2B21D1A600E10FFB /* MemberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */; };
 		A67FE3612B21D4D100E10FFB /* TatekaeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */; };
+		A69408C82BB84F55002BCD7D /* WarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69408C72BB84F55002BCD7D /* WarikanGroupData.swift */; };
+		A69408CA2BB84F93002BCD7D /* MemberData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69408C92BB84F93002BCD7D /* MemberData.swift */; };
+		A69408CC2BB84FC1002BCD7D /* TatekaeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69408CB2BB84FC1002BCD7D /* TatekaeData.swift */; };
 		A695B6182B34555D0059B78D /* SeisanData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6172B34555D0059B78D /* SeisanData.swift */; };
 		A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */; };
-		A695B6212B34633C0059B78D /* MapToDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6202B34633C0059B78D /* MapToDataExtensions.swift */; };
-		A695B6282B3475050059B78D /* MapToEntityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695B6272B3475050059B78D /* MapToEntityExtensions.swift */; };
+		A6C656AA2BB86EC9005A0769 /* TatekaeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,19 +141,19 @@
 		A67FE33D2B19679400E10FFB /* Seisan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seisan.swift; sourceTree = "<group>"; };
 		A67FE33F2B1C345D00E10FFB /* EntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityID.swift; sourceTree = "<group>"; };
 		A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepositoryProtocol.swift; sourceTree = "<group>"; };
-		A67FE3472B1C656500E10FFB /* MemberUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUseCase.swift; sourceTree = "<group>"; };
 		A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepositoryProtocol.swift; sourceTree = "<group>"; };
-		A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeUseCase.swift; sourceTree = "<group>"; };
 		A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryMemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTatekaeRepository.swift; sourceTree = "<group>"; };
 		A67FE3582B1C9A8B00E10FFB /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		A67FE35A2B1CA2F300E10FFB /* DebtState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtState.swift; sourceTree = "<group>"; };
 		A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRepository.swift; sourceTree = "<group>"; };
 		A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeRepository.swift; sourceTree = "<group>"; };
+		A69408C72BB84F55002BCD7D /* WarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarikanGroupData.swift; sourceTree = "<group>"; };
+		A69408C92BB84F93002BCD7D /* MemberData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberData.swift; sourceTree = "<group>"; };
+		A69408CB2BB84FC1002BCD7D /* TatekaeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeData.swift; sourceTree = "<group>"; };
 		A695B6172B34555D0059B78D /* SeisanData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeisanData.swift; sourceTree = "<group>"; };
 		A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedWarikanGroupData.swift; sourceTree = "<group>"; };
-		A695B6202B34633C0059B78D /* MapToDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapToDataExtensions.swift; sourceTree = "<group>"; };
-		A695B6272B3475050059B78D /* MapToEntityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapToEntityExtensions.swift; sourceTree = "<group>"; };
+		A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatekaeUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				4C65282C2B220879000E8130 /* Error */,
+				A695B6162B3455030059B78D /* DTO */,
 				4C65282E2B22088D000E8130 /* UseCase */,
+				A69408C62BB84D21002BCD7D /* Entity */,
 				4C65282F2B2208A0000E8130 /* Repository */,
 			);
 			path = Model;
@@ -316,11 +318,8 @@
 		4C65282E2B22088D000E8130 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				A695B6162B3455030059B78D /* DTO */,
-				A695B6222B3463430059B78D /* Extension */,
 				A67FE3232B14657400E10FFB /* WarikanGroupUseCase.swift */,
-				A67FE3472B1C656500E10FFB /* MemberUseCase.swift */,
-				A67FE3522B1C923A00E10FFB /* TatekaeUseCase.swift */,
+				A6C656A92BB86EC9005A0769 /* TatekaeUseCase.swift */,
 				4C6528302B2208C4000E8130 /* SeisanCalculator */,
 				A60091322B22A05D005C6535 /* WarikanGroupArchiveController.swift */,
 				A60091342B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift */,
@@ -331,7 +330,6 @@
 		4C65282F2B2208A0000E8130 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
 				4C6528312B2208DB000E8130 /* WarikanGroup */,
 				A600912D2B229888005C6535 /* ArchivedWarikanGroup */,
 				4C6528322B2208EC000E8130 /* Member */,
@@ -352,7 +350,6 @@
 		4C6528312B2208DB000E8130 /* WarikanGroup */ = {
 			isa = PBXGroup;
 			children = (
-				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
 				A67FE32C2B1549F300E10FFB /* WarikanGroupRepositoryProtocol.swift */,
 				A67FE32A2B14778900E10FFB /* WarikanGroupRepository.swift */,
 				A67FE32E2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift */,
@@ -363,7 +360,6 @@
 		4C6528322B2208EC000E8130 /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				4C2518082B12104900965D43 /* Member.swift */,
 				A67FE3452B1C651E00E10FFB /* MemberRepositoryProtocol.swift */,
 				A67FE35E2B21D1A600E10FFB /* MemberRepository.swift */,
 				A67FE3542B1C98D700E10FFB /* InMemoryMemberRepository.swift */,
@@ -374,7 +370,6 @@
 		4C6528332B2208F5000E8130 /* Tatekae */ = {
 			isa = PBXGroup;
 			children = (
-				4C25180D2B12108D00965D43 /* Tatekae.swift */,
 				A67FE3502B1C906D00E10FFB /* TatekaeRepositoryProtocol.swift */,
 				A67FE3602B21D4D000E10FFB /* TatekaeRepository.swift */,
 				A67FE3562B1C98F600E10FFB /* InMemoryTatekaeRepository.swift */,
@@ -445,8 +440,6 @@
 		A600912D2B229888005C6535 /* ArchivedWarikanGroup */ = {
 			isa = PBXGroup;
 			children = (
-				A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */,
-				A67FE33D2B19679400E10FFB /* Seisan.swift */,
 				A60091302B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift */,
 				A65940ED2B6470F600CBD2B3 /* ArchivedWarikanGroupRepository.swift */,
 				A65940EF2B6472D200CBD2B3 /* InMemoryArchivedWarikanGroupRepository.swift */,
@@ -470,22 +463,29 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		A69408C62BB84D21002BCD7D /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A67FE33F2B1C345D00E10FFB /* EntityID.swift */,
+				4C25180B2B12108000965D43 /* WarikanGroup.swift */,
+				A600912E2B2298B6005C6535 /* ArchivedWarikanGroup.swift */,
+				A67FE33D2B19679400E10FFB /* Seisan.swift */,
+				4C2518082B12104900965D43 /* Member.swift */,
+				4C25180D2B12108D00965D43 /* Tatekae.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		A695B6162B3455030059B78D /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				A69408C72BB84F55002BCD7D /* WarikanGroupData.swift */,
+				A69408C92BB84F93002BCD7D /* MemberData.swift */,
+				A69408CB2BB84FC1002BCD7D /* TatekaeData.swift */,
 				A695B6172B34555D0059B78D /* SeisanData.swift */,
 				A695B61C2B345A000059B78D /* ArchivedWarikanGroupData.swift */,
 			);
 			path = DTO;
-			sourceTree = "<group>";
-		};
-		A695B6222B3463430059B78D /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				A695B6202B34633C0059B78D /* MapToDataExtensions.swift */,
-				A695B6272B3475050059B78D /* MapToEntityExtensions.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,15 +597,15 @@
 				A67FE32F2B154B5C00E10FFB /* InMemoryWarikanGroupRepository.swift in Sources */,
 				69D8F3E62B1E011A00B24D4E /* ConfirmView.swift in Sources */,
 				A60091312B229D67005C6535 /* ArchivedWarikanGroupRepositoryProtocol.swift in Sources */,
+				A6C656AA2BB86EC9005A0769 /* TatekaeUseCase.swift in Sources */,
 				4C25180E2B12108D00965D43 /* Tatekae.swift in Sources */,
 				4CFD6BF82B940471001104DD /* ConfirmViewModelDTO.swift in Sources */,
-				A695B6212B34633C0059B78D /* MapToDataExtensions.swift in Sources */,
+				A69408C82BB84F55002BCD7D /* WarikanGroupData.swift in Sources */,
 				A67FE3592B1C9A8B00E10FFB /* ValidationError.swift in Sources */,
 				4C3073572B7B49F0007517BB /* TatekaeListViewModelDTO.swift in Sources */,
 				4C228AD32AFA861B00FE4F35 /* ContentView.swift in Sources */,
 				4C6528382B220D01000E8130 /* GroupListViewModel.swift in Sources */,
 				A67FE32B2B14778900E10FFB /* WarikanGroupRepository.swift in Sources */,
-				A67FE3482B1C656500E10FFB /* MemberUseCase.swift in Sources */,
 				4C3EB2CA2B1DE4CA00423444 /* ArchiveView.swift in Sources */,
 				4C1C38E82B1F01BF00839663 /* TatekaeDetailView.swift in Sources */,
 				4C6528482B220DC9000E8130 /* RouletteResultViewModel.swift in Sources */,
@@ -626,9 +626,9 @@
 				A67FE3402B1C345D00E10FFB /* EntityID.swift in Sources */,
 				A60091352B22B857005C6535 /* ArchivedWarikanGroupUseCase.swift in Sources */,
 				4C30C3732B2AF8400040F9B2 /* ArchivedSeisanResultView.swift in Sources */,
-				A67FE3532B1C923A00E10FFB /* TatekaeUseCase.swift in Sources */,
 				4C6528402B220D80000E8130 /* AddTatekaeViewModel.swift in Sources */,
 				4C1C38E62B1E0B7E00839663 /* AddTatekaeView.swift in Sources */,
+				A69408CA2BB84F93002BCD7D /* MemberData.swift in Sources */,
 				A67FE33E2B19679400E10FFB /* Seisan.swift in Sources */,
 				4C3EB2D02B1DEE5100423444 /* TatekaeListView.swift in Sources */,
 				A67FE31A2B1337FA00E10FFB /* SeisanCalculator.swift in Sources */,
@@ -641,7 +641,6 @@
 				A65940EE2B6470F600CBD2B3 /* ArchivedWarikanGroupRepository.swift in Sources */,
 				4CA486312B206001009231FA /* AddButton.swift in Sources */,
 				A600912F2B2298B6005C6535 /* ArchivedWarikanGroup.swift in Sources */,
-				A695B6282B3475050059B78D /* MapToEntityExtensions.swift in Sources */,
 				69D8F3EC2B1F4AC100B24D4E /* RouletteResultView.swift in Sources */,
 				4C65284C2B220DEB000E8130 /* ArchiveViewModel.swift in Sources */,
 				A67FE31D2B1338A900E10FFB /* Extensions.swift in Sources */,
@@ -657,6 +656,7 @@
 				4C44E82C2B688FA000DC653F /* ArchivedSeisanResultViewModel.swift in Sources */,
 				4C0138DA2B7687360011EAA7 /* ArchivedSeisanResultViewModelDTO.swift in Sources */,
 				A695B61D2B345A000059B78D /* ArchivedWarikanGroupData.swift in Sources */,
+				A69408CC2BB84FC1002BCD7D /* TatekaeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,7 @@ extension TatekaeListViewModel {
             self.createdTime = createdTime
         }
 
-        static func convert(_ tatekae: Tatekae, dateFormatter: DateFormatter) -> Self {
+        static func convert(_ tatekae: TatekaeData, dateFormatter: DateFormatter) -> Self {
             Self.init(
                 id: tatekae.id,
                 name: tatekae.name,

@@ -11,12 +11,11 @@ import Foundation
 final class AddTatekaeViewModel: ObservableObject {
     @Published var tatekaeName = ""
     @Published var money = ""
-    @Published private(set) var members: [Member]?
+    @Published private(set) var members: [MemberData]?
     @Published var payer: EntityID<Member>?
 
     private let warikanGroupID: EntityID<WarikanGroup>
     private let groupUseCase: WarikanGroupUseCase
-    private let memberUseCase: MemberUseCase
 
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""
@@ -41,9 +40,6 @@ final class AddTatekaeViewModel: ObservableObject {
 
     init(_ warikanGroupID: EntityID<WarikanGroup>) {
         self.warikanGroupID = warikanGroupID
-        self.memberUseCase = MemberUseCase(
-            memberRepository: MemberRepository()
-        )
         self.groupUseCase = WarikanGroupUseCase(
             warikanGroupRepository: WarikanGroupRepository(),
             memberRepository: MemberRepository(),
@@ -55,7 +51,7 @@ final class AddTatekaeViewModel: ObservableObject {
         do {
             guard let warikanGroup = try await groupUseCase.getAll().first(where: { $0.id == warikanGroupID })
             else { return }
-            members = try await memberUseCase.get(ids: warikanGroup.members)
+            members = warikanGroup.members
         } catch {
             print(error)
             alertText = "データの読み込み中にエラーが発生しました。前の画面に戻りもう一度お試しください。"

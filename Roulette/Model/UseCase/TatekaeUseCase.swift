@@ -10,18 +10,25 @@ import Foundation
 
 struct TatekaeUseCase {
     private var tatekaeRepository: TatekaeRepositoryProtocol
+    private var memberRepository: MemberRepositoryProtocol
     
-    init(tatekaeRepository: TatekaeRepositoryProtocol) {
+    init(
+        tatekaeRepository: TatekaeRepositoryProtocol,
+        memberRepository: MemberRepositoryProtocol
+    ) {
         self.tatekaeRepository = tatekaeRepository
+        self.memberRepository = memberRepository
     }
     
     /// 指定したIDの立て替えを返す。
-    func get(id: EntityID<Tatekae>) async throws -> Tatekae {
-        return try await tatekaeRepository.find(id: id)
+    func get(id: EntityID<Tatekae>) async throws -> TatekaeData {
+        let tatekae = try await tatekaeRepository.find(id: id)
+        return try await .create(from: tatekae, memberRepository: memberRepository)
     }
     
     /// 指定した複数のIDの立て替えを返す。
-    func get(ids: [EntityID<Tatekae>]) async throws -> [Tatekae] {
+    func get(ids: [EntityID<Tatekae>]) async throws -> [TatekaeData] {
         return try await tatekaeRepository.find(ids: ids)
+            .mapToData(withMemberRepository: memberRepository)
     }
 }

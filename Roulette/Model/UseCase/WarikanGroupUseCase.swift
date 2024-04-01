@@ -24,16 +24,20 @@ struct WarikanGroupUseCase {
     }
     
     /// 登録されている割り勘グループの配列の全体を返す。
-    func getAll() async throws -> [WarikanGroup] {
-        return try await warikanGroupRepository.findAll()
+    func getAll() async throws -> [WarikanGroupData] {
+        return try await warikanGroupRepository.findAll().mapToData(
+            withMemberRepository: memberRepository,
+            withTatekaeRepository: tatekaeRepository
+        )
     }
 
     /// 指定したIDの割り勘グループの、立て替えリストを返す。
-    func getTatekaeList(id: EntityID<WarikanGroup>) async throws -> [Tatekae] {
+    func getTatekaeList(id: EntityID<WarikanGroup>) async throws -> [TatekaeData] {
         guard let warikanGroup = try await warikanGroupRepository.find(id: id) else {
             throw ValidationError.notFoundID(id)
         }
         return try await tatekaeRepository.find(ids: warikanGroup.tatekaeList)
+            .mapToData(withMemberRepository: memberRepository)
     }
 
     /// 割り勘グループを新規作成する。

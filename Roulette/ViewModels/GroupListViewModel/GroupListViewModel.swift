@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class GroupListViewModel: ObservableObject {
-    @Published private(set) var warikanGroups: [WarikanGroup]? = []
+    @Published private(set) var warikanGroups: [WarikanGroupData]? = []
     @Published var isShowAddGroupView = false
     @Published var isShowAlert = false
     @Published private(set) var alertText = ""

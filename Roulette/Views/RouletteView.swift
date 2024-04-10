@@ -10,61 +10,86 @@ import Charts
 
 struct RouletteView: View {
     @StateObject private var viewModel: RouletteViewModel
+    @EnvironmentObject private var viewRouter: ViewRouter
     @Environment(\.dismiss) private var dismiss
-
     init(warikanGroupID: EntityID<WarikanGroup>) {
         _viewModel = StateObject(
             wrappedValue: RouletteViewModel(warikanGroupID: warikanGroupID)
         )
     }
-
+    
     var body: some View {
+        GeometryReader { geometry in
             VStack {
+                Spacer()
                 if let members = viewModel.members {
-                    Image(systemName: "triangleshape.fill")
-                        .rotationEffect(Angle(degrees: 180.0))
-                        .foregroundStyle(.red)
-                        .scaleEffect(1.3)
-                    Chart {
-                        ForEach(members) { member in
-                            SectorMark(
-                                angle: .value("", 360.0),
-                                innerRadius: MarkDimension.ratio(0.5),
-                                angularInset: 1
-                            )
-                            .cornerRadius(1)
-                            .foregroundStyle(by: .value("", member.name))
-                            .annotation(position: .overlay) {
-                                Text(member.name)
-                                    .font(.headline)
-                                    .foregroundStyle(.white)
-                                    .rotationEffect(-viewModel.angle)
+                    VStack {
+                        Image(systemName: "triangleshape.fill")
+                            .rotationEffect(Angle(degrees: 180.0))
+                            .foregroundStyle(.red)
+                            .scaleEffect(1.3)
+                        Chart {
+                            ForEach(members) { member in
+                                SectorMark(
+                                    angle: .value("", 360.0),
+                                    innerRadius: MarkDimension.ratio(0.5),
+                                    angularInset: 1
+                                )
+                                .cornerRadius(1)
+                                .foregroundStyle(by: .value("", member.name))
+                                .annotation(position: .overlay) {
+                                    Text(member.name)
+                                        .font(.headline)
+                                        .foregroundStyle(.white)
+                                        .rotationEffect(-viewModel.angle)
+                                }
                             }
                         }
+                        .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.5)
+                        .chartLegend(.hidden)
+                        .navigationBarBackButtonHidden(true)
+                        .rotationEffect(viewModel.angle)
+                        .padding(.top, 3)
                     }
-                    .chartLegend(.hidden)
-                    .navigationBarBackButtonHidden(viewModel.isRouletteBottanTap)
-                    .rotationEffect(viewModel.angle)
-                    .frame(width: 300, height: 300)
-                    .padding(.top, 3)
-                    if !viewModel.isRouletteBottanTap {
-                        Button {
-                            viewModel.didStartButtonTappedAction()
-                        } label: {
-                            Text("Start")
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(viewModel.isRouletteBottanTap ? .gray : .blue)
-                        .padding(.top)
-                    } else {
-                        if let id = viewModel.archivedWarikanGroupID {
-                            NavigationLink("Next", value: ViewRouter.Path.rouletteResultView(id))
+                    .frame(height: geometry.size.height * 0.6)
+                    VStack {
+                            Spacer()
+                            if !viewModel.isRouletteBottanTap {
+                                Button {
+                                    viewModel.didStartButtonTappedAction()
+                                } label: {
+                                    Text("Start")
+                                        .buttonStyle(.borderedProminent)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .tint(viewModel.isRouletteBottanTap ? .gray : .blue)
+                                .padding(.top)
+                            } else {
+                                if let id = viewModel.archivedWarikanGroupID {
+                                    NavigationLink("Next", value: ViewRouter.Path.rouletteResultView(id))
+                                        .buttonStyle(.borderedProminent)
+                                        .padding(.top)
+                                }
+                            }
+                            Spacer()
+                            if !viewModel.isRouletteBottanTap {
+                                Button {
+                                    viewRouter.path.removeLast()
+                                } label: {
+                                    Text("戻る")
+                                }
                                 .buttonStyle(.borderedProminent)
                                 .padding(.top)
+                            } else {
+                                Text("")
+                                    .padding(.top)
+                            }
+                            Spacer()
                         }
-                    }
+                    .frame(height: geometry.size.height * 0.2)
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .task {
                 await viewModel.onAppearAction()
             }
@@ -73,5 +98,6 @@ struct RouletteView: View {
                     dismiss()
                 }
             }
+        }
     }
 }

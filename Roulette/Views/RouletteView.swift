@@ -46,7 +46,7 @@ struct RouletteView: View {
                             }
                         }
                         .chartLegend(.hidden)
-                        .navigationBarBackButtonHidden(viewModel.isRouletteBottanTap)
+                        .navigationBarBackButtonHidden(true)
                         .rotationEffect(viewModel.angle)
                         .frame(
                             width: geometry.size.width * 0.8,
